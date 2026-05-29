@@ -261,14 +261,14 @@ export function TravelHero({
         </div>
       </div>
 
-      {/* Tabs */}
-      <div className='flex border-b border-border'>
+      {/* Tabs — only change: overflow-x-auto + scrollbar-hide + shrink-0 on buttons */}
+      <div className='flex overflow-x-auto border-b border-border [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] scrollbar-none'>
         {TABS.map(({ key, Icon }) => (
           <button
             key={key}
             onClick={() => setActiveTab(key)}
             className={cn(
-              'flex items-center gap-1.5 px-4 py-3 font-heading text-[13px] font-semibold transition-colors',
+              'flex shrink-0 items-center gap-1.5 px-4 py-3 font-heading text-[13px] font-semibold transition-colors',
               activeTab === key
                 ? 'border-b-2 border-primary text-primary'
                 : 'text-muted-foreground hover:text-foreground',
