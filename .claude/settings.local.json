@@ -1,0 +1,29 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__figma-desktop__get_screenshot",
+      "mcp__figma-desktop__get_design_context",
+      "Bash(npx tsc *)",
+      "Bash(npx next *)",
+      "PowerShell(New-Item *)",
+      "Bash(pnpm add *)",
+      "Bash(node *)",
+      "Bash(git init *)",
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(git branch *)",
+      "Bash(git remote *)",
+      "Read(//c/Users/Administrator/Desktop/travels/**)",
+      "Read(//c/Users/Administrator/Desktop/frontend/**)",
+      "Bash(cp \"C:/Users/Administrator/Desktop/matchday/public/figma/footer/80f0d270a559b792b5b5bf890834121eb11d171f.png\" \"C:/Users/Administrator/Desktop/frontend/public/figma/80f0d270a559b792b5b5bf890834121eb11d171f.png\")",
+      "Bash(cp \"C:/Users/Administrator/Desktop/matchday/public/figma/footer/f0a42d752c8086e9be6b45641ffeb2e31cc642cc.png\" \"C:/Users/Administrator/Desktop/frontend/public/figma/f0a42d752c8086e9be6b45641ffeb2e31cc642cc.png\")",
+      "Read(//c/Users/Administrator/Downloads/3 8/**)",
+      "Read(//c/Users/Administrator/Downloads/3 8//**)",
+      "Bash(git -C \"C:/Users/Administrator/Desktop/matchday\" status)",
+      "Bash(git -C \"C:/Users/Administrator/Desktop/travels\" status)",
+      "Bash(git -C \"C:/Users/Administrator/Desktop/frontend\" status)",
+      "Bash(git -C \"C:/Users/Administrator/Desktop/frontend\" pull --rebase)",
+      "Bash(git -C \"C:/Users/Administrator/Desktop/frontend\" push)"
+    ]
+  }
+}
