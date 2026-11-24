@@ -5,6 +5,8 @@ import { Footer } from "@/components/footer";
 import { LandingFooter } from "@/components/landing/landing-footer";
 import { useLandingHost } from "@/lib/site-runtime";
 import { isVipFlowPath } from "@/features/vip/routes";
+import { isSummitFlowPath, isSummitPath } from "@/features/summit/routes";
+import { SummitFooter } from "@/components/summit/footer";
 
 /* Mirrors ConditionalHeader: the two surfaces that own their whole viewport
    get no marketing chrome at either end of the page. */
@@ -19,6 +21,10 @@ export function ConditionalFooter() {
   if (segment === "lp") return null;
 
   if (pathname.startsWith("/studio")) return null;
+  // The summit's booking steps end with their own one-line footer.
+  if (isSummitFlowPath(pathname)) return null;
+  // Its landing page: the site footer in the summit's (light) colours.
+  if (isSummitPath(pathname)) return <SummitFooter />;
   if (pathname.startsWith("/admin")) return null;
   if (pathname.startsWith("/scout")) return null;
   /* Fan and player dashboards. Segment match, so a marketing page such as

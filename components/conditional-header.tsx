@@ -15,6 +15,8 @@ import { BlackFridayBar } from "@/components/promo/black-friday";
 import { useLandingHost } from "@/lib/site-runtime";
 import { isVipFlowPath } from "@/features/vip/routes";
 import { cn } from "@/lib/utils";
+import { SummitBuilderHeader, SummitHeader } from "@/components/summit/header";
+import { isSummitFlowPath, isSummitPath } from "@/features/summit/routes";
 
 const CHECKOUT_PATHS = [
   "/builder/seats",
@@ -164,6 +166,11 @@ export function ConditionalHeader() {
 
   // Sanity Studio takes over the full viewport — no marketing chrome.
   if (pathname.startsWith("/studio")) return null;
+
+  // World Football Summit: its own header (Figma "Summit · Header"), and a
+  // slim one on its booking steps.
+  if (isSummitFlowPath(pathname)) return <SummitBuilderHeader />;
+  if (isSummitPath(pathname)) return <SummitHeader />;
 
   // The admin and scouting dashboards bring their own sidebar shells — no
   // navbar, no footer. Leaving the marketing chrome in place does not just

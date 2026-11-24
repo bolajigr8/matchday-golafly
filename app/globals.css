@@ -972,3 +972,131 @@ html.translated-rtl body {
   25% { box-shadow: 0 0 0 10px rgba(212, 178, 106, 0.25); transform: scale(1.015); }
   100% { box-shadow: 0 0 0 0 rgba(212, 178, 106, 0); transform: scale(1); }
 }
+
+/* ─── World Football Summit (Figma "WFS") ─────────────────────────────
+   The summit pages' own palette, light and dark exactly as designed.
+   Scoped to `.wfs` so nothing else on the site can pick it up. */
+@theme inline {
+  --color-wfs-page: var(--wfs-page);
+  --color-wfs-surface: var(--wfs-surface);
+  --color-wfs-ink: var(--wfs-ink);
+  --color-wfs-text: var(--wfs-text);
+  --color-wfs-muted: var(--wfs-muted);
+  --color-wfs-line: var(--wfs-line);
+  --color-wfs-hair: var(--wfs-hair);
+  --color-wfs-soft: var(--wfs-soft);
+  --color-wfs-lime: #b7ff0a;
+  --color-wfs-lime-ink: var(--wfs-lime-ink);
+  --color-wfs-strong: var(--wfs-strong);
+  --color-wfs-active: var(--wfs-active);
+  --color-wfs-on-active: var(--wfs-on-active);
+  --color-wfs-selected: var(--wfs-selected);
+  --color-wfs-label: var(--wfs-label);
+  --color-wfs-placeholder: var(--wfs-placeholder);
+  --color-wfs-step: var(--wfs-step);
+  --color-wfs-on-ink: #ffffff;
+  --color-wfs-on-ink-muted: #a6b0a3;
+  --color-wfs-on-ink-body: #c9d0c6;
+  --color-wfs-on-lime: #0a0c0a;
+}
+
+.wfs {
+  --wfs-page: #ffffff;
+  --wfs-surface: #ffffff;
+  --wfs-ink: #050606;
+  --wfs-text: #121212;
+  --wfs-muted: #5a6158;
+  --wfs-line: #e3e6df;
+  --wfs-hair: #e3e6df;
+  --wfs-soft: #f6f7f3;
+  --wfs-lime-ink: #446600;
+  --wfs-strong: #121212;
+  --wfs-active: #121212;
+  --wfs-on-active: #ffffff;
+  --wfs-selected: #fbfff2;
+  --wfs-label: #6d746c;
+  --wfs-placeholder: #6f766c;
+  --wfs-step: #5c635a;
+  --wfs-card-shadow: 0 1px 2px rgb(18 20 15 / 0.04), 0 14px 36px -10px rgb(18 20 15 / 0.07);
+}
+.dark .wfs {
+  --wfs-page: #0a0a0a;
+  --wfs-surface: #131313;
+  --wfs-ink: #1c1c1c;
+  --wfs-text: #ededed;
+  --wfs-muted: #a0a0a0;
+  --wfs-line: #2b2b2b;
+  --wfs-hair: #212121;
+  --wfs-soft: #1a1a1a;
+  --wfs-lime-ink: #b7ff0a;
+  --wfs-strong: #e6e6e6;
+  --wfs-active: #f5f5f5;
+  --wfs-on-active: #0a0a0a;
+  --wfs-selected: #131313;
+  --wfs-label: #8d8d8d;
+  --wfs-placeholder: #8b8b8b;
+  --wfs-step: #9e9e9e;
+}
+
+@keyframes wfs-marquee {
+  to { transform: translateX(-50%); }
+}
+@keyframes wfs-swing {
+  0%, 100% { transform: rotate(-3.2deg); }
+  50% { transform: rotate(3.2deg); }
+}
+@keyframes wfs-spin {
+  to { transform: rotate(-360deg); }
+}
+@keyframes wfs-fly {
+  0% { left: 0; }
+  70%, 100% { left: 100%; }
+}
+@keyframes wfs-trail {
+  0% { transform: scaleX(0.005); }
+  70%, 100% { transform: scaleX(1); }
+}
+@keyframes wfs-bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+.wfs-marquee { animation: wfs-marquee 28s linear infinite; }
+.wfs-swing { animation: wfs-swing 4.2s ease-in-out infinite; transform-origin: 50% 0; }
+.wfs-spin { animation: wfs-spin 18s linear infinite; }
+.wfs-fly { animation: wfs-fly 4.5s cubic-bezier(0.45, 0, 0.2, 1) infinite; }
+.wfs-trail { animation: wfs-trail 4.5s cubic-bezier(0.45, 0, 0.2, 1) infinite; transform-origin: 0 50%; }
+.wfs-bob { animation: wfs-bob 2.4s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) {
+  .wfs-marquee, .wfs-swing, .wfs-spin, .wfs-fly, .wfs-trail, .wfs-bob { animation: none; }
+}
+@keyframes wfs-flap {
+  0% { transform: perspective(300px) rotateX(-90deg); opacity: 0.4; }
+  100% { transform: perspective(300px) rotateX(0); opacity: 1; }
+}
+
+/* Summit footer: the site footer re-coloured to the Figma summit palette. */
+html:not(.dark) .wfs-footer {
+  --band-ink: #ffffff;
+  --band-ink-raise: #f3f3f2;
+  --band-ink-fg: #121212;
+  --band-ink-muted: #5a6158;
+  --band-ink-border: rgb(18 18 18 / 0.13);
+  --footer-input-bg: #ffffff;
+  --footer-input-border: rgb(18 18 18 / 0.14);
+}
+html:not(.dark) .wfs-footer > footer { color-scheme: light; border-top: 1px solid rgb(18 18 18 / 0.13); }
+html:not(.dark) .wfs-footer :is(.text-primary, .hover\:text-primary:hover, .group:hover .group-hover\:text-primary) { color: #446600; }
+html:not(.dark) .wfs-footer .md-logo {
+  --md-line: var(--foreground);
+  --md-mark: var(--foreground);
+  --md-word: var(--foreground);
+  --md-sub: var(--foreground);
+  --md-rule: var(--foreground);
+}
+.dark .wfs-footer {
+  --band-ink: #131313;
+  --band-ink-raise: #1a1a1a;
+  --band-ink-fg: #ededed;
+  --band-ink-muted: #a0a0a0;
+  --band-ink-border: rgb(229 229 229 / 0.13);
+}

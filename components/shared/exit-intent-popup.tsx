@@ -46,6 +46,8 @@ const SUPPRESSED_PATHS = [
   '/register',
   '/fan',
   '/scout',
+  // World Football Summit: its own landing page and booking steps.
+  '/world-football-summit',
 ]
 
 function cookieBannerOpen(): boolean {

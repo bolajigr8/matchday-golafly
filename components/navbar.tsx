@@ -50,6 +50,7 @@ import {
 } from '@/store/data'
 import { GOLAFLY_PRODUCTS, type GolaflyProduct } from '@/store/ecosystem'
 import { MatchdayLogo } from '@/components/brand/matchday-logo'
+import { SummitGolaflyLogo } from '@/components/summit/logo'
 import { IconWhatsApp } from '@/components/social-icons'
 import { CartButton } from '@/components/cart/cart-button'
 import { useCart } from '@/features/cart/context'
@@ -229,12 +230,30 @@ function inertOutside(keep: (Element | null | undefined)[]): () => void {
 /** variant='landing' is the landing sites' header (components/landing): the same
  *  logo, language picker, currency picker, theme toggle and cart, but no page
  *  links or menu, and no Sign in button. The default, 'main', is the site's navbar exactly as it was. */
-export function Navbar({ variant = 'main' }: { variant?: 'main' | 'landing' } = {}) {
+/* variant='summit' is the World Football Summit header (Figma "Summit ·
+   Header"): the same navbar with the summit's own menu and the partner
+   lockup beside the logo. */
+const SUMMIT_NAV_LINKS: NavItem[] = [
+  { label: 'Events', href: '/world-football-summit#events' },
+  { label: 'Tickets', href: '/world-football-summit#tickets' },
+  { label: 'Travel', href: '/world-football-summit#trip' },
+  { label: 'Why attend', href: '/world-football-summit#why' },
+  { label: 'Help', href: '/help-faqs' },
+]
+
+export function Navbar({ variant = 'main' }: { variant?: 'main' | 'landing' | 'summit' } = {}) {
   const landing = variant === 'landing'
   /* The VIP pill shows only while VIP packages are switched on (backend
      flag, features/vip/use-available.ts). */
   const vipOn = useVipAvailable()
-  const navLinks = landing ? [] : vipOn ? NAV_LINKS : NAV_LINKS.filter((l) => !l.vip)
+  const summit = variant === 'summit'
+  const navLinks = landing
+    ? []
+    : summit
+      ? SUMMIT_NAV_LINKS
+      : vipOn
+        ? NAV_LINKS
+        : NAV_LINKS.filter((l) => !l.vip)
   const { resolvedTheme, setTheme } = useTheme()
   const { count, openCart, items, applyServerCart } = useCart()
   const mounted = useHydrated()
@@ -548,19 +567,39 @@ export function Navbar({ variant = 'main' }: { variant?: 'main' | 'landing' } = 
             'focus-visible:outline-offset-4',
           )}
         >
-          {/* 30 px tall (not 34) below 400 px: at 34 px the logo plus the
-              currency, language, cart and menu buttons needed 372 px, so
-              360 px phones scrolled sideways. */}
-          <MatchdayLogo
-            size='sm'
-            className='max-[359px]:hidden max-[399px]:[--md-h:30px] lg:[--md-h:40px]'
-          />
-          <MatchdayLogo
-            variant='icon'
-            size='sm'
-            className='hidden max-[359px]:inline-flex'
-          />
+          {summit ? (
+            <SummitGolaflyLogo className='h-10 lg:h-12' />
+          ) : (
+            <>
+              {/* 30 px tall (not 34) below 400 px: at 34 px the logo plus the
+                  currency, language, cart and menu buttons needed 372 px, so
+                  360 px phones scrolled sideways. */}
+              <MatchdayLogo
+                size='sm'
+                className='max-[359px]:hidden max-[399px]:[--md-h:30px] lg:[--md-h:40px]'
+              />
+              <MatchdayLogo
+                variant='icon'
+                size='sm'
+                className='hidden max-[359px]:inline-flex'
+              />
+            </>
+          )}
         </Link>
+
+        {summit && (
+          <span className='ml-3 hidden items-center gap-3 sm:flex'>
+            <span aria-hidden className='h-7 w-px bg-border' />
+            <span className='flex flex-col gap-0.5 leading-[normal]'>
+              <span className='font-mono text-[9.5px] font-medium uppercase tracking-[1.14px] text-muted-foreground'>
+                Official travel partner
+              </span>
+              <span translate='no' className='notranslate font-heading text-[14px] font-bold text-foreground'>
+                World Football Summit
+              </span>
+            </span>
+          </span>
+        )}
 
         {/* ── Desktop links ── */}
         <ul className='ml-4 hidden h-full items-center gap-0.5 lg:flex xl:ml-8'>
