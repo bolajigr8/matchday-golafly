@@ -1,0 +1,128 @@
+<div class="ds-section">
+  <p class="ds-eyebrow">Resolved</p>
+  <h2 class="ds-h">One lime, both themes</h2>
+  <p class="ds-sub">
+    matchday declared <em>two different</em> limes — light
+    <code class="ds-code">oklch(0.94 0.19 124)</code> → #d1ff61, dark
+    <code class="ds-code">oklch(0.9 0.21 123)</code> → #c5f32d — while the transferred marketing pages
+    hardcoded a third and a fourth (<code class="ds-code">#b4ff39</code> ×126,
+    <code class="ds-code">#a3ff00</code> ×51). The split was not indecision. It happened because there
+    was no token for lime as <em>type</em>, so the one fill value kept being bent to do two jobs it
+    cannot do at once.
+  </p>
+  <div class="ds-dd">
+    <div class="ds-dd-item" data-verdict="dont">
+      <div class="ds-dd-tag">{{icon:x:13}} What went wrong</div>
+      <div style="display: flex; gap: 6px; margin-bottom: 8px">
+        <span style="flex: 1; height: 30px; border-radius: 6px; background: #d1ff61"></span>
+        <span style="flex: 1; height: 30px; border-radius: 6px; background: #c5f32d"></span>
+        <span style="flex: 1; height: 30px; border-radius: 6px; background: #b4ff39"></span>
+        <span style="flex: 1; height: 30px; border-radius: 6px; background: #a3ff00"></span>
+      </div>
+      <div class="ds-dd-why">
+        Four limes, two of them invented outside the token layer. Retinting the product meant a
+        find-and-replace, so nobody did it.
+      </div>
+    </div>
+    <div class="ds-dd-item" data-verdict="do">
+      <div class="ds-dd-tag">{{icon:check:13}} What we ship</div>
+      <div style="display: flex; gap: 6px; margin-bottom: 8px">
+        <span style="flex: 2; height: 30px; border-radius: 6px; background: var(--brand)"></span>
+        <span style="flex: 1; height: 30px; border-radius: 6px; background: var(--brand-text)"></span>
+      </div>
+      <div class="ds-dd-why">
+        One fill (<code class="ds-code">--brand</code>, identical in both themes) plus one text token
+        (<code class="ds-code">--brand-text</code>, which flips). Two jobs, two tokens.
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="ds-section">
+  <p class="ds-eyebrow">The tokens</p>
+  <div class="ds-swatch-grid">
+    <div class="ds-swatch">
+      <span class="ds-swatch-chip" style="background: var(--brand)"></span>
+      <div class="ds-swatch-meta">
+        <div class="ds-swatch-name">--brand</div>
+        <div class="ds-swatch-val">{{val:--brand}}<br />{{hex:--brand}}</div>
+        <div class="ds-swatch-role">Fills only. Same value in both themes.</div>
+      </div>
+    </div>
+    <div class="ds-swatch">
+      <span class="ds-swatch-chip" style="background: var(--brand-foreground)"></span>
+      <div class="ds-swatch-meta">
+        <div class="ds-swatch-name">--brand-foreground</div>
+        <div class="ds-swatch-val">{{val:--brand-foreground}}<br />{{hex:--brand-foreground}}</div>
+        <div class="ds-swatch-role">Ink on lime. 16.01:1 either way.</div>
+      </div>
+    </div>
+    <div class="ds-swatch">
+      <span class="ds-swatch-chip" style="background: var(--brand-text)"></span>
+      <div class="ds-swatch-meta">
+        <div class="ds-swatch-name">--brand-text</div>
+        <div class="ds-swatch-val">{{val:--brand-text}}<br />{{hex:--brand-text}}</div>
+        <div class="ds-swatch-role">Lime as type + icons. Flips per theme.</div>
+      </div>
+    </div>
+    <div class="ds-swatch">
+      <span class="ds-swatch-chip" data-alpha="1"><span style="background: var(--brand-edge)"></span></span>
+      <div class="ds-swatch-meta">
+        <div class="ds-swatch-name">--brand-edge</div>
+        <div class="ds-swatch-val">{{val:--brand-edge}}<br />{{hex:--brand-edge}}</div>
+        <div class="ds-swatch-role">1px pill edge on light. Transparent in dark.</div>
+      </div>
+    </div>
+  </div>
+
+  <p class="ds-eyebrow" style="margin-top: 22px">The same button, unchanged, in both themes</p>
+  <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap">
+    <button class="ds-btn">{{icon:plus:14}} New offer</button>
+    <button class="ds-btn" data-state="hover">Hover</button>
+    <button class="ds-btn" data-disabled="1">Disabled</button>
+    <span style="font-family: var(--font-mono); font-size: 11px; color: var(--brand-text); font-weight: 700">
+      {{icon:check:12}} lime as text
+    </span>
+  </div>
+</div>
+
+<div class="ds-section">
+  <p class="ds-eyebrow">Why #b4ff39 and not #dfff00</p>
+  <p class="ds-sub">
+    Near-black ink scores 15–17:1 on <em>every</em> lime in the running, so contrast does not pick the
+    winner. Two things do: <code class="ds-code">#b4ff39</code> is already proven in both themes across
+    126 usages in this repo, and standardising on it retires the largest block of hardcoded hex in one
+    move. It is also marginally less glaring than <code class="ds-code">#dfff00</code> on a white page.
+  </p>
+  <table style="width: 100%; border-collapse: collapse; font-size: 11.5px">
+    <thead>
+      <tr style="text-align: left; color: var(--muted-foreground)">
+        <th style="padding: 6px 8px; border-bottom: 1px solid var(--border); font-family: var(--font-mono); font-size: 9.5px; letter-spacing: 0.12em; text-transform: uppercase">Check</th>
+        <th style="padding: 6px 8px; border-bottom: 1px solid var(--border); font-family: var(--font-mono); font-size: 9.5px; letter-spacing: 0.12em; text-transform: uppercase">Ratio</th>
+        <th style="padding: 6px 8px; border-bottom: 1px solid var(--border); font-family: var(--font-mono); font-size: 9.5px; letter-spacing: 0.12em; text-transform: uppercase">Need</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td style="padding: 5px 8px">Ink on lime fill — both themes</td><td style="padding: 5px 8px; font-family: var(--font-mono)">16.01</td><td style="padding: 5px 8px; color: var(--muted-foreground)">4.5</td></tr>
+      <tr><td style="padding: 5px 8px">Lime fill vs dark page</td><td style="padding: 5px 8px; font-family: var(--font-mono)">16.31</td><td style="padding: 5px 8px; color: var(--muted-foreground)">3</td></tr>
+      <tr><td style="padding: 5px 8px">Pill edge vs light page</td><td style="padding: 5px 8px; font-family: var(--font-mono)">3.04</td><td style="padding: 5px 8px; color: var(--muted-foreground)">3</td></tr>
+      <tr><td style="padding: 5px 8px">Brand text vs light page</td><td style="padding: 5px 8px; font-family: var(--font-mono)">4.62</td><td style="padding: 5px 8px; color: var(--muted-foreground)">4.5</td></tr>
+      <tr><td style="padding: 5px 8px">Brand text vs dark page</td><td style="padding: 5px 8px; font-family: var(--font-mono)">16.31</td><td style="padding: 5px 8px; color: var(--muted-foreground)">4.5</td></tr>
+    </tbody>
+  </table>
+
+  <p class="ds-note" data-kind="warn">
+    <strong>One thing colour choice cannot fix.</strong> A bright lime fill is ~1.16:1 against a light
+    page — and that is true of <em>every</em> candidate, including #dfff00 (1.09) and #a3ff00 (1.19).
+    You cannot pick your way out of it; a lime light enough to be a lime is never 3:1 against white.
+    Hence <code class="ds-code">--brand-edge</code> on light surfaces, and nothing in dark, where the
+    fill already clears 16:1.
+    <br /><br />
+    Also retired: <code class="ds-code">#76B900</code>, the marketing pages' light-mode lime text. It
+    measures <strong>2.31:1</strong> — it was never passing.
+    <code class="ds-code">--brand-text</code> at 4.62:1 replaces it.
+    <br /><br />
+    Re-run the audit any time with <code class="ds-code">node design/verify-contrast.mjs</code>; it
+    exits non-zero on a regression.
+  </p>
+</div>

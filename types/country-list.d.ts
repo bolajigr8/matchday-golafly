@@ -1,0 +1,4 @@
+declare module 'country-list' {
+  export function getCode(name: string): string | undefined
+  export function getName(code: string): string | undefined
+}

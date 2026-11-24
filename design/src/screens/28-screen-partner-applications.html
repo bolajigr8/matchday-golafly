@@ -1,0 +1,116 @@
+<div class="ds-screen">
+  <div class="ds-shell">
+{{sidebar:partner-apps}}
+    <div class="ds-pane">
+        <div class="ds-hdr">
+          <div class="ds-hdr-r1">
+            <span class="ds-crumb">Dashboard / <b>Partner applications</b></span>
+            
+          </div>
+          <div class="ds-hdr-r2">
+            <span class="ds-hdr-title">Partner applications</span>
+            <span class="ds-hdr-stats"><span class="ds-hdr-stat"><i style="background: var(--status-warn)"></i>7 awaiting review</span><span class="ds-hdr-stat">41 total</span></span>
+          </div>
+          <div style="height: 14px"></div>
+        </div>
+      <div class="ds-pane-body">
+          <div class="ds-tb">
+            <span class="ds-input" style="width: 230px">{{icon:search:14}} Search applicants…</span>
+            <span class="ds-input" style="gap: 9px">{{icon:list-filter:14}} Status {{icon:chevron-down:12}}</span>
+            <span class="ds-input" style="gap: 9px">{{icon:calendar:14}} Last 30 days {{icon:chevron-down:12}}</span>
+            <span class="ds-chip">Status <b>Pending</b><span class="ds-chip-x">{{icon:x:10}}</span></span>
+            <span style="margin-left: auto; display: flex; gap: 7px">
+              <button class="ds-btn" data-variant="outline" data-size="sm">{{icon:download:13}} Export</button>
+            </span>
+          </div>
+          <div class="ds-tw">
+            <table class="ds-t">
+              <thead><tr><th>Applicant</th><th>Country</th><th>Role</th><th>Applied on</th><th>Status</th><th style="text-align:right">Actions</th></tr></thead>
+              <tbody>
+                <tr><td><span class="ds-idc"><span class="ds-av-sm">AO</span><span class="ds-idc-txt"><span class="ds-idc-name">Adaeze Okonkwo</span><span class="ds-idc-sub">adaeze.okonkwo@example.com</span></span></span></td><td>Nigeria</td><td>Regional scout</td><td class="ds-num">2026-07-14</td><td><span class="ds-pill" data-tone="warn">Pending</span></td><td><span class="ds-acts"><span class="ds-act">{{icon:eye:14}}</span><span class="ds-act">{{icon:pencil:14}}</span><span class="ds-act" data-tone="danger">{{icon:trash-2:14}}</span></span></td></tr>
+                <tr><td><span class="ds-idc"><span class="ds-av-sm">MS</span><span class="ds-idc-txt"><span class="ds-idc-name">Marco Silva</span><span class="ds-idc-sub">marco.silva@example.com</span></span></span></td><td>Portugal</td><td>Academy partner</td><td class="ds-num">2026-07-12</td><td><span class="ds-pill" data-tone="info">Under review</span></td><td><span class="ds-acts"><span class="ds-act">{{icon:eye:14}}</span><span class="ds-act">{{icon:pencil:14}}</span><span class="ds-act" data-tone="danger">{{icon:trash-2:14}}</span></span></td></tr>
+                <tr><td><span class="ds-idc"><span class="ds-av-sm">KN</span><span class="ds-idc-txt"><span class="ds-idc-name">Kwame Nkrumah</span><span class="ds-idc-sub">kwame.n@example.com</span></span></span></td><td>Ghana</td><td>Regional scout</td><td class="ds-num">2026-07-09</td><td><span class="ds-pill" data-tone="good">Accepted</span></td><td><span class="ds-acts"><span class="ds-act">{{icon:eye:14}}</span><span class="ds-act">{{icon:pencil:14}}</span><span class="ds-act" data-tone="danger">{{icon:trash-2:14}}</span></span></td></tr>
+                <tr><td><span class="ds-idc"><span class="ds-av-sm">EM</span><span class="ds-idc-txt"><span class="ds-idc-name">Elena Moreau</span><span class="ds-idc-sub">elena.moreau@example.com</span></span></span></td><td>France</td><td>Agency</td><td class="ds-num">2026-07-04</td><td><span class="ds-pill" data-tone="danger">Rejected</span></td><td><span class="ds-acts"><span class="ds-act">{{icon:eye:14}}</span><span class="ds-act">{{icon:pencil:14}}</span><span class="ds-act" data-tone="danger">{{icon:trash-2:14}}</span></span></td></tr>
+              </tbody>
+            </table>
+            <div class="ds-pag">
+              <span>Showing <span class="ds-pag-n">1–4</span> of <span class="ds-pag-n">156</span></span>
+              <span class="ds-pages">
+                <span class="ds-page" data-disabled="1">{{icon:chevron-left:13}}</span>
+                <span class="ds-page" data-on="1">1</span><span class="ds-page">2</span><span class="ds-page">3</span><span class="ds-page">…</span><span class="ds-page">16</span>
+                <span class="ds-page">{{icon:chevron-right:13}}</span>
+              </span>
+              <span>Rows <span class="ds-pag-n">10</span> {{icon:chevrons-up-down:11}}</span>
+            </div>
+          </div>
+      </div>
+    </div>
+      <div class="ds-sh ds-open-sheet">
+        <div class="ds-sh-head">
+          <div>
+            <div class="ds-sh-l1">Adaeze Okonkwo</div>
+            <div class="ds-sh-l2">Scouting partner · Nigeria</div>
+          </div>
+          <button class="ds-icon-btn">{{icon:x:14}}</button>
+        </div>
+        <div class="ds-sh-body">
+          <div>
+            <div class="ds-sh-sec">Applicant</div>
+            <dl class="ds-dl">
+              <dt>Email</dt><dd>adaeze.okonkwo@example.com</dd>
+              <dt>Country</dt><dd>Nigeria</dd>
+              <dt>Role</dt><dd>Regional scout</dd>
+              <dt>Applied on</dt><dd>2026-07-14</dd>
+              <dt>Experience</dt><dd>6 years</dd>
+            </dl>
+          </div>
+          <div>
+            <div class="ds-sh-sec">Motivation</div>
+            <p style="font-size:12px;line-height:1.55;color:var(--muted-foreground);margin:0">
+              Has run a grassroots scouting network in Lagos since 2020 and placed four players into
+              European academies. Requesting regional partner status to formalise referrals.
+            </p>
+          </div>
+          <div class="ds-alert" data-tone="warn">{{icon:triangle-alert:15}}<span><b>Duplicate check.</b> An application from this email was rejected in March 2026.</span></div>
+        </div>
+        <div class="ds-sh-foot">
+          <button class="ds-btn" data-variant="destructive" data-size="sm">Reject</button>
+          <button class="ds-btn" data-size="sm">{{icon:check:13}} Accept</button>
+        </div>
+      </div>
+  </div>
+</div>
+
+
+<style data-local>
+  .ds-shell { min-height: 640px; position: relative; }
+  .ds-stat-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; margin-bottom: 14px; }
+  /* Two columns, not three. The left card is the tall one (funnel + bar
+     chart); the right column stacks two shorter cards to match its height,
+     so neither column ends in dead space. */
+  .ds-ov-grid { display: grid; grid-template-columns: 1.25fr 1fr; gap: 12px; align-items: start; }
+  .ds-ov-side { display: flex; flex-direction: column; gap: 12px; }
+  .ds-set-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .ds-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 14px; }
+  .ds-card-h { font-family: var(--font-heading); font-size: 13px; font-weight: 600; margin-bottom: 12px; }
+  .fn { display: flex; flex-direction: column; gap: 7px; }
+  .fn-row { display: grid; grid-template-columns: 80px 1fr 38px 38px; gap: 8px; align-items: center; }
+  .fn-lab { font-size: 11px; }
+  .fn-track { height: 15px; background: var(--muted); border-radius: 3px; overflow: hidden; }
+  .fn-bar { display: block; height: 100%; border-radius: 3px; }
+  .fn-val { font-family: var(--font-mono); font-size: 11px; text-align: right; font-variant-numeric: tabular-nums; }
+  .fn-drop { font-family: var(--font-mono); font-size: 9.5px; color: var(--muted-foreground); text-align: right; }
+  .gr { stroke: var(--edge); stroke-width: 1; }
+  .ax2 { fill: var(--muted-foreground); font-family: var(--font-mono); font-size: 8px; text-anchor: middle; }
+  .ct-big { fill: var(--foreground); font-family: var(--font-heading); font-size: 22px; font-weight: 700; text-anchor: middle; }
+  .ct-sm { fill: var(--muted-foreground); font-family: var(--font-mono); font-size: 7px; text-anchor: middle; letter-spacing: 0.1em; text-transform: uppercase; }
+  .lg { display: flex; flex-direction: column; gap: 6px; flex: 1; }
+  .lg-row { display: flex; align-items: center; gap: 7px; font-size: 11px; }
+  .lg-dot { width: 8px; height: 8px; border-radius: 2px; flex: none; }
+  .lg-val { margin-left: auto; font-family: var(--font-mono); font-size: 10px; color: var(--muted-foreground); }
+  .ds-open-sheet { position: absolute; top: 0; right: 0; bottom: 0; width: 380px; border-radius: 0; border-top: none; border-right: none; border-bottom: none; }
+  .ds-score { display: grid; grid-template-columns: 74px 1fr 28px; gap: 8px; align-items: center; padding: 5px 0; font-size: 11.5px; }
+  .ds-stars { display: flex; gap: 2px; color: var(--brand-text); }
+  .ds-stars .off { color: var(--border); }
+  .ds-score b { font-family: var(--font-mono); font-size: 11px; text-align: right; }
+</style>

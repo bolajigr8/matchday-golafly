@@ -1,0 +1,130 @@
+/* ─────────────────────────────────────────────────────────────────────────
+   Card chrome. This is the "design canvas" that holds the specimen panels —
+   it is NOT part of the app's design system and nothing here should be
+   ported into the Next app.
+   ───────────────────────────────────────────────────────────────────────── */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body.ds-canvas {
+  margin: 0;
+  /* Deliberately a neutral mid-grey so BOTH panels' edges read against it —
+     a white gutter would hide the light panel, a black one the dark panel. */
+  background: oklch(0.62 0 0);
+  font-family: var(--font-sans);
+  color: oklch(0.18 0 0);
+  padding: 24px;
+  display: grid;
+  gap: 24px;
+}
+
+/* Dual cards: two panels side by side, one per theme. */
+body.ds-canvas[data-layout="dual"] {
+  grid-template-columns: 1fr 1fr;
+  align-items: start;
+}
+body.ds-canvas[data-layout="single"] {
+  grid-template-columns: 1fr;
+}
+
+/* A panel is a REAL app surface — background/foreground come from the token
+   layer, scoped by [data-theme] on this element. That is what lets light and
+   dark paint simultaneously in one static screenshot. */
+.ds-panel {
+  background: var(--background);
+  color: var(--foreground);
+  border-radius: 14px;
+  padding: 28px;
+  min-width: 0;
+  overflow: hidden;
+  box-shadow: 0 12px 32px oklch(0 0 0 / 0.22);
+}
+
+.ds-panel-label {
+  margin: 0 0 20px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.ds-panel-label::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+/* ── Annotation type (used inside panels to explain the specimen) ───────── */
+.ds-h {
+  font-family: var(--font-heading);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin: 0 0 4px;
+  color: var(--foreground);
+}
+.ds-sub {
+  font-size: 12px;
+  line-height: 1.55;
+  color: var(--muted-foreground);
+  margin: 0 0 18px;
+  max-width: 62ch;
+}
+.ds-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+  margin: 0 0 10px;
+}
+.ds-section + .ds-section {
+  margin-top: 28px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+
+/* Monospace code chips — used to print the Tailwind class string next to
+   every rendered specimen. The preview is a SPEC, not the implementation,
+   so the class string is the part that actually gets handed off. */
+.ds-code {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  line-height: 1.5;
+  color: var(--muted-foreground);
+  background: var(--muted);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 2px 6px;
+  display: inline-block;
+  word-break: break-all;
+}
+
+.ds-note {
+  font-size: 11.5px;
+  line-height: 1.55;
+  border-left: 2px solid var(--ring);
+  padding: 8px 0 8px 12px;
+  color: var(--muted-foreground);
+  margin: 16px 0 0;
+}
+.ds-note strong {
+  color: var(--foreground);
+}
+.ds-note[data-kind="warn"] {
+  border-left-color: var(--status-warn);
+}

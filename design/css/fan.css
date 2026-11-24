@@ -1,0 +1,607 @@
+/* ─────────────────────────────────────────────────────────────────────────
+   Golafly FAN dashboard — the component layer.
+
+   Deliberately not the admin's. The admin is used all day at a desk by a few
+   staff: 32px rows, 1px hairlines, tabular density. The fan opens this on a
+   phone, often on match day, usually to find one thing — a ticket, a hotel
+   voucher, an eSIM QR. So: bigger targets, softer radii, a solid active pill
+   you can spot without reading, and generous empty states that tell you what
+   to do next rather than just reporting nothing.
+
+   Learned from the travels customer dashboard, which is the nearest thing
+   Golafly already ships.
+
+   Tokens come from app/globals.css via build.mjs. Nothing here invents a
+   colour.
+   ───────────────────────────────────────────────────────────────────────── */
+
+/* ── Token bridge ─────────────────────────────────────────────────────────
+   The travels dashboard reads `--brand-ink` for lime-as-type. matchday calls
+   the same thing `--brand-text` and it is already contrast-checked (4.62:1 on
+   the page, 16.31:1 in dark). Alias rather than redefine: two names for one
+   value is survivable, two VALUES for one name is how a brand drifts. */
+.ds-panel {
+  --brand-ink: var(--brand-text);
+
+  /* The fan surface sits one step softer than the admin's. */
+  --fan-radius: 20px;
+  --fan-radius-lg: 28px;
+  --fan-card: var(--card);
+  --fan-edge: var(--edge);
+}
+
+.fan-screen {
+  display: grid;
+  grid-template-columns: 264px 1fr;
+  min-height: 620px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--background);
+  font-family: var(--font-sans);
+}
+/* The mobile card renders the same markup in one column. */
+.fan-screen[data-mobile="1"] {
+  grid-template-columns: 1fr;
+  min-height: 0;
+  width: 390px;
+  border-radius: 32px;
+}
+
+/* ── Sidebar ──────────────────────────────────────────────────────────── */
+.fan-sb {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 20px 16px 16px;
+  background: var(--sidebar);
+  border-right: 1px solid var(--sidebar-border);
+}
+.fan-sb-mark {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--sidebar-foreground);
+}
+.fan-sb-tag {
+  display: block;
+  margin-top: 3px;
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  color: var(--muted-foreground);
+}
+
+/* User card. The fan's own name is the first thing on the page — this is
+   their account, not a console. */
+.fan-user {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 11px;
+  border: 1px solid var(--edge-strong);
+  border-radius: var(--fan-radius);
+  background: var(--card);
+}
+.fan-avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  flex: none;
+  border-radius: 999px;
+  background: var(--brand);
+  color: var(--brand-foreground);
+  border: 1px solid var(--brand-edge);
+  font-family: var(--font-heading);
+  font-size: 17px;
+  font-weight: 700;
+}
+.fan-user-txt {
+  min-width: 0;
+}
+.fan-user-name {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--foreground);
+}
+.fan-user-mail {
+  display: block;
+  margin-top: 2px;
+  font-size: 11px;
+  color: var(--muted-foreground);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ── Nav ──────────────────────────────────────────────────────────────────
+   Active is a SOLID pill, not the admin's subtle wash. On a phone in daylight
+   the wash is invisible; a filled pill is not. Weight and fill move together,
+   so the state survives greyscale. */
+.fan-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.fan-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  height: 42px;
+  padding: 0 13px;
+  border-radius: 14px;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--muted-foreground);
+  cursor: pointer;
+}
+.fan-nav-item svg {
+  width: 18px;
+  height: 18px;
+  flex: none;
+}
+.fan-nav-item[data-state="hover"] {
+  background: var(--sidebar-accent);
+  color: var(--sidebar-foreground);
+}
+.fan-nav-item[data-state="active"] {
+  background: var(--brand);
+  color: var(--brand-foreground);
+  font-weight: 700;
+  box-shadow: 0 0 0 1px var(--brand-edge);
+}
+.fan-nav-item[data-muted="1"] {
+  color: var(--muted-foreground);
+}
+/* A DOT, not a count. We cannot know how many tickets a fan has until the
+   ticket endpoint exists, and inventing a number is worse than admitting
+   there is something unfinished behind this link. */
+.fan-nav-dot {
+  margin-left: auto;
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  background: var(--status-warn);
+}
+.fan-nav-item[data-state="active"] .fan-nav-dot {
+  background: var(--brand-foreground);
+  opacity: 0.55;
+}
+.fan-sb-foot {
+  margin-top: auto;
+  border-top: 1px solid var(--edge);
+  padding-top: 10px;
+}
+
+/* ── Mobile tab bar ───────────────────────────────────────────────────── */
+.fan-tabs {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-top: 1px solid var(--sidebar-border);
+  background: var(--sidebar);
+}
+.fan-tab {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  height: 62px;
+}
+.fan-tab-ic {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 26px;
+  border-radius: 999px;
+  color: var(--muted-foreground);
+}
+.fan-tab[data-state="active"] .fan-tab-ic {
+  background: color-mix(in oklch, var(--brand) 20%, transparent);
+  color: var(--brand-text);
+}
+.fan-tab-lab {
+  font-size: 10px;
+  color: var(--muted-foreground);
+}
+.fan-tab[data-state="active"] .fan-tab-lab {
+  color: var(--brand-text);
+  font-weight: 700;
+}
+.fan-tab-dot {
+  position: absolute;
+  top: 1px;
+  right: 8px;
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--status-warn);
+}
+
+/* ── Content pane ─────────────────────────────────────────────────────── */
+.fan-main {
+  position: relative;
+  padding: 26px 26px 30px;
+  overflow: hidden;
+}
+/* The lime wash is the one piece of pure decoration in here, carried over
+   from the travels dashboard. It sits behind everything and never tints
+   text. */
+.fan-main::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 320px;
+  background: radial-gradient(
+    ellipse at 85% -20%,
+    color-mix(in oklch, var(--brand) 12%, transparent),
+    transparent 62%
+  );
+  pointer-events: none;
+}
+.fan-main > * {
+  position: relative;
+}
+.fan-h1 {
+  font-family: var(--font-heading);
+  font-size: 23px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--foreground);
+  margin: 0;
+}
+.fan-sub {
+  margin: 5px 0 0;
+  font-size: 13px;
+  color: var(--muted-foreground);
+}
+.fan-section {
+  margin-top: 22px;
+}
+.fan-section-h {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 11px;
+}
+.fan-section-t {
+  font-family: var(--font-heading);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--foreground);
+  margin: 0;
+}
+.fan-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--brand-text);
+}
+
+/* ── Cards ────────────────────────────────────────────────────────────── */
+.fan-card {
+  border: 1px solid var(--border);
+  border-radius: var(--fan-radius-lg);
+  background: var(--card);
+  padding: 18px;
+}
+.fan-card[data-tight="1"] {
+  border-radius: var(--fan-radius);
+  padding: 15px;
+}
+.fan-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+.fan-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+.fan-grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+
+/* Product chip — the little square icon that labels a card's kind. */
+.fan-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  flex: none;
+  border-radius: 12px;
+  border: 1px solid var(--edge);
+  background: var(--muted);
+  color: var(--brand-text);
+}
+
+.fan-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+}
+.fan-title {
+  font-family: var(--font-heading);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--foreground);
+  margin: 6px 0 0;
+}
+.fan-meta {
+  margin-top: 7px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px 12px;
+  font-size: 12px;
+  color: var(--muted-foreground);
+}
+.fan-meta span {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+.fan-meta svg {
+  width: 13px;
+  height: 13px;
+}
+
+/* ── Buttons ──────────────────────────────────────────────────────────── */
+.fan-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  height: 40px;
+  padding: 0 18px;
+  border-radius: 14px;
+  border: 0;
+  background: var(--brand);
+  color: var(--brand-foreground);
+  box-shadow: 0 0 0 1px var(--brand-edge);
+  font-family: var(--font-heading);
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.fan-btn[data-variant="outline"] {
+  background: transparent;
+  color: var(--foreground);
+  box-shadow: 0 0 0 1px var(--edge-strong);
+}
+.fan-btn[data-variant="ghost"] {
+  background: transparent;
+  color: var(--muted-foreground);
+  box-shadow: none;
+}
+.fan-btn[data-size="sm"] {
+  height: 32px;
+  padding: 0 13px;
+  font-size: 12px;
+  border-radius: 11px;
+}
+.fan-btn svg {
+  width: 15px;
+  height: 15px;
+}
+
+/* ── Status pill ──────────────────────────────────────────────────────────
+   Reserved status tones, always with a text label — never colour alone. */
+.fan-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  height: 23px;
+  padding: 0 10px;
+  border-radius: 999px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  background: var(--status-neutral-bg);
+  color: var(--status-neutral);
+}
+.fan-pill::before {
+  content: "";
+  width: 5px;
+  height: 5px;
+  border-radius: 999px;
+  background: currentColor;
+}
+.fan-pill[data-tone="good"] {
+  background: var(--status-good-bg);
+  color: var(--status-good);
+}
+.fan-pill[data-tone="warn"] {
+  background: var(--status-warn-bg);
+  color: var(--status-warn);
+}
+.fan-pill[data-tone="danger"] {
+  background: var(--status-danger-bg);
+  color: var(--status-danger);
+}
+.fan-pill[data-tone="info"] {
+  background: var(--status-info-bg);
+  color: var(--status-info);
+}
+
+/* ── The four query states ────────────────────────────────────────────────
+   Carried over from the admin's QueryTable, adapted from rows to cards. The
+   rules are the same and they matter more here, not less: a fan on a train
+   with two bars of signal is exactly who gets punished by a layout that
+   collapses on every refetch. */
+
+/* 1 · Loading — skeleton at the REAL card height, so nothing shifts when the
+   data lands. */
+.fan-skel {
+  border: 1px solid var(--border);
+  border-radius: var(--fan-radius-lg);
+  background: var(--card);
+  padding: 18px;
+}
+.fan-skel-line {
+  display: block;
+  height: 10px;
+  border-radius: 5px;
+  background: var(--muted);
+  animation: fan-pulse 1.4s ease-in-out infinite;
+}
+.fan-skel-chip {
+  display: block;
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  background: var(--muted);
+  animation: fan-pulse 1.4s ease-in-out infinite;
+}
+@keyframes fan-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.45;
+  }
+}
+
+/* 2 · Error — names the failing call, because "something went wrong" gives
+   the fan nothing to say to support. */
+.fan-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 7px;
+  padding: 40px 24px;
+  text-align: center;
+  border: 1px solid var(--border);
+  border-radius: var(--fan-radius-lg);
+  background: var(--card);
+}
+.fan-state-ic {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 999px;
+  background: var(--muted);
+  color: var(--muted-foreground);
+  margin-bottom: 4px;
+}
+.fan-state-t {
+  font-family: var(--font-heading);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--foreground);
+  margin: 0;
+}
+.fan-state-b {
+  margin: 0;
+  max-width: 42ch;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--muted-foreground);
+}
+.fan-code {
+  display: inline-block;
+  padding: 3px 8px;
+  border-radius: 7px;
+  background: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--muted-foreground);
+}
+
+/* 3 · Refetching — the "Updating" pill. Content STAYS; it never drops back to
+   a skeleton. Yanking away a boarding reference someone is mid-read of, to
+   show them a shimmer, is the single worst thing a dashboard can do. */
+.fan-updating {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 26px;
+  padding: 0 11px;
+  border-radius: 999px;
+  background: var(--card);
+  box-shadow: 0 0 0 1px var(--edge), var(--lift-1);
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+}
+.fan-updating svg {
+  width: 12px;
+  height: 12px;
+}
+
+/* 4 · No endpoint — distinct from empty ON PURPOSE. "You have no tickets"
+   and "we cannot see your tickets yet" are different claims, and only one of
+   them is the fan's problem. */
+.fan-state[data-kind="no-endpoint"] {
+  border-style: dashed;
+  border-color: var(--status-warn);
+  background: color-mix(in oklch, var(--status-warn-bg) 45%, var(--card));
+}
+.fan-state[data-kind="no-endpoint"] .fan-state-ic {
+  background: var(--status-warn-bg);
+  color: var(--status-warn);
+}
+
+/* ── Forms (auth screens) ─────────────────────────────────────────────── */
+.fan-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.fan-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--foreground);
+}
+.fan-input {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  height: 44px;
+  padding: 0 14px;
+  border-radius: 14px;
+  border: 1px solid var(--edge-strong);
+  background: var(--card);
+  font-size: 13px;
+  color: var(--muted-foreground);
+}
+.fan-input svg {
+  width: 15px;
+  height: 15px;
+  flex: none;
+}
+.fan-input[data-state="focus"] {
+  border-color: var(--brand-edge);
+  box-shadow: 0 0 0 3px var(--brand-glow);
+  color: var(--foreground);
+}
+.fan-input[data-state="error"] {
+  border-color: var(--status-danger);
+}
+.fan-err {
+  font-size: 11.5px;
+  color: var(--status-danger);
+}

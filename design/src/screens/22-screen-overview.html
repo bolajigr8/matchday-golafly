@@ -1,0 +1,432 @@
+<div class="ds-screen">
+  <div class="ds-shell">
+{{sidebar:dashboard}}
+    <div class="ds-pane">
+      <div class="ds-hdr">
+        <div class="ds-hdr-r1">
+          <span class="ds-crumb"><b>Overview</b></span>
+          <span class="ov-hdr-actions">
+            <!-- The period control is new. Travel's /v1/overview already
+                 serves exactly these four buckets, so the control is free
+                 for one stream and DEFINES the contract for the other two. -->
+            <span class="ds-seg ov-period">
+              <span class="ds-seg-btn">Today</span>
+              <span class="ds-seg-btn">7d</span>
+              <span class="ds-seg-btn" data-on="1">30d</span>
+              <span class="ds-seg-btn">All</span>
+            </span>
+            <button class="ds-btn" data-variant="outline" data-size="sm">{{icon:refresh-cw:13}} Refresh</button>
+          </span>
+        </div>
+        <div class="ds-hdr-r2">
+          <span class="ds-hdr-title">Overview</span>
+          <span class="ds-hdr-stats"><span class="ds-hdr-stat"><i style="background: var(--status-good)"></i>Live</span><span class="ds-hdr-stat">Last 30 days · updated 2 min ago</span></span>
+        </div>
+        <div style="height: 14px"></div>
+      </div>
+
+      <div class="ds-pane-body">
+        <!-- Band 1 — the group total. Four numbers for the whole company,
+             before it is split by business. -->
+        <div class="ov-stat-grid">
+          <div class="ds-stat">
+            <div class="ds-stat-lab">{{icon:credit-card:13}} Gross revenue</div>
+            <div class="ds-stat-val">€404,820</div>
+            <div class="ds-stat-d" data-dir="up">{{icon:arrow-up:11}} 11.6%</div>
+          </div>
+          <div class="ds-stat">
+            <div class="ds-stat-lab">{{icon:shopping-bag:13}} Orders</div>
+            <div class="ds-stat-val">1,091</div>
+            <div class="ds-stat-d" data-dir="up">{{icon:arrow-up:11}} 7.4%</div>
+          </div>
+          <div class="ds-stat">
+            <div class="ds-stat-lab">{{icon:trending-up:13}} Avg order value</div>
+            <div class="ds-stat-val">€371</div>
+            <div class="ds-stat-d" data-dir="up">{{icon:arrow-up:11}} 3.9%</div>
+          </div>
+          <div class="ds-stat">
+            <div class="ds-stat-lab">{{icon:circle-alert:13}} Needs attention</div>
+            <div class="ds-stat-val">14</div>
+            <div class="ds-stat-d">across all three streams</div>
+          </div>
+        </div>
+
+        <!-- Band 2 — one card per business. This band IS the redesign: the
+             old page had no way to say "which business is this money from". -->
+        <div class="ov-streams">
+            <div class="ds-card ov-stream">
+              <div class="ov-stream-h">
+                <span class="ov-ic" style="background: color-mix(in oklch, var(--chart-1) 14%, transparent); color: var(--chart-1)">{{icon:ticket:14}}</span>
+                <span class="ov-stream-n">Match tickets</span>
+                <span class="ds-pill" data-tone="warn">No endpoint</span>
+              </div>
+              <div class="ov-money-row">
+                <span class="ov-money">€196,400</span>
+                <svg viewBox="0 0 104 34" width="104" height="34" role="img" aria-label="Weekly gross, last eight weeks"><path d="M0 32 L0 24.94 Q0 23.44 1.5 23.44 L7.5 23.44 Q9 23.44 9 24.94 L9 32 Z" fill="color-mix(in oklch, var(--chart-1) 42%, transparent)"/><path d="M13.57 32 L13.57 23.04 Q13.57 21.54 15.07 21.54 L21.07 21.54 Q22.57 21.54 22.57 23.04 L22.57 32 Z" fill="color-mix(in oklch, var(--chart-1) 42%, transparent)"/><path d="M27.14 32 L27.14 18.76 Q27.14 17.26 28.64 17.26 L34.64 17.26 Q36.14 17.26 36.14 18.76 L36.14 32 Z" fill="color-mix(in oklch, var(--chart-1) 42%, transparent)"/><path d="M40.71 32 L40.71 20.66 Q40.71 19.16 42.21 19.16 L48.21 19.16 Q49.71 19.16 49.71 20.66 L49.71 32 Z" fill="color-mix(in oklch, var(--chart-1) 42%, transparent)"/><path d="M54.29 32 L54.29 12.58 Q54.29 11.08 55.79 11.08 L61.79 11.08 Q63.29 11.08 63.29 12.58 L63.29 32 Z" fill="color-mix(in oklch, var(--chart-1) 42%, transparent)"/><path d="M67.86 32 L67.86 14.96 Q67.86 13.46 69.36 13.46 L75.36 13.46 Q76.86 13.46 76.86 14.96 L76.86 32 Z" fill="color-mix(in oklch, var(--chart-1) 42%, transparent)"/><path d="M81.43 32 L81.43 8.78 Q81.43 7.28 82.93 7.28 L88.93 7.28 Q90.43 7.28 90.43 8.78 L90.43 32 Z" fill="color-mix(in oklch, var(--chart-1) 42%, transparent)"/><path d="M95 32 L95 4.5 Q95 3 96.5 3 L102.5 3 Q104 3 104 4.5 L104 32 Z" fill="var(--chart-1)"/></svg>
+              </div>
+              <div class="ov-meta">
+                <span class="ov-d" data-dir="up">{{icon:arrow-up:11}} 18.2%</span>
+                <span class="ov-orders">612 orders</span>
+              </div>
+              <div class="ov-sub"><i style="background: var(--chart-1)"></i><span class="ov-sub-l">Match tickets</span><span class="ov-sub-c">487</span><span class="ov-sub-m">€154,900</span></div>
+              <div class="ov-sub"><i style="background: color-mix(in oklch, var(--chart-1) 62%, transparent)"></i><span class="ov-sub-l">Stadium tours</span><span class="ov-sub-c">98</span><span class="ov-sub-m">€28,700</span></div>
+              <div class="ov-sub"><i style="background: color-mix(in oklch, var(--chart-1) 38%, transparent)"></i><span class="ov-sub-l">Hospitality</span><span class="ov-sub-c">27</span><span class="ov-sub-m">€12,800</span></div>
+              <div class="ov-foot">View ticket orders {{icon:chevron-right:12}}</div>
+            </div>
+            <div class="ds-card ov-stream">
+              <div class="ov-stream-h">
+                <span class="ov-ic" style="background: color-mix(in oklch, var(--chart-2) 14%, transparent); color: var(--chart-2)">{{icon:graduation-cap:14}}</span>
+                <span class="ov-stream-n">Camps &amp; programs</span>
+                
+              </div>
+              <div class="ov-money-row">
+                <span class="ov-money">€115,600</span>
+                <svg viewBox="0 0 104 34" width="104" height="34" role="img" aria-label="Weekly gross, last eight weeks"><path d="M0 32 L0 10.65 Q0 9.15 1.5 9.15 L7.5 9.15 Q9 9.15 9 10.65 L9 32 Z" fill="color-mix(in oklch, var(--chart-2) 42%, transparent)"/><path d="M13.57 32 L13.57 12.41 Q13.57 10.91 15.07 10.91 L21.07 10.91 Q22.57 10.91 22.57 12.41 L22.57 32 Z" fill="color-mix(in oklch, var(--chart-2) 42%, transparent)"/><path d="M27.14 32 L27.14 8.02 Q27.14 6.52 28.64 6.52 L34.64 6.52 Q36.14 6.52 36.14 8.02 L36.14 32 Z" fill="color-mix(in oklch, var(--chart-2) 42%, transparent)"/><path d="M40.71 32 L40.71 4.5 Q40.71 3 42.21 3 L48.21 3 Q49.71 3 49.71 4.5 L49.71 32 Z" fill="color-mix(in oklch, var(--chart-2) 42%, transparent)"/><path d="M54.29 32 L54.29 8.89 Q54.29 7.39 55.79 7.39 L61.79 7.39 Q63.29 7.39 63.29 8.89 L63.29 32 Z" fill="color-mix(in oklch, var(--chart-2) 42%, transparent)"/><path d="M67.86 32 L67.86 6.26 Q67.86 4.76 69.36 4.76 L75.36 4.76 Q76.86 4.76 76.86 6.26 L76.86 32 Z" fill="color-mix(in oklch, var(--chart-2) 42%, transparent)"/><path d="M81.43 32 L81.43 9.77 Q81.43 8.27 82.93 8.27 L88.93 8.27 Q90.43 8.27 90.43 9.77 L90.43 32 Z" fill="color-mix(in oklch, var(--chart-2) 42%, transparent)"/><path d="M95 32 L95 7.14 Q95 5.64 96.5 5.64 L102.5 5.64 Q104 5.64 104 7.14 L104 32 Z" fill="var(--chart-2)"/></svg>
+              </div>
+              <div class="ov-meta">
+                <span class="ov-d" data-dir="up">{{icon:arrow-up:11}} 4.1%</span>
+                <span class="ov-orders">148 orders</span>
+              </div>
+              <div class="ov-sub"><i style="background: var(--chart-2)"></i><span class="ov-sub-l">Programs</span><span class="ov-sub-c">86</span><span class="ov-sub-m">€71,200</span></div>
+              <div class="ov-sub"><i style="background: color-mix(in oklch, var(--chart-2) 62%, transparent)"></i><span class="ov-sub-l">Academies</span><span class="ov-sub-c">49</span><span class="ov-sub-m">€38,400</span></div>
+              <div class="ov-sub"><i style="background: color-mix(in oklch, var(--chart-2) 38%, transparent)"></i><span class="ov-sub-l">Offers</span><span class="ov-sub-c">13</span><span class="ov-sub-m">€6,000</span></div>
+              <div class="ov-foot">View in Transactions {{icon:chevron-right:12}}</div>
+            </div>
+            <div class="ds-card ov-stream">
+              <div class="ov-stream-h">
+                <span class="ov-ic" style="background: color-mix(in oklch, var(--chart-3) 14%, transparent); color: var(--chart-3)">{{icon:plane:14}}</span>
+                <span class="ov-stream-n">Travel products</span>
+                
+              </div>
+              <div class="ov-money-row">
+                <span class="ov-money">€92,820</span>
+                <svg viewBox="0 0 104 34" width="104" height="34" role="img" aria-label="Weekly gross, last eight weeks"><path d="M0 32 L0 21.07 Q0 19.57 1.5 19.57 L7.5 19.57 Q9 19.57 9 21.07 L9 32 Z" fill="color-mix(in oklch, var(--chart-3) 42%, transparent)"/><path d="M13.57 32 L13.57 17.96 Q13.57 16.46 15.07 16.46 L21.07 16.46 Q22.57 16.46 22.57 17.96 L22.57 32 Z" fill="color-mix(in oklch, var(--chart-3) 42%, transparent)"/><path d="M27.14 32 L27.14 19 Q27.14 17.5 28.64 17.5 L34.64 17.5 Q36.14 17.5 36.14 19 L36.14 32 Z" fill="color-mix(in oklch, var(--chart-3) 42%, transparent)"/><path d="M40.71 32 L40.71 13.82 Q40.71 12.32 42.21 12.32 L48.21 12.32 Q49.71 12.32 49.71 13.82 L49.71 32 Z" fill="color-mix(in oklch, var(--chart-3) 42%, transparent)"/><path d="M54.29 32 L54.29 10.71 Q54.29 9.21 55.79 9.21 L61.79 9.21 Q63.29 9.21 63.29 10.71 L63.29 32 Z" fill="color-mix(in oklch, var(--chart-3) 42%, transparent)"/><path d="M67.86 32 L67.86 14.86 Q67.86 13.36 69.36 13.36 L75.36 13.36 Q76.86 13.36 76.86 14.86 L76.86 32 Z" fill="color-mix(in oklch, var(--chart-3) 42%, transparent)"/><path d="M81.43 32 L81.43 7.61 Q81.43 6.11 82.93 6.11 L88.93 6.11 Q90.43 6.11 90.43 7.61 L90.43 32 Z" fill="color-mix(in oklch, var(--chart-3) 42%, transparent)"/><path d="M95 32 L95 4.5 Q95 3 96.5 3 L102.5 3 Q104 3 104 4.5 L104 32 Z" fill="var(--chart-3)"/></svg>
+              </div>
+              <div class="ov-meta">
+                <span class="ov-d" data-dir="up">{{icon:arrow-up:11}} 9.7%</span>
+                <span class="ov-orders">331 orders</span>
+              </div>
+              <div class="ov-sub"><i style="background: var(--chart-3)"></i><span class="ov-sub-l">Flights</span><span class="ov-sub-c">112</span><span class="ov-sub-m">€58,400</span></div>
+              <div class="ov-sub"><i style="background: color-mix(in oklch, var(--chart-3) 62%, transparent)"></i><span class="ov-sub-l">Stays</span><span class="ov-sub-c">74</span><span class="ov-sub-m">€29,900</span></div>
+              <div class="ov-sub"><i style="background: color-mix(in oklch, var(--chart-3) 38%, transparent)"></i><span class="ov-sub-l">eSIMs</span><span class="ov-sub-c">145</span><span class="ov-sub-m">€4,520</span></div>
+              <div class="ov-foot">View travel orders {{icon:chevron-right:12}}</div>
+            </div>
+        </div>
+
+        <div class="ov-grid2">
+          <div class="ds-card">
+            <div class="ds-card-h">Revenue by stream</div>
+            <p class="ov-card-sub">Eight weeks to 11 Aug, € thousands. Stacked, because the question is the company total AND its split — two charts would make you add them up yourself.</p>
+            <svg viewBox="0 0 620 300" width="100%" height="300" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Weekly gross revenue by stream, eight weeks to 11 August, stacked">
+            <line x1="42" x2="610" y1="268" y2="268" class="gr"/>
+            <text x="34" y="271.5" class="ax2" text-anchor="end">0</text>
+            <line x1="42" x2="610" y1="206.5" y2="206.5" class="gr"/>
+            <text x="34" y="210" class="ax2" text-anchor="end">30</text>
+            <line x1="42" x2="610" y1="145" y2="145" class="gr"/>
+            <text x="34" y="148.5" class="ax2" text-anchor="end">60</text>
+            <line x1="42" x2="610" y1="83.5" y2="83.5" class="gr"/>
+            <text x="34" y="87" class="ax2" text-anchor="end">90</text>
+            <line x1="42" x2="610" y1="22" y2="22" class="gr"/>
+            <text x="34" y="25.5" class="ax2" text-anchor="end">120</text>
+            <path d="M64.5 268 L64.5 233.1 L90.5 233.1 L90.5 268 Z" fill="var(--chart-1)"/>
+            <path d="M64.5 231.1 L64.5 179.8 L90.5 179.8 L90.5 231.1 Z" fill="var(--chart-2)"/>
+            <path d="M64.5 177.8 L64.5 157.2 Q64.5 153.2 68.5 153.2 L86.5 153.2 Q90.5 153.2 90.5 157.2 L90.5 177.8 Z" fill="var(--chart-3)"/>
+            <path d="M135.5 268 L135.5 224.9 L161.5 224.9 L161.5 268 Z" fill="var(--chart-1)"/>
+            <path d="M135.5 222.9 L135.5 175.7 L161.5 175.7 L161.5 222.9 Z" fill="var(--chart-2)"/>
+            <path d="M135.5 173.7 L135.5 146.95 Q135.5 142.95 139.5 142.95 L157.5 142.95 Q161.5 142.95 161.5 146.95 L161.5 173.7 Z" fill="var(--chart-3)"/>
+            <path d="M206.5 268 L206.5 206.45 L232.5 206.45 L232.5 268 Z" fill="var(--chart-1)"/>
+            <path d="M206.5 204.45 L206.5 147 L232.5 147 L232.5 204.45 Z" fill="var(--chart-2)"/>
+            <path d="M206.5 145 L206.5 120.3 Q206.5 116.3 210.5 116.3 L228.5 116.3 Q232.5 116.3 232.5 120.3 L232.5 145 Z" fill="var(--chart-3)"/>
+            <path d="M277.5 268 L277.5 214.65 L303.5 214.65 L303.5 268 Z" fill="var(--chart-1)"/>
+            <path d="M277.5 212.65 L277.5 147 L303.5 147 L303.5 212.65 Z" fill="var(--chart-2)"/>
+            <path d="M277.5 145 L277.5 110.05 Q277.5 106.05 281.5 106.05 L299.5 106.05 Q303.5 106.05 303.5 110.05 L303.5 145 Z" fill="var(--chart-3)"/>
+            <path d="M348.5 268 L348.5 179.8 L374.5 179.8 L374.5 268 Z" fill="var(--chart-1)"/>
+            <path d="M348.5 177.8 L348.5 122.4 L374.5 122.4 L374.5 177.8 Z" fill="var(--chart-2)"/>
+            <path d="M348.5 120.4 L348.5 79.3 Q348.5 75.3 352.5 75.3 L370.5 75.3 Q374.5 75.3 374.5 79.3 L374.5 120.4 Z" fill="var(--chart-3)"/>
+            <path d="M419.5 268 L419.5 190.05 L445.5 190.05 L445.5 268 Z" fill="var(--chart-1)"/>
+            <path d="M419.5 188.05 L419.5 126.5 L445.5 126.5 L445.5 188.05 Z" fill="var(--chart-2)"/>
+            <path d="M419.5 124.5 L419.5 91.6 Q419.5 87.6 423.5 87.6 L441.5 87.6 Q445.5 87.6 445.5 91.6 L445.5 124.5 Z" fill="var(--chart-3)"/>
+            <path d="M490.5 268 L490.5 163.4 L516.5 163.4 L516.5 268 Z" fill="var(--chart-1)"/>
+            <path d="M490.5 161.4 L490.5 108.05 L516.5 108.05 L516.5 161.4 Z" fill="var(--chart-2)"/>
+            <path d="M490.5 106.05 L490.5 58.8 Q490.5 54.8 494.5 54.8 L512.5 54.8 Q516.5 54.8 516.5 58.8 L516.5 106.05 Z" fill="var(--chart-3)"/>
+            <path d="M561.5 268 L561.5 144.95 L587.5 144.95 L587.5 268 Z" fill="var(--chart-1)"/>
+            <path d="M561.5 142.95 L561.5 83.45 L587.5 83.45 L587.5 142.95 Z" fill="var(--chart-2)"/>
+            <path d="M561.5 81.45 L561.5 28.05 Q561.5 24.05 565.5 24.05 L583.5 24.05 Q587.5 24.05 587.5 28.05 L587.5 81.45 Z" fill="var(--chart-3)"/>
+            <text x="574.5" y="17.05" class="ax-em">€119k</text>
+            <text x="77.5" y="283" class="ax2">23 Jun</text>
+            <text x="148.5" y="283" class="ax2">30 Jun</text>
+            <text x="219.5" y="283" class="ax2">7 Jul</text>
+            <text x="290.5" y="283" class="ax2">14 Jul</text>
+            <text x="361.5" y="283" class="ax2">21 Jul</text>
+            <text x="432.5" y="283" class="ax2">28 Jul</text>
+            <text x="503.5" y="283" class="ax2">4 Aug</text>
+            <text x="574.5" y="283" class="ax2">11 Aug</text>
+            </svg>
+            <div class="ov-legend">
+              <span class="lg-row"><span class="lg-dot" style="background: var(--chart-1)"></span><span class="lg-lab">Match tickets</span></span>
+              <span class="lg-row"><span class="lg-dot" style="background: var(--chart-2)"></span><span class="lg-lab">Camps &amp; programs</span></span>
+              <span class="lg-row"><span class="lg-dot" style="background: var(--chart-3)"></span><span class="lg-lab">Travel products</span></span>
+              <span class="ov-legend-note">Table view available — every chart on this page has one.</span>
+            </div>
+          </div>
+
+          <div class="ov-side">
+            <div class="ds-card">
+              <div class="ds-card-h">Needs attention</div>
+              <p class="ov-card-sub">Ordered by cost of inaction, not by count.</p>
+              <div class="ov-att">
+                <span class="ov-att-n" data-tone="danger">3</span>
+                <span class="ov-att-t">Stays cancellations awaiting supplier confirm</span>
+                <span class="ov-att-g">Operations {{icon:chevron-right:11}}</span>
+              </div>
+              <div class="ov-att">
+                <span class="ov-att-n" data-tone="danger">5</span>
+                <span class="ov-att-t">Payments failed in the last 24h</span>
+                <span class="ov-att-g">Orders {{icon:chevron-right:11}}</span>
+              </div>
+              <div class="ov-att">
+                <span class="ov-att-n" data-tone="warn">4</span>
+                <span class="ov-att-t">Ticket allocations unconfirmed, kickoff in &lt; 7 days</span>
+                <span class="ov-att-g">Tickets {{icon:chevron-right:11}}</span>
+              </div>
+              <div class="ov-att">
+                <span class="ov-att-n" data-tone="warn">2</span>
+                <span class="ov-att-t">Partner applications pending &gt; 5 days</span>
+                <span class="ov-att-g">Partner Apps {{icon:chevron-right:11}}</span>
+              </div>
+            </div>
+            <div class="ds-card">
+              <div class="ds-card-h">Recent activity</div>
+              <div class="ds-act-row">
+                <span class="ds-act-ic" style="color: var(--chart-1)">{{icon:credit-card:12}}</span>
+                <span><span class="ds-act-t">4 × Cat 2 for <b>Barcelona v Atlético</b> issued.</span><span class="ds-act-time">8 min ago</span></span>
+              </div>
+              <div class="ds-act-row">
+                <span class="ds-act-ic" style="color: var(--chart-3)">{{icon:hotel:12}}</span>
+                <span><span class="ds-act-t">Stays cancellation <b>#4412</b> confirmed with the supplier.</span><span class="ds-act-time">41 min ago</span></span>
+              </div>
+              <div class="ds-act-row">
+                <span class="ds-act-ic" style="color: var(--chart-2)">{{icon:graduation-cap:12}}</span>
+                <span><span class="ds-act-t"><b>Accra Youth Camp</b> reached capacity.</span><span class="ds-act-time">2 hrs ago</span></span>
+              </div>
+              <div class="ds-act-row">
+                <span class="ds-act-ic" style="color: var(--chart-1)">{{icon:ticket:12}}</span>
+                <span><span class="ds-act-t">Allocation for <b>Juventus v Inter</b> raised to 200.</span><span class="ds-act-time">Yesterday</span></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Band 4 — the only block on this page with a deadline. A
+             match-ticket business is driven by kickoff dates, so the
+             Overview earns exactly one fixture-shaped panel. Everything
+             deeper lives on Matchday. -->
+        <div class="ds-card ov-fixtures">
+          <div class="ov-fx-h">
+            <div>
+              <div class="ds-card-h" style="margin-bottom: 3px">Next fixtures</div>
+              <p class="ov-card-sub" style="margin-bottom: 0">Sell-through against the allocation we hold, ordered by kickoff.</p>
+            </div>
+            <button class="ds-btn" data-variant="outline" data-size="sm">All fixtures {{icon:chevron-right:12}}</button>
+          </div>
+          <div class="ds-tw">
+            <table class="ds-t">
+              <thead>
+                <tr>
+                  <th>Fixture</th>
+                  <th>Kickoff</th>
+                  <th style="width: 168px">Sell-through</th>
+                  <th class="ds-num">Sold / allocation</th>
+                  <th class="ds-num">Revenue</th>
+                  <th>Status</th>
+                  <th>Fulfilment</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><span class="ov-fx"><b>Barcelona v Atlético Madrid</b><span class="ov-fx-c">LA LIGA</span></span></td>
+                  <td><span class="ov-kick">22 Aug, 20:00<span class="ov-kick-r">in 5d</span></span></td>
+                  <td>
+                    <span class="ov-meter-row">
+                      <span class="ov-meter"><span style="width: 89%; background: var(--chart-1)"></span></span>
+                      <span class="ov-meter-v">89%</span>
+                    </span>
+                  </td>
+                  <td class="ds-num">284 / 320</td>
+                  <td class="ds-num">€54,000</td>
+                  <td><span class="ds-pill" data-tone="good">On track</span></td>
+                  <td class="ov-fulfil">Issued</td>
+                </tr>
+                <tr>
+                  <td><span class="ov-fx"><b>Arsenal v Liverpool</b><span class="ov-fx-c">PL</span></span></td>
+                  <td><span class="ov-kick">29 Aug, 17:30<span class="ov-kick-r">in 12d</span></span></td>
+                  <td>
+                    <span class="ov-meter-row">
+                      <span class="ov-meter"><span style="width: 65%; background: var(--chart-1)"></span></span>
+                      <span class="ov-meter-v">65%</span>
+                    </span>
+                  </td>
+                  <td class="ds-num">196 / 300</td>
+                  <td class="ds-num">€62,700</td>
+                  <td><span class="ds-pill" data-tone="good">On track</span></td>
+                  <td class="ov-fulfil">42 pending</td>
+                </tr>
+                <tr>
+                  <td><span class="ov-fx"><b>Bayern Munich v PSG</b><span class="ov-fx-c">UCL</span></span></td>
+                  <td><span class="ov-kick">2 Sep, 21:00<span class="ov-kick-r">in 16d</span></span></td>
+                  <td>
+                    <span class="ov-meter-row">
+                      <span class="ov-meter"><span style="width: 47%; background: var(--chart-1)"></span></span>
+                      <span class="ov-meter-v">47%</span>
+                    </span>
+                  </td>
+                  <td class="ds-num">118 / 250</td>
+                  <td class="ds-num">€73,200</td>
+                  <td><span class="ds-pill" data-tone="warn">Slow</span></td>
+                  <td class="ov-fulfil">Issued</td>
+                </tr>
+                <tr>
+                  <td><span class="ov-fx"><b>Juventus v Inter</b><span class="ov-fx-c">SERIE A</span></span></td>
+                  <td><span class="ov-kick">12 Sep, 20:45<span class="ov-kick-r">in 26d</span></span></td>
+                  <td>
+                    <span class="ov-meter-row">
+                      <span class="ov-meter"><span style="width: 32%; background: var(--chart-1)"></span></span>
+                      <span class="ov-meter-v">32%</span>
+                    </span>
+                  </td>
+                  <td class="ds-num">64 / 200</td>
+                  <td class="ds-num">€19,800</td>
+                  <td><span class="ds-pill">Early</span></td>
+                  <td class="ov-fulfil">Not issued</td>
+                </tr>
+                <tr>
+                  <td><span class="ov-fx"><b>Chelsea v Tottenham</b><span class="ov-fx-c">PL</span></span></td>
+                  <td><span class="ov-kick">19 Sep, 15:00<span class="ov-kick-r">in 33d</span></span></td>
+                  <td>
+                    <span class="ov-meter-row">
+                      <span class="ov-meter"><span style="width: 23%; background: var(--chart-1)"></span></span>
+                      <span class="ov-meter-v">23%</span>
+                    </span>
+                  </td>
+                  <td class="ds-num">41 / 180</td>
+                  <td class="ds-num">€8,600</td>
+                  <td><span class="ds-pill">Early</span></td>
+                  <td class="ov-fulfil">Not issued</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<style data-local>
+  .ds-shell { min-height: 640px; position: relative; }
+
+  .ov-hdr-actions { display: flex; align-items: center; gap: 10px; }
+  /* The period control is text, not icons, so it needs its own widths —
+     .ds-seg-btn is sized for a 13px glyph. */
+  .ov-period { margin-left: 0; }
+  .ov-period .ds-seg-btn {
+    width: auto; padding: 0 10px; height: 24px;
+    font-family: var(--font-mono); font-size: 9.5px; font-weight: 700;
+    letter-spacing: 0.08em; text-transform: uppercase;
+  }
+
+  .ov-stat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+
+  /* ── Band 2 ── */
+  .ov-streams { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 12px; }
+  .ov-stream { display: flex; flex-direction: column; }
+  .ov-stream-h { display: flex; align-items: center; gap: 8px; }
+  .ov-ic {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 24px; height: 24px; border-radius: var(--radius-sm); flex: none;
+  }
+  /* nowrap: the pill next to it was pushing "Match tickets" onto two lines,
+     which made one of three otherwise identical cards taller than the rest. */
+  .ov-stream-n { font-family: var(--font-heading); font-size: 13px; font-weight: 600; white-space: nowrap; }
+  .ov-stream-h .ds-pill { margin-left: auto; }
+  .ov-money-row { display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; margin-top: 12px; }
+  .ov-money {
+    font-family: var(--font-heading); font-size: 26px; font-weight: 600;
+    letter-spacing: -0.04em; line-height: 1; font-variant-numeric: tabular-nums;
+  }
+  .ov-meta { display: flex; align-items: center; gap: 10px; margin-top: 8px; padding-bottom: 10px; border-bottom: 1px solid var(--edge); }
+  /* Direction is an arrow AND a colour, never colour alone. */
+  .ov-d { display: inline-flex; align-items: center; gap: 3px; font-size: 11px; }
+  .ov-d[data-dir="up"] { color: var(--status-good); }
+  .ov-d[data-dir="down"] { color: var(--status-danger); }
+  .ov-orders { font-family: var(--font-mono); font-size: 10px; color: var(--muted-foreground); font-variant-numeric: tabular-nums; }
+
+  /* Sub-rows: the same hue stepped down. Money is the value being compared,
+     so it is the one that gets the right-aligned mono column. */
+  .ov-sub { display: grid; grid-template-columns: 8px 1fr auto auto; align-items: center; gap: 8px; padding: 5px 0; font-size: 11.5px; }
+  .ov-sub i { width: 8px; height: 8px; border-radius: 2px; }
+  .ov-sub-l { color: var(--foreground); }
+  .ov-sub-c { font-family: var(--font-mono); font-size: 9.5px; color: var(--muted-foreground); font-variant-numeric: tabular-nums; }
+  .ov-sub-m { font-family: var(--font-mono); font-size: 11px; font-variant-numeric: tabular-nums; min-width: 62px; text-align: right; }
+  .ov-foot {
+    display: flex; align-items: center; gap: 4px; margin-top: auto; padding-top: 10px;
+    font-family: var(--font-mono); font-size: 9.5px; font-weight: 700;
+    letter-spacing: 0.09em; text-transform: uppercase; color: var(--brand-text);
+  }
+
+  /* ── Band 3 ── */
+  /* Near-even columns, not 1.32:1. The narrower right column wrapped every
+     attention row onto two lines, which made that column ~200px taller than
+     the chart beside it — the chart then sat above a block of dead space.
+     Even columns keep the rows on one line and the two columns level. */
+  .ov-grid2 { display: grid; grid-template-columns: 1.1fr 1fr; gap: 12px; align-items: start; margin-top: 12px; }
+  .ov-side { display: flex; flex-direction: column; gap: 12px; }
+  .ds-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 14px; }
+  .ds-card-h { font-family: var(--font-heading); font-size: 13px; font-weight: 600; margin-bottom: 10px; }
+  .ov-card-sub { font-size: 11px; line-height: 1.5; color: var(--muted-foreground); margin: -4px 0 10px; max-width: 62ch; }
+
+  .gr { stroke: var(--edge); stroke-width: 1; }
+  .ax2 { fill: var(--muted-foreground); font-family: var(--font-mono); font-size: 8.5px; text-anchor: middle; }
+  /* The one direct label. Text wears an ink token, never the series colour. */
+  .ax-em { fill: var(--foreground); font-family: var(--font-mono); font-size: 10px; font-weight: 700; text-anchor: middle; }
+  .ov-legend { display: flex; align-items: center; gap: 14px; margin-top: 8px; flex-wrap: wrap; }
+  .lg-row { display: flex; align-items: center; gap: 7px; font-size: 11px; }
+  .lg-dot { width: 8px; height: 8px; border-radius: 2px; flex: none; }
+  .ov-legend-note { margin-left: auto; font-size: 10.5px; color: var(--muted-foreground); }
+
+  .ov-att { display: grid; grid-template-columns: 26px 1fr auto; align-items: center; gap: 9px; padding: 7px 0; border-bottom: 1px solid var(--edge); font-size: 11.5px; }
+  .ov-att:last-child { border-bottom: none; padding-bottom: 0; }
+  .ov-att-n {
+    display: inline-flex; align-items: center; justify-content: center;
+    height: 20px; border-radius: var(--radius-sm);
+    font-family: var(--font-mono); font-size: 10.5px; font-weight: 700; font-variant-numeric: tabular-nums;
+  }
+  .ov-att-n[data-tone="danger"] { background: var(--status-danger-bg); color: var(--status-danger); }
+  .ov-att-n[data-tone="warn"] { background: var(--status-warn-bg); color: var(--status-warn); }
+  .ov-att-t { line-height: 1.35; }
+  .ov-att-g { display: inline-flex; align-items: center; gap: 2px; font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted-foreground); white-space: nowrap; }
+
+  /* ── Band 4 ── */
+  .ov-fixtures { margin-top: 12px; }
+  .ov-fx-h { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 10px; }
+  .ov-fx { display: flex; flex-direction: column; }
+  .ov-fx b { font-weight: 600; }
+  .ov-fx-c { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted-foreground); margin-top: 1px; }
+  .ov-kick { display: flex; flex-direction: column; font-size: 12px; }
+  .ov-kick-r { font-family: var(--font-mono); font-size: 9.5px; color: var(--muted-foreground); margin-top: 1px; }
+  .ov-meter-row { display: flex; align-items: center; gap: 8px; }
+  .ov-meter { flex: 1; height: 6px; border-radius: 999px; background: var(--muted); overflow: hidden; }
+  .ov-meter span { display: block; height: 100%; border-radius: 999px; }
+  .ov-meter-v { font-family: var(--font-mono); font-size: 10.5px; font-variant-numeric: tabular-nums; min-width: 30px; text-align: right; }
+  .ov-fulfil { font-size: 11.5px; color: var(--muted-foreground); }
+
+  /* ── Day-one state ── */
+  .ov-empty { display: flex; flex-direction: column; align-items: center; gap: 3px; padding: 18px 8px 8px; text-align: center; }
+  .ov-empty-ic { display: flex; align-items: center; justify-content: center; width: 30px; height: 30px; border-radius: 999px; background: var(--muted); color: var(--muted-foreground); margin-bottom: 3px; }
+  .ov-empty-t { font-size: 12px; font-weight: 600; }
+  .ov-empty-b { font-size: 10.5px; color: var(--muted-foreground); }
+
+  /* Day-one card only — the side-by-side comparison. */
+  .d1-grid { display: grid; grid-template-columns: 300px 300px; gap: 14px; align-items: start; }
+  .d1-lab { font-family: var(--font-mono); font-size: 9px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted-foreground); margin: 0 0 7px; }
+  .d1-charts { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 18px; }
+</style>

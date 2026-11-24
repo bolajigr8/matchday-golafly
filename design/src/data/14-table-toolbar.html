@@ -1,0 +1,78 @@
+<div class="ds-section">
+  <p class="ds-eyebrow">Above every table</p>
+  <h2 class="ds-h">Toolbar</h2>
+  <p class="ds-sub">
+    One row, always in the same order: search, then filters, then actions pushed right. Consistency
+    across the eight screens matters more here than fitting each screen's specifics.
+  </p>
+  <div class="ds-tb">
+    <span class="ds-input" style="width: 240px">{{icon:search:14}} Search players…</span>
+    <span class="ds-input" style="gap: 9px">{{icon:list-filter:14}} Status {{icon:chevron-down:12}}</span>
+    <span class="ds-input" style="gap: 9px">{{icon:calendar:14}} Last 30 days {{icon:chevron-down:12}}</span>
+    <span style="margin-left: auto; display: flex; gap: 7px">
+      <button class="ds-btn" data-variant="outline" data-size="sm">{{icon:download:13}} Export</button>
+      <button class="ds-btn" data-size="sm">{{icon:plus:13}} Add player</button>
+    </span>
+  </div>
+</div>
+
+<div class="ds-section">
+  <p class="ds-eyebrow">Active filters are visible, always</p>
+  <div class="ds-tb">
+    <span class="ds-input" style="width: 200px">{{icon:search:14}} okonkwo</span>
+    <span class="ds-chip">Level <b>U19</b><span class="ds-chip-x">{{icon:x:10}}</span></span>
+    <span class="ds-chip">Status <b>Signed</b><span class="ds-chip-x">{{icon:x:10}}</span></span>
+    <span class="ds-chip">Nationality <b>Nigeria, Ghana</b><span class="ds-chip-x">{{icon:x:10}}</span></span>
+    <button class="ds-btn" data-variant="ghost" data-size="sm">Clear all</button>
+  </div>
+  <p class="ds-note">
+    Filters live in chips below the controls, never hidden behind a badge count. Each chip removes only
+    itself; “Clear all” is separate and never the only way out. This is what makes the filtered-empty
+    state recoverable — the cause is on screen next to the effect.
+  </p>
+</div>
+
+<div class="ds-section">
+  <p class="ds-eyebrow">Multi-select filter</p>
+  <div style="display: flex; gap: 20px; align-items: flex-start">
+    <div class="ds-pop" style="width: 210px">
+      <div class="ds-pop-head" style="padding: 7px 8px">
+        <span class="ds-input" style="height: 26px; font-size: 11.5px">{{icon:search:12}} Filter…</span>
+      </div>
+      <div class="ds-pop-item"><span class="ds-cb" data-on="1">{{icon:check:10}}</span> Nigeria <span style="margin-left:auto;font-family:var(--font-mono);font-size:9.5px;color:var(--muted-foreground)">48</span></div>
+      <div class="ds-pop-item"><span class="ds-cb" data-on="1">{{icon:check:10}}</span> Ghana <span style="margin-left:auto;font-family:var(--font-mono);font-size:9.5px;color:var(--muted-foreground)">31</span></div>
+      <div class="ds-pop-item" data-state="hover"><span class="ds-cb"></span> Portugal <span style="margin-left:auto;font-family:var(--font-mono);font-size:9.5px;color:var(--muted-foreground)">22</span></div>
+      <div class="ds-pop-item"><span class="ds-cb"></span> Zambia <span style="margin-left:auto;font-family:var(--font-mono);font-size:9.5px;color:var(--muted-foreground)">14</span></div>
+      <div class="ds-pop-item"><span class="ds-cb"></span> Germany <span style="margin-left:auto;font-family:var(--font-mono);font-size:9.5px;color:var(--muted-foreground)">9</span></div>
+    </div>
+    <div style="font-size: 11.5px; line-height: 1.55; color: var(--muted-foreground); max-width: 34ch">
+      <p style="margin: 0 0 10px">
+        Each option carries its <strong>result count</strong>, so you can see a filter will empty the
+        table before you apply it.
+      </p>
+      <p style="margin: 0">
+        Selections apply immediately — no Apply button. The chip row above updates as you tick, which is
+        the feedback that would otherwise need one.
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="ds-section">
+  <p class="ds-eyebrow">Rows selected</p>
+  <div class="ds-bulk">
+    <span class="ds-cb" data-on="1">{{icon:check:10}}</span>
+    <span><span class="ds-bulk-n">12</span> of 156 selected</span>
+    <span style="margin-left: auto; display: flex; gap: 7px">
+      <button class="ds-btn" data-variant="outline" data-size="sm">{{icon:download:13}} Export selected</button>
+      <button class="ds-btn" data-variant="outline" data-size="sm">Change status</button>
+      <button class="ds-btn" data-variant="destructive" data-size="sm">{{icon:trash-2:13}} Delete</button>
+    </span>
+  </div>
+  <p class="ds-note">
+    The bulk bar <strong>replaces the toolbar in place</strong> rather than appearing above it — same
+    height, same position, so the table never jumps when you tick a row. It states the selected count
+    against the total, because “select all” on a paginated table is the classic footgun: 12 of 156, not
+    just “12 selected”.
+  </p>
+</div>

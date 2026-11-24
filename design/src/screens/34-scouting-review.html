@@ -1,0 +1,226 @@
+<!-- ADMIN · REPORT REVIEW — GOL-SCOUT-14 / 15
+
+     The gate between a scout finishing and a player reading. Three outcomes,
+     and the screen is built so the destructive-ish one is not the easiest:
+     Publish is the primary, Return needs a comment before it will send, and
+     Approve-without-publishing exists because "this is good" and "the player
+     should see this today" are different decisions.
+
+     The report renders BESIDE the decision, not behind a link. An admin who
+     has to open a second tab to read what they are approving will approve
+     without reading it. -->
+<div class="ds-screen">
+  <div class="ds-shell">
+{{sidebar:scouting}}
+    <div class="ds-pane">
+      <div class="ds-hdr">
+        <div class="ds-hdr-r1">
+          <span class="ds-crumb">Dashboard / Scouting / <b>Reports</b></span>
+          <span style="display: flex; gap: 7px; align-items: center">
+            <span class="ds-input" style="gap: 9px; height: 28px">{{icon:calendar:14}} Barcelona 2026 {{icon:chevron-down:12}}</span>
+            <button class="ds-btn" data-variant="outline" data-size="sm">{{icon:download:13}} Export</button>
+          </span>
+        </div>
+        <div class="ds-hdr-r2">
+          <span class="ds-hdr-title">Scouting reports</span>
+          <span class="ds-hdr-stats">
+            <span class="ds-hdr-stat"><i style="background: var(--status-info)"></i>5 awaiting review</span>
+            <span class="ds-hdr-stat"><i style="background: var(--status-danger)"></i>2 returned</span>
+            <span class="ds-hdr-stat"><i style="background: var(--status-good)"></i>41 published</span>
+          </span>
+        </div>
+        <div class="ds-tabs" style="margin-top: 12px">
+          <span class="ds-tab">Accounts</span>
+          <span class="ds-tab">Assignments</span>
+          <span class="ds-tab" data-on="1">Reports <span class="ds-dd-tag">5</span></span>
+          <span class="ds-tab">Performance</span>
+          <span class="ds-tab">Oversight</span>
+          <span class="ds-tab">Methodology</span>
+        </div>
+      </div>
+
+      <div class="ds-pane-body">
+        <div class="rv-grid">
+          <div>
+            <div class="ds-tb">
+              <span class="ds-input" style="width: 170px">{{icon:search:14}} Search…</span>
+              <span class="ds-input" style="gap: 8px">{{icon:list-filter:14}} Scout {{icon:chevron-down:12}}</span>
+              <span class="ds-input" style="gap: 8px">{{icon:list-filter:14}} Status {{icon:chevron-down:12}}</span>
+              <span class="ds-chip">Awaiting review<span class="ds-chip-x">{{icon:x:10}}</span></span>
+            </div>
+
+            <div class="ds-tw">
+              <table class="ds-t">
+                <thead><tr>
+                  <th>Player</th><th>Pos</th><th>Scout</th>
+                  <th style="text-align:right">Score</th><th style="text-align:right">Potential</th>
+                  <th>Status</th><th>Submitted</th>
+                </tr></thead>
+                <tbody>
+                  <tr data-selected="1">
+                    <td><span class="ds-idc"><span class="ds-av-sm">DM</span><span class="ds-idc-txt"><span class="ds-idc-name">Daniel Mendes</span><span class="ds-idc-sub">Brazil</span></span></span></td>
+                    <td>LW</td><td>James Carter</td>
+                    <td class="ds-num" style="text-align:right">7.8</td><td class="ds-num" style="text-align:right">65%</td>
+                    <td><span class="ds-pill" data-tone="info">Awaiting review</span></td>
+                    <td class="ds-num">21 May</td></tr>
+                  <tr>
+                    <td><span class="ds-idc"><span class="ds-av-sm">AK</span><span class="ds-idc-txt"><span class="ds-idc-name">Amadou Keita</span><span class="ds-idc-sub">Senegal</span></span></span></td>
+                    <td>CDM</td><td>James Carter</td>
+                    <td class="ds-num" style="text-align:right">7.2</td><td class="ds-num" style="text-align:right">61%</td>
+                    <td><span class="ds-pill" data-tone="good">Approved</span></td>
+                    <td class="ds-num">20 May</td></tr>
+                  <tr>
+                    <td><span class="ds-idc"><span class="ds-av-sm">SO</span><span class="ds-idc-txt"><span class="ds-idc-name">Samuel Osei</span><span class="ds-idc-sub">Ghana</span></span></span></td>
+                    <td>CB</td><td>James Carter</td>
+                    <td class="ds-num" style="text-align:right">7.4</td><td class="ds-num" style="text-align:right">64%</td>
+                    <td><span class="ds-pill" data-tone="danger">Returned</span></td>
+                    <td class="ds-num">18 May</td></tr>
+                  <tr>
+                    <td><span class="ds-idc"><span class="ds-av-sm">FT</span><span class="ds-idc-txt"><span class="ds-idc-name">Fatou Traoré</span><span class="ds-idc-sub">Mali</span></span></span></td>
+                    <td>CAM</td><td>Amara Diallo</td>
+                    <td class="ds-num" style="text-align:right">8.6</td><td class="ds-num" style="text-align:right">79%</td>
+                    <td><span class="ds-pill" data-tone="info">Awaiting review</span></td>
+                    <td class="ds-num">21 May</td></tr>
+                  <tr>
+                    <td><span class="ds-idc"><span class="ds-av-sm">YD</span><span class="ds-idc-txt"><span class="ds-idc-name">Youssoufa Diarra</span><span class="ds-idc-sub">Mali</span></span></span></td>
+                    <td>CM</td><td>Amara Diallo</td>
+                    <td class="ds-num" style="text-align:right">8.0</td><td class="ds-num" style="text-align:right">68%</td>
+                    <td><span class="ds-pill" data-tone="good">Published</span></td>
+                    <td class="ds-num">18 May</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- THE REPORT, INLINE. Condensed, but every section the scout
+                 filled in is represented — an admin approving a summary they
+                 cannot see is rubber-stamping. -->
+            <div class="ds-card" style="margin-top: 13px">
+              <div class="rv-doc-h">
+                <div>
+                  <span class="rv-name">Daniel Mendes</span>
+                  <span class="rv-sub">LW · Brazil · 19 · Barcelona 2026 · scouted by James Carter</span>
+                </div>
+                <div class="rv-score"><b>7.8</b><i>/10 · 65% potential</i></div>
+              </div>
+
+              <div class="rv-cols">
+                <div>
+                  <p class="rv-lab">Attributes</p>
+                  <div class="rv-attr"><span>Pace</span><span class="rv-bar"><i style="width:84%"></i></span><b>8.4</b></div>
+                  <div class="rv-attr"><span>Dribbling</span><span class="rv-bar"><i style="width:81%"></i></span><b>8.1</b></div>
+                  <div class="rv-attr"><span>Finishing</span><span class="rv-bar"><i style="width:74%"></i></span><b>7.4</b></div>
+                  <div class="rv-attr"><span>Passing</span><span class="rv-bar"><i style="width:72%"></i></span><b>7.2</b></div>
+                  <div class="rv-attr"><span>Tactical</span><span class="rv-bar"><i style="width:69%"></i></span><b>6.9</b></div>
+                </div>
+                <div>
+                  <p class="rv-lab">Bands</p>
+                  <div class="rv-band" data-tone="red"><i></i>Needs improvement<b>2</b></div>
+                  <div class="rv-band" data-tone="amber"><i></i>Developing<b>5</b></div>
+                  <div class="rv-band" data-tone="green"><i></i>Strengths<b>4</b></div>
+                  <p class="rv-lab" style="margin-top: 13px">Development plan</p>
+                  <div class="rv-dev"><span>Weak foot</span><span class="ds-pill" data-tone="danger">High</span></div>
+                  <div class="rv-dev"><span>Aerial duels</span><span class="ds-pill" data-tone="warn">Medium</span></div>
+                  <div class="rv-dev"><span>Pace</span><span class="ds-pill" data-tone="good">Maintain</span></div>
+                </div>
+                <div>
+                  <p class="rv-lab">Scout summary</p>
+                  <p class="rv-para">Quick, willing to run in behind, and a
+                    genuine threat off the left. Decision-making in the final
+                    third is behind his physical tools. Coachable and asks
+                    questions — the profile that usually improves fastest.</p>
+                  <p class="rv-lab" style="margin-top: 12px">Recommendation</p>
+                  <p class="rv-rec">{{icon:trophy:13}} Recommended for academy trial</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- DECISION RAIL -->
+          <div class="rv-side">
+            <div class="ds-card">
+              <div class="ds-card-h">Review decision</div>
+
+              <div class="ds-field">
+                <span class="ds-label">Comment to the scout</span>
+                <div class="ds-ta" data-empty="1">Required to return. Optional to approve.</div>
+              </div>
+
+              <button class="ds-btn" style="width: 100%; justify-content: center">{{icon:circle-check:13}} Approve &amp; publish</button>
+              <button class="ds-btn" data-variant="outline" data-size="sm" style="width: 100%; justify-content: center; margin-top: 7px">{{icon:check:13}} Approve, publish later</button>
+              <button class="ds-btn" data-variant="outline" data-size="sm" data-disabled="1" style="width: 100%; justify-content: center; margin-top: 7px">{{icon:pen-line:13}} Return for revision</button>
+
+              <p class="rv-note"><b>Return is disabled until a comment is
+                written.</b> A report bounced back with no reason gets
+                resubmitted unchanged, and the scout learns that review is
+                arbitrary.</p>
+
+              <p class="rv-note" style="margin-top: 10px"><b>Approve and publish
+                are separate</b> because "this is good work" and "the player
+                should read this today" are different calls — a trial
+                recommendation may need to wait on a club conversation.</p>
+            </div>
+
+            <div class="ds-card" style="margin-top: 12px">
+              <div class="ds-card-h">What publishing does</div>
+              <div class="rv-eff"><span class="rv-eff-d"></span><span><b>Player sees the report</b><i>In their Golafly account</i></span></div>
+              <div class="rv-eff"><span class="rv-eff-d"></span><span><b>Player is notified</b><i>Email + in-app</i></span></div>
+              <div class="rv-eff"><span class="rv-eff-d"></span><span><b>PDF becomes downloadable</b><i>Player, scout and admin</i></span></div>
+              <div class="rv-eff"><span class="rv-eff-d"></span><span><b>Counts toward the scout</b><i>Their published total</i></span></div>
+              <p class="rv-note">Listed because publishing is the one action on
+                this screen that reaches a person outside Golafly, and it
+                cannot be quietly undone once they have read it.</p>
+            </div>
+
+            <div class="ds-card" style="margin-top: 12px">
+              <div class="ds-card-h">Consistency check</div>
+              <div class="ds-alert" data-tone="warn">
+                {{icon:triangle-alert:15}}
+                <span>Tactical scored <b>6.9</b> while the summary says
+                  "reads the game well". Worth a comment before publishing.</span>
+              </div>
+              <p class="rv-note">Flagged automatically from the structured data
+                — possible only because the report is generated FROM the
+                evaluation record rather than typed as prose.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style data-local>
+  .ds-shell { min-height: 640px; }
+  .rv-grid { display: grid; grid-template-columns: 1fr 288px; gap: 13px; align-items: start; }
+  .ds-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 14px; }
+  .ds-card-h { font-family: var(--font-heading); font-size: 13px; font-weight: 600; margin-bottom: 12px; }
+  .ds-t tr[data-selected="1"] { background: var(--muted); }
+  .rv-doc-h { display: flex; justify-content: space-between; align-items: flex-start; gap: 14px; padding-bottom: 11px; border-bottom: 1px solid var(--edge); margin-bottom: 13px; }
+  .rv-name { font-family: var(--font-heading); font-size: 16px; font-weight: 700; display: block; }
+  .rv-sub { font-size: 11px; color: var(--muted-foreground); }
+  .rv-score { text-align: right; }
+  .rv-score b { font-family: var(--font-heading); font-size: 26px; font-weight: 700; color: var(--brand-text); line-height: 1; }
+  .rv-score i { display: block; font-style: normal; font-family: var(--font-mono); font-size: 10px; color: var(--muted-foreground); margin-top: 3px; }
+  .rv-cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .rv-lab { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted-foreground); margin-bottom: 7px; }
+  .rv-attr { display: grid; grid-template-columns: 56px 1fr 24px; gap: 8px; align-items: center; font-size: 11px; padding: 3px 0; }
+  .rv-bar { height: 7px; background: var(--muted); border-radius: 999px; overflow: hidden; }
+  .rv-bar i { display: block; height: 100%; border-radius: 999px; background: var(--brand); }
+  .rv-attr b { font-family: var(--font-mono); font-size: 10.5px; text-align: right; }
+  .rv-band { display: flex; align-items: center; gap: 8px; font-size: 11px; padding: 5px 0; }
+  .rv-band i { width: 8px; height: 8px; border-radius: 999px; flex: none; }
+  .rv-band[data-tone="red"] i { background: var(--status-danger); }
+  .rv-band[data-tone="amber"] i { background: var(--status-warn); }
+  .rv-band[data-tone="green"] i { background: var(--status-good); }
+  .rv-band b { margin-left: auto; font-family: var(--font-mono); font-size: 11px; }
+  .rv-dev { display: flex; align-items: center; justify-content: space-between; gap: 8px; font-size: 11px; padding: 4px 0; }
+  .rv-para { font-size: 11px; line-height: 1.6; }
+  .rv-rec { display: inline-flex; align-items: center; gap: 6px; padding: 6px 10px; border-radius: var(--radius-md); background: var(--status-good-bg); color: var(--status-good); font-size: 11px; font-weight: 600; }
+  .rv-side { min-width: 0; }
+  .rv-note { font-size: 10px; line-height: 1.6; color: var(--muted-foreground); margin-top: 11px; }
+  .ds-ta[data-empty="1"] { color: var(--muted-foreground); font-style: italic; }
+  .rv-eff { display: flex; align-items: center; gap: 9px; padding: 5px 0; font-size: 11px; }
+  .rv-eff b { font-weight: 600; display: block; }
+  .rv-eff i { font-style: normal; font-size: 10px; color: var(--muted-foreground); }
+  .rv-eff-d { width: 7px; height: 7px; border-radius: 999px; background: var(--status-good); flex: none; }
+</style>

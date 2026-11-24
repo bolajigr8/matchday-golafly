@@ -1,0 +1,187 @@
+<!-- EVALUATION · STEP 3 — RED / AMBER / GREEN — GOL-SCOUT-08
+
+     The most important product decision in the whole epic lives on this
+     screen: these attributes are DATA, not markup. The epic says so
+     explicitly, and it is the difference between a scouting form for the 2026
+     camp and a scouting platform.
+
+     So the card shows the mechanism, not just the result: every column names
+     where its rows came from, and the footer shows what changing the template
+     does. Nothing here is hard-coded in the sense that a developer would have
+     to touch it to add "Aerial ability" for centre-backs. -->
+<div class="ds-screen">
+  <div class="ds-shell">
+{{scoutnav:evaluations}}
+    <div class="ds-pane">
+      <div class="ds-hdr">
+        <div class="ds-hdr-r1">
+          <span class="ds-crumb">Evaluations / <b>George Adeola</b></span>
+          <span style="display: flex; gap: 7px; align-items: center">
+            <span class="sc-autosave">{{icon:circle-check:14}} All changes saved · 11:42</span>
+            <button class="ds-btn" data-variant="outline" data-size="sm">{{icon:save:13}} Save draft</button>
+            <button class="ds-btn" data-size="sm">Submit evaluation {{icon:arrow-right:13}}</button>
+          </span>
+        </div>
+        <div style="height: 14px"></div>
+      </div>
+
+      <div class="ds-pane-body">
+        <div class="sc-work">
+          <div>
+            <div class="ds-card">
+              <div class="sc-sec-h">{{icon:layers:15}} 3 · Detailed evaluation <span>Sort each attribute into a band</span></div>
+              <p class="sc-sec-sub">Where the report gets its actionable half.
+                A score of 6 says little; a 6 filed under <i>developing</i>
+                with an observation says what the player should do next.</p>
+
+              <div class="sc-src" style="margin-bottom: 13px">
+                {{icon:layout-template:13}}
+                <span>Ten attributes from the <b>Winger</b> template, pre-sorted
+                  into bands by score, then adjusted by you. A centre-back
+                  template supplies a different ten — <b>positioning, tackling,
+                  aerial ability, defensive work rate</b> — to the same three
+                  columns.</span>
+              </div>
+
+              <div class="sc-rag-grid">
+                <div class="sc-rag" data-tone="red">
+                  <div class="sc-rag-h"><i></i> Needs improvement</div>
+                  <p class="sc-rag-sub">Focus areas requiring immediate attention</p>
+
+                  <div class="sc-rag-row">
+                    <div class="sc-rag-row-h">Defensive work rate <span>4/10</span></div>
+                    <div class="sc-rag-cells"><span class="sc-rag-cell">1</span><span class="sc-rag-cell">2</span><span class="sc-rag-cell">3</span><span class="sc-rag-cell" data-on="1">4</span><span class="sc-rag-cell">5</span><span class="sc-rag-cell">6</span><span class="sc-rag-cell">7</span><span class="sc-rag-cell">8</span><span class="sc-rag-cell">9</span><span class="sc-rag-cell">10</span></div>
+                  </div>
+                  <div class="sc-rag-row">
+                    <div class="sc-rag-row-h">Weak foot usage <span>4/10</span></div>
+                    <div class="sc-rag-cells"><span class="sc-rag-cell">1</span><span class="sc-rag-cell">2</span><span class="sc-rag-cell">3</span><span class="sc-rag-cell" data-on="1">4</span><span class="sc-rag-cell">5</span><span class="sc-rag-cell">6</span><span class="sc-rag-cell">7</span><span class="sc-rag-cell">8</span><span class="sc-rag-cell">9</span><span class="sc-rag-cell">10</span></div>
+                  </div>
+                  <div class="sc-rag-row">
+                    <div class="sc-rag-row-h">Final third decision <span>5/10</span></div>
+                    <div class="sc-rag-cells"><span class="sc-rag-cell">1</span><span class="sc-rag-cell">2</span><span class="sc-rag-cell">3</span><span class="sc-rag-cell">4</span><span class="sc-rag-cell" data-on="1">5</span><span class="sc-rag-cell">6</span><span class="sc-rag-cell">7</span><span class="sc-rag-cell">8</span><span class="sc-rag-cell">9</span><span class="sc-rag-cell">10</span></div>
+                  </div>
+                  <div class="sc-obs">
+                    <span>Tracks back only when the ball is near him. Left foot is avoidable — defenders show him inside and he resets.</span>
+                    <span class="sc-obs-count">108/200</span>
+                  </div>
+                </div>
+
+                <div class="sc-rag" data-tone="amber">
+                  <div class="sc-rag-h"><i></i> Developing</div>
+                  <p class="sc-rag-sub">Showing potential but not yet consistent</p>
+
+                  <div class="sc-rag-row">
+                    <div class="sc-rag-row-h">Passing <span>6/10</span></div>
+                    <div class="sc-rag-cells"><span class="sc-rag-cell">1</span><span class="sc-rag-cell">2</span><span class="sc-rag-cell">3</span><span class="sc-rag-cell">4</span><span class="sc-rag-cell">5</span><span class="sc-rag-cell" data-on="1">6</span><span class="sc-rag-cell">7</span><span class="sc-rag-cell">8</span><span class="sc-rag-cell">9</span><span class="sc-rag-cell">10</span></div>
+                  </div>
+                  <div class="sc-rag-row">
+                    <div class="sc-rag-row-h">Crossing <span>6/10</span></div>
+                    <div class="sc-rag-cells"><span class="sc-rag-cell">1</span><span class="sc-rag-cell">2</span><span class="sc-rag-cell">3</span><span class="sc-rag-cell">4</span><span class="sc-rag-cell">5</span><span class="sc-rag-cell" data-on="1">6</span><span class="sc-rag-cell">7</span><span class="sc-rag-cell">8</span><span class="sc-rag-cell">9</span><span class="sc-rag-cell">10</span></div>
+                  </div>
+                  <div class="sc-rag-row">
+                    <div class="sc-rag-row-h">Positioning <span>6/10</span></div>
+                    <div class="sc-rag-cells"><span class="sc-rag-cell">1</span><span class="sc-rag-cell">2</span><span class="sc-rag-cell">3</span><span class="sc-rag-cell">4</span><span class="sc-rag-cell">5</span><span class="sc-rag-cell" data-on="1">6</span><span class="sc-rag-cell">7</span><span class="sc-rag-cell">8</span><span class="sc-rag-cell">9</span><span class="sc-rag-cell">10</span></div>
+                  </div>
+                  <div class="sc-rag-row">
+                    <div class="sc-rag-row-h">Tactical awareness <span>5/10</span></div>
+                    <div class="sc-rag-cells"><span class="sc-rag-cell">1</span><span class="sc-rag-cell">2</span><span class="sc-rag-cell">3</span><span class="sc-rag-cell">4</span><span class="sc-rag-cell" data-on="1">5</span><span class="sc-rag-cell">6</span><span class="sc-rag-cell">7</span><span class="sc-rag-cell">8</span><span class="sc-rag-cell">9</span><span class="sc-rag-cell">10</span></div>
+                  </div>
+                  <div class="sc-obs">
+                    <span>Write your observation…</span>
+                    <span class="sc-obs-count">0/200</span>
+                  </div>
+                </div>
+
+                <div class="sc-rag" data-tone="green">
+                  <div class="sc-rag-h"><i></i> Strengths</div>
+                  <p class="sc-rag-sub">Attributes that stand out</p>
+
+                  <div class="sc-rag-row">
+                    <div class="sc-rag-row-h">Pace <span>9/10</span></div>
+                    <div class="sc-rag-cells"><span class="sc-rag-cell">1</span><span class="sc-rag-cell">2</span><span class="sc-rag-cell">3</span><span class="sc-rag-cell">4</span><span class="sc-rag-cell">5</span><span class="sc-rag-cell">6</span><span class="sc-rag-cell">7</span><span class="sc-rag-cell">8</span><span class="sc-rag-cell" data-on="1">9</span><span class="sc-rag-cell">10</span></div>
+                  </div>
+                  <div class="sc-rag-row">
+                    <div class="sc-rag-row-h">Dribbling <span>8/10</span></div>
+                    <div class="sc-rag-cells"><span class="sc-rag-cell">1</span><span class="sc-rag-cell">2</span><span class="sc-rag-cell">3</span><span class="sc-rag-cell">4</span><span class="sc-rag-cell">5</span><span class="sc-rag-cell">6</span><span class="sc-rag-cell">7</span><span class="sc-rag-cell" data-on="1">8</span><span class="sc-rag-cell">9</span><span class="sc-rag-cell">10</span></div>
+                  </div>
+                  <div class="sc-rag-row">
+                    <div class="sc-rag-row-h">Ball control <span>8/10</span></div>
+                    <div class="sc-rag-cells"><span class="sc-rag-cell">1</span><span class="sc-rag-cell">2</span><span class="sc-rag-cell">3</span><span class="sc-rag-cell">4</span><span class="sc-rag-cell">5</span><span class="sc-rag-cell">6</span><span class="sc-rag-cell">7</span><span class="sc-rag-cell" data-on="1">8</span><span class="sc-rag-cell">9</span><span class="sc-rag-cell">10</span></div>
+                  </div>
+                  <div class="sc-rag-row">
+                    <div class="sc-rag-row-h">1v1 ability <span>9/10</span></div>
+                    <div class="sc-rag-cells"><span class="sc-rag-cell">1</span><span class="sc-rag-cell">2</span><span class="sc-rag-cell">3</span><span class="sc-rag-cell">4</span><span class="sc-rag-cell">5</span><span class="sc-rag-cell">6</span><span class="sc-rag-cell">7</span><span class="sc-rag-cell">8</span><span class="sc-rag-cell" data-on="1">9</span><span class="sc-rag-cell">10</span></div>
+                  </div>
+                  <div class="sc-obs">
+                    <span>Beats his marker consistently, in tight space and in the channel. Acceleration over ten yards is the standout.</span>
+                    <span class="sc-obs-count">114/200</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="ds-alert" style="margin-top: 14px">
+                {{icon:info:15}}
+                <span><b>An attribute can be moved between columns.</b> The
+                  bands are pre-filled from the score, but a 6 in a position
+                  where 6 is a problem belongs in red, and the scout is the one
+                  who knows that. Moving it changes the band, never the score —
+                  the two are stored separately so the report can show both.</span>
+              </div>
+            </div>
+
+            <div class="sc-foot" style="margin-top: 12px">
+              <button class="ds-btn" data-variant="outline" data-size="sm">{{icon:arrow-left:13}} Previous</button>
+              <span class="sc-foot-pos">Step <b>3</b> of 8 · Tactical</span>
+              <button class="ds-btn" data-size="sm">Next: Physical {{icon:arrow-right:13}}</button>
+            </div>
+          </div>
+
+          <div class="sc-rail">
+            <div class="ds-card">
+              <div class="ds-card-h" style="margin-bottom: 9px">Band totals</div>
+              <div class="rg-tot" data-tone="red"><i></i><span>Needs improvement</span><b>3</b></div>
+              <div class="rg-tot" data-tone="amber"><i></i><span>Developing</span><b>4</b></div>
+              <div class="rg-tot" data-tone="green"><i></i><span>Strengths</span><b>4</b></div>
+              <p class="rg-note">A useful shape check before you submit. Eleven
+                greens and no reds is a scout who has not been critical; the
+                reverse is one who has not been fair.</p>
+            </div>
+
+            {{evalsteps:tactical}}
+
+            <div class="ds-card">
+              <div class="ds-card-h" style="margin-bottom: 8px">{{icon:circle-help:14}} What the bands mean</div>
+              <div class="rg-key">
+                <span><i data-tone="red"></i><b>Red</b> — costs him matches now. Goes into the development plan with a priority.</span>
+                <span><i data-tone="amber"></i><b>Amber</b> — present but inconsistent. The biggest gains usually live here.</span>
+                <span><i data-tone="green"></i><b>Green</b> — sell this. Clubs read the green column first.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style data-local>
+  .ds-shell { min-height: 640px; }
+  .ds-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 14px; }
+  .ds-card-h { font-family: var(--font-heading); font-size: 13px; font-weight: 600; margin-bottom: 12px; }
+  .rg-tot { display: flex; align-items: center; gap: 9px; padding: 7px 0; font-size: 11.5px; border-bottom: 1px solid var(--edge); }
+  .rg-tot:last-of-type { border-bottom: none; }
+  .rg-tot span { flex: 1; }
+  .rg-tot b { font-family: var(--font-mono); font-size: 13px; font-weight: 700; }
+  .rg-tot i { width: 9px; height: 9px; border-radius: 999px; flex: none; }
+  .rg-tot[data-tone="red"] i { background: var(--status-danger); }
+  .rg-tot[data-tone="amber"] i { background: var(--status-warn); }
+  .rg-tot[data-tone="green"] i { background: var(--status-good); }
+  .rg-note { font-size: 10px; line-height: 1.55; color: var(--muted-foreground); margin-top: 11px; }
+  .rg-key { display: flex; flex-direction: column; gap: 9px; font-size: 10.5px; line-height: 1.5; color: var(--muted-foreground); }
+  .rg-key span { display: grid; grid-template-columns: 12px 1fr; gap: 7px; align-items: start; }
+  .rg-key i { width: 8px; height: 8px; border-radius: 999px; margin-top: 4px; }
+  .rg-key i[data-tone="red"] { background: var(--status-danger); }
+  .rg-key i[data-tone="amber"] { background: var(--status-warn); }
+  .rg-key i[data-tone="green"] { background: var(--status-good); }
+  .rg-key b { color: var(--foreground); }
+</style>

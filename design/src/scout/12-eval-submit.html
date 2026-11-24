@@ -1,0 +1,212 @@
+<!-- EVALUATION · STEP 8 — REVIEW & SUBMIT — GOL-SCOUT-13
+
+     Submission is the only irreversible action a scout takes, so this card
+     specifies all four moments around it rather than just the button: the
+     checklist before, the validation that blocks it, the confirmation, and
+     the two states afterwards — locked, and returned for revision.
+
+     "Returned" is the state that decides whether the review loop works. If a
+     scout has to hunt for what the admin objected to, they will resubmit the
+     same report. So the admin's comment sits at the top, names the step, and
+     links straight into it. -->
+<div class="ds-screen">
+  <div class="ds-shell">
+{{scoutnav:evaluations}}
+    <div class="ds-pane">
+      <div class="ds-hdr">
+        <div class="ds-hdr-r1">
+          <span class="ds-crumb">Evaluations / <b>George Adeola</b> / Review</span>
+          <span style="display: flex; gap: 7px; align-items: center">
+            <span class="sc-autosave">{{icon:circle-check:14}} All changes saved · 12:14</span>
+            <button class="ds-btn" data-variant="outline" data-size="sm">{{icon:save:13}} Save draft</button>
+          </span>
+        </div>
+        <div style="height: 14px"></div>
+      </div>
+
+      <div class="ds-pane-body">
+        <div class="sc-work">
+          <div>
+            <!-- 1 · BLOCKED -->
+            <p class="ds-eyebrow">1 · Mandatory fields missing</p>
+            <div class="ds-card">
+              <div class="ds-alert" data-tone="danger" style="margin-bottom: 13px">
+                {{icon:circle-alert:15}}
+                <span><b>Two things still need you before this can be
+                  submitted.</b> Each one links to the step it lives on.</span>
+              </div>
+              <div class="sb-check">
+                <div class="sb-row" data-state="done"><span class="sb-ic">{{icon:check:12}}</span><span class="sb-t"><b>Player profile</b><i>Confirmed from registration</i></span><span class="sb-a">Step 1</span></div>
+                <div class="sb-row" data-state="done"><span class="sb-ic">{{icon:check:12}}</span><span class="sb-t"><b>Technical attributes</b><i>7 of 7 scored</i></span><span class="sb-a">Step 2</span></div>
+                <div class="sb-row" data-state="done"><span class="sb-ic">{{icon:check:12}}</span><span class="sb-t"><b>Detailed evaluation</b><i>11 attributes banded</i></span><span class="sb-a">Step 3</span></div>
+                <div class="sb-row" data-state="bad"><span class="sb-ic">{{icon:x:12}}</span><span class="sb-t"><b>Physical</b><i>Not scored — required</i></span><span class="sb-a" data-link="1">Fix step 4 {{icon:arrow-right:12}}</span></div>
+                <div class="sb-row" data-state="done"><span class="sb-ic">{{icon:check:12}}</span><span class="sb-t"><b>Mentality</b><i>Scored 8</i></span><span class="sb-a">Step 5</span></div>
+                <div class="sb-row" data-state="done"><span class="sb-ic">{{icon:check:12}}</span><span class="sb-t"><b>Development plan</b><i>4 areas, 2 high priority</i></span><span class="sb-a">Step 6</span></div>
+                <div class="sb-row" data-state="bad"><span class="sb-ic">{{icon:x:12}}</span><span class="sb-t"><b>Scout summary</b><i>"Recommended next step" is empty — required</i></span><span class="sb-a" data-link="1">Fix step 7 {{icon:arrow-right:12}}</span></div>
+                <div class="sb-row" data-state="warn"><span class="sb-ic">{{icon:triangle-alert:12}}</span><span class="sb-t"><b>Amber observations</b><i>Empty — allowed, but the report will show a blank column</i></span><span class="sb-a">Optional</span></div>
+              </div>
+              <div class="sb-foot">
+                <button class="ds-btn" data-size="sm" data-disabled="1">{{icon:send:13}} Submit evaluation</button>
+                <span class="sb-foot-n">Blocked by 2 required fields</span>
+              </div>
+              <p class="sb-note">The optional warning is listed too, and
+                clearly marked optional. A scout who submits with a blank amber
+                column should have chosen to, rather than found out when a club
+                asked.</p>
+            </div>
+
+            <!-- 2 · CONFIRM -->
+            <p class="ds-eyebrow" style="margin-top: 20px">2 · Ready — confirming</p>
+            <div class="ds-card">
+              <div class="sb-confirm">
+                <span class="sb-confirm-ic">{{icon:send:20}}</span>
+                <div>
+                  <p class="sb-confirm-t">Submit this evaluation to Golafly admin?</p>
+                  <p class="sb-confirm-s">It becomes <b>read-only</b> to you.
+                    An admin reviews it, and either publishes it to George or
+                    returns it to you with comments. You'll be notified either
+                    way — this is not the last chance to change something, but
+                    it is the last chance to change it on your own.</p>
+                  <div class="sb-summary">
+                    <span><i>Overall</i><b>8.3</b></span>
+                    <span><i>Potential</i><b>72%</b></span>
+                    <span><i>Recommendation</i><b>Academy trial</b></span>
+                    <span><i>Development areas</i><b>4</b></span>
+                  </div>
+                  <div style="display: flex; gap: 8px; margin-top: 14px">
+                    <button class="ds-btn" data-size="sm">{{icon:send:13}} Yes, submit</button>
+                    <button class="ds-btn" data-variant="outline" data-size="sm">Keep editing</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 3 · RETURNED -->
+            <p class="ds-eyebrow" style="margin-top: 20px">3 · Returned for revision</p>
+            <div class="ds-card">
+              <div class="sb-returned">
+                <div class="sb-returned-h">
+                  {{icon:pen-line:15}}
+                  <span><b>Golafly admin returned this report</b> · 23 May, 09:12</span>
+                  <span class="ds-pill" data-tone="danger">Needs revision</span>
+                </div>
+                <p class="sb-returned-c">"The 9 for pace is fine, but the
+                  summary says he's ready for a senior environment while the
+                  defensive work rate is a 4. Reconcile those two before I
+                  publish this — the club will spot it. Also add an observation
+                  to the amber column."</p>
+                <p class="sb-returned-by">Nathan A. · Golafly Admin</p>
+                <div class="sb-returned-links">
+                  <span class="sb-jump">{{icon:arrow-right:12}} Step 7 · Summary</span>
+                  <span class="sb-jump">{{icon:arrow-right:12}} Step 3 · Amber observations</span>
+                </div>
+              </div>
+              <div style="display: flex; gap: 8px; margin-top: 13px">
+                <button class="ds-btn" data-size="sm">{{icon:pen-line:13}} Resume editing</button>
+                <button class="ds-btn" data-variant="outline" data-size="sm">{{icon:message-square:13}} Reply to admin</button>
+              </div>
+              <p class="sb-note">Editing reopens at the step the comment names.
+                A returned report that dumps the scout back at step 1 gets
+                resubmitted unchanged.</p>
+            </div>
+          </div>
+
+          <div class="sc-rail">
+            {{evalsteps:review}}
+
+            <div class="ds-card">
+              <div class="ds-card-h" style="margin-bottom: 9px">After you submit</div>
+              <div class="sb-life">
+                <div class="sb-life-r" data-state="done"><span></span><b>Draft</b><i>Yours, editable</i></div>
+                <div class="sb-life-r" data-state="current"><span></span><b>Submitted</b><i>Read-only to you</i></div>
+                <div class="sb-life-r"><span></span><b>Under admin review</b><i>Approve or return</i></div>
+                <div class="sb-life-r"><span></span><b>Published</b><i>Visible to George</i></div>
+              </div>
+              <p class="sb-note" style="margin-top: 11px">Publication is the
+                admin's call, never the scout's (GOL-SCOUT-15). Nothing a scout
+                writes reaches a player without a second pair of eyes.</p>
+            </div>
+
+            <div class="ds-card">
+              <div class="ds-card-h" style="margin-bottom: 9px">Locked</div>
+              <div class="ds-alert" data-tone="warn">
+                {{icon:lock:15}}
+                <span>Submitted 22 May, 12:20. Ask an admin to return it if
+                  something needs changing.</span>
+              </div>
+              <div style="display: flex; gap: 7px; margin-top: 11px; flex-wrap: wrap">
+                <button class="ds-btn" data-variant="outline" data-size="sm">{{icon:eye:13}} View report</button>
+                <button class="ds-btn" data-variant="outline" data-size="sm">{{icon:download:13}} PDF</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style data-local>
+  .ds-shell { min-height: 640px; }
+  .ds-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 14px; }
+  .ds-card-h { font-family: var(--font-heading); font-size: 13px; font-weight: 600; margin-bottom: 12px; }
+  .sb-check { display: flex; flex-direction: column; gap: 2px; }
+  .sb-row { display: flex; align-items: center; gap: 10px; padding: 8px 6px; border-radius: var(--radius-md); }
+  .sb-ic {
+    display: grid; place-items: center; width: 19px; height: 19px; flex: none;
+    border-radius: 999px; background: var(--muted); color: var(--muted-foreground);
+  }
+  .sb-row[data-state="done"] .sb-ic { background: var(--status-good); color: var(--card); }
+  .sb-row[data-state="bad"] { background: var(--status-danger-bg); }
+  .sb-row[data-state="bad"] .sb-ic { background: var(--status-danger); color: var(--card); }
+  .sb-row[data-state="warn"] .sb-ic { background: var(--status-warn); color: var(--card); }
+  .sb-t { flex: 1; display: grid; min-width: 0; }
+  .sb-t b { font-size: 11.5px; font-weight: 600; }
+  .sb-t i { font-style: normal; font-size: 10px; color: var(--muted-foreground); }
+  .sb-a { font-family: var(--font-mono); font-size: 9.5px; color: var(--muted-foreground); flex: none; }
+  .sb-a[data-link="1"] { color: var(--status-danger); display: inline-flex; align-items: center; gap: 4px; }
+  .sb-foot { display: flex; align-items: center; gap: 11px; margin-top: 14px; padding-top: 13px; border-top: 1px solid var(--edge); }
+  .sb-foot-n { font-size: 10.5px; color: var(--status-danger); }
+  .sb-note { font-size: 10px; line-height: 1.55; color: var(--muted-foreground); margin-top: 11px; }
+
+  .sb-confirm { display: flex; gap: 14px; align-items: flex-start; }
+  .sb-confirm-ic {
+    display: grid; place-items: center; width: 40px; height: 40px; flex: none;
+    border-radius: var(--radius-md); background: var(--muted); color: var(--brand-text);
+  }
+  .sb-confirm-t { font-family: var(--font-heading); font-size: 14px; font-weight: 600; }
+  .sb-confirm-s { font-size: 11px; line-height: 1.6; color: var(--muted-foreground); margin-top: 5px; }
+  .sb-summary { display: flex; margin-top: 13px; border: 1px solid var(--edge); border-radius: var(--radius-md); overflow: hidden; }
+  .sb-summary span { display: grid; gap: 2px; padding: 8px 14px; border-right: 1px solid var(--edge); flex: 1; }
+  .sb-summary span:last-child { border-right: none; }
+  .sb-summary i {
+    font-style: normal; font-family: var(--font-mono); font-size: 9px;
+    letter-spacing: 0.07em; text-transform: uppercase; color: var(--muted-foreground);
+  }
+  .sb-summary b { font-family: var(--font-heading); font-size: 14px; font-weight: 700; }
+
+  .sb-returned {
+    border: 1px solid var(--status-danger);
+    border-radius: var(--radius-md);
+    background: var(--status-danger-bg);
+    padding: 13px;
+  }
+  .sb-returned-h { display: flex; align-items: center; gap: 9px; font-size: 11.5px; color: var(--status-danger); }
+  .sb-returned-h span:nth-of-type(1) { flex: 1; color: var(--foreground); }
+  .sb-returned-c { font-size: 11.5px; line-height: 1.6; font-style: italic; margin-top: 10px; }
+  .sb-returned-by { font-size: 10px; color: var(--muted-foreground); margin-top: 7px; }
+  .sb-returned-links { display: flex; gap: 8px; margin-top: 11px; flex-wrap: wrap; }
+  .sb-jump {
+    display: inline-flex; align-items: center; gap: 5px; padding: 4px 9px;
+    border-radius: 999px; background: var(--card); border: 1px solid var(--border);
+    font-size: 10.5px;
+  }
+
+  .sb-life { display: flex; flex-direction: column; gap: 0; }
+  .sb-life-r { display: flex; align-items: baseline; gap: 9px; padding: 7px 0; font-size: 11px; }
+  .sb-life-r span { width: 8px; height: 8px; border-radius: 999px; background: var(--border); flex: none; }
+  .sb-life-r[data-state="done"] span { background: var(--status-good); }
+  .sb-life-r[data-state="current"] span { background: var(--status-info); }
+  .sb-life-r b { font-weight: 600; }
+  .sb-life-r i { font-style: normal; font-size: 10px; color: var(--muted-foreground); margin-left: auto; }
+</style>

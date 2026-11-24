@@ -1,0 +1,166 @@
+<!-- SHELL — the scouting sidebar, plus where the mockup's right-hand rail went.
+
+     The approved mockup keeps notifications and recent chats in a permanent
+     third column. That column costs ~290px on every screen to show two things
+     a scout reads a few times a day, and it is the first thing to break under
+     1400px. Both are re-homed into affordances the admin shell already
+     defines and already ships: the bell opens the notification sheet, the
+     avatar opens the user popover. Nothing is lost — the dashboard card shows
+     both open. -->
+<div class="sh-wrap">
+  <div class="sh-row">
+    <div>
+      <p class="ds-eyebrow">Expanded · 280px</p>
+      <div class="sh-frame">{{scoutnav:dashboard}}</div>
+    </div>
+
+    <div>
+      <p class="ds-eyebrow">Nav item states</p>
+      <div class="sh-frame sh-states">
+        <div class="ds-sb-item">{{icon:file-text:15}} Rest</div>
+        <div class="ds-sb-item" data-state="hover">{{icon:file-text:15}} Hover</div>
+        <div class="ds-sb-item" data-state="active">{{icon:file-text:15}} Active</div>
+        <div class="ds-sb-item">{{icon:message-square:15}} With count<span class="ds-sb-count">3</span></div>
+        <div class="ds-sb-item" data-state="focus">{{icon:file-text:15}} Focus ring</div>
+
+        <p class="sh-note">FLAT, and no search box — the same two rules the
+          admin sidebar follows. An earlier revision grouped these under
+          SCOUTING / COMMUNICATION / ACCOUNT because the mockup does; rejected
+          for the admin's own reason, that headings put a row of chrome
+          between the reader and every single link.</p>
+
+        <p class="ds-eyebrow" style="margin: 18px 0 7px">Camp switcher · content header</p>
+        <span class="ds-input" style="gap: 9px; width: 210px">{{icon:calendar:14}} Barcelona 2026 {{icon:chevron-down:12}}</span>
+        <p class="sh-note">Scoped to the whole session, so it lives in the
+          header rather than in each screen's toolbar. Every count, table and
+          cohort on the screen is read through it.</p>
+      </div>
+    </div>
+
+    <div>
+      <p class="ds-eyebrow">Collapsed rail · 72px</p>
+      <div class="sh-frame sh-rail">
+        <div class="sh-rail-brand">GF</div>
+        <div class="sh-rail-i" data-state="active">{{icon:layout-dashboard:16}}</div>
+        <div class="sh-rail-i">{{icon:users:16}}<i class="sh-rail-dot"></i></div>
+        <div class="sh-rail-i">{{icon:clipboard-list:16}}<i class="sh-rail-dot"></i></div>
+        <div class="sh-rail-i">{{icon:file-text:16}}</div>
+        <div class="sh-rail-i">{{icon:chart-column:16}}</div>
+        <div class="sh-rail-i">{{icon:layout-template:16}}</div>
+        <div class="sh-rail-sep"></div>
+        <div class="sh-rail-i">{{icon:message-square:16}}<i class="sh-rail-dot"></i></div>
+        <div class="sh-rail-i">{{icon:bell:16}}<i class="sh-rail-dot"></i></div>
+        <div class="sh-rail-sep"></div>
+        <div class="sh-rail-i">{{icon:settings:16}}</div>
+        <div class="sh-rail-av">JC</div>
+      </div>
+      <p class="sh-note" style="width: 190px">Counts become dots on the rail.
+        A two-digit badge at 72px either clips or shrinks the icon, and the
+        scout only needs to know that something is waiting.</p>
+    </div>
+  </div>
+
+  <p class="ds-eyebrow" style="margin-top: 22px">Where the mockup's right rail went</p>
+  <div class="sh-row" style="align-items: flex-start">
+    <div class="sh-frame" style="width: 320px; padding: 0">
+      <div class="ds-pop-head" style="padding: 10px 12px; font-size: 11.5px; display: flex; justify-content: space-between; align-items: center">
+        <b>Notifications</b><span style="color: var(--muted-foreground); font-size: 10.5px">Mark all read</span>
+      </div>
+      <div class="ds-notif"><span class="ds-notif-dot"></span><span class="ds-notif-txt">Your report for <b>Daniel Mendes</b> was submitted.<span class="ds-notif-time">10 min ago</span></span></div>
+      <div class="ds-notif"><span class="ds-notif-dot"></span><span class="ds-notif-txt">Admin reviewed your report for <b>Samuel Osei</b>.<span class="ds-notif-time">35 min ago</span></span></div>
+      <div class="ds-notif"><span class="ds-notif-dot"></span><span class="ds-notif-txt">New player assigned: <b>Miguel Santos</b>.<span class="ds-notif-time">1 hour ago</span></span></div>
+      <div class="ds-notif"><span class="ds-notif-txt">Camp schedule updated for Barcelona 2026.<span class="ds-notif-time">3 hours ago</span></span></div>
+    </div>
+
+    <div class="ds-pop" style="position: static">
+      <div class="ds-pop-head">
+        <span class="ds-avatar">JC</span>
+        <span><span class="ds-sb-user-name">James Carter</span><span class="ds-sb-user-role">UEFA A Licence Scout</span></span>
+      </div>
+      <div class="ds-pop-item">{{icon:message-square:14}} Messages<span class="ds-dd-tag">3</span></div>
+      <div class="ds-pop-item">{{icon:user:14}} Profile</div>
+      <div class="ds-pop-item">{{icon:settings:14}} Settings</div>
+      <div class="ds-pop-item">{{icon:shield:14}} Scouting permissions</div>
+      <div class="ds-pop-item">{{icon:log-out:14}} Sign out</div>
+    </div>
+
+    <p class="sh-note" style="width: 300px">
+      Both are the admin's existing components, unchanged. Keeping them as
+      overlays returns ~290px to the table on every screen — which is what a
+      scout is actually looking at — and means one definition serves the
+      dashboard, the evaluation and the report alike.
+    </p>
+  </div>
+</div>
+
+<style data-local>
+  .sh-wrap { padding: 4px; }
+  /* Wraps rather than forcing three across: each dual panel is ~596px, so the
+     rail and the overlays drop below the sidebar instead of being crushed. */
+  .sh-row { display: flex; flex-wrap: wrap; gap: 22px; align-items: flex-start; }
+  .sh-frame {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+  .sh-frame .ds-sb { border: none; border-radius: 0; }
+  .sh-states { width: 268px; padding: 12px; }
+  .sh-note {
+    font-size: 10.5px;
+    line-height: 1.55;
+    color: var(--muted-foreground);
+    margin-top: 9px;
+  }
+  .sh-rail {
+    width: 72px;
+    padding: 10px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+  }
+  .sh-rail-brand {
+    font-family: var(--font-heading);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: var(--brand-text);
+    margin-bottom: 6px;
+  }
+  .sh-rail-i {
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: 36px;
+    height: 32px;
+    border-radius: var(--radius-md);
+    color: var(--muted-foreground);
+  }
+  .sh-rail-i[data-state="active"] {
+    background: var(--muted);
+    color: var(--brand-text);
+  }
+  .sh-rail-dot {
+    position: absolute;
+    top: 5px;
+    right: 6px;
+    width: 5px;
+    height: 5px;
+    border-radius: 999px;
+    background: var(--brand);
+  }
+  .sh-rail-sep { width: 26px; height: 1px; background: var(--edge); margin: 4px 0; }
+  .sh-rail-av {
+    display: grid;
+    place-items: center;
+    width: 26px;
+    height: 26px;
+    margin-top: 6px;
+    border-radius: 999px;
+    background: var(--muted);
+    border: 1px solid var(--border);
+    font-size: 9.5px;
+    font-weight: 700;
+  }
+</style>

@@ -1,0 +1,171 @@
+<!-- COHORT COMPARISON — GOL-SCOUT-12
+
+     A percentile is only as honest as the cohort behind it, so this screen
+     leads with the cohort rather than the number. "Top 18%" with no
+     denominator is the kind of statistic that ends up in a club's inbox and
+     cannot be defended.
+
+     Two guards are specified here, and they are the reason the card exists
+     rather than the percentile bars just living on the report:
+
+       · a cohort too small to rank (the common case early in a camp), and
+       · a cohort the scout has widened past the point of meaning. -->
+<div class="cp">
+  <div class="cp-main">
+    <div class="ds-card">
+      <div class="cp-h">
+        <div>
+          <p class="cp-t">George Adeola — how he compares</p>
+          <p class="cp-s">Percentile against players in the same position at the same camp.</p>
+        </div>
+        <div style="display: flex; gap: 7px">
+          <span class="ds-input" style="gap: 9px; height: 28px">{{icon:calendar:14}} Barcelona 2026 {{icon:chevron-down:12}}</span>
+          <span class="ds-input" style="gap: 9px; height: 28px">{{icon:users:14}} Wingers {{icon:chevron-down:12}}</span>
+        </div>
+      </div>
+
+      <div class="cp-cohort">
+        {{icon:users:15}}
+        <span><b>156 wingers</b> · Barcelona Scouting Camp 2026 · evaluations
+          submitted or published · ages 17–22</span>
+        <span class="ds-pill" data-tone="good">Cohort valid</span>
+      </div>
+
+      <div class="cp-hero">
+        <div class="cp-hero-n">
+          <span class="cp-hero-v">Top 18%</span>
+          <span class="cp-hero-l">Overall, among wingers at this camp</span>
+          <span class="cp-hero-r">Ranked <b>28th</b> of 156</span>
+        </div>
+        <div class="cp-hero-b">
+          <span class="cp-dist">
+            <i style="height: 18%"></i><i style="height: 30%"></i><i style="height: 52%"></i>
+            <i style="height: 74%"></i><i style="height: 92%"></i><i style="height: 100%"></i>
+            <i style="height: 88%"></i><i style="height: 66%"></i>
+            <i style="height: 42%" data-me="1"></i><i style="height: 20%"></i>
+          </span>
+          <div class="cp-axis"><span>4.0</span><span>6.0</span><span>8.0</span><span>10</span></div>
+          <p class="cp-dist-l">Distribution of overall scores. The marked bar
+            is the band George sits in — where he stands among everyone, not
+            just how far along a bar he is.</p>
+        </div>
+      </div>
+
+      <p class="cp-sec">By attribute</p>
+      <div class="sc-pct"><span>Pace</span><span class="sc-pct-track"><i class="sc-pct-fill" style="width: 94%"></i><i class="sc-pct-mark" style="left: 94%"></i></span><span class="sc-pct-val">Top <b>6%</b></span></div>
+      <div class="sc-pct"><span>Dribbling</span><span class="sc-pct-track"><i class="sc-pct-fill" style="width: 89%"></i><i class="sc-pct-mark" style="left: 89%"></i></span><span class="sc-pct-val">Top <b>11%</b></span></div>
+      <div class="sc-pct"><span>Finishing</span><span class="sc-pct-track"><i class="sc-pct-fill" style="width: 73%"></i><i class="sc-pct-mark" style="left: 73%"></i></span><span class="sc-pct-val">Top <b>27%</b></span></div>
+      <div class="sc-pct"><span>Mentality</span><span class="sc-pct-track"><i class="sc-pct-fill" style="width: 68%"></i><i class="sc-pct-mark" style="left: 68%"></i></span><span class="sc-pct-val">Top <b>32%</b></span></div>
+      <div class="sc-pct"><span>Physical</span><span class="sc-pct-track"><i class="sc-pct-fill" style="width: 61%"></i><i class="sc-pct-mark" style="left: 61%"></i></span><span class="sc-pct-val">Top <b>39%</b></span></div>
+      <div class="sc-pct"><span>Passing</span><span class="sc-pct-track"><i class="sc-pct-fill" style="width: 41%"></i><i class="sc-pct-mark" style="left: 41%"></i></span><span class="sc-pct-val">Top <b>59%</b></span></div>
+      <div class="sc-pct"><span>Tactical</span><span class="sc-pct-track"><i class="sc-pct-fill" style="width: 34%"></i><i class="sc-pct-mark" style="left: 34%"></i></span><span class="sc-pct-val">Top <b>66%</b></span></div>
+
+      <div class="ds-alert" style="margin-top: 14px">
+        {{icon:info:15}}
+        <span><b>The spread is the finding, not the average.</b> Top 6% for
+          pace and top 66% for tactical is a specific kind of player, and the
+          gap between those two rows says more than the 8.3 does.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="cp-side">
+    <div class="ds-card">
+      <div class="ds-card-h">Cohort too small</div>
+      <div class="cp-guard">
+        <span class="cp-guard-ic" data-tone="warn">{{icon:users:20}}</span>
+        <p class="cp-guard-t">Not enough goalkeepers yet</p>
+        <p class="cp-guard-s">4 goalkeepers have been evaluated at this camp.
+          Percentiles need at least <b>20</b> before they mean anything —
+          a "top 25%" out of four is one place.</p>
+        <p class="cp-guard-s" style="margin-top: 8px">This section will appear
+          on the report automatically once the cohort is large enough. Until
+          then the report omits it rather than printing a number nobody should
+          quote.</p>
+      </div>
+      <p class="cp-note">Common early in a camp and for rare positions. The
+        threshold is a configured value, not a constant in the frontend.</p>
+    </div>
+
+    <div class="ds-card" style="margin-top: 12px">
+      <div class="ds-card-h">Widening the cohort</div>
+      <div class="cp-widen">
+        <div class="cp-widen-r" data-on="1"><span>{{icon:check:12}}</span><b>Wingers · this camp</b><i>156 · recommended</i></div>
+        <div class="cp-widen-r"><span></span><b>Wingers · all 2026 camps</b><i>412</i></div>
+        <div class="cp-widen-r"><span></span><b>Wingers · all camps, all years</b><i>1,847</i></div>
+        <div class="cp-widen-r" data-warn="1"><span>{{icon:triangle-alert:12}}</span><b>All positions · this camp</b><i>531 · not comparable</i></div>
+      </div>
+      <div class="ds-alert" data-tone="warn" style="margin-top: 11px">
+        {{icon:triangle-alert:15}}
+        <span>Comparing a winger with goalkeepers and centre-backs produces a
+          number, and the number is meaningless. The option stays visible but
+          flagged — hiding it invites someone to ask for it later.</span>
+      </div>
+    </div>
+
+    <div class="ds-card" style="margin-top: 12px">
+      <div class="ds-card-h">Who can see this</div>
+      <p class="cp-note">The scout sees percentiles for their own assigned
+        players. They do not see the individual players making up the cohort —
+        that would expose other scouts' evaluations, which
+        <b>GOL-SCOUT-23</b> does not permit. Aggregates only.</p>
+    </div>
+  </div>
+</div>
+
+<style data-local>
+  .cp { display: grid; grid-template-columns: 1fr 300px; gap: 16px; align-items: start; padding: 4px; }
+  .cp-main { min-width: 0; }
+  .ds-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 16px; }
+  .ds-card-h { font-family: var(--font-heading); font-size: 13px; font-weight: 600; margin-bottom: 12px; }
+  .cp-h { display: flex; justify-content: space-between; align-items: flex-start; gap: 14px; margin-bottom: 13px; }
+  .cp-t { font-family: var(--font-heading); font-size: 16px; font-weight: 700; }
+  .cp-s { font-size: 11px; color: var(--muted-foreground); margin-top: 3px; }
+  .cp-cohort {
+    display: flex; align-items: center; gap: 10px; padding: 10px 12px;
+    background: var(--muted); border: 1px solid var(--border); border-radius: var(--radius-md);
+    font-size: 11px; color: var(--muted-foreground);
+  }
+  .cp-cohort span:nth-of-type(1) { flex: 1; }
+  .cp-cohort b { color: var(--foreground); }
+
+  .cp-hero { display: grid; grid-template-columns: 210px 1fr; gap: 20px; align-items: center; margin: 18px 0; }
+  .cp-hero-v { font-family: var(--font-heading); font-size: 34px; font-weight: 700; line-height: 1; color: var(--brand-text); display: block; }
+  .cp-hero-l { font-size: 11px; color: var(--muted-foreground); display: block; margin-top: 6px; line-height: 1.45; }
+  .cp-hero-r { font-size: 11.5px; display: block; margin-top: 8px; }
+  .cp-dist { display: flex; align-items: flex-end; gap: 4px; height: 88px; }
+  .cp-dist i { flex: 1; background: var(--muted); border: 1px solid var(--edge); border-radius: 3px 3px 0 0; }
+  .cp-dist i[data-me="1"] { background: var(--brand); border-color: var(--brand-edge); }
+  .cp-axis { display: flex; justify-content: space-between; margin-top: 5px; font-family: var(--font-mono); font-size: 9px; color: var(--muted-foreground); }
+  .cp-dist-l { font-size: 10px; line-height: 1.55; color: var(--muted-foreground); margin-top: 8px; }
+
+  .cp-sec {
+    font-family: var(--font-mono); font-size: 9.5px; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--muted-foreground);
+    padding-bottom: 7px; border-bottom: 1px solid var(--edge); margin-bottom: 5px;
+  }
+
+  .cp-guard { text-align: center; padding: 8px 4px; }
+  .cp-guard-ic {
+    display: inline-grid; place-items: center; width: 40px; height: 40px;
+    border-radius: var(--radius-md); background: var(--status-warn-bg); color: var(--status-warn);
+  }
+  .cp-guard-t { font-family: var(--font-heading); font-size: 13px; font-weight: 600; margin-top: 10px; }
+  .cp-guard-s { font-size: 10.5px; line-height: 1.6; color: var(--muted-foreground); margin-top: 6px; }
+  .cp-note { font-size: 10px; line-height: 1.6; color: var(--muted-foreground); margin-top: 11px; }
+
+  .cp-widen { display: flex; flex-direction: column; gap: 4px; }
+  .cp-widen-r {
+    display: grid; grid-template-columns: 18px 1fr auto; gap: 9px; align-items: center;
+    padding: 8px 9px; border: 1px solid var(--border); border-radius: var(--radius-md); font-size: 11px;
+  }
+  .cp-widen-r > span {
+    display: grid; place-items: center; width: 16px; height: 16px;
+    border-radius: 999px; border: 1px solid var(--border); color: var(--card);
+  }
+  .cp-widen-r[data-on="1"] { border-color: var(--brand-edge); background: var(--muted); }
+  .cp-widen-r[data-on="1"] > span { background: var(--status-good); border-color: var(--status-good); }
+  .cp-widen-r[data-warn="1"] > span { background: var(--status-warn); border-color: var(--status-warn); }
+  .cp-widen-r b { font-weight: 600; }
+  .cp-widen-r i { font-style: normal; font-family: var(--font-mono); font-size: 9.5px; color: var(--muted-foreground); }
+</style>

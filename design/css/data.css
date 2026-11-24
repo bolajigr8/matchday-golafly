@@ -1,0 +1,338 @@
+/* ─────────────────────────────────────────────────────────────────────────
+   Tables, toolbar, pagination — the replacement spec for CustomTable,
+   CustomTableSkeleton, CustomTableEmptyState, SearchFilterBar,
+   CustomMultiSelectFilter and TablePagination.
+   ───────────────────────────────────────────────────────────────────────── */
+
+.ds-tw {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--card);
+}
+.ds-t {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12.5px;
+}
+
+/* Header: the mono eyebrow idiom, on --muted so it reads as chrome and the
+   header stays legible when the body scrolls under it. */
+.ds-t thead th {
+  text-align: left;
+  padding: 0 12px;
+  height: 34px;
+  background: var(--muted);
+  border-bottom: 1px solid var(--border);
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+  white-space: nowrap;
+}
+.ds-t tbody td {
+  padding: 0 12px;
+  height: 44px;
+  border-bottom: 1px solid var(--border);
+  color: var(--foreground);
+  vertical-align: middle;
+}
+.ds-t tbody tr:last-child td {
+  border-bottom: none;
+}
+/* Border-only, never zebra — stripes fight the status pills for attention. */
+.ds-t tbody tr[data-state="hover"] {
+  background: var(--accent);
+}
+.ds-t tbody tr[data-state="selected"] {
+  background: color-mix(in oklch, var(--brand) 10%, transparent);
+}
+.ds-num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  font-family: var(--font-mono);
+  font-size: 12px;
+}
+.ds-t-sort {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+}
+.ds-t-sort svg {
+  width: 11px;
+  height: 11px;
+}
+.ds-t-sort[data-on="1"] {
+  color: var(--foreground);
+}
+
+/* Two-line identity cell — the single most repeated cell in the app. */
+.ds-idc {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  min-width: 0;
+}
+.ds-idc-txt {
+  min-width: 0;
+}
+.ds-idc-name {
+  display: block;
+  font-weight: 600;
+  line-height: 1.25;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.ds-idc-sub {
+  display: block;
+  font-size: 11px;
+  color: var(--muted-foreground);
+  line-height: 1.3;
+  margin-top: 1px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.ds-av-sm {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 999px;
+  background: var(--muted);
+  color: var(--muted-foreground);
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  font-weight: 700;
+  flex: none;
+}
+
+/* Row actions: icon-only, revealed on hover but always in the tab order. */
+.ds-acts {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  justify-content: flex-end;
+}
+.ds-act {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: var(--radius-sm);
+  color: var(--muted-foreground);
+  cursor: pointer;
+}
+.ds-act svg {
+  width: 14px;
+  height: 14px;
+}
+.ds-act[data-state="hover"] {
+  background: var(--muted);
+  color: var(--foreground);
+}
+.ds-act[data-tone="danger"][data-state="hover"] {
+  color: var(--destructive);
+}
+
+.ds-cb {
+  width: 14px;
+  height: 14px;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--background);
+  flex: none;
+}
+.ds-cb[data-on="1"] {
+  background: var(--brand);
+  border-color: var(--brand-edge);
+  color: var(--brand-foreground);
+}
+.ds-cb svg {
+  width: 10px;
+  height: 10px;
+}
+
+/* ── Toolbar ────────────────────────────────────────────────────────────── */
+.ds-tb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+.ds-input {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  height: 32px;
+  padding: 0 10px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--background);
+  color: var(--muted-foreground);
+  font-size: 12.5px;
+  min-width: 0;
+}
+.ds-input svg {
+  width: 14px;
+  height: 14px;
+  flex: none;
+}
+.ds-input[data-state="focus"] {
+  border-color: var(--ring);
+  box-shadow: 0 0 0 3px color-mix(in oklch, var(--ring) 22%, transparent);
+}
+.ds-input[data-state="error"] {
+  border-color: var(--destructive);
+}
+.ds-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 26px;
+  padding: 0 5px 0 9px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--background);
+  font-size: 11.5px;
+  color: var(--foreground);
+}
+.ds-chip b {
+  font-weight: 600;
+}
+.ds-chip-x {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  border-radius: 999px;
+  color: var(--muted-foreground);
+  cursor: pointer;
+}
+.ds-chip-x svg {
+  width: 10px;
+  height: 10px;
+}
+
+/* Bulk bar replaces the toolbar in place when rows are selected, so the
+   table never jumps. */
+.ds-bulk {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 42px;
+  padding: 0 12px;
+  border-radius: var(--radius-md);
+  background: color-mix(in oklch, var(--brand) 12%, var(--card));
+  border: 1px solid var(--brand-edge);
+  font-size: 12.5px;
+}
+.ds-bulk-n {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── Pagination ─────────────────────────────────────────────────────────── */
+.ds-pag {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 12px;
+  border-top: 1px solid var(--border);
+  font-size: 11.5px;
+  color: var(--muted-foreground);
+}
+.ds-pag-n {
+  font-variant-numeric: tabular-nums;
+  font-family: var(--font-mono);
+  font-size: 11px;
+}
+.ds-pages {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+.ds-page {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 26px;
+  height: 26px;
+  padding: 0 6px;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--muted-foreground);
+  cursor: pointer;
+  font-variant-numeric: tabular-nums;
+}
+.ds-page[data-on="1"] {
+  background: var(--brand);
+  color: var(--brand-foreground);
+  border: 1px solid var(--brand-edge);
+  font-weight: 700;
+}
+.ds-page[data-disabled="1"] {
+  opacity: 0.4;
+}
+.ds-page svg {
+  width: 13px;
+  height: 13px;
+}
+
+/* ── Non-data states ────────────────────────────────────────────────────── */
+.ds-skel {
+  height: 9px;
+  border-radius: 3px;
+  background: var(--muted);
+}
+.ds-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 40px 20px;
+  gap: 5px;
+}
+.ds-empty-ic {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--muted);
+  color: var(--muted-foreground);
+  margin-bottom: 5px;
+}
+.ds-empty-ic svg {
+  width: 19px;
+  height: 19px;
+}
+.ds-empty-t {
+  font-family: var(--font-heading);
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--foreground);
+}
+.ds-empty-s {
+  font-size: 11.5px;
+  color: var(--muted-foreground);
+  max-width: 34ch;
+  line-height: 1.5;
+}

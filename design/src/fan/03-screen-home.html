@@ -1,0 +1,219 @@
+<div class="fan-screen">
+{{fannav:home}}
+  <div class="fan-main">
+    <p class="fan-eyebrow">Wednesday, 19 August</p>
+    <h1 class="fan-h1" style="margin-top: 5px">Hi Adaeze</h1>
+    <p class="fan-sub">Your matchday and everything around it, in one place.</p>
+
+    <!-- NEXT MATCH — the hero. A fan opens this app for one reason on match
+         week, and it is this. Kickoff countdown, not a date: "in 3 days" is
+         what you act on. -->
+    <section class="fan-section">
+      <div class="fan-card hm-hero">
+        <div class="hm-hero-l">
+          <span class="fan-pill" data-tone="good">Ticket ready</span>
+          <p class="fan-title" style="font-size: 21px; margin-top: 11px">Barcelona v Atlético Madrid</p>
+          <div class="fan-meta">
+            <span>{{icon:calendar:13}} Sat 22 Aug · 20:00</span>
+            <span>{{icon:map-pin:13}} Estadi Olímpic, Barcelona</span>
+          </div>
+          <div class="hm-seat">
+            <span><b>Cat 1</b><i>Category</i></span>
+            <span><b>21</b><i>Block</i></span>
+            <span><b>6</b><i>Row</i></span>
+            <span><b>×4</b><i>Seats</i></span>
+          </div>
+          <div style="display: flex; gap: 9px; margin-top: 16px">
+            <button class="fan-btn">{{icon:qr-code:15}} Show tickets</button>
+            <button class="fan-btn" data-variant="outline">{{icon:download:15}} Download</button>
+          </div>
+        </div>
+        <div class="hm-count">
+          <p class="fan-eyebrow">Kick-off in</p>
+          <div class="hm-count-row">
+            <span><b>3</b><i>days</i></span>
+            <span><b>06</b><i>hrs</i></span>
+            <span><b>12</b><i>min</i></span>
+          </div>
+          <p class="hm-count-note">Doors open 18:30</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- TRAVEL ESSENTIALS — scenario 3. One card per product the fan actually
+         holds, each with the single thing they will need at the gate, the
+         desk or the airport. -->
+    <section class="fan-section">
+      <div class="fan-section-h">
+        <h2 class="fan-section-t">Travel essentials</h2>
+        <span class="fan-link">View all {{icon:chevron-right:13}}</span>
+      </div>
+      <div class="fan-grid-3">
+        <div class="fan-card" data-tight="1">
+          <div class="hm-ess-h">
+            <span class="fan-chip">{{icon:plane:18}}</span>
+            <span class="fan-pill" data-tone="good">Confirmed</span>
+          </div>
+          <p class="fan-eyebrow" style="margin-top: 12px">Flight</p>
+          <p class="fan-title" style="font-size: 15px">LOS → BCN</p>
+          <div class="fan-meta">
+            <span>{{icon:calendar:13}} Departs 21 Aug</span>
+            <span>{{icon:ticket:13}} PNR 4K2D9X</span>
+          </div>
+          <span class="fan-link" style="margin-top: 12px">E-ticket {{icon:chevron-right:13}}</span>
+        </div>
+
+        <div class="fan-card" data-tight="1">
+          <div class="hm-ess-h">
+            <span class="fan-chip">{{icon:bed-double:18}}</span>
+            <span class="fan-pill" data-tone="good">Confirmed</span>
+          </div>
+          <p class="fan-eyebrow" style="margin-top: 12px">Stay</p>
+          <p class="fan-title" style="font-size: 15px">Hotel Arts Barcelona</p>
+          <div class="fan-meta">
+            <span>{{icon:calendar:13}} 21–24 Aug · 3 nights</span>
+          </div>
+          <span class="fan-link" style="margin-top: 12px">Voucher {{icon:chevron-right:13}}</span>
+        </div>
+
+        <div class="fan-card" data-tight="1">
+          <div class="hm-ess-h">
+            <span class="fan-chip">{{icon:wifi:18}}</span>
+            <span class="fan-pill" data-tone="info">Not installed</span>
+          </div>
+          <p class="fan-eyebrow" style="margin-top: 12px">eSIM</p>
+          <p class="fan-title" style="font-size: 15px">Europe Tour · 20 GB</p>
+          <div class="fan-meta">
+            <span>{{icon:clock:13}} 30 days from install</span>
+          </div>
+          <span class="fan-link" style="margin-top: 12px">Install now {{icon:chevron-right:13}}</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- QUICK ACTIONS — what a fan does next, not what the app can do. -->
+    <section class="fan-section">
+      <h2 class="fan-section-t" style="margin-bottom: 11px">Add to your trip</h2>
+      <div class="fan-grid-4">
+        <div class="fan-card hm-qa" data-tight="1">
+          <span class="fan-chip">{{icon:ticket:18}}</span>
+          <p class="hm-qa-t">More matches</p>
+          <p class="hm-qa-s">Fixtures on sale</p>
+        </div>
+        <div class="fan-card hm-qa" data-tight="1">
+          <span class="fan-chip">{{icon:plane:18}}</span>
+          <p class="hm-qa-t">Flights</p>
+          <p class="hm-qa-s">Search &amp; book</p>
+        </div>
+        <div class="fan-card hm-qa" data-tight="1">
+          <span class="fan-chip">{{icon:bed-double:18}}</span>
+          <p class="hm-qa-t">Stays</p>
+          <p class="hm-qa-s">Near the ground</p>
+        </div>
+        <div class="fan-card hm-qa" data-tight="1">
+          <span class="fan-chip">{{icon:wifi:18}}</span>
+          <p class="hm-qa-t">eSIM</p>
+          <p class="hm-qa-s">Data abroad</p>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+
+<style data-local>
+  .hm-hero {
+    display: grid;
+    grid-template-columns: 1fr 200px;
+    gap: 22px;
+    align-items: center;
+    border-color: var(--brand-edge);
+    background:
+      radial-gradient(ellipse at 100% 0%, color-mix(in oklch, var(--brand) 11%, transparent), transparent 60%),
+      var(--card);
+  }
+  .hm-seat {
+    display: flex;
+    gap: 26px;
+    margin-top: 15px;
+    padding-top: 14px;
+    border-top: 1px solid var(--edge);
+  }
+  .hm-seat span {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+  .hm-seat b {
+    font-family: var(--font-heading);
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--foreground);
+  }
+  .hm-seat i {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    font-style: normal;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted-foreground);
+  }
+  .hm-count {
+    text-align: center;
+    padding: 16px 10px;
+    border-radius: var(--fan-radius);
+    background: var(--muted);
+  }
+  .hm-count-row {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 9px;
+  }
+  .hm-count-row span {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .hm-count-row b {
+    font-family: var(--font-heading);
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    color: var(--brand-text);
+    font-variant-numeric: tabular-nums;
+  }
+  .hm-count-row i {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    font-style: normal;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted-foreground);
+  }
+  .hm-count-note {
+    margin: 11px 0 0;
+    font-size: 11px;
+    color: var(--muted-foreground);
+  }
+  .hm-ess-h {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+  }
+  .hm-qa {
+    text-align: left;
+  }
+  .hm-qa-t {
+    margin: 11px 0 0;
+    font-family: var(--font-heading);
+    font-size: 13.5px;
+    font-weight: 700;
+    color: var(--foreground);
+  }
+  .hm-qa-s {
+    margin: 3px 0 0;
+    font-size: 11.5px;
+    color: var(--muted-foreground);
+  }
+</style>

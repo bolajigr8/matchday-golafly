@@ -1,0 +1,47 @@
+# Golafly
+
+> Golafly (golafly.com) is a football matchday platform. Fans can buy match tickets and book flights, hotels and a travel eSIM for the same trip in one checkout. Golafly also runs football programmes: football tourism, player management, sports marketing and a trial showcase for players. It has offices in London and Barcelona. Prices are shown in the currency of each listing, usually euros or pounds.
+
+Match ticket pages list upcoming fixtures with prices. Team pages list each club's upcoming matches, and competition pages list each league or cup's matches. Tickets, stays and flights can be combined around a single fixture.
+
+## Tickets
+
+- [All matches](https://golafly.com/matches): Upcoming football fixtures across Europe's leagues and cups, with ticket prices.
+- [All tournaments](https://golafly.com/tournaments): Directory of competitions, including the Champions League, Premier League, La Liga, Serie A, Bundesliga, Ligue 1 and Europa League. Each competition has its own page listing its matches, for example [Premier League](https://golafly.com/tournament/premier-league).
+- [All teams](https://golafly.com/teams): Directory of clubs. Each team has its own page listing its upcoming matches, for example [Real Madrid](https://golafly.com/team/real-madrid).
+- [International football](https://golafly.com/international): Tickets for national-team matches and international competitions.
+
+## Travel around a match
+
+- [Stays](https://golafly.com/stays): Search and book hotels near matchday venues.
+- [Flights](https://golafly.com/flights): Search and compare flights to matchday destinations.
+
+## Football programmes
+
+- [Football tourism](https://golafly.com/program/football-tourism): Matchday travel, stadium tours and club experiences across Europe.
+- [Trial & Showcase](https://golafly.com/tourism/trials): A football trial event where players are seen by scouts.
+- [Player management](https://golafly.com/program/player-management): Representation and club pathways for aspiring professional players.
+- [Sports marketing](https://golafly.com/program/sports-marketing): Sponsorship, stadium advertising, matchday activations and digital partnerships for brands in football.
+
+## Help and company
+
+- [Help and FAQs](https://golafly.com/help-faqs): Answers on ticket authenticity and delivery, payments, cancellations and refunds, travel and stadium entry.
+- [Contact support](https://golafly.com/support): Support for payments, bookings, tickets, refunds, cancellations and accounts. Email contact@golafly.com.
+- [About Golafly](https://golafly.com/about): Who Golafly is and how the platform works.
+- [Refund policy](https://golafly.com/legal/refund): Cancellation windows, rescheduled matches and how to request a refund.
+- [Terms and conditions](https://golafly.com/legal/terms)
+- [Privacy policy](https://golafly.com/legal/privacy)
+
+## Blog
+
+- [The Matchday Blog](https://golafly.com/blog): Guides and articles on football travel, players and sports marketing.
+- [Ultimate guide to football tourism in Europe (2026 edition)](https://golafly.com/blog/ultimate-guide-to-football-tourism-in-europe-2026-edition)
+- [How football agents help players build successful careers](https://golafly.com/blog/how-football-agents-help-players-build-successful-careers)
+- [What is sports marketing and why does it matter in football?](https://golafly.com/blog/what-is-sports-marketing-and-why-does-it-matter-in-football)
+
+- [Travel blog](https://golafly.com/travel/blog): Flights, stays, eSIMs and city guides for football fans travelling to matches.
+
+## Optional
+
+- [Internships](https://golafly.com/internship): Project-based internships for university students.
+- [Sitemap](https://golafly.com/sitemap.xml): Full list of pages.

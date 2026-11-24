@@ -30,16 +30,10 @@ export const SORT_TABS = [
 ] as const;
 
 export const RECENT_SEARCHES = [
-  "London – Dubai",
-  "Paris – New York",
-  "Istanbul – London",
-  "Rome – Barcelona",
-] as const;
-
-export const AIRLINES_FILTER = [
-  { name: "Emirates",       minPrice: 311 },
-  { name: "British Airways",minPrice: 335 },
-  { name: "Qatar Airways",  minPrice: 370 },
+  { label: "London – Dubai",    origin: "LHR", destination: "DXB" },
+  { label: "Paris – New York",  origin: "CDG", destination: "JFK" },
+  { label: "Istanbul – London", origin: "IST", destination: "LHR" },
+  { label: "Rome – Barcelona",  origin: "FCO", destination: "BCN" },
 ] as const;
 
 /* ─── Stays ───────────────────────────────────────────────────── */

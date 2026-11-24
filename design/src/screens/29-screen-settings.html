@@ -1,0 +1,90 @@
+<div class="ds-screen">
+  <div class="ds-shell">
+{{sidebar:settings}}
+    <div class="ds-pane">
+        <div class="ds-hdr">
+          <div class="ds-hdr-r1">
+            <span class="ds-crumb">Dashboard / Settings / <b>Profile</b></span>
+            <button class="ds-btn" data-size="sm">Save changes</button>
+          </div>
+          <div class="ds-hdr-r2">
+            <span class="ds-hdr-title">Settings</span>
+            
+          </div>
+          <div class="ds-tabs"><span class="ds-tab" data-on="1">Profile</span><span class="ds-tab">Teams</span><span class="ds-tab">System</span></div>
+        </div>
+      <div class="ds-pane-body">
+          <div class="ds-set-grid">
+            <div class="ds-card">
+              <div class="ds-card-h">Profile</div>
+              <div style="display:flex;gap:14px;align-items:center;margin-bottom:14px">
+                <span class="ds-avatar" style="width:48px;height:48px;font-size:14px">NA</span>
+                <button class="ds-btn" data-variant="outline" data-size="sm">{{icon:upload:13}} Change photo</button>
+              </div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+                <div class="ds-field"><span class="ds-label">First name</span><span class="ds-input">Nathan</span></div>
+                <div class="ds-field"><span class="ds-label">Last name</span><span class="ds-input">Adebayo</span></div>
+                <div class="ds-field" style="grid-column:1/-1"><span class="ds-label">Email <i>*</i></span><span class="ds-input" data-state="focus">nathan@golafly.com</span><span class="ds-help">Used for sign-in and system notifications.</span></div>
+                <div class="ds-field" style="grid-column:1/-1"><span class="ds-label">Role</span><span class="ds-input" style="justify-content:space-between;color:var(--foreground)">Administrator {{icon:chevron-down:12}}</span></div>
+              </div>
+            </div>
+            <div class="ds-card">
+              <div class="ds-card-h">Security</div>
+              <div style="display:flex;flex-direction:column;gap:12px">
+                <div class="ds-field"><span class="ds-label">Current password</span><span class="ds-input">••••••••••</span></div>
+                <div class="ds-field"><span class="ds-label">New password</span><span class="ds-input" data-state="error">••••</span><span class="ds-err">{{icon:circle-alert:11}} Must be at least 12 characters.</span></div>
+                <div class="ds-switch-row"><span class="ds-switch" data-on="1"></span> Require 2FA for this account</div>
+              </div>
+              <div class="ds-card-h" style="margin-top:18px">Preferences</div>
+              <div style="display:flex;flex-direction:column;gap:10px">
+                <div class="ds-switch-row"><span class="ds-switch" data-on="1"></span> Email me when an application needs review</div>
+                <div class="ds-switch-row"><span class="ds-switch"></span> Weekly summary digest</div>
+                <div class="ds-field"><span class="ds-label">Theme</span>
+                  <div style="display:flex;gap:14px;margin-top:2px">
+                    <span class="ds-radio"><span class="ds-rad"></span> Light</span>
+                    <span class="ds-radio"><span class="ds-rad"></span> Dark</span>
+                    <span class="ds-radio"><span class="ds-rad" data-on="1"></span> System</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<style data-local>
+  .ds-shell { min-height: 640px; position: relative; }
+  .ds-stat-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; margin-bottom: 14px; }
+  /* Two columns, not three. The left card is the tall one (funnel + bar
+     chart); the right column stacks two shorter cards to match its height,
+     so neither column ends in dead space. */
+  .ds-ov-grid { display: grid; grid-template-columns: 1.25fr 1fr; gap: 12px; align-items: start; }
+  .ds-ov-side { display: flex; flex-direction: column; gap: 12px; }
+  .ds-set-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .ds-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 14px; }
+  .ds-card-h { font-family: var(--font-heading); font-size: 13px; font-weight: 600; margin-bottom: 12px; }
+  .fn { display: flex; flex-direction: column; gap: 7px; }
+  .fn-row { display: grid; grid-template-columns: 80px 1fr 38px 38px; gap: 8px; align-items: center; }
+  .fn-lab { font-size: 11px; }
+  .fn-track { height: 15px; background: var(--muted); border-radius: 3px; overflow: hidden; }
+  .fn-bar { display: block; height: 100%; border-radius: 3px; }
+  .fn-val { font-family: var(--font-mono); font-size: 11px; text-align: right; font-variant-numeric: tabular-nums; }
+  .fn-drop { font-family: var(--font-mono); font-size: 9.5px; color: var(--muted-foreground); text-align: right; }
+  .gr { stroke: var(--edge); stroke-width: 1; }
+  .ax2 { fill: var(--muted-foreground); font-family: var(--font-mono); font-size: 8px; text-anchor: middle; }
+  .ct-big { fill: var(--foreground); font-family: var(--font-heading); font-size: 22px; font-weight: 700; text-anchor: middle; }
+  .ct-sm { fill: var(--muted-foreground); font-family: var(--font-mono); font-size: 7px; text-anchor: middle; letter-spacing: 0.1em; text-transform: uppercase; }
+  .lg { display: flex; flex-direction: column; gap: 6px; flex: 1; }
+  .lg-row { display: flex; align-items: center; gap: 7px; font-size: 11px; }
+  .lg-dot { width: 8px; height: 8px; border-radius: 2px; flex: none; }
+  .lg-val { margin-left: auto; font-family: var(--font-mono); font-size: 10px; color: var(--muted-foreground); }
+  .ds-open-sheet { position: absolute; top: 0; right: 0; bottom: 0; width: 380px; border-radius: 0; border-top: none; border-right: none; border-bottom: none; }
+  .ds-score { display: grid; grid-template-columns: 74px 1fr 28px; gap: 8px; align-items: center; padding: 5px 0; font-size: 11.5px; }
+  .ds-stars { display: flex; gap: 2px; color: var(--brand-text); }
+  .ds-stars .off { color: var(--border); }
+  .ds-score b { font-family: var(--font-mono); font-size: 11px; text-align: right; }
+</style>

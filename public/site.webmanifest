@@ -1,0 +1,19 @@
+{
+  "name": "Golafly — Football Tickets, Travel & Experiences",
+  "short_name": "Golafly",
+  "description": "Book match tickets, hotels and flights for Europe's top football in one place.",
+  "id": "/",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "theme_color": "#030303",
+  "background_color": "#030303",
+  "lang": "en",
+  "categories": ["sports", "travel", "entertainment"],
+  "icons": [
+    { "src": "/android-chrome-192x192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/android-chrome-512x512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/android-chrome-512x512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

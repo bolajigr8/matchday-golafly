@@ -1,0 +1,164 @@
+<div class="ds-section">
+  <p class="ds-eyebrow">Chrome</p>
+  <h2 class="ds-h">What the sidebar opens</h2>
+  <p class="ds-sub">
+    Three surfaces, and between them they absorb everything the top bar used to hold. None of them is a
+    new primitive: the palette is <code class="ds-code">cmdk</code> (already a dependency), the sheet is
+    <code class="ds-code">BaseListSheet</code>, the menu is a popover.
+  </p>
+</div>
+
+<div class="ds-section">
+  <p class="ds-eyebrow">⌘K · search and navigation in one</p>
+  <div class="ds-ov-row">
+    <div class="ds-cmdk">
+      <div class="ds-cmdk-input">{{icon:search:15}} <span>partner</span></div>
+      <div class="ds-cmdk-group">Go to</div>
+      <div class="ds-cmdk-item" data-on="1">{{icon:file-text:14}} Partner Applications<span class="ds-cmdk-hint">↵</span></div>
+      <div class="ds-cmdk-group">Results · 3</div>
+      <div class="ds-cmdk-item">{{icon:user:14}} Adaeze Okonkwo<span class="ds-cmdk-hint">Partner app</span></div>
+      <div class="ds-cmdk-item">{{icon:user:14}} Marco Silva<span class="ds-cmdk-hint">Partner app</span></div>
+      <div class="ds-cmdk-item">{{icon:briefcase:14}} Partner onboarding 2026<span class="ds-cmdk-hint">Offer</span></div>
+      <div class="ds-cmdk-group">Actions</div>
+      <div class="ds-cmdk-item">{{icon:plus:14}} New partner invite<span class="ds-cmdk-hint">⌘⇧P</span></div>
+    </div>
+    <div class="ds-ov-note">
+      <p>
+        Opens <strong>centred over the content pane</strong>, not over the sidebar — the thing you are
+        acting on stays visible behind it.
+      </p>
+      <p>
+        It searches across every resource <em>and</em> navigates <em>and</em> exposes primary actions, so
+        it does the job of the old top-bar search plus a quick-action menu. Results are grouped and
+        typed, so “Marco Silva” is never ambiguous between a player and a partner.
+      </p>
+      <p class="ds-ov-small">
+        Escape closes. ↑↓ moves. ↵ opens. No mouse needed anywhere in this dashboard.
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="ds-section">
+  <p class="ds-eyebrow">Bell · notifications</p>
+  <div class="ds-ov-row">
+    <div class="ds-sheet" style="border-radius: var(--radius-lg); border: 1px solid var(--border)">
+      <div class="ds-sheet-head">
+        <span class="ds-sheet-title">Notifications</span>
+        <button class="ds-icon-btn">{{icon:x:14}}</button>
+      </div>
+      <div class="ds-notif">
+        <span class="ds-notif-dot"></span>
+        <span>
+          <span class="ds-notif-txt"><b>7 partner applications</b> are waiting on review.</span>
+          <span class="ds-notif-time">12 min ago</span>
+        </span>
+      </div>
+      <div class="ds-notif">
+        <span class="ds-notif-dot"></span>
+        <span>
+          <span class="ds-notif-txt">Payment <b>txn_9Kd2</b> failed and was retried.</span>
+          <span class="ds-notif-time">1 hr ago</span>
+        </span>
+      </div>
+      <div class="ds-notif">
+        <span class="ds-notif-dot" data-read="1"></span>
+        <span>
+          <span class="ds-notif-txt">Academy <b>Lagos U17</b> registration closed.</span>
+          <span class="ds-notif-time">Yesterday</span>
+        </span>
+      </div>
+      <div class="ds-notif">
+        <span class="ds-notif-dot" data-read="1"></span>
+        <span>
+          <span class="ds-notif-txt">Offer <b>Summer Trials</b> was published.</span>
+          <span class="ds-notif-time">2 days ago</span>
+        </span>
+      </div>
+    </div>
+    <div class="ds-ov-note">
+      <p>
+        <strong>A right-side sheet, not a popover.</strong> That is deliberate: every other “show me the
+        detail of this” in the app is a sheet, so notifications reuse
+        <code class="ds-code">BaseListSheet</code> and need no new overlay component.
+      </p>
+      <p>
+        The bell carries a lime dot when unread, ringed in <code class="ds-code">--sidebar</code> so it
+        reads against the icon. Counts live on the nav items themselves, so the bell never needs a number.
+      </p>
+      <p class="ds-ov-small">
+        Unread is dot + weight, never colour alone.
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="ds-section">
+  <p class="ds-eyebrow">User · opens upward</p>
+  <div class="ds-ov-row">
+    <div style="display: flex; flex-direction: column; align-items: stretch; gap: 6px; width: 256px">
+      <div class="ds-pop">
+        <div class="ds-pop-head">
+          <div style="font-size: 11px; color: var(--muted-foreground)">Signed in as</div>
+          <div style="font-size: 12px; font-weight: 600; margin-top: 2px">nathan@golafly.com</div>
+        </div>
+        <div class="ds-pop-item" data-state="hover">{{icon:user:14}} Profile</div>
+        <div class="ds-pop-item">{{icon:settings:14}} Settings</div>
+        <div class="ds-pop-item" data-tone="danger">{{icon:log-out:14}} Sign out</div>
+      </div>
+      <div style="background: var(--sidebar); border: 1px solid var(--sidebar-border); border-radius: var(--radius-md); padding: 6px">
+        <div class="ds-sb-user" data-state="hover">
+          <span class="ds-avatar">NA</span>
+          <span>
+            <span class="ds-sb-user-name">Nathan A.</span>
+            <span class="ds-sb-user-role">Admin</span>
+          </span>
+          {{icon:chevrons-up-down:13}}
+        </div>
+      </div>
+    </div>
+    <div class="ds-ov-note">
+      <p>
+        Bottom-pinned, so the popover opens <code class="ds-code">side="top"</code>. This is the one
+        pattern carried over unchanged from the existing sidebar — it already worked.
+      </p>
+      <p>
+        Sign out is the only destructive item and is the only thing here in
+        <code class="ds-code">--destructive</code>. It is last, and separated.
+      </p>
+    </div>
+  </div>
+</div>
+
+<style data-local>
+  .ds-ov-row {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 20px;
+    align-items: start;
+  }
+  .ds-ov-note {
+    font-size: 11.5px;
+    line-height: 1.55;
+    color: var(--muted-foreground);
+  }
+  .ds-ov-note p {
+    margin: 0 0 10px;
+  }
+  .ds-ov-note strong {
+    color: var(--foreground);
+  }
+  .ds-ov-small {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--muted-foreground);
+    border-left: 2px solid var(--border);
+    padding-left: 9px;
+  }
+  .ds-cmdk-input span {
+    color: var(--foreground);
+  }
+  .ds-notif-txt b {
+    font-weight: 600;
+  }
+</style>

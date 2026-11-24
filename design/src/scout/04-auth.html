@@ -1,0 +1,161 @@
+<!-- SIGN IN & ACTIVATION
+
+     There is no scout login page. One /login and one /register serve every
+     role — the form is the least interesting part of scouting auth, and the
+     part a scout never thinks about. What the account IS decides where it
+     lands, and that half is specified on the Role routing card.
+
+     SINGLE COLUMN because this is a dual card: the fragment renders twice
+     side by side, so each panel is only ~700px wide. -->
+<div class="au">
+  <div class="au-col">
+    <p class="ds-eyebrow">Sign in — one form, every role</p>
+    <div class="au-card">
+      <div class="au-brand"><span class="au-mark">GOLAFLY</span></div>
+      <p class="au-h">Sign in</p>
+      <p class="au-sub">Camps, scouting and matchday — one account.</p>
+
+      <div class="ds-field">
+        <span class="ds-label">Email</span>
+        <span class="ds-input">{{icon:mail:14}} j.carter@golafly.com</span>
+      </div>
+      <div class="ds-field">
+        <span class="ds-label">Password</span>
+        <span class="ds-input" style="justify-content: space-between">{{icon:lock:14}} ••••••••••{{icon:eye:14}}</span>
+      </div>
+      <div class="au-row">
+        <span class="ds-switch-row"><span class="ds-cb" data-on="1">{{icon:check:10}}</span> Keep me signed in</span>
+        <span class="au-link">Forgot password?</span>
+      </div>
+      <button class="ds-btn" style="width: 100%; justify-content: center">Sign in {{icon:arrow-right:14}}</button>
+      <p class="au-foot">No account? <span class="au-link">Create one</span></p>
+    </div>
+
+    <p class="ds-eyebrow" style="margin-top: 18px">Rejected · submitting</p>
+    <div class="au-card">
+      <div class="ds-alert" data-tone="danger" style="margin-bottom: 12px">
+        {{icon:circle-alert:15}}
+        <span>Email or password is incorrect.</span>
+      </div>
+      <div class="ds-field">
+        <span class="ds-label">Email</span>
+        <span class="ds-input" data-invalid="1">{{icon:mail:14}} j.carter@golafly.com</span>
+      </div>
+      <div class="ds-field">
+        <span class="ds-label">Password</span>
+        <span class="ds-input" data-invalid="1">{{icon:lock:14}} ••••••</span>
+      </div>
+      <button class="ds-btn" style="width: 100%; justify-content: center" data-loading="1">{{icon:loader-circle:14}} Signing in…</button>
+      <p class="au-note">One message for both fields. Saying which half was
+        wrong tells an attacker which emails are real.</p>
+    </div>
+  </div>
+
+  <div class="au-col">
+    <p class="ds-eyebrow">Activation — how a scout first gets in</p>
+    <div class="au-card">
+      <div class="au-brand"><span class="au-mark">GOLAFLY</span></div>
+      <p class="au-h">Set your password</p>
+      <p class="au-sub">Golafly created a scouting account for
+        <b>j.carter@golafly.com</b>. Choose a password to activate it.</p>
+
+      <div class="ds-dl" style="margin: 4px 0 14px">
+        <dt>Role</dt><dd>Scout</dd>
+        <dt>Organisation</dt><dd>Golafly Scouting Network</dd>
+        <dt>Country</dt><dd>United Kingdom</dd>
+      </div>
+
+      <div class="ds-field">
+        <span class="ds-label">New password</span>
+        <span class="ds-input">{{icon:lock:14}} ••••••••••••</span>
+      </div>
+      <div class="ds-field">
+        <span class="ds-label">Confirm password</span>
+        <span class="ds-input">{{icon:lock:14}} ••••••••••••</span>
+      </div>
+      <button class="ds-btn" style="width: 100%; justify-content: center">Activate account</button>
+      <p class="au-note">A scout never self-registers — an admin creates the
+        account and the role with it. So this replaces sign-up for them, and
+        the read-only facts above let them catch a wrong invite before they
+        commit a password to it.</p>
+    </div>
+
+    <p class="ds-eyebrow" style="margin-top: 18px">Forgot · reset · sent</p>
+    <div class="au-card">
+      <p class="au-h" style="font-size: 16px">Reset your password</p>
+      <div class="ds-field" style="margin-top: 10px">
+        <span class="ds-label">Email</span>
+        <span class="ds-input">{{icon:mail:14}} j.carter@golafly.com</span>
+      </div>
+      <button class="ds-btn" data-variant="outline" style="width: 100%; justify-content: center">Send reset link</button>
+      <div class="ds-alert" data-tone="good" style="margin-top: 12px">
+        {{icon:circle-check:15}}
+        <span>If an account exists for that address, a reset link is on its
+          way. The link expires in 60 minutes.</span>
+      </div>
+      <p class="au-note">Deliberately non-committal about whether the account
+        exists — same reason as the sign-in error.</p>
+    </div>
+  </div>
+
+</div>
+
+<style data-local>
+  /* SINGLE COLUMN, for the dual-panel reason: each panel is ~596px wide, and
+     three auth cards across would be 180px each. */
+  .au { display: grid; grid-template-columns: 1fr; gap: 20px; align-items: start; padding: 4px; }
+  .au-col { min-width: 0; }
+  .au-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 18px;
+  }
+  .au-brand { margin-bottom: 14px; }
+  .au-mark {
+    font-family: var(--font-heading);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--brand-text);
+  }
+  .au-h { font-family: var(--font-heading); font-size: 19px; font-weight: 700; }
+  .au-sub { font-size: 11.5px; line-height: 1.5; color: var(--muted-foreground); margin: 4px 0 14px; }
+  .au-row { display: flex; justify-content: space-between; align-items: center; margin: 2px 0 13px; font-size: 11px; }
+  .au-link { color: var(--brand-text); font-size: 11px; }
+  .au-foot { text-align: center; font-size: 11px; color: var(--muted-foreground); margin-top: 13px; }
+  .au-note { font-size: 10.5px; line-height: 1.55; color: var(--muted-foreground); margin-top: 11px; }
+  .au-card-h { display: flex; align-items: center; gap: 7px; font-family: var(--font-heading); font-size: 12.5px; font-weight: 600; }
+  .au-code {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    padding: 1px 5px;
+    border-radius: 4px;
+    background: var(--muted);
+    border: 1px solid var(--edge);
+  }
+  .au-route {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    gap: 9px;
+    align-items: center;
+    padding: 9px 0;
+    border-bottom: 1px solid var(--edge);
+    font-size: 11.5px;
+  }
+  .au-route:last-of-type { border-bottom: none; }
+  .au-route-r { display: flex; align-items: center; gap: 7px; color: var(--muted-foreground); }
+  .au-route[data-me="1"] .au-route-r { color: var(--foreground); font-weight: 600; }
+  .au-route-a { color: var(--muted-foreground); }
+  .au-route-p {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    padding: 2px 6px;
+    border-radius: 4px;
+    background: var(--muted);
+    border: 1px solid var(--edge);
+  }
+  .au-route[data-me="1"] .au-route-p { color: var(--brand-text); border-color: var(--brand-edge); }
+  .ds-empty-ic[data-tone="danger"] { color: var(--status-danger); }
+  .ds-input[data-invalid="1"] { border-color: var(--status-danger); }
+</style>

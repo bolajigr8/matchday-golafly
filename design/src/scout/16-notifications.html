@@ -1,0 +1,231 @@
+<!-- NOTIFICATIONS — GOL-SCOUT-16 / 24
+
+     Two halves that belong together: what the scout receives, and what the
+     scout sends to a player.
+
+     Sending is the half worth designing carefully. A notification from a
+     scout to a player is not a chat message — it is on the record, the admin
+     sees it, and "recommended for academy trial" changes what a 20-year-old
+     does next. So the composer is typed, previews exactly what the player
+     will see, and says who else can read it before the send button. -->
+<div class="ds-screen">
+  <div class="ds-shell">
+{{scoutnav:notifications}}
+    <div class="ds-pane">
+      <div class="ds-hdr">
+        <div class="ds-hdr-r1">
+          <span class="ds-crumb">Communication / <b>Notifications</b></span>
+          <span style="display: flex; gap: 7px">
+            <button class="ds-btn" data-variant="outline" data-size="sm">{{icon:check:13}} Mark all read</button>
+            <button class="ds-btn" data-size="sm">{{icon:send:13}} Notify a player</button>
+          </span>
+        </div>
+        <div class="ds-hdr-r2">
+          <span class="ds-hdr-title">Notifications</span>
+          <span class="ds-hdr-stats"><span class="ds-hdr-stat"><i style="background: var(--status-info)"></i>6 unread</span></span>
+        </div>
+        <div style="height: 14px"></div>
+      </div>
+
+      <div class="ds-pane-body">
+        <div class="nt-layout">
+          <div>
+            <div class="ds-tb" style="margin-bottom: 12px">
+              <span class="ds-input" style="width: 200px">{{icon:search:14}} Search…</span>
+              <span class="ds-input" style="gap: 9px">{{icon:list-filter:14}} All types {{icon:chevron-down:12}}</span>
+              <span class="ds-chip">Unread only<span class="ds-chip-x">{{icon:x:10}}</span></span>
+            </div>
+
+            <div class="ds-card" data-flush="1">
+              <span class="nt-day">Today</span>
+              <div class="nt-row" data-unread="1">
+                <span class="nt-ic" data-tone="danger">{{icon:pen-line:15}}</span>
+                <span class="nt-t">
+                  <b>Report returned for revision</b>
+                  <i>Golafly Admin returned <b>Samuel Osei</b>'s report with comments.</i>
+                </span>
+                <span class="nt-time">09:12</span>
+                <span class="nt-go">{{icon:chevron-right:13}}</span>
+              </div>
+              <div class="nt-row" data-unread="1">
+                <span class="nt-ic" data-tone="good">{{icon:circle-check:15}}</span>
+                <span class="nt-t">
+                  <b>Report published</b>
+                  <i><b>Youssoufa Diarra</b>'s report is now visible to him.</i>
+                </span>
+                <span class="nt-time">08:40</span>
+                <span class="nt-go">{{icon:chevron-right:13}}</span>
+              </div>
+              <div class="nt-row" data-unread="1">
+                <span class="nt-ic" data-tone="info">{{icon:users:15}}</span>
+                <span class="nt-t">
+                  <b>New player assigned</b>
+                  <i><b>Miguel Santos</b> · RW · 18 · added to Barcelona 2026.</i>
+                </span>
+                <span class="nt-time">07:55</span>
+                <span class="nt-go">{{icon:chevron-right:13}}</span>
+              </div>
+
+              <span class="nt-day">Yesterday</span>
+              <div class="nt-row" data-unread="1">
+                <span class="nt-ic" data-tone="info">{{icon:message-square:15}}</span>
+                <span class="nt-t">
+                  <b>New message</b>
+                  <i><b>Ibrahim Koné</b>: "When will we have the next training?"</i>
+                </span>
+                <span class="nt-time">16:22</span>
+                <span class="nt-go">{{icon:chevron-right:13}}</span>
+              </div>
+              <div class="nt-row">
+                <span class="nt-ic" data-tone="warn">{{icon:clock:15}}</span>
+                <span class="nt-t">
+                  <b>Evaluation not started</b>
+                  <i>6 assigned players still have no evaluation. Camp closes in 9 days.</i>
+                </span>
+                <span class="nt-time">09:00</span>
+                <span class="nt-go">{{icon:chevron-right:13}}</span>
+              </div>
+              <div class="nt-row">
+                <span class="nt-ic">{{icon:calendar:15}}</span>
+                <span class="nt-t">
+                  <b>Camp schedule updated</b>
+                  <i>Barcelona 2026 · session 4 moved to Sat 24 May, 09:00.</i>
+                </span>
+                <span class="nt-time">08:12</span>
+                <span class="nt-go">{{icon:chevron-right:13}}</span>
+              </div>
+            </div>
+
+            <p class="nt-note">Every row names the player or the camp it is
+              about and opens straight into it. A notification that says
+              "a report was returned" without saying which one costs the scout
+              three clicks to act on, and they stop reading them.</p>
+          </div>
+
+          <div>
+            <div class="ds-card">
+              <div class="ds-card-h">{{icon:send:14}} Notify a player</div>
+
+              <div class="ds-field">
+                <span class="ds-label">Player</span>
+                <span class="ds-input" style="justify-content: space-between">George Adeola · RW {{icon:chevron-down:12}}</span>
+                <span class="nt-hint">Only players assigned to you.</span>
+              </div>
+
+              <div class="ds-field">
+                <span class="ds-label">Type</span>
+                <div class="nt-types">
+                  <span class="nt-type">Evaluation completed</span>
+                  <span class="nt-type" data-on="1">Academy trial recommendation</span>
+                  <span class="nt-type">Development recommendation</span>
+                  <span class="nt-type">Training recommendation</span>
+                  <span class="nt-type">Follow-up request</span>
+                  <span class="nt-type">General message</span>
+                </div>
+                <span class="nt-hint">The type is stored, not just styled — it
+                  is what makes "how many trial recommendations went out this
+                  camp" answerable later.</span>
+              </div>
+
+              <div class="ds-field">
+                <span class="ds-label">Message</span>
+                <div class="ds-ta">George — I've recommended you for an academy trial off the back of Barcelona. Before that comes through, spend six weeks on your left foot. It's the one thing holding the rest back.</div>
+                <span class="nt-count">186 / 500</span>
+              </div>
+
+              <p class="nt-prev-l">What George receives</p>
+              <div class="nt-prev">
+                <span class="nt-ic" data-tone="good">{{icon:trophy:15}}</span>
+                <span class="nt-t">
+                  <b>Academy trial recommendation</b>
+                  <i>James Carter · Golafly Scouting Network · now</i>
+                  <em>George — I've recommended you for an academy trial off the
+                    back of Barcelona…</em>
+                </span>
+              </div>
+
+              <div class="ds-alert" style="margin-top: 12px">
+                {{icon:shield:15}}
+                <span>Sent notifications are recorded with sender, recipient,
+                  type, time and read status, and are visible to Golafly admin.</span>
+              </div>
+
+              <div style="display: flex; gap: 8px; margin-top: 12px">
+                <button class="ds-btn" data-size="sm">{{icon:send:13}} Send notification</button>
+                <button class="ds-btn" data-variant="outline" data-size="sm">Cancel</button>
+              </div>
+            </div>
+
+            <div class="ds-card" style="margin-top: 12px">
+              <div class="ds-card-h">Sent · read status</div>
+              <div class="nt-sent"><span class="nt-sent-d" data-on="1">{{icon:check:10}}</span><span><b>Youssoufa Diarra</b><i>Evaluation completed · read 09:20</i></span></div>
+              <div class="nt-sent"><span class="nt-sent-d" data-on="1">{{icon:check:10}}</span><span><b>Lucas Moretti</b><i>Development recommendation · read yest.</i></span></div>
+              <div class="nt-sent"><span class="nt-sent-d"></span><span><b>Ibrahim Koné</b><i>Training recommendation · unread</i></span></div>
+              <p class="nt-note" style="margin-top: 10px">Read status matters
+                more here than in chat: an unread trial recommendation is a
+                player who does not know he has one.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style data-local>
+  .ds-shell { min-height: 640px; }
+  .nt-layout { display: grid; grid-template-columns: 1fr 380px; gap: 13px; align-items: start; }
+  .ds-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 14px; }
+  .ds-card[data-flush="1"] { padding: 0; overflow: hidden; }
+  .ds-card-h { display: flex; align-items: center; gap: 7px; font-family: var(--font-heading); font-size: 13px; font-weight: 600; margin-bottom: 11px; }
+  .nt-day {
+    display: block; padding: 9px 14px 6px; font-family: var(--font-mono); font-size: 9px;
+    letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted-foreground);
+    background: var(--muted); border-bottom: 1px solid var(--edge);
+  }
+  .nt-row {
+    display: grid; grid-template-columns: 30px 1fr auto 16px; gap: 11px;
+    align-items: center; padding: 11px 14px; border-bottom: 1px solid var(--edge);
+  }
+  .nt-row:last-child { border-bottom: none; }
+  .nt-row[data-unread="1"] { background: var(--muted); }
+  .nt-ic {
+    display: grid; place-items: center; width: 30px; height: 30px; flex: none;
+    border-radius: var(--radius-md); background: var(--muted); color: var(--muted-foreground);
+  }
+  .nt-ic[data-tone="danger"] { background: var(--status-danger-bg); color: var(--status-danger); }
+  .nt-ic[data-tone="warn"] { background: var(--status-warn-bg); color: var(--status-warn); }
+  .nt-ic[data-tone="info"] { background: var(--status-info-bg); color: var(--status-info); }
+  .nt-ic[data-tone="good"] { background: var(--status-good-bg); color: var(--status-good); }
+  .nt-t { display: grid; gap: 2px; min-width: 0; }
+  .nt-t b { font-size: 11.5px; font-weight: 600; }
+  .nt-t i { font-style: normal; font-size: 10.5px; color: var(--muted-foreground); }
+  .nt-t em { font-style: normal; font-size: 10.5px; line-height: 1.5; margin-top: 4px; }
+  .nt-time { font-family: var(--font-mono); font-size: 9.5px; color: var(--muted-foreground); }
+  .nt-go { color: var(--muted-foreground); }
+  .nt-note { font-size: 10px; line-height: 1.6; color: var(--muted-foreground); margin-top: 12px; }
+  .nt-hint { display: block; font-size: 10px; color: var(--muted-foreground); margin-top: 5px; line-height: 1.5; }
+  .nt-count { display: block; font-family: var(--font-mono); font-size: 9.5px; color: var(--muted-foreground); text-align: right; margin-top: 4px; }
+  .nt-types { display: flex; flex-wrap: wrap; gap: 6px; }
+  .nt-type {
+    padding: 5px 10px; border-radius: 999px; border: 1px solid var(--border);
+    background: var(--card); font-size: 10.5px; color: var(--muted-foreground);
+  }
+  .nt-type[data-on="1"] { border-color: var(--brand-edge); background: var(--brand); color: var(--brand-foreground); font-weight: 600; }
+  .nt-prev-l {
+    font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--muted-foreground); margin: 14px 0 7px;
+  }
+  .nt-prev {
+    display: grid; grid-template-columns: 30px 1fr; gap: 11px; padding: 11px;
+    border: 1px dashed var(--border); border-radius: var(--radius-md); background: var(--muted);
+  }
+  .nt-sent { display: flex; align-items: center; gap: 9px; padding: 6px 0; font-size: 11px; }
+  .nt-sent b { font-weight: 600; display: block; }
+  .nt-sent i { font-style: normal; font-size: 10px; color: var(--muted-foreground); }
+  .nt-sent-d {
+    display: grid; place-items: center; width: 16px; height: 16px; flex: none;
+    border-radius: 999px; border: 1px solid var(--border); color: var(--card);
+  }
+  .nt-sent-d[data-on="1"] { background: var(--status-good); border-color: var(--status-good); }
+</style>

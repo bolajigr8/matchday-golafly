@@ -1,0 +1,164 @@
+<!-- SCORING CONTROLS — the 1–10 scale, the status map, the percentile bar.
+
+     This is the dark parity proof as well as the component spec, and that
+     matters more here than in the admin bundle: the approved mockups are
+     dark, and a scout at a camp works dark. Every control must stay legible
+     in both panels at the same sizes, with no per-theme markup.
+
+     SINGLE COLUMN, deliberately — a dual card renders the fragment twice side
+     by side, so each panel is only ~700px. A two-column layout collapses. -->
+<div class="ec">
+  <div class="ec-col">
+    <p class="ds-eyebrow">1–10 attribute scale</p>
+    <div class="ds-card">
+      <div class="sc-scale">
+        <span class="sc-scale-lab">
+          <span class="sc-scale-ic">{{icon:zap:14}}</span>
+          <span class="sc-scale-txt"><b>Pace</b><i>Speed and running ability</i></span>
+        </span>
+        <span class="sc-cells">
+          <span class="sc-cell">1</span><span class="sc-cell">2</span><span class="sc-cell">3</span>
+          <span class="sc-cell">4</span><span class="sc-cell">5</span><span class="sc-cell">6</span>
+          <span class="sc-cell">7</span><span class="sc-cell">8</span>
+          <span class="sc-cell" data-on="1">9</span><span class="sc-cell">10</span>
+        </span>
+        <span class="sc-val">9.0</span>
+      </div>
+      <div class="sc-scale">
+        <span class="sc-scale-lab">
+          <span class="sc-scale-ic">{{icon:target:14}}</span>
+          <span class="sc-scale-txt"><b>Passing</b><i>Hover on 7</i></span>
+        </span>
+        <span class="sc-cells">
+          <span class="sc-cell">1</span><span class="sc-cell">2</span><span class="sc-cell">3</span>
+          <span class="sc-cell">4</span><span class="sc-cell">5</span>
+          <span class="sc-cell" data-on="1">6</span>
+          <span class="sc-cell" data-state="hover">7</span>
+          <span class="sc-cell">8</span><span class="sc-cell">9</span><span class="sc-cell">10</span>
+        </span>
+        <span class="sc-val">6.0</span>
+      </div>
+      <div class="sc-scale">
+        <span class="sc-scale-lab">
+          <span class="sc-scale-ic">{{icon:brain:14}}</span>
+          <span class="sc-scale-txt"><b>Mentality</b><i>Not yet scored</i></span>
+        </span>
+        <span class="sc-cells">
+          <span class="sc-cell">1</span><span class="sc-cell">2</span><span class="sc-cell">3</span>
+          <span class="sc-cell">4</span><span class="sc-cell">5</span><span class="sc-cell">6</span>
+          <span class="sc-cell">7</span><span class="sc-cell">8</span><span class="sc-cell">9</span><span class="sc-cell">10</span>
+        </span>
+        <span class="sc-val" data-empty="1">—</span>
+      </div>
+      <div class="sc-scale">
+        <span class="sc-scale-lab">
+          <span class="sc-scale-ic">{{icon:activity:14}}</span>
+          <span class="sc-scale-txt"><b>Physical</b><i>Required, missing at submit</i></span>
+        </span>
+        <span class="sc-cells">
+          <span class="sc-cell" data-invalid="1">1</span><span class="sc-cell" data-invalid="1">2</span>
+          <span class="sc-cell" data-invalid="1">3</span><span class="sc-cell" data-invalid="1">4</span>
+          <span class="sc-cell" data-invalid="1">5</span><span class="sc-cell" data-invalid="1">6</span>
+          <span class="sc-cell" data-invalid="1">7</span><span class="sc-cell" data-invalid="1">8</span>
+          <span class="sc-cell" data-invalid="1">9</span><span class="sc-cell" data-invalid="1">10</span>
+        </span>
+        <span class="sc-val" data-empty="1">—</span>
+      </div>
+      <p class="ec-note">Ten discrete cells, never a slider. A slider invites
+        dragging until it looks right; ten targets make it a decision, and make
+        two scouts' 7s mean the same thing. The chosen cell is outlined rather
+        than filled — a filled cell at 9 reads as a progress bar nearly done,
+        which is not what a 9 means.</p>
+    </div>
+
+    <p class="ds-eyebrow" style="margin-top: 20px">Report status — all seven</p>
+    <div class="ds-card">
+      <div class="ec-pills">
+        <span class="ds-pill">Not started</span>
+        <span class="ds-pill" data-tone="warn">Draft</span>
+        <span class="ds-pill" data-tone="warn">In progress</span>
+        <span class="ds-pill" data-tone="info">Submitted</span>
+        <span class="ds-pill" data-tone="info">Under admin review</span>
+        <span class="ds-pill" data-tone="good">Approved</span>
+        <span class="ds-pill" data-tone="good">Published</span>
+        <span class="ds-pill" data-tone="danger">Returned for revision</span>
+      </div>
+      <p class="ec-note">Eight pills for seven statuses plus the unstarted
+        case. Tone is not decoration — it is the same mapping the red / amber /
+        green columns use, which is why a status and a RAG chip agree without
+        anyone coordinating them.</p>
+      <dl class="ds-dl" style="margin-top: 12px">
+        <dt>Danger</dt><dd>Returned for revision · 🔴 needs improvement</dd>
+        <dt>Warn</dt><dd>Draft, in progress · 🟠 developing</dd>
+        <dt>Info</dt><dd>Submitted, under review — waiting on someone else</dd>
+        <dt>Good</dt><dd>Approved, published · 🟢 strength</dd>
+        <dt>Neutral</dt><dd>Not started, unassigned</dd>
+      </dl>
+    </div>
+
+    <p class="ds-eyebrow" style="margin-top: 20px">Percentile bar</p>
+    <div class="ds-card">
+      <div class="sc-pct">
+        <span>Overall</span>
+        <span class="sc-pct-track"><i class="sc-pct-fill" style="width: 82%"></i><i class="sc-pct-mark" style="left: 82%"></i></span>
+        <span class="sc-pct-val">Top <b>18%</b></span>
+      </div>
+      <div class="sc-pct">
+        <span>Pace</span>
+        <span class="sc-pct-track"><i class="sc-pct-fill" style="width: 94%"></i><i class="sc-pct-mark" style="left: 94%"></i></span>
+        <span class="sc-pct-val">Top <b>6%</b></span>
+      </div>
+      <div class="sc-pct">
+        <span>Passing</span>
+        <span class="sc-pct-track"><i class="sc-pct-fill" style="width: 41%"></i><i class="sc-pct-mark" style="left: 41%"></i></span>
+        <span class="sc-pct-val">Top <b>59%</b></span>
+      </div>
+      <p class="ec-note">The full cohort track stays visible behind the
+        marker. "Top 18%" is a statement about everyone else, so a bar that
+        draws only the filled portion is answering a different question.</p>
+    </div>
+
+    <p class="ds-eyebrow" style="margin-top: 20px">Auto-save</p>
+    <div class="ds-card">
+      <span class="sc-autosave">{{icon:circle-check:14}} All changes saved · 11:30</span>
+      <span class="sc-autosave" style="margin-top: 8px">{{icon:loader-circle:14}} Saving…</span>
+      <p class="ec-note">A line, never a toast. It fires every few seconds,
+        and a toast that often becomes noise the scout learns to dismiss
+        unread — including the one that matters.</p>
+    </div>
+  </div>
+
+</div>
+
+<style data-local>
+  /* SINGLE COLUMN, deliberately. A dual card renders the fragment twice side
+     by side, so each panel is only ~596px at a 1500px card — a two-column
+     layout here collapses the second column to nothing. Everything stacks,
+     and the card grows down instead. */
+  .ec { padding: 4px; }
+  .ec-col { min-width: 0; }
+  .ec-col + .ec-col { margin-top: 20px; }
+  .ec-two { display: grid; gap: 16px; align-items: start; }
+  .ec-rag-heads { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 10px; }
+  .ec-rag-head {
+    display: inline-flex; align-items: center; gap: 7px; padding: 6px 11px;
+    border-radius: var(--radius-md); font-size: 11px; font-weight: 600;
+  }
+  .ec-rag-head i { width: 8px; height: 8px; border-radius: 999px; flex: none; }
+  .ec-rag-head[data-tone="red"] { background: var(--status-danger-bg); color: var(--status-danger); }
+  .ec-rag-head[data-tone="red"] i { background: var(--status-danger); }
+  .ec-rag-head[data-tone="amber"] { background: var(--status-warn-bg); color: var(--status-warn); }
+  .ec-rag-head[data-tone="amber"] i { background: var(--status-warn); }
+  .ec-rag-head[data-tone="green"] { background: var(--status-good-bg); color: var(--status-good); }
+  .ec-rag-head[data-tone="green"] i { background: var(--status-good); }
+  /* One column at full width in this card; the grid is restored on the Step 3
+     screen where there is room for three. */
+  .sc-rag-grid { grid-template-columns: 1fr; }
+  .ec-pills { display: flex; flex-wrap: wrap; gap: 7px; }
+  .ec-note {
+    font-size: 10.5px;
+    line-height: 1.55;
+    color: var(--muted-foreground);
+    margin-top: 12px;
+  }
+</style>

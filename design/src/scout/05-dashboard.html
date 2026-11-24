@@ -1,0 +1,245 @@
+<!-- DASHBOARD — GOL-SCOUT-03
+
+     The mockup's five KPI tiles and player table, re-laid. Two changes worth
+     defending:
+
+     1. The permanent notifications + chat rail is gone, into the bell sheet
+        and user popover (see the Shell card). That returns ~290px to the
+        table, which is the thing a scout actually works in.
+     2. The tiles are ordered by the workflow, not by size: Assigned →
+        In progress → Submitted → Awaiting review → Published. Read left to
+        right it is the pipeline, so a gap in the middle is visible as a gap
+        rather than as a number that happens to be small. -->
+<div class="ds-screen">
+  <div class="ds-shell">
+{{scoutnav:dashboard}}
+    <div class="ds-pane">
+      <div class="ds-hdr">
+        <div class="ds-hdr-r1">
+          <span class="ds-crumb">Scouting / <b>Dashboard</b></span>
+          <span style="display: flex; gap: 7px; align-items: center">
+            <span class="ds-input" style="gap: 9px; height: 28px">{{icon:calendar:14}} Camp: Barcelona 2026 {{icon:chevron-down:12}}</span>
+            <button class="ds-icon-btn" data-dot="1">{{icon:bell:15}}</button>
+          </span>
+        </div>
+        <div class="ds-hdr-r2">
+          <span class="ds-hdr-title">Welcome back, James</span>
+          <span class="ds-hdr-stats">
+            <span class="ds-hdr-stat"><i style="background: var(--status-warn)"></i>7 need your attention</span>
+            <span class="ds-hdr-stat"><i style="background: var(--status-info)"></i>5 with admin</span>
+          </span>
+        </div>
+        <div style="height: 14px"></div>
+      </div>
+
+      <div class="ds-pane-body">
+        <!-- KPI ROW — the pipeline, left to right. -->
+        <div class="db-stats">
+          <div class="ds-stat">
+            <span class="ds-stat-lab">{{icon:users:13}} Total assigned</span>
+            <span class="ds-stat-val">24</span>
+            <span class="ds-stat-d" data-dir="up">{{icon:arrow-up:11}} 4 this week</span>
+          </div>
+          <div class="ds-stat">
+            <span class="ds-stat-lab">{{icon:clipboard-list:13}} In progress</span>
+            <span class="ds-stat-val">7</span>
+            <span class="ds-stat-d" data-dir="up">{{icon:arrow-up:11}} 2 this week</span>
+          </div>
+          <div class="ds-stat">
+            <span class="ds-stat-lab">{{icon:file-text:13}} Submitted</span>
+            <span class="ds-stat-val">11</span>
+            <span class="ds-stat-d" data-dir="up">{{icon:arrow-up:11}} 3 this week</span>
+          </div>
+          <div class="ds-stat">
+            <span class="ds-stat-lab">{{icon:clock:13}} Awaiting review</span>
+            <span class="ds-stat-val">5</span>
+            <span class="ds-stat-d">with Golafly admin</span>
+          </div>
+          <div class="ds-stat">
+            <span class="ds-stat-lab">{{icon:circle-check:13}} Published</span>
+            <span class="ds-stat-val">8</span>
+            <span class="ds-stat-d" data-dir="up">{{icon:arrow-up:11}} 5 this week</span>
+          </div>
+        </div>
+
+        <!-- ASSIGNED PLAYERS — the working surface. Sorted by what is stalest
+             and still the scout's problem, not alphabetically: the row that
+             needs action is the row at the top. -->
+        <div class="ds-card" data-flush="1" style="margin-top: 13px">
+          <div class="db-card-h">
+            <span>
+              <b>Assigned players</b>
+              <i>Needing your attention first · 24 total</i>
+            </span>
+            <span style="display: flex; gap: 7px; align-items: center">
+              <span class="ds-input" style="width: 190px; height: 28px">{{icon:search:14}} Search players…</span>
+              <span class="ds-input" style="gap: 8px; height: 28px">{{icon:list-filter:14}} Status {{icon:chevron-down:12}}</span>
+              <button class="ds-btn" data-variant="outline" data-size="sm">View all {{icon:arrow-right:13}}</button>
+            </span>
+          </div>
+          <div class="ds-tw">
+            <table class="ds-t">
+              <thead><tr>
+                <th>Player</th><th>Pos</th><th>Age</th><th>Evaluation</th>
+                <th style="text-align:right">Score</th><th style="text-align:right">Potential</th>
+                <th>Report</th><th>Updated</th><th style="text-align:right">Action</th>
+              </tr></thead>
+              <tbody>
+                <tr>
+                  <td><span class="ds-idc"><span class="ds-av-sm">IK</span><span class="ds-idc-txt"><span class="ds-idc-name">Ibrahim Koné</span><span class="ds-idc-sub">Ivory Coast</span></span></span></td>
+                  <td>ST</td><td class="ds-num">21</td>
+                  <td><span class="ds-pill">Not started</span></td>
+                  <td class="ds-num" style="text-align:right">—</td>
+                  <td class="ds-num" style="text-align:right">—</td>
+                  <td><span class="ds-pill">Not started</span></td>
+                  <td class="ds-num">20 May</td>
+                  <td style="text-align:right"><button class="ds-btn" data-size="sm">Start</button></td>
+                </tr>
+                <tr>
+                  <td><span class="ds-idc"><span class="ds-av-sm">GA</span><span class="ds-idc-txt"><span class="ds-idc-name">George Adeola</span><span class="ds-idc-sub">Nigeria</span></span></span></td>
+                  <td>RW</td><td class="ds-num">20</td>
+                  <td><span class="ds-pill" data-tone="warn">In progress</span></td>
+                  <td class="ds-num" style="text-align:right">8.3</td>
+                  <td class="ds-num" style="text-align:right">72%</td>
+                  <td><span class="ds-pill" data-tone="warn">Draft</span></td>
+                  <td class="ds-num">22 May</td>
+                  <td style="text-align:right"><button class="ds-btn" data-variant="outline" data-size="sm">Continue</button></td>
+                </tr>
+                <tr>
+                  <td><span class="ds-idc"><span class="ds-av-sm">LM</span><span class="ds-idc-txt"><span class="ds-idc-name">Lucas Moretti</span><span class="ds-idc-sub">Argentina</span></span></span></td>
+                  <td>CAM</td><td class="ds-num">20</td>
+                  <td><span class="ds-pill" data-tone="warn">In progress</span></td>
+                  <td class="ds-num" style="text-align:right">7.1</td>
+                  <td class="ds-num" style="text-align:right">60%</td>
+                  <td><span class="ds-pill" data-tone="warn">Draft</span></td>
+                  <td class="ds-num">19 May</td>
+                  <td style="text-align:right"><button class="ds-btn" data-variant="outline" data-size="sm">Continue</button></td>
+                </tr>
+                <tr>
+                  <td><span class="ds-idc"><span class="ds-av-sm">SO</span><span class="ds-idc-txt"><span class="ds-idc-name">Samuel Osei</span><span class="ds-idc-sub">Ghana</span></span></span></td>
+                  <td>CB</td><td class="ds-num">19</td>
+                  <td><span class="ds-pill" data-tone="danger">Returned</span></td>
+                  <td class="ds-num" style="text-align:right">7.4</td>
+                  <td class="ds-num" style="text-align:right">64%</td>
+                  <td><span class="ds-pill" data-tone="danger">Needs revision</span></td>
+                  <td class="ds-num">18 May</td>
+                  <td style="text-align:right"><button class="ds-btn" data-size="sm">Revise</button></td>
+                </tr>
+                <tr>
+                  <td><span class="ds-idc"><span class="ds-av-sm">DM</span><span class="ds-idc-txt"><span class="ds-idc-name">Daniel Mendes</span><span class="ds-idc-sub">Brazil</span></span></span></td>
+                  <td>LW</td><td class="ds-num">19</td>
+                  <td><span class="ds-pill" data-tone="info">Submitted</span></td>
+                  <td class="ds-num" style="text-align:right">7.8</td>
+                  <td class="ds-num" style="text-align:right">65%</td>
+                  <td><span class="ds-pill" data-tone="info">Awaiting review</span></td>
+                  <td class="ds-num">21 May</td>
+                  <td style="text-align:right"><button class="ds-btn" data-variant="ghost" data-size="sm">View</button></td>
+                </tr>
+                <tr>
+                  <td><span class="ds-idc"><span class="ds-av-sm">YD</span><span class="ds-idc-txt"><span class="ds-idc-name">Youssoufa Diarra</span><span class="ds-idc-sub">Mali</span></span></span></td>
+                  <td>CM</td><td class="ds-num">19</td>
+                  <td><span class="ds-pill" data-tone="good">Published</span></td>
+                  <td class="ds-num" style="text-align:right">8.0</td>
+                  <td class="ds-num" style="text-align:right">68%</td>
+                  <td><span class="ds-pill" data-tone="good">Published</span></td>
+                  <td class="ds-num">18 May</td>
+                  <td style="text-align:right"><button class="ds-btn" data-variant="ghost" data-size="sm">View</button></td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="ds-pag">
+              <span>Showing <span class="ds-pag-n">1–6</span> of <span class="ds-pag-n">24</span></span>
+              <span class="ds-pages">
+                <span class="ds-page" data-disabled="1">{{icon:chevron-left:13}}</span>
+                <span class="ds-page" data-on="1">1</span><span class="ds-page">2</span><span class="ds-page">3</span><span class="ds-page">4</span>
+                <span class="ds-page">{{icon:chevron-right:13}}</span>
+              </span>
+              <span>Rows <span class="ds-pag-n">6</span> {{icon:chevrons-up-down:11}}</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="db-grid">
+          <div class="ds-card">
+            <div class="ds-card-h">Evaluation pipeline</div>
+            <div class="db-pipe">
+              <div class="db-pipe-row"><span>Not started</span><span class="db-pipe-track"><i style="width: 25%; background: var(--status-neutral)"></i></span><b>6</b><em>25%</em></div>
+              <div class="db-pipe-row"><span>In progress</span><span class="db-pipe-track"><i style="width: 29%; background: var(--status-warn)"></i></span><b>7</b><em>29%</em></div>
+              <div class="db-pipe-row"><span>Submitted</span><span class="db-pipe-track"><i style="width: 21%; background: var(--status-info)"></i></span><b>5</b><em>21%</em></div>
+              <div class="db-pipe-row"><span>Published</span><span class="db-pipe-track"><i style="width: 25%; background: var(--status-good)"></i></span><b>6</b><em>25%</em></div>
+            </div>
+            <p class="db-note">A bar rather than the mockup's donut. Four
+              stages of one pipeline are a sequence, and a donut asks the
+              reader to compare arcs that have an order.</p>
+          </div>
+
+          <div class="ds-card">
+            <div class="ds-card-h">Your average scores</div>
+            <div class="db-attrs">
+              <div class="db-attr"><span>Pace</span><span class="db-attr-track"><i style="width: 86%"></i></span><b>8.6</b></div>
+              <div class="db-attr"><span>Dribbling</span><span class="db-attr-track"><i style="width: 82%"></i></span><b>8.2</b></div>
+              <div class="db-attr"><span>Finishing</span><span class="db-attr-track"><i style="width: 79%"></i></span><b>7.9</b></div>
+              <div class="db-attr"><span>Passing</span><span class="db-attr-track"><i style="width: 78%"></i></span><b>7.8</b></div>
+              <div class="db-attr"><span>Tactical</span><span class="db-attr-track"><i style="width: 71%"></i></span><b>7.1</b></div>
+            </div>
+            <p class="db-note">Across the scout's own 19 completed
+              evaluations — a calibration check, not a player ranking. A scout
+              whose Pace averages 8.6 is scoring pace generously.</p>
+          </div>
+
+          <div class="ds-card">
+            <div class="ds-card-h">Next up</div>
+            <div class="db-acts">
+              <div class="db-act"><span class="db-act-ic" data-tone="danger">{{icon:pen-line:15}}</span><span class="db-act-t"><b>1 report returned</b><i>Samuel Osei — admin left comments</i></span>{{icon:chevron-right:13}}</div>
+              <div class="db-act"><span class="db-act-ic" data-tone="warn">{{icon:clipboard-list:15}}</span><span class="db-act-t"><b>6 not started</b><i>Camp closes in 9 days</i></span>{{icon:chevron-right:13}}</div>
+              <div class="db-act"><span class="db-act-ic" data-tone="info">{{icon:message-square:15}}</span><span class="db-act-t"><b>3 unread messages</b><i>Golafly Admin, and 2 players</i></span>{{icon:chevron-right:13}}</div>
+              <div class="db-act"><span class="db-act-ic">{{icon:calendar:15}}</span><span class="db-act-t"><b>Barcelona 2026</b><i>Session 4 — Sat 24 May, 09:00</i></span>{{icon:chevron-right:13}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style data-local>
+  .ds-shell { min-height: 640px; }
+  .db-stats { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
+  .db-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 12px; align-items: start; }
+  .ds-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 14px; }
+  .ds-card[data-flush="1"] { padding: 0; overflow: hidden; }
+  .ds-card-h { font-family: var(--font-heading); font-size: 13px; font-weight: 600; margin-bottom: 12px; }
+  .db-card-h {
+    display: flex; justify-content: space-between; align-items: center; gap: 12px;
+    padding: 12px 14px; border-bottom: 1px solid var(--border);
+  }
+  .db-card-h b { font-family: var(--font-heading); font-size: 13px; font-weight: 600; display: block; }
+  .db-card-h i { font-style: normal; font-size: 10.5px; color: var(--muted-foreground); }
+  .db-note { font-size: 10px; line-height: 1.55; color: var(--muted-foreground); margin-top: 12px; }
+
+  .db-pipe { display: flex; flex-direction: column; gap: 9px; }
+  .db-pipe-row { display: grid; grid-template-columns: 74px 1fr 22px 34px; gap: 9px; align-items: center; font-size: 11px; }
+  .db-pipe-track { height: 13px; background: var(--muted); border-radius: 3px; overflow: hidden; }
+  .db-pipe-track i { display: block; height: 100%; border-radius: 3px; }
+  .db-pipe-row b { font-family: var(--font-mono); font-size: 11px; text-align: right; }
+  .db-pipe-row em { font-family: var(--font-mono); font-style: normal; font-size: 9.5px; color: var(--muted-foreground); text-align: right; }
+
+  .db-attrs { display: flex; flex-direction: column; gap: 9px; }
+  .db-attr { display: grid; grid-template-columns: 62px 1fr 26px; gap: 9px; align-items: center; font-size: 11px; }
+  .db-attr-track { height: 7px; background: var(--muted); border-radius: 999px; overflow: hidden; }
+  .db-attr-track i { display: block; height: 100%; border-radius: 999px; background: var(--brand); }
+  .db-attr b { font-family: var(--font-mono); font-size: 11px; text-align: right; }
+
+  .db-acts { display: flex; flex-direction: column; gap: 3px; }
+  .db-act { display: flex; align-items: center; gap: 10px; padding: 8px 6px; border-radius: var(--radius-md); }
+  .db-act-ic {
+    display: grid; place-items: center; width: 28px; height: 28px; flex: none;
+    border-radius: var(--radius-md); background: var(--muted); color: var(--muted-foreground);
+  }
+  .db-act-ic[data-tone="danger"] { background: var(--status-danger-bg); color: var(--status-danger); }
+  .db-act-ic[data-tone="warn"] { background: var(--status-warn-bg); color: var(--status-warn); }
+  .db-act-ic[data-tone="info"] { background: var(--status-info-bg); color: var(--status-info); }
+  .db-act-t { display: grid; flex: 1; min-width: 0; }
+  .db-act-t b { font-size: 11.5px; font-weight: 600; }
+  .db-act-t i { font-style: normal; font-size: 10px; color: var(--muted-foreground); }
+</style>

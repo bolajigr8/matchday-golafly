@@ -1,0 +1,148 @@
+<!-- THE FIVE LIST STATES
+
+     Every scout screen is a list of assigned players, and a list has five
+     ways of not being a list. Four are the admin's standard set. The fifth is
+     specific to scouting and is the one worth arguing about: a submitted
+     evaluation is not editable, and that has to LOOK unavailable rather than
+     silently reject the click. -->
+<div class="st">
+  <div>
+    <p class="ds-eyebrow">1 · Loading</p>
+    <div class="ds-card" data-flush="1">
+      <table class="ds-t">
+        <thead><tr><th>Player</th><th>Position</th><th>Status</th><th>Score</th><th style="text-align:right">Action</th></tr></thead>
+        <tbody>
+          <tr><td><span class="ds-idc"><span class="ds-skel" style="width:26px;height:26px;border-radius:999px"></span><span class="ds-idc-txt"><span class="ds-skel" style="width:104px"></span><span class="ds-skel" style="width:66px;margin-top:5px"></span></span></span></td><td><span class="ds-skel" style="width:38px"></span></td><td><span class="ds-skel" style="width:70px"></span></td><td><span class="ds-skel" style="width:30px"></span></td><td><span class="ds-skel" style="width:60px;margin-left:auto"></span></td></tr>
+          <tr><td><span class="ds-idc"><span class="ds-skel" style="width:26px;height:26px;border-radius:999px"></span><span class="ds-idc-txt"><span class="ds-skel" style="width:88px"></span><span class="ds-skel" style="width:74px;margin-top:5px"></span></span></span></td><td><span class="ds-skel" style="width:38px"></span></td><td><span class="ds-skel" style="width:70px"></span></td><td><span class="ds-skel" style="width:30px"></span></td><td><span class="ds-skel" style="width:60px;margin-left:auto"></span></td></tr>
+          <tr><td><span class="ds-idc"><span class="ds-skel" style="width:26px;height:26px;border-radius:999px"></span><span class="ds-idc-txt"><span class="ds-skel" style="width:116px"></span><span class="ds-skel" style="width:58px;margin-top:5px"></span></span></span></td><td><span class="ds-skel" style="width:38px"></span></td><td><span class="ds-skel" style="width:70px"></span></td><td><span class="ds-skel" style="width:30px"></span></td><td><span class="ds-skel" style="width:60px;margin-left:auto"></span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="st-note">Skeleton rows in the real column widths, so the table
+      does not jump when the data lands.</p>
+  </div>
+
+  <div>
+    <p class="ds-eyebrow">2 · Nothing assigned yet — day one</p>
+    <div class="ds-card">
+      <div class="ds-empty">
+        <span class="ds-empty-ic">{{icon:users:22}}</span>
+        <p class="ds-empty-t">No players assigned to you yet</p>
+        <p class="ds-empty-s">A Golafly admin assigns players from the camp
+          register. You will get a notification the moment the first one
+          arrives — there is nothing to do here until then.</p>
+        <div style="display: flex; gap: 8px; margin-top: 12px">
+          <button class="ds-btn" data-variant="outline" data-size="sm">{{icon:message-square:13}} Message admin</button>
+          <button class="ds-btn" data-variant="ghost" data-size="sm">{{icon:layout-template:13}} View templates</button>
+        </div>
+      </div>
+    </div>
+    <p class="st-note">The one state every new scout sees first, so it says who
+      assigns players and how they will find out — not just that the list is
+      empty. Both actions are things they can usefully do while waiting.</p>
+  </div>
+
+  <div>
+    <p class="ds-eyebrow">3 · Error</p>
+    <div class="ds-card">
+      <div class="ds-empty">
+        <span class="ds-empty-ic" data-tone="danger">{{icon:triangle-alert:22}}</span>
+        <p class="ds-empty-t">Could not load your assigned players</p>
+        <p class="ds-empty-s">The request failed. Your drafts are saved and
+          nothing has been lost.</p>
+        <button class="ds-btn" data-variant="outline" data-size="sm" style="margin-top: 12px">{{icon:refresh-cw:13}} Try again</button>
+      </div>
+    </div>
+    <p class="st-note">Says the drafts are safe. That is the scout's actual
+      question on seeing this screen mid-evaluation.</p>
+  </div>
+
+  <div>
+    <p class="ds-eyebrow">4 · Filtered to nothing</p>
+    <div class="ds-card">
+      <div class="ds-tb" style="margin: 0 0 12px">
+        <span class="ds-input" style="width: 200px">{{icon:search:14}} keeper</span>
+        <span class="ds-chip">Camp <b>Barcelona 2026</b><span class="ds-chip-x">{{icon:x:10}}</span></span>
+        <span class="ds-chip">Status <b>Submitted</b><span class="ds-chip-x">{{icon:x:10}}</span></span>
+      </div>
+      <div class="ds-empty">
+        <span class="ds-empty-ic">{{icon:search-x:22}}</span>
+        <p class="ds-empty-t">No players match these filters</p>
+        <p class="ds-empty-s">You have 24 assigned players. None of them are
+          goalkeepers with a submitted report in Barcelona 2026.</p>
+        <button class="ds-btn" data-variant="outline" data-size="sm" style="margin-top: 12px">{{icon:funnel-x:13}} Clear filters</button>
+      </div>
+    </div>
+    <p class="st-note">Distinct from state 2 and says so: it names the total
+      the scout does have, so an empty result never reads as lost data.</p>
+  </div>
+
+  <div class="st-wide">
+    <p class="ds-eyebrow">5 · Submitted — read-only</p>
+    <div class="ds-card">
+      <div class="ds-alert" data-tone="warn" style="margin-bottom: 13px">
+        {{icon:lock:15}}
+        <span><b>This evaluation is with Golafly admin.</b> It became read-only
+          when you submitted it on 21 May. If something needs changing, ask an
+          admin to return it for revision — they can, and you will get a
+          notification with their comments.</span>
+      </div>
+      <div class="sc-scale" data-locked="1">
+        <span class="sc-scale-lab">
+          <span class="sc-scale-ic">{{icon:zap:14}}</span>
+          <span class="sc-scale-txt"><b>Pace</b><i>Speed and running ability</i></span>
+        </span>
+        <span class="sc-cells">
+          <span class="sc-cell">1</span><span class="sc-cell">2</span><span class="sc-cell">3</span>
+          <span class="sc-cell">4</span><span class="sc-cell">5</span><span class="sc-cell">6</span>
+          <span class="sc-cell">7</span><span class="sc-cell">8</span>
+          <span class="sc-cell" data-on="1">9</span><span class="sc-cell">10</span>
+        </span>
+        <span class="sc-val">9.0</span>
+      </div>
+      <div class="sc-scale" data-locked="1">
+        <span class="sc-scale-lab">
+          <span class="sc-scale-ic">{{icon:target:14}}</span>
+          <span class="sc-scale-txt"><b>Passing</b><i>Passing accuracy and vision</i></span>
+        </span>
+        <span class="sc-cells">
+          <span class="sc-cell">1</span><span class="sc-cell">2</span><span class="sc-cell">3</span>
+          <span class="sc-cell">4</span><span class="sc-cell">5</span><span class="sc-cell">6</span>
+          <span class="sc-cell">7</span>
+          <span class="sc-cell" data-on="1">8</span>
+          <span class="sc-cell">9</span><span class="sc-cell">10</span>
+        </span>
+        <span class="sc-val">7.6</span>
+      </div>
+      <div style="display: flex; gap: 8px; margin-top: 13px">
+        <button class="ds-btn" data-variant="outline" data-size="sm">{{icon:eye:13}} View report</button>
+        <button class="ds-btn" data-variant="outline" data-size="sm">{{icon:download:13}} Download PDF</button>
+        <button class="ds-btn" data-variant="ghost" data-size="sm" data-disabled="1">{{icon:pen-line:13}} Edit — locked</button>
+      </div>
+    </div>
+    <p class="st-note">The scouting-specific state, and the one worth getting
+      right. The controls stay visible at reduced opacity rather than
+      disappearing: the scout needs to read back what they scored, and a form
+      that silently ignores clicks is worse than one that says why it will.
+      The banner names who can unlock it, because that is the next action.</p>
+  </div>
+</div>
+
+<style data-local>
+  /* SINGLE COLUMN: a dual card renders this fragment twice side by side, so
+     each panel is only ~596px. Two columns of tables would be unreadable. */
+  .st { display: grid; grid-template-columns: 1fr; gap: 22px; padding: 4px; }
+  .st-wide { grid-column: 1 / -1; }
+  .st-note {
+    font-size: 10.5px;
+    line-height: 1.55;
+    color: var(--muted-foreground);
+    margin-top: 9px;
+  }
+  .ds-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 14px; }
+  .ds-card[data-flush="1"] { padding: 0; overflow: hidden; }
+  .ds-empty-ic[data-tone="danger"] { color: var(--status-danger); }
+  /* Read-only: dimmed, not removed. The scout still has to be able to read
+     back what they scored. */
+  .sc-scale[data-locked="1"] { opacity: 0.62; }
+</style>

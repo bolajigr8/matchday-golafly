@@ -1,0 +1,181 @@
+<!-- ADMIN · ASSIGN PLAYERS — GOL-SCOUT-04
+
+     The step that makes every scouting screen non-empty. Two panes: the camp
+     register on the left with a checkbox column, the assignment target on the
+     right.
+
+     The checkbox column exists HERE and nowhere on the scout side — bulk
+     assign, reassign and unassign are all admin verbs, and a checkbox column
+     on the scout's own list would imply otherwise.
+
+     Reassignment keeps history rather than overwriting. A report already
+     written by the previous scout stays attributed to them; losing that would
+     make an audit trail that cannot answer "who evaluated this player in
+     May". -->
+<div class="ds-screen">
+  <div class="ds-shell">
+{{sidebar:scouting}}
+    <div class="ds-pane">
+      <div class="ds-hdr">
+        <div class="ds-hdr-r1">
+          <span class="ds-crumb">Dashboard / Scouting / <b>Assignments</b></span>
+          <span class="ds-input" style="gap: 9px; height: 28px">{{icon:calendar:14}} Camp: Barcelona 2026 {{icon:chevron-down:12}}</span>
+        </div>
+        <div class="ds-hdr-r2">
+          <span class="ds-hdr-title">Assign players</span>
+          <span class="ds-hdr-stats">
+            <span class="ds-hdr-stat"><i style="background: var(--status-good)"></i>132 assigned</span>
+            <span class="ds-hdr-stat"><i style="background: var(--status-warn)"></i>24 unassigned</span>
+          </span>
+        </div>
+        <div class="ds-tabs" style="margin-top: 12px">
+          <span class="ds-tab">Accounts</span>
+          <span class="ds-tab" data-on="1">Assignments</span>
+          <span class="ds-tab">Reports <span class="ds-dd-tag">5</span></span>
+          <span class="ds-tab">Performance</span>
+          <span class="ds-tab">Oversight</span>
+          <span class="ds-tab">Methodology</span>
+        </div>
+      </div>
+
+      <div class="ds-pane-body">
+        <div class="as-grid">
+          <div>
+            <div class="ds-tb">
+              <span class="ds-input" style="width: 180px">{{icon:search:14}} Search register…</span>
+              <span class="ds-input" style="gap: 8px">{{icon:list-filter:14}} Position {{icon:chevron-down:12}}</span>
+              <span class="ds-input" style="gap: 8px">{{icon:list-filter:14}} Age {{icon:chevron-down:12}}</span>
+              <span class="ds-input" style="gap: 8px">{{icon:list-filter:14}} Country {{icon:chevron-down:12}}</span>
+              <span class="ds-chip">Unassigned only<span class="ds-chip-x">{{icon:x:10}}</span></span>
+            </div>
+
+            <!-- BULK BAR — appears only with a selection, and says exactly
+                 what will happen to how many. -->
+            <div class="ds-bulk">
+              <span class="ds-bulk-n">4 players selected</span>
+              <span style="margin-left: auto; display: flex; gap: 7px; align-items: center">
+                <span class="ds-input" style="gap: 8px; height: 28px">{{icon:user-round:14}} Assign to: James Carter {{icon:chevron-down:12}}</span>
+                <button class="ds-btn" data-size="sm">{{icon:check:13}} Assign 4</button>
+                <button class="ds-btn" data-variant="ghost" data-size="sm">Clear</button>
+              </span>
+            </div>
+
+            <div class="ds-tw">
+              <table class="ds-t">
+                <thead><tr>
+                  <th style="width:34px"><span class="ds-cb" data-on="1">{{icon:check:10}}</span></th>
+                  <th>Player</th><th>Pos</th><th>Age</th><th>Country</th>
+                  <th>Registration</th><th>Assigned to</th>
+                </tr></thead>
+                <tbody>
+                  <tr><td><span class="ds-cb" data-on="1">{{icon:check:10}}</span></td>
+                    <td><span class="ds-idc"><span class="ds-av-sm">MS</span><span class="ds-idc-txt"><span class="ds-idc-name">Miguel Santos</span><span class="ds-idc-sub">m.santos@example.com</span></span></span></td>
+                    <td>RW</td><td class="ds-num">18</td><td>Portugal</td>
+                    <td><span class="ds-pill" data-tone="good">Confirmed</span></td>
+                    <td><span class="ds-pill">Unassigned</span></td></tr>
+                  <tr><td><span class="ds-cb" data-on="1">{{icon:check:10}}</span></td>
+                    <td><span class="ds-idc"><span class="ds-av-sm">TN</span><span class="ds-idc-txt"><span class="ds-idc-name">Thabo Ndlovu</span><span class="ds-idc-sub">t.ndlovu@example.com</span></span></span></td>
+                    <td>CB</td><td class="ds-num">19</td><td>South Africa</td>
+                    <td><span class="ds-pill" data-tone="good">Confirmed</span></td>
+                    <td><span class="ds-pill">Unassigned</span></td></tr>
+                  <tr><td><span class="ds-cb" data-on="1">{{icon:check:10}}</span></td>
+                    <td><span class="ds-idc"><span class="ds-av-sm">EN</span><span class="ds-idc-txt"><span class="ds-idc-name">Emeka Nwosu</span><span class="ds-idc-sub">e.nwosu@example.com</span></span></span></td>
+                    <td>ST</td><td class="ds-num">20</td><td>Nigeria</td>
+                    <td><span class="ds-pill" data-tone="good">Confirmed</span></td>
+                    <td><span class="ds-pill">Unassigned</span></td></tr>
+                  <tr><td><span class="ds-cb" data-on="1">{{icon:check:10}}</span></td>
+                    <td><span class="ds-idc"><span class="ds-av-sm">LF</span><span class="ds-idc-txt"><span class="ds-idc-name">Luca Ferrari</span><span class="ds-idc-sub">l.ferrari@example.com</span></span></span></td>
+                    <td>CM</td><td class="ds-num">19</td><td>Italy</td>
+                    <td><span class="ds-pill" data-tone="good">Confirmed</span></td>
+                    <td><span class="ds-pill">Unassigned</span></td></tr>
+                  <tr><td><span class="ds-cb"></span></td>
+                    <td><span class="ds-idc"><span class="ds-av-sm">GA</span><span class="ds-idc-txt"><span class="ds-idc-name">George Adeola</span><span class="ds-idc-sub">g.adeola@example.com</span></span></span></td>
+                    <td>RW</td><td class="ds-num">20</td><td>Nigeria</td>
+                    <td><span class="ds-pill" data-tone="good">Confirmed</span></td>
+                    <td><span class="as-who">{{icon:user-round:12}} James Carter</span></td></tr>
+                  <tr><td><span class="ds-cb"></span></td>
+                    <td><span class="ds-idc"><span class="ds-av-sm">KO</span><span class="ds-idc-txt"><span class="ds-idc-name">Kwame Owusu</span><span class="ds-idc-sub">k.owusu@example.com</span></span></span></td>
+                    <td>LB</td><td class="ds-num">18</td><td>Ghana</td>
+                    <td><span class="ds-pill" data-tone="warn">Pending</span></td>
+                    <td><span class="ds-pill">Unassigned</span></td></tr>
+                </tbody>
+              </table>
+              <div class="ds-pag">
+                <span>Showing <span class="ds-pag-n">1–6</span> of <span class="ds-pag-n">156</span></span>
+                <span class="ds-pages">
+                  <span class="ds-page" data-disabled="1">{{icon:chevron-left:13}}</span>
+                  <span class="ds-page" data-on="1">1</span><span class="ds-page">2</span><span class="ds-page">…</span><span class="ds-page">26</span>
+                  <span class="ds-page">{{icon:chevron-right:13}}</span>
+                </span>
+                <span>Rows <span class="ds-pag-n">6</span> {{icon:chevrons-up-down:11}}</span>
+              </div>
+            </div>
+
+            <div class="ds-alert" data-tone="warn" style="margin-top: 12px">
+              {{icon:triangle-alert:15}}
+              <span><b>Kwame Owusu's registration is still pending.</b> He can
+                be assigned, but the scout will see a warning on his profile —
+                an evaluation of a player who never confirms their place is
+                work nobody can use.</span>
+            </div>
+          </div>
+
+          <div class="as-side">
+            <div class="ds-card">
+              <div class="ds-card-h">Load per scout</div>
+              <div class="as-load"><span>James Carter</span><span class="as-track"><i style="width: 80%"></i></span><b>24</b></div>
+              <div class="as-load"><span>Amara Diallo</span><span class="as-track"><i style="width: 60%"></i></span><b>18</b></div>
+              <div class="as-load"><span>RCD Espanyol</span><span class="as-track"><i style="width: 40%"></i></span><b>12</b></div>
+              <div class="as-load"><span>Ana Ruiz</span><span class="as-track"><i style="width: 13%"></i></span><b>4</b></div>
+              <p class="as-note">Shown at the moment of assigning, not on a
+                separate page. Handing a fourth batch to the scout who already
+                has 24 is the mistake this screen exists to prevent, and it is
+                only preventable while you are looking at the dropdown.</p>
+            </div>
+
+            <div class="ds-card" style="margin-top: 12px">
+              <div class="ds-card-h">Assignment history — George Adeola</div>
+              <div class="as-hist">
+                <div class="as-hist-r" data-state="current">
+                  <span class="as-hist-d">14 May 2026</span>
+                  <span><b>Assigned to James Carter</b><i>by Nathan A. · current</i></span>
+                </div>
+                <div class="as-hist-r">
+                  <span class="as-hist-d">02 May 2026</span>
+                  <span><b>Assigned to Ana Ruiz</b><i>by Nathan A. · reassigned 14 May</i></span>
+                </div>
+                <div class="as-hist-r">
+                  <span class="as-hist-d">18 Nov 2025</span>
+                  <span><b>Lagos 2025 — Adeola Bakare</b><i>report published</i></span>
+                </div>
+              </div>
+              <p class="as-note">Reassignment appends, never overwrites. A
+                report written by the previous scout stays attributed to them —
+                and "who evaluated this player in May" has to stay answerable
+                after the assignment has moved on.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style data-local>
+  .ds-shell { min-height: 640px; }
+  .as-grid { display: grid; grid-template-columns: 1fr 300px; gap: 13px; align-items: start; }
+  .ds-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 14px; }
+  .ds-card-h { font-family: var(--font-heading); font-size: 13px; font-weight: 600; margin-bottom: 12px; }
+  .as-note { font-size: 10px; line-height: 1.6; color: var(--muted-foreground); margin-top: 11px; }
+  .as-who { display: inline-flex; align-items: center; gap: 5px; font-size: 11.5px; }
+  .as-load { display: grid; grid-template-columns: 82px 1fr 22px; gap: 9px; align-items: center; font-size: 11px; padding: 4px 0; }
+  .as-track { height: 7px; background: var(--muted); border-radius: 999px; overflow: hidden; }
+  .as-track i { display: block; height: 100%; border-radius: 999px; background: var(--brand); }
+  .as-load b { font-family: var(--font-mono); font-size: 11px; text-align: right; }
+  .as-hist { display: flex; flex-direction: column; gap: 8px; }
+  .as-hist-r { display: grid; grid-template-columns: 78px 1fr; gap: 10px; padding: 8px; border: 1px solid var(--border); border-radius: var(--radius-md); }
+  .as-hist-r[data-state="current"] { border-color: var(--brand-edge); background: var(--muted); }
+  .as-hist-d { font-family: var(--font-mono); font-size: 9.5px; color: var(--muted-foreground); }
+  .as-hist-r b { font-size: 11.5px; font-weight: 600; display: block; }
+  .as-hist-r i { font-style: normal; font-size: 10px; color: var(--muted-foreground); }
+</style>

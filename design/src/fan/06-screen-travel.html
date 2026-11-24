@@ -1,0 +1,193 @@
+<div class="fan-screen">
+{{fannav:travel}}
+  <div class="fan-main">
+    <div class="tv-head">
+      <div>
+        <h1 class="fan-h1">Travel</h1>
+        <p class="fan-sub">Flights, stays and eSIMs on your account.</p>
+      </div>
+      <span class="fan-updating">{{icon:refresh-cw:12}} Updating</span>
+    </div>
+
+    <div class="tv-tabs">
+      <span class="tv-tab" data-on="1">Upcoming</span>
+      <span class="tv-tab">Past</span>
+      <span class="tv-tab">Cancelled</span>
+    </div>
+
+    <!-- Real data, today. GET /v1/auth/ledgers returns the fan's own orders —
+         the same endpoint the travels dashboard already runs against. This is
+         scenario 3, and it is the one screen here that needs nothing from the
+         backend team. -->
+    <section class="fan-section" style="margin-top: 18px">
+      <div class="tv-list">
+        <div class="fan-card tv-row">
+          <span class="fan-chip">{{icon:plane:18}}</span>
+          <div class="tv-main">
+            <div class="tv-title-row">
+              <p class="fan-title" style="font-size: 15px; margin: 0">LOS → BCN</p>
+              <span class="fan-pill" data-tone="good">Confirmed</span>
+            </div>
+            <div class="fan-meta">
+              <span>{{icon:calendar:13}} Departs 21 Aug 2026</span>
+              <span>{{icon:ticket:13}} PNR 4K2D9X</span>
+              <span>Iberia</span>
+            </div>
+          </div>
+          <div class="tv-end">
+            <p class="tv-amt">EUR 640.00</p>
+            <span class="fan-link">E-ticket {{icon:chevron-right:13}}</span>
+          </div>
+        </div>
+
+        <div class="fan-card tv-row">
+          <span class="fan-chip">{{icon:bed-double:18}}</span>
+          <div class="tv-main">
+            <div class="tv-title-row">
+              <p class="fan-title" style="font-size: 15px; margin: 0">Hotel Arts Barcelona</p>
+              <span class="fan-pill" data-tone="good">Confirmed</span>
+            </div>
+            <div class="fan-meta">
+              <span>{{icon:calendar:13}} 21 Aug – 24 Aug · 3 nights</span>
+              <span>{{icon:ticket:13}} Conf 8871204</span>
+            </div>
+          </div>
+          <div class="tv-end">
+            <p class="tv-amt">EUR 1,190.00</p>
+            <span class="fan-link">Voucher {{icon:chevron-right:13}}</span>
+          </div>
+        </div>
+
+        <div class="fan-card tv-row">
+          <span class="fan-chip">{{icon:wifi:18}}</span>
+          <div class="tv-main">
+            <div class="tv-title-row">
+              <p class="fan-title" style="font-size: 15px; margin: 0">Europe Tour · 20 GB</p>
+              <span class="fan-pill" data-tone="info">Not installed</span>
+            </div>
+            <div class="fan-meta">
+              <span>{{icon:clock:13}} 30 days from install</span>
+              <span>{{icon:smartphone:13}} ICCID 8944 4780 …</span>
+            </div>
+          </div>
+          <div class="tv-end">
+            <p class="tv-amt">EUR 45.00</p>
+            <span class="fan-link">Install {{icon:chevron-right:13}}</span>
+          </div>
+        </div>
+
+        <!-- Unpaid must never read as ready. The travels dashboard learned
+             this one the hard way: `initiated` and `pending_payment` orders
+             were rendering as "Ready" when nothing had been bought yet. -->
+        <div class="fan-card tv-row">
+          <span class="fan-chip">{{icon:plane:18}}</span>
+          <div class="tv-main">
+            <div class="tv-title-row">
+              <p class="fan-title" style="font-size: 15px; margin: 0">BCN → LOS</p>
+              <span class="fan-pill" data-tone="warn">Awaiting payment</span>
+            </div>
+            <div class="fan-meta">
+              <span>{{icon:calendar:13}} Departs 24 Aug 2026</span>
+              <span>Held for 45 minutes</span>
+            </div>
+          </div>
+          <div class="tv-end">
+            <p class="tv-amt">EUR 610.00</p>
+            <button class="fan-btn" data-size="sm">Pay now</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <p class="tv-foot">
+      <b>Money is rendered from the currency the fan was actually charged in</b>, per order — never a
+      single page-level currency. Two orders in two currencies are two labels, not one total.
+      <br /><br />
+      <b>Amounts are checked against the order, not assumed.</b> The field is named
+      <code class="fan-code" style="font-size: 10.5px">amount_paid_minor</code>; if it is ever
+      formatted without converting from minor units every price on this screen is 100× too large and
+      still looks entirely plausible.
+    </p>
+  </div>
+</div>
+
+<style data-local>
+  .tv-head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+  }
+  .tv-tabs {
+    display: flex;
+    gap: 20px;
+    margin-top: 16px;
+    border-bottom: 1px solid var(--edge);
+  }
+  .tv-tab {
+    position: relative;
+    padding-bottom: 10px;
+    font-size: 13px;
+    color: var(--muted-foreground);
+    cursor: pointer;
+  }
+  .tv-tab[data-on="1"] {
+    color: var(--foreground);
+    font-weight: 700;
+  }
+  .tv-tab[data-on="1"]::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -1px;
+    height: 2px;
+    border-radius: 999px;
+    background: var(--brand);
+  }
+  .tv-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .tv-row {
+    display: grid;
+    grid-template-columns: 38px 1fr 160px;
+    gap: 15px;
+    align-items: center;
+  }
+  .tv-main {
+    min-width: 0;
+  }
+  .tv-title-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .tv-end {
+    text-align: right;
+  }
+  .tv-amt {
+    margin: 0 0 7px;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    color: var(--foreground);
+  }
+  .tv-end .fan-link {
+    justify-content: flex-end;
+  }
+  .tv-foot {
+    margin: 24px 0 0;
+    padding-top: 16px;
+    border-top: 1px solid var(--edge);
+    font-size: 12px;
+    line-height: 1.65;
+    color: var(--muted-foreground);
+    max-width: 82ch;
+  }
+  .tv-foot b {
+    color: var(--foreground);
+  }
+</style>

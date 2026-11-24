@@ -1,0 +1,136 @@
+<!-- EVALUATION · STEP 6 — DEVELOPMENT PLAN — GOL-SCOUT-09
+
+     The half of the report the PLAYER actually acts on. Everything else tells
+     a club what he is; this tells him what to do on Monday.
+
+     One structural decision worth defending: rows are seeded from the red and
+     amber bands rather than starting blank. A blank table gets one line typed
+     into it. A table that already says "you marked weak foot usage 4/10 —
+     what should he do about it?" gets answered, and it cannot drift from the
+     evaluation it came from. -->
+<div class="ds-screen">
+  <div class="ds-shell">
+{{scoutnav:evaluations}}
+    <div class="ds-pane">
+      <div class="ds-hdr">
+        <div class="ds-hdr-r1">
+          <span class="ds-crumb">Evaluations / <b>George Adeola</b></span>
+          <span style="display: flex; gap: 7px; align-items: center">
+            <span class="sc-autosave">{{icon:circle-check:14}} All changes saved · 11:58</span>
+            <button class="ds-btn" data-variant="outline" data-size="sm">{{icon:save:13}} Save draft</button>
+            <button class="ds-btn" data-size="sm">Submit evaluation {{icon:arrow-right:13}}</button>
+          </span>
+        </div>
+        <div style="height: 14px"></div>
+      </div>
+
+      <div class="ds-pane-body">
+        <div class="sc-work">
+          <div>
+            <div class="ds-card">
+              <div class="sc-sec-h">{{icon:dumbbell:15}} 6 · Development plan <span>3 areas · 1 high priority</span></div>
+              <p class="sc-sec-sub">Seeded from your red and amber bands. Edit
+                any row, add your own, or remove one that is not worth his
+                time this cycle.</p>
+
+              <div class="sc-dev-h">
+                <span>Development area</span><span>Priority</span><span>Recommended training</span><span>Focus period</span><span></span>
+              </div>
+
+              <div class="sc-dev">
+                <span class="ds-input" data-seeded="1">Weak foot usage {{icon:chevron-down:12}}</span>
+                <span class="ds-pill" data-tone="danger">High</span>
+                <span class="ds-input">Daily left-foot striking &amp; recept…</span>
+                <span class="ds-input">4–6 weeks {{icon:chevron-down:12}}</span>
+                <span class="ds-act" data-tone="danger">{{icon:trash-2:14}}</span>
+              </div>
+              <div class="sc-dev">
+                <span class="ds-input" data-seeded="1">Defensive work rate {{icon:chevron-down:12}}</span>
+                <span class="ds-pill" data-tone="danger">High</span>
+                <span class="ds-input">Pressing triggers, unit shape work</span>
+                <span class="ds-input">6–8 weeks {{icon:chevron-down:12}}</span>
+                <span class="ds-act" data-tone="danger">{{icon:trash-2:14}}</span>
+              </div>
+              <div class="sc-dev">
+                <span class="ds-input" data-seeded="1">Final third decision {{icon:chevron-down:12}}</span>
+                <span class="ds-pill" data-tone="warn">Medium</span>
+                <span class="ds-input">Video review — cross vs. shoot vs. h…</span>
+                <span class="ds-input">Ongoing {{icon:chevron-down:12}}</span>
+                <span class="ds-act" data-tone="danger">{{icon:trash-2:14}}</span>
+              </div>
+              <div class="sc-dev">
+                <span class="ds-input">Pace {{icon:chevron-down:12}}</span>
+                <span class="ds-pill" data-tone="good">Maintain</span>
+                <span class="ds-input">Keep the current sprint block</span>
+                <span class="ds-input">Ongoing {{icon:chevron-down:12}}</span>
+                <span class="ds-act" data-tone="danger">{{icon:trash-2:14}}</span>
+              </div>
+
+              <button class="ds-btn" data-variant="outline" data-size="sm" style="margin-top: 13px">{{icon:plus:13}} Add development area</button>
+
+              <div class="ds-field" style="margin-top: 16px">
+                <span class="ds-label">Additional comments for the player</span>
+                <div class="ds-ta">Prioritise the left foot. Everything else on this list gets easier once defenders can't show you inside — including the final-third decisions, because you'll have two options instead of one.</div>
+              </div>
+
+              <div class="ds-alert" style="margin-top: 13px">
+                {{icon:info:15}}
+                <span><b>A "maintain" row is not filler.</b> A plan that lists
+                  only faults reads as a rejection. Naming the thing he should
+                  protect is what makes the rest land — and it is why the
+                  priority list has four values, not three.</span>
+              </div>
+            </div>
+
+            <div class="sc-foot" style="margin-top: 12px">
+              <button class="ds-btn" data-variant="outline" data-size="sm">{{icon:arrow-left:13}} Previous</button>
+              <span class="sc-foot-pos">Step <b>6</b> of 8 · Development plan</span>
+              <button class="ds-btn" data-size="sm">Next: Summary {{icon:arrow-right:13}}</button>
+            </div>
+          </div>
+
+          <div class="sc-rail">
+            <div class="ds-card">
+              <div class="ds-card-h" style="margin-bottom: 9px">Priority scale</div>
+              <div class="dv-key">
+                <span><span class="ds-pill" data-tone="danger">High</span> Costs him matches now. Start this week.</span>
+                <span><span class="ds-pill" data-tone="warn">Medium</span> Worth a block inside this season.</span>
+                <span><span class="ds-pill" data-tone="info">Low</span> Note it; revisit next camp.</span>
+                <span><span class="ds-pill" data-tone="good">Maintain</span> Already a strength — protect it.</span>
+              </div>
+            </div>
+
+            {{evalsteps:development}}
+
+            <div class="ds-card">
+              <div class="ds-card-h" style="margin-bottom: 9px">Nothing to add?</div>
+              <div class="ds-empty" style="padding: 20px 10px">
+                <span class="ds-empty-ic">{{icon:dumbbell:20}}</span>
+                <p class="ds-empty-t" style="font-size: 12px">No development areas yet</p>
+                <p class="ds-empty-s" style="font-size: 10.5px">Rows appear here
+                  automatically from anything you filed as red or amber.</p>
+              </div>
+              <p class="dv-note">The empty state only appears for a player with
+                no red or amber attributes at all — rare, and worth the scout
+                noticing that it happened.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style data-local>
+  .ds-shell { min-height: 640px; }
+  .ds-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 14px; }
+  .ds-card-h { font-family: var(--font-heading); font-size: 13px; font-weight: 600; margin-bottom: 12px; }
+  .sc-dev .ds-input { width: 100%; min-width: 0; overflow: hidden; white-space: nowrap; }
+  /* A seeded row is visibly derived rather than typed — dashed edge, same as
+     every other "this came from somewhere else" affordance in the bundle. */
+  .sc-dev .ds-input[data-seeded="1"] { border-style: dashed; }
+  .dv-key { display: flex; flex-direction: column; gap: 9px; font-size: 10.5px; line-height: 1.5; color: var(--muted-foreground); }
+  .dv-key span { display: flex; gap: 8px; align-items: baseline; }
+  .dv-key > span > .ds-pill { flex: none; }
+  .dv-note { font-size: 10px; line-height: 1.55; color: var(--muted-foreground); margin-top: 11px; }
+</style>

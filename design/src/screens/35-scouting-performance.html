@@ -1,0 +1,224 @@
+<!-- ADMIN · SCOUT PERFORMANCE — GOL-SCOUT-21
+
+     Built to answer one question a camp manager asks every morning: what will
+     not be finished by the time the camp closes?
+
+     So the hero is DAYS REMAINING against work outstanding, not a tidy row of
+     totals. Totals tell you where you have been; the countdown tells you who
+     to call. The per-scout table sorts by what is at risk rather than
+     alphabetically, and "average score" sits beside it as a calibration
+     signal — a scout averaging 8.6 is not finding better players than
+     everyone else, they are scoring more generously. -->
+<div class="ds-screen">
+  <div class="ds-shell">
+{{sidebar:scouting}}
+    <div class="ds-pane">
+      <div class="ds-hdr">
+        <div class="ds-hdr-r1">
+          <span class="ds-crumb">Dashboard / Scouting / <b>Performance</b></span>
+          <span style="display: flex; gap: 7px; align-items: center">
+            <span class="ds-input" style="gap: 9px; height: 28px">{{icon:calendar:14}} Barcelona 2026 {{icon:chevron-down:12}}</span>
+            <button class="ds-btn" data-variant="outline" data-size="sm">{{icon:download:13}} Export</button>
+          </span>
+        </div>
+        <div class="ds-hdr-r2">
+          <span class="ds-hdr-title">Scouting progress</span>
+        </div>
+        <div class="ds-tabs" style="margin-top: 12px">
+          <span class="ds-tab">Accounts</span>
+          <span class="ds-tab">Assignments</span>
+          <span class="ds-tab">Reports <span class="ds-dd-tag">5</span></span>
+          <span class="ds-tab" data-on="1">Performance</span>
+          <span class="ds-tab">Oversight</span>
+          <span class="ds-tab">Methodology</span>
+        </div>
+      </div>
+
+      <div class="ds-pane-body">
+        <!-- THE COUNTDOWN, not a stat row. -->
+        <div class="pf-hero">
+          <div class="pf-hero-l">
+            <p class="ds-eyebrow">Barcelona 2026 closes in</p>
+            <p class="pf-days">9 <span>days</span></p>
+            <p class="pf-hero-s">24 evaluations not started · 31 in progress</p>
+          </div>
+          <div class="pf-hero-r">
+            <div class="pf-prog">
+              <div class="pf-prog-h"><span>156 players</span><b>65% evaluated</b></div>
+              <div class="pf-stack">
+                <i style="width: 26%; background: var(--status-good)" title="Published"></i>
+                <i style="width: 13%; background: var(--status-info)" title="Awaiting review"></i>
+                <i style="width: 20%; background: var(--status-warn)" title="In progress"></i>
+                <i style="width: 41%; background: var(--muted-foreground); opacity: .35" title="Not started"></i>
+              </div>
+              <div class="pf-key">
+                <span><i style="background: var(--status-good)"></i>41 published</span>
+                <span><i style="background: var(--status-info)"></i>20 awaiting review</span>
+                <span><i style="background: var(--status-warn)"></i>31 in progress</span>
+                <span><i style="background: var(--muted-foreground); opacity:.35"></i>64 not started</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="pf-stats">
+          <div class="ds-stat"><span class="ds-stat-lab">{{icon:users:13}} Scouts</span><span class="ds-stat-val">9</span><span class="ds-stat-d">2 clubs</span></div>
+          <div class="ds-stat"><span class="ds-stat-lab">{{icon:clipboard-list:13}} Assigned</span><span class="ds-stat-val">132</span><span class="ds-stat-d">24 unassigned</span></div>
+          <div class="ds-stat"><span class="ds-stat-lab">{{icon:clock:13}} Awaiting review</span><span class="ds-stat-val">20</span><span class="ds-stat-d" data-dir="down">longest 4 days</span></div>
+          <div class="ds-stat"><span class="ds-stat-lab">{{icon:gauge:13}} Average score</span><span class="ds-stat-val">7.4</span><span class="ds-stat-d">across 61 complete</span></div>
+          <div class="ds-stat"><span class="ds-stat-lab">{{icon:trophy:13}} Trial recommended</span><span class="ds-stat-val">17</span><span class="ds-stat-d">28% of complete</span></div>
+        </div>
+
+        <div class="ds-card" data-flush="1" style="margin-top: 13px">
+          <div class="pf-card-h">
+            <span><b>By scout</b><i>Sorted by what is at risk, not alphabetically</i></span>
+            <span class="ds-input" style="gap: 8px; height: 28px">{{icon:list-filter:14}} All scouts {{icon:chevron-down:12}}</span>
+          </div>
+          <div class="ds-tw">
+            <table class="ds-t">
+              <thead><tr>
+                <th>Scout</th>
+                <th style="text-align:right">Assigned</th>
+                <th style="text-align:right">Not started</th>
+                <th style="text-align:right">In progress</th>
+                <th style="text-align:right">Submitted</th>
+                <th style="text-align:right">Published</th>
+                <th>Progress</th>
+                <th style="text-align:right">Avg score</th>
+                <th>Last active</th>
+              </tr></thead>
+              <tbody>
+                <tr>
+                  <td><span class="ds-idc"><span class="ds-av-sm">MB</span><span class="ds-idc-txt"><span class="ds-idc-name">Marco Bianchi</span><span class="ds-idc-sub">Never signed in</span></span></span></td>
+                  <td class="ds-num" style="text-align:right">14</td>
+                  <td class="ds-num pf-bad" style="text-align:right">14</td>
+                  <td class="ds-num" style="text-align:right">0</td>
+                  <td class="ds-num" style="text-align:right">0</td>
+                  <td class="ds-num" style="text-align:right">0</td>
+                  <td><span class="pf-track"><i style="width:0%"></i></span></td>
+                  <td class="ds-num" style="text-align:right">—</td>
+                  <td><span class="ds-pill" data-tone="danger">Never</span></td>
+                </tr>
+                <tr>
+                  <td><span class="ds-idc"><span class="ds-av-sm">AR</span><span class="ds-idc-txt"><span class="ds-idc-name">Ana Ruiz</span><span class="ds-idc-sub">Independent</span></span></span></td>
+                  <td class="ds-num" style="text-align:right">16</td>
+                  <td class="ds-num pf-bad" style="text-align:right">9</td>
+                  <td class="ds-num" style="text-align:right">5</td>
+                  <td class="ds-num" style="text-align:right">2</td>
+                  <td class="ds-num" style="text-align:right">0</td>
+                  <td><span class="pf-track"><i style="width:13%"></i></span></td>
+                  <td class="ds-num" style="text-align:right">7.1</td>
+                  <td><span class="ds-pill" data-tone="warn">6 days ago</span></td>
+                </tr>
+                <tr>
+                  <td><span class="ds-idc"><span class="ds-av-sm">RC</span><span class="ds-idc-txt"><span class="ds-idc-name">RCD Espanyol</span><span class="ds-idc-sub">Club</span></span></span></td>
+                  <td class="ds-num" style="text-align:right">12</td>
+                  <td class="ds-num" style="text-align:right">1</td>
+                  <td class="ds-num" style="text-align:right">7</td>
+                  <td class="ds-num" style="text-align:right">0</td>
+                  <td class="ds-num" style="text-align:right">4</td>
+                  <td><span class="pf-track"><i style="width:33%"></i></span></td>
+                  <td class="ds-num" style="text-align:right">7.9</td>
+                  <td><span class="ds-pill" data-tone="good">Today</span></td>
+                </tr>
+                <tr>
+                  <td><span class="ds-idc"><span class="ds-av-sm">AD</span><span class="ds-idc-txt"><span class="ds-idc-name">Amara Diallo</span><span class="ds-idc-sub">Golafly Scouting Network</span></span></span></td>
+                  <td class="ds-num" style="text-align:right">18</td>
+                  <td class="ds-num" style="text-align:right">0</td>
+                  <td class="ds-num" style="text-align:right">3</td>
+                  <td class="ds-num" style="text-align:right">9</td>
+                  <td class="ds-num" style="text-align:right">6</td>
+                  <td><span class="pf-track"><i style="width:83%"></i></span></td>
+                  <td class="ds-num pf-warn" style="text-align:right">8.6</td>
+                  <td><span class="ds-pill" data-tone="good">Today</span></td>
+                </tr>
+                <tr>
+                  <td><span class="ds-idc"><span class="ds-av-sm">JC</span><span class="ds-idc-txt"><span class="ds-idc-name">James Carter</span><span class="ds-idc-sub">Golafly Scouting Network</span></span></span></td>
+                  <td class="ds-num" style="text-align:right">24</td>
+                  <td class="ds-num" style="text-align:right">0</td>
+                  <td class="ds-num" style="text-align:right">7</td>
+                  <td class="ds-num" style="text-align:right">9</td>
+                  <td class="ds-num" style="text-align:right">8</td>
+                  <td><span class="pf-track"><i style="width:71%"></i></span></td>
+                  <td class="ds-num" style="text-align:right">7.6</td>
+                  <td><span class="ds-pill" data-tone="good">Today</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="pf-grid">
+          <div class="ds-card">
+            <div class="ds-card-h">Two rows worth acting on</div>
+            <div class="pf-act">
+              <span class="pf-act-ic" data-tone="danger">{{icon:triangle-alert:15}}</span>
+              <span class="pf-act-t"><b>Marco Bianchi has never signed in</b><i>14 players assigned 8 days ago, 0 started. Resend the invite or reassign.</i></span>
+              <button class="ds-btn" data-variant="outline" data-size="sm">Reassign</button>
+            </div>
+            <div class="pf-act">
+              <span class="pf-act-ic" data-tone="warn">{{icon:gauge:15}}</span>
+              <span class="pf-act-t"><b>Amara Diallo averages 8.6</b><i>Camp average is 7.4. Not better players — a more generous scale. Worth a calibration conversation.</i></span>
+              <button class="ds-btn" data-variant="outline" data-size="sm">Open</button>
+            </div>
+            <p class="pf-note">Surfaced from the same table above rather than
+              left to be noticed. A dashboard that shows a 0 in a column and
+              expects someone to spot it has not done the work.</p>
+          </div>
+
+          <div class="ds-card">
+            <div class="ds-card-h">Score distribution — all complete evaluations</div>
+            <div class="pf-dist">
+              <i style="height: 8%"></i><i style="height: 16%"></i><i style="height: 34%"></i>
+              <i style="height: 62%"></i><i style="height: 88%"></i><i style="height: 100%"></i>
+              <i style="height: 74%"></i><i style="height: 45%"></i><i style="height: 22%"></i><i style="height: 9%"></i>
+            </div>
+            <div class="pf-axis"><span>1</span><span>4</span><span>7</span><span>10</span></div>
+            <p class="pf-note">A healthy camp is a bell, slightly right of
+              centre. A spike at 8 means scouts are anchoring; a flat line
+              means the scale is not being used.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style data-local>
+  .ds-shell { min-height: 640px; }
+  .ds-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 14px; }
+  .ds-card[data-flush="1"] { padding: 0; overflow: hidden; }
+  .ds-card-h { font-family: var(--font-heading); font-size: 13px; font-weight: 600; margin-bottom: 12px; }
+  .pf-hero { display: grid; grid-template-columns: 236px 1fr; gap: 20px; align-items: center; background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 16px; }
+  .pf-days { font-family: var(--font-heading); font-size: 44px; font-weight: 700; line-height: 1; color: var(--brand-text); margin-top: 4px; }
+  .pf-days span { font-family: var(--font-mono); font-size: 14px; font-weight: 400; color: var(--muted-foreground); }
+  .pf-hero-s { font-size: 11.5px; color: var(--muted-foreground); margin-top: 8px; }
+  .pf-prog-h { display: flex; justify-content: space-between; align-items: baseline; font-size: 11.5px; margin-bottom: 8px; }
+  .pf-prog-h b { font-family: var(--font-mono); font-size: 12px; }
+  .pf-stack { display: flex; gap: 2px; height: 16px; }
+  .pf-stack i { display: block; border-radius: 2px; }
+  .pf-key { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 10px; font-size: 10.5px; color: var(--muted-foreground); }
+  .pf-key span { display: inline-flex; align-items: center; gap: 6px; }
+  .pf-key i { width: 8px; height: 8px; border-radius: 2px; }
+  .pf-stats { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-top: 12px; }
+  .pf-card-h { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 12px 14px; border-bottom: 1px solid var(--border); }
+  .pf-card-h b { font-family: var(--font-heading); font-size: 13px; font-weight: 600; display: block; }
+  .pf-card-h i { font-style: normal; font-size: 10.5px; color: var(--muted-foreground); }
+  .pf-track { display: block; width: 90px; height: 7px; background: var(--muted); border-radius: 999px; overflow: hidden; }
+  .pf-track i { display: block; height: 100%; border-radius: 999px; background: var(--brand); }
+  .pf-bad { color: var(--status-danger); font-weight: 700; }
+  .pf-warn { color: var(--status-warn); font-weight: 700; }
+  .pf-grid { display: grid; grid-template-columns: 1.3fr 1fr; gap: 12px; margin-top: 12px; align-items: start; }
+  .pf-act { display: flex; align-items: center; gap: 11px; padding: 9px 0; border-bottom: 1px solid var(--edge); }
+  .pf-act:last-of-type { border-bottom: none; }
+  .pf-act-ic { display: grid; place-items: center; width: 30px; height: 30px; flex: none; border-radius: var(--radius-md); }
+  .pf-act-ic[data-tone="danger"] { background: var(--status-danger-bg); color: var(--status-danger); }
+  .pf-act-ic[data-tone="warn"] { background: var(--status-warn-bg); color: var(--status-warn); }
+  .pf-act-t { flex: 1; min-width: 0; }
+  .pf-act-t b { font-size: 11.5px; font-weight: 600; display: block; }
+  .pf-act-t i { font-style: normal; font-size: 10.5px; line-height: 1.45; color: var(--muted-foreground); }
+  .pf-note { font-size: 10px; line-height: 1.6; color: var(--muted-foreground); margin-top: 11px; }
+  .pf-dist { display: flex; align-items: flex-end; gap: 4px; height: 92px; }
+  .pf-dist i { flex: 1; background: var(--brand); opacity: .8; border-radius: 3px 3px 0 0; }
+  .pf-axis { display: flex; justify-content: space-between; margin-top: 5px; font-family: var(--font-mono); font-size: 9px; color: var(--muted-foreground); }
+</style>

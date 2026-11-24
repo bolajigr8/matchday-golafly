@@ -1,0 +1,735 @@
+/* ══════════════════════════════════════════════════════════════════════════
+   SCOUTING — the evaluation layer
+
+   Loaded AFTER the whole admin stack (kit → shell → data → components →
+   refinements), so this file is the only one allowed to override. It holds
+   nothing the admin already has: tables, sheets, pills, toolbars, stat tiles,
+   tabs, inputs and pagination all come from there unchanged.
+
+   What is here is what evaluation needs and nothing else:
+     · sc-scale   — the 1–10 score row
+     · sc-rag     — the red / amber / green column
+     · sc-steps   — the eight-step rail (markup in partials.mjs)
+     · sc-score   — the overall score / potential readout
+     · sc-pct     — the percentile bar
+     · sc-*       — small screen-specific pieces reused across cards
+
+   COLOUR RULE: every value below is a token. The five --status-* pairs already
+   carry exactly the tones the scouting methodology needs, so red/amber/green
+   is a token mapping, not a new palette:
+       red   → --status-danger   amber → --status-warn   green → --status-good
+   That is also why a status pill and a RAG column agree without coordination.
+   ══════════════════════════════════════════════════════════════════════════ */
+
+/* ── Sidebar additions ──────────────────────────────────────────────────── */
+
+/* NOTE: there is no .ds-sb-group rule here. The scouting nav is flat and
+   carries no search box — the same two rules the admin sidebar follows. A
+   grouped variant was built and removed; leaving its CSS behind would invite
+   the next person to reintroduce it. */
+
+/* Reports published, in the sidebar foot. A scout's own count is the one
+   number they are measured on, so it lives where they always see it. */
+.sc-impact {
+  display: grid;
+  gap: 3px;
+  padding: 10px;
+  background: var(--muted);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+}
+.sc-impact-h {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 10.5px;
+  color: var(--muted-foreground);
+}
+.sc-impact-n {
+  font-family: var(--font-heading);
+  font-size: 21px;
+  font-weight: 700;
+  line-height: 1.1;
+}
+.sc-impact-l {
+  font-size: 10px;
+  color: var(--muted-foreground);
+}
+.sc-impact-track {
+  display: block;
+  height: 4px;
+  margin-top: 5px;
+  border-radius: 999px;
+  background: var(--border);
+  overflow: hidden;
+}
+.sc-impact-track i {
+  display: block;
+  height: 100%;
+  border-radius: 999px;
+  background: var(--brand);
+}
+
+/* ── The 1–10 score scale ───────────────────────────────────────────────────
+   Ten discrete cells, not a slider. A slider invites a scout to drag until it
+   "looks right"; ten targets make the choice a decision, and make two scouts'
+   7s mean the same thing. The selected cell is outlined rather than filled so
+   the row still reads as a scale — a filled cell at position 9 looks like a
+   progress bar that is nearly done, which is not what a 9 means. */
+.sc-scale {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: 12px;
+  align-items: center;
+  padding: 9px 0;
+  border-bottom: 1px solid var(--edge);
+}
+.sc-scale:last-child {
+  border-bottom: none;
+}
+.sc-scale-lab {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+.sc-scale-ic {
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  flex: none;
+  border-radius: var(--radius-sm);
+  background: var(--muted);
+  color: var(--muted-foreground);
+}
+.sc-scale-txt {
+  display: grid;
+  gap: 1px;
+}
+.sc-scale-txt b {
+  font-size: 12.5px;
+  font-weight: 600;
+}
+.sc-scale-txt i {
+  font-style: normal;
+  font-size: 10.5px;
+  color: var(--muted-foreground);
+}
+
+.sc-cells {
+  display: flex;
+  gap: 3px;
+}
+.sc-cell {
+  display: grid;
+  place-items: center;
+  width: 27px;
+  height: 26px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--card);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--muted-foreground);
+  font-variant-numeric: tabular-nums;
+}
+.sc-cell[data-state="hover"] {
+  border-color: var(--brand-edge);
+  color: var(--foreground);
+}
+.sc-cell[data-on="1"] {
+  border-color: var(--brand-edge);
+  border-width: 2px;
+  /* Mixed from --brand rather than a --brand-bg token, because no such token
+     exists in app/globals.css and inventing one here would put a value in the
+     design system that the app cannot resolve. */
+  background: color-mix(in oklab, var(--brand) 14%, transparent);
+  color: var(--brand-text);
+  font-weight: 700;
+}
+.sc-cell[data-invalid="1"] {
+  border-color: var(--status-danger);
+  color: var(--status-danger);
+}
+
+/* The resolved value, right of the scale. Mono and tabular so a column of
+   them lines up on the decimal — these get compared down the column far more
+   often than they get read one at a time. */
+.sc-val {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--brand-text);
+  font-variant-numeric: tabular-nums;
+  min-width: 34px;
+  text-align: right;
+}
+.sc-val[data-empty="1"] {
+  color: var(--muted-foreground);
+  font-weight: 400;
+}
+
+/* ── Red / amber / green column ─────────────────────────────────────────────
+   Three columns of the same component, tinted by tone. The tone lives on the
+   wrapper and everything inside inherits it, so adding an attribute row never
+   means picking a colour by hand. */
+.sc-rag-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  align-items: start;
+}
+.sc-rag {
+  border: 1px solid var(--tone-edge);
+  border-radius: var(--radius-lg);
+  background: var(--tone-bg);
+  padding: 13px;
+}
+.sc-rag[data-tone="red"] {
+  --tone: var(--status-danger);
+  --tone-bg: var(--status-danger-bg);
+  --tone-edge: color-mix(in oklab, var(--status-danger) 32%, transparent);
+}
+.sc-rag[data-tone="amber"] {
+  --tone: var(--status-warn);
+  --tone-bg: var(--status-warn-bg);
+  --tone-edge: color-mix(in oklab, var(--status-warn) 32%, transparent);
+}
+.sc-rag[data-tone="green"] {
+  --tone: var(--status-good);
+  --tone-bg: var(--status-good-bg);
+  --tone-edge: color-mix(in oklab, var(--status-good) 32%, transparent);
+}
+.sc-rag-h {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-family: var(--font-heading);
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--tone);
+}
+.sc-rag-h i {
+  width: 9px;
+  height: 9px;
+  border-radius: 999px;
+  background: var(--tone);
+  flex: none;
+}
+.sc-rag-sub {
+  font-size: 10.5px;
+  line-height: 1.45;
+  color: var(--muted-foreground);
+  margin: 5px 0 12px;
+}
+.sc-rag-row {
+  margin-bottom: 11px;
+}
+.sc-rag-row-h {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-size: 11.5px;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+.sc-rag-row-h span {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  font-weight: 400;
+  color: var(--muted-foreground);
+  font-variant-numeric: tabular-nums;
+}
+/* Ten cells again, at RAG density. Same mental model as sc-cells so a scout
+   is not learning two scoring controls. */
+.sc-rag-cells {
+  display: flex;
+  gap: 2px;
+}
+.sc-rag-cell {
+  display: grid;
+  place-items: center;
+  flex: 1;
+  height: 19px;
+  border-radius: 3px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--muted-foreground);
+}
+.sc-rag-cell[data-on="1"] {
+  background: var(--tone);
+  border-color: var(--tone);
+  color: var(--card);
+  font-weight: 700;
+}
+/* The observation box. Dashed while empty — a solid box reads as content the
+   scout has already written and skipped past. */
+.sc-obs {
+  border: 1px dashed var(--tone-edge);
+  border-radius: var(--radius-md);
+  background: var(--card);
+  padding: 9px 10px;
+  min-height: 58px;
+  font-size: 11px;
+  color: var(--muted-foreground);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.sc-obs-count {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  text-align: right;
+  color: var(--muted-foreground);
+}
+
+/* ── Step rail ──────────────────────────────────────────────────────────── */
+.sc-steps {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 14px;
+}
+.sc-steps-h {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 9px;
+}
+.sc-steps-pct {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  color: var(--muted-foreground);
+}
+.sc-steps-list {
+  display: grid;
+  gap: 2px;
+  margin-top: 12px;
+}
+.sc-step {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 7px 8px;
+  border-radius: var(--radius-md);
+  color: var(--muted-foreground);
+}
+.sc-step-n {
+  display: grid;
+  place-items: center;
+  width: 21px;
+  height: 21px;
+  flex: none;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  font-family: var(--font-mono);
+  font-size: 10px;
+}
+.sc-step-t {
+  display: grid;
+  gap: 0;
+  flex: 1;
+  min-width: 0;
+}
+.sc-step-t b {
+  font-size: 11.5px;
+  font-weight: 600;
+}
+.sc-step-t i {
+  font-style: normal;
+  font-size: 10px;
+}
+.sc-step[data-state="done"] {
+  color: var(--foreground);
+}
+.sc-step[data-state="done"] .sc-step-n {
+  background: var(--status-good);
+  border-color: var(--status-good);
+  color: var(--card);
+}
+.sc-step[data-state="done"] .sc-step-t i {
+  color: var(--status-good);
+}
+.sc-step[data-state="current"] {
+  background: var(--muted);
+  color: var(--foreground);
+}
+.sc-step[data-state="current"] .sc-step-n {
+  background: var(--brand);
+  border-color: var(--brand-edge);
+  color: var(--brand-foreground);
+  font-weight: 700;
+}
+.sc-step[data-state="current"] .sc-step-t i {
+  color: var(--brand-text);
+}
+
+/* ── Overall score readout ──────────────────────────────────────────────────
+   Deliberately not a chart. It is two numbers a scout and a club both quote
+   verbatim, so they are set large, in the heading face, with the unit small
+   beside them — the way a score is spoken, not the way a metric is plotted. */
+.sc-score {
+  display: grid;
+  gap: 3px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--edge);
+  margin-bottom: 12px;
+}
+.sc-score:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+.sc-score-big {
+  display: flex;
+  align-items: baseline;
+  gap: 5px;
+  font-family: var(--font-heading);
+  font-size: 34px;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--brand-text);
+  font-variant-numeric: tabular-nums;
+}
+.sc-score-big span {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--muted-foreground);
+}
+.sc-stars {
+  display: flex;
+  gap: 2px;
+  color: var(--brand-text);
+}
+.sc-stars .off {
+  color: var(--border);
+}
+
+/* ── Percentile bar ─────────────────────────────────────────────────────────
+   The cohort track is full width and muted; the marker sits at the player's
+   position. Reading "top 18%" needs the whole cohort visible behind it —
+   a bar that only draws the filled portion answers a different question. */
+.sc-pct {
+  display: grid;
+  grid-template-columns: 108px 1fr 62px;
+  gap: 11px;
+  align-items: center;
+  padding: 7px 0;
+  font-size: 11.5px;
+}
+.sc-pct-track {
+  position: relative;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--muted);
+  border: 1px solid var(--edge);
+}
+.sc-pct-fill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  border-radius: 999px;
+  background: var(--brand);
+}
+.sc-pct-mark {
+  position: absolute;
+  top: 50%;
+  width: 3px;
+  height: 15px;
+  border-radius: 2px;
+  background: var(--foreground);
+  transform: translate(-50%, -50%);
+}
+.sc-pct-val {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  color: var(--muted-foreground);
+}
+.sc-pct-val b {
+  color: var(--foreground);
+}
+
+/* ── Small shared pieces ────────────────────────────────────────────────── */
+
+/* Auto-save. A quiet line, never a toast: it fires every few seconds and a
+   toast that often becomes noise the scout learns to dismiss unread. */
+.sc-autosave {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 10.5px;
+  color: var(--muted-foreground);
+}
+.sc-autosave svg {
+  color: var(--status-good);
+}
+
+/* Player header strip — the identity band above every evaluation step. */
+.sc-phead {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 14px;
+}
+.sc-photo {
+  width: 84px;
+  height: 84px;
+  flex: none;
+  border-radius: var(--radius-md);
+  background: var(--muted);
+  border: 1px solid var(--border);
+  display: grid;
+  place-items: center;
+  font-family: var(--font-heading);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--muted-foreground);
+}
+.sc-facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+  margin-top: 11px;
+  border: 1px solid var(--edge);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+.sc-fact {
+  display: grid;
+  gap: 2px;
+  padding: 8px 14px;
+  border-right: 1px solid var(--edge);
+  min-width: 96px;
+}
+.sc-fact:last-child {
+  border-right: none;
+}
+.sc-fact i {
+  font-style: normal;
+  font-size: 9.5px;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+  font-family: var(--font-mono);
+}
+.sc-fact b {
+  font-size: 12.5px;
+  font-weight: 600;
+}
+
+/* Two-column screen body: work on the left, context rail on the right. Used
+   by every evaluation card, so the rail is always in the same place. */
+.sc-work {
+  display: grid;
+  grid-template-columns: 1fr 292px;
+  gap: 13px;
+  align-items: start;
+}
+.sc-rail {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  position: sticky;
+  top: 0;
+}
+
+/* Wizard footer — previous / position / next, pinned under the work column. */
+.sc-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 14px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+}
+.sc-foot-pos {
+  font-size: 11px;
+  color: var(--muted-foreground);
+}
+.sc-foot-pos b {
+  color: var(--foreground);
+}
+
+/* A numbered section heading inside the evaluation form. */
+.sc-sec-h {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-heading);
+  font-size: 13.5px;
+  font-weight: 600;
+  margin-bottom: 3px;
+}
+.sc-sec-h span {
+  margin-left: auto;
+  font-size: 10.5px;
+  font-weight: 400;
+  color: var(--muted-foreground);
+}
+.sc-sec-sub {
+  font-size: 11px;
+  color: var(--muted-foreground);
+  margin-bottom: 13px;
+}
+
+/* Where an attribute set comes from. Every evaluation surface that shows
+   template-driven rows carries one, because "these seven attributes" is a
+   configuration answer, not a design one. */
+.sc-src {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 10px;
+  border: 1px dashed var(--border);
+  border-radius: var(--radius-md);
+  background: var(--muted);
+  font-size: 10.5px;
+  color: var(--muted-foreground);
+}
+.sc-src b {
+  color: var(--foreground);
+  font-weight: 600;
+}
+
+/* Development recommendation row. */
+.sc-dev {
+  display: grid;
+  grid-template-columns: 1.15fr 108px 1.35fr 128px 30px;
+  gap: 9px;
+  align-items: center;
+  padding: 9px 0;
+  border-bottom: 1px solid var(--edge);
+}
+.sc-dev:last-of-type {
+  border-bottom: none;
+}
+.sc-dev-h {
+  display: grid;
+  grid-template-columns: 1.15fr 108px 1.35fr 128px 30px;
+  gap: 9px;
+  padding-bottom: 7px;
+  border-bottom: 1px solid var(--border);
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+}
+
+/* Message thread. */
+.sc-thread {
+  display: grid;
+  grid-template-columns: 268px 1fr;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--card);
+  overflow: hidden;
+}
+.sc-convs {
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+}
+.sc-conv {
+  display: grid;
+  grid-template-columns: 28px 1fr auto;
+  gap: 9px;
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--edge);
+  align-items: start;
+}
+.sc-conv[data-on="1"] {
+  background: var(--muted);
+}
+.sc-conv-n {
+  font-size: 12px;
+  font-weight: 600;
+}
+.sc-conv-p {
+  font-size: 10.5px;
+  color: var(--muted-foreground);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.sc-conv-t {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  color: var(--muted-foreground);
+  text-align: right;
+}
+.sc-msgs {
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+  padding: 14px;
+  flex: 1;
+}
+.sc-msg {
+  max-width: 62%;
+  padding: 9px 11px;
+  border-radius: var(--radius-lg);
+  background: var(--muted);
+  border: 1px solid var(--edge);
+  font-size: 11.5px;
+  line-height: 1.5;
+}
+.sc-msg[data-me="1"] {
+  margin-left: auto;
+  background: var(--brand);
+  border-color: var(--brand-edge);
+  color: var(--brand-foreground);
+}
+.sc-msg-t {
+  display: block;
+  margin-top: 5px;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  opacity: 0.75;
+}
+
+/* The printable report. Fixed to a document measure rather than the pane
+   width — the same structured data renders here and into the PDF, and a
+   report that reflows to 1400px would not match its own download. */
+.sc-doc {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+.sc-doc-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 18px 20px;
+  background: var(--muted);
+  border-bottom: 1px solid var(--border);
+}
+.sc-doc-body {
+  padding: 20px;
+  display: grid;
+  gap: 18px;
+}
+.sc-doc-sec {
+  display: grid;
+  gap: 9px;
+}
+.sc-doc-h {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--edge);
+}

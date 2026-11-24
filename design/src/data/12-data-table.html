@@ -1,0 +1,208 @@
+<div class="ds-section">
+  <p class="ds-eyebrow">The workhorse</p>
+  <h2 class="ds-h">Data table</h2>
+  <p class="ds-sub">
+    Seven of the eight screens are a table with a detail sheet. Get this right and most of the dashboard
+    is designed. Shown at the real content width — 1440 minus the 280px sidebar — because column
+    behaviour at any other width is a guess.
+  </p>
+
+  <div class="ds-tw">
+    <table class="ds-t">
+      <thead>
+        <tr>
+          <th style="width: 34px"><span class="ds-cb" data-on="1">{{icon:check:10}}</span></th>
+          <th>Player</th>
+          <th>Position</th>
+          <th>Nationality</th>
+          <th>Level</th>
+          <th><span class="ds-t-sort" data-on="1">Registered {{icon:arrow-down:11}}</span></th>
+          <th>Status</th>
+          <th style="text-align: right">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr data-state="selected">
+          <td><span class="ds-cb" data-on="1">{{icon:check:10}}</span></td>
+          <td>
+            <span class="ds-idc">
+              <span class="ds-av-sm">AO</span>
+              <span class="ds-idc-txt">
+                <span class="ds-idc-name">Adaeze Okonkwo</span>
+                <span class="ds-idc-sub">adaeze.okonkwo@example.com</span>
+              </span>
+            </span>
+          </td>
+          <td>Midfielder</td>
+          <td>Nigeria</td>
+          <td>U19</td>
+          <td class="ds-num">2026-07-14</td>
+          <td><span class="ds-pill" data-tone="good">Signed</span></td>
+          <td>
+            <span class="ds-acts">
+              <span class="ds-act">{{icon:eye:14}}</span>
+              <span class="ds-act">{{icon:download:14}}</span>
+              <span class="ds-act" data-tone="danger">{{icon:trash-2:14}}</span>
+            </span>
+          </td>
+        </tr>
+        <tr data-state="hover">
+          <td><span class="ds-cb"></span></td>
+          <td>
+            <span class="ds-idc">
+              <span class="ds-av-sm">MS</span>
+              <span class="ds-idc-txt">
+                <span class="ds-idc-name">Marco Silva</span>
+                <span class="ds-idc-sub">marco.silva.pereira.longaddress@example.com</span>
+              </span>
+            </span>
+          </td>
+          <td>Forward</td>
+          <td>Portugal</td>
+          <td>U17</td>
+          <td class="ds-num">2026-07-11</td>
+          <td><span class="ds-pill" data-tone="warn">Pending</span></td>
+          <td>
+            <span class="ds-acts">
+              <span class="ds-act" data-state="hover">{{icon:eye:14}}</span>
+              <span class="ds-act">{{icon:download:14}}</span>
+              <span class="ds-act" data-tone="danger">{{icon:trash-2:14}}</span>
+            </span>
+          </td>
+        </tr>
+        <tr>
+          <td><span class="ds-cb"></span></td>
+          <td>
+            <span class="ds-idc">
+              <span class="ds-av-sm">JT</span>
+              <span class="ds-idc-txt">
+                <span class="ds-idc-name">Joseph Tembo</span>
+                <span class="ds-idc-sub">j.tembo@example.com</span>
+              </span>
+            </span>
+          </td>
+          <td>Goalkeeper</td>
+          <td>Zambia</td>
+          <td>U21</td>
+          <td class="ds-num">2026-07-09</td>
+          <td><span class="ds-pill" data-tone="info">Under review</span></td>
+          <td>
+            <span class="ds-acts">
+              <span class="ds-act">{{icon:eye:14}}</span>
+              <span class="ds-act">{{icon:download:14}}</span>
+              <span class="ds-act" data-tone="danger">{{icon:trash-2:14}}</span>
+            </span>
+          </td>
+        </tr>
+        <tr>
+          <td><span class="ds-cb"></span></td>
+          <td>
+            <span class="ds-idc">
+              <span class="ds-av-sm">LK</span>
+              <span class="ds-idc-txt">
+                <span class="ds-idc-name">Lukas Meyer</span>
+                <span class="ds-idc-sub">lukas.meyer@example.com</span>
+              </span>
+            </span>
+          </td>
+          <td>Defender</td>
+          <td>Germany</td>
+          <td>U19</td>
+          <td class="ds-num">2026-07-02</td>
+          <td><span class="ds-pill">Inactive</span></td>
+          <td>
+            <span class="ds-acts">
+              <span class="ds-act">{{icon:eye:14}}</span>
+              <span class="ds-act">{{icon:download:14}}</span>
+              <span class="ds-act" data-tone="danger">{{icon:trash-2:14}}</span>
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="ds-pag">
+      <span>Showing <span class="ds-pag-n">1–10</span> of <span class="ds-pag-n">156</span></span>
+      <span class="ds-pages">
+        <span class="ds-page" data-disabled="1">{{icon:chevron-left:13}}</span>
+        <span class="ds-page" data-on="1">1</span>
+        <span class="ds-page">2</span>
+        <span class="ds-page">3</span>
+        <span class="ds-page">…</span>
+        <span class="ds-page">16</span>
+        <span class="ds-page">{{icon:chevron-right:13}}</span>
+      </span>
+      <span>Rows <span class="ds-pag-n">10</span> {{icon:chevrons-up-down:11}}</span>
+    </div>
+  </div>
+</div>
+
+<div class="ds-section">
+  <p class="ds-eyebrow">Anatomy</p>
+  <div class="ds-anno-grid">
+    <div class="ds-anno"><span class="ds-anno-n">1</span><div><b>Header is chrome, not data.</b> <code class="ds-code">--muted</code> ground with the mono eyebrow at 9.5px. It is <code class="ds-code">sticky top-0</code> under the content header, so it survives a 156-row scroll.</div></div>
+    <div class="ds-anno"><span class="ds-anno-n">2</span><div><b>44px rows, borders not stripes.</b> Zebra striping competes with the status pills for attention; a hairline does the same job silently.</div></div>
+    <div class="ds-anno"><span class="ds-anno-n">3</span><div><b>The identity cell is two lines.</b> Name at 600 weight, secondary in muted, both truncating with ellipsis — see Marco Silva's address. It appears on Players, Partner Apps, Transactions and both Applications tabs.</div></div>
+    <div class="ds-anno"><span class="ds-anno-n">4</span><div><b>Dates and money are mono and tabular</b>, right-aligned when numeric. A ragged currency column is the fastest way to make a dashboard feel untrustworthy.</div></div>
+    <div class="ds-anno"><span class="ds-anno-n">5</span><div><b>Actions are icon-only and right-aligned</b>, ghost until row hover — but always present in the DOM and tab order. Destructive goes last and only turns red on its own hover.</div></div>
+    <div class="ds-anno"><span class="ds-anno-n">6</span><div><b>Selection tints with the brand at 12%</b>, not a saturated fill. Selected rows keep their status pills readable.</div></div>
+  </div>
+  <p class="ds-note">
+    <strong>Sorting is a header affordance, not a menu.</strong> One sorted column at a time, marked with
+    a direction arrow. The existing <code class="ds-code">CustomTable</code> takes pre-rendered
+    <code class="ds-code">ReactNode</code> cells with a <code class="ds-code">headerKeyMap</code>; that API
+    survives this design unchanged — only the styling moves.
+  </p>
+</div>
+
+<div class="ds-section">
+  <p class="ds-eyebrow">Money column</p>
+  <div class="ds-tw" style="max-width: 460px">
+    <table class="ds-t">
+      <thead>
+        <tr><th>Customer</th><th>Product</th><th style="text-align: right">Amount</th><th>Status</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Adaeze Okonkwo</td><td>Academy entry</td><td class="ds-num">€ 1,240.00</td><td><span class="ds-pill" data-tone="good">Paid</span></td></tr>
+        <tr><td>Marco Silva</td><td>Trial package</td><td class="ds-num">€ 118.50</td><td><span class="ds-pill" data-tone="danger">Failed</span></td></tr>
+        <tr><td>Golafly Ltd</td><td>Sponsorship</td><td class="ds-num">€ 97,310.25</td><td><span class="ds-pill" data-tone="good">Paid</span></td></tr>
+        <tr><td>Joseph Tembo</td><td>Brochure</td><td class="ds-num">€ 11.11</td><td><span class="ds-pill" data-tone="warn">Refunded</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="ds-note">
+    Right-aligned, <code class="ds-code">tabular-nums</code>, decimal places always shown even when
+    <code class="ds-code">.00</code>. The digits line up into columns you can scan without reading.
+  </p>
+</div>
+
+<style data-local>
+  .ds-anno-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px 20px;
+  }
+  .ds-anno {
+    display: grid;
+    grid-template-columns: 18px 1fr;
+    gap: 9px;
+    font-size: 11.5px;
+    line-height: 1.5;
+    color: var(--muted-foreground);
+  }
+  .ds-anno b {
+    color: var(--foreground);
+  }
+  .ds-anno-n {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 16px;
+    border-radius: 999px;
+    background: var(--brand);
+    color: var(--brand-foreground);
+    font-family: var(--font-mono);
+    font-size: 8.5px;
+    font-weight: 700;
+  }
+</style>

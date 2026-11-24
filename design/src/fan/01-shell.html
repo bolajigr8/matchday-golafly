@@ -1,0 +1,181 @@
+<div class="ds-section">
+  <p class="ds-eyebrow">Fan · Shell</p>
+  <h2 class="ds-h">Sidebar &amp; mobile tab bar</h2>
+  <p class="ds-sub">
+    Four destinations, mapping one-for-one onto the acceptance criteria: <b>Home</b> is the roll-up
+    and the empty state, <b>Tickets</b> is scenario 2, <b>Travel</b> is scenario 3, and
+    <b>Settings</b> keeps the account reachable without a second login (scenario 5). Both shells come
+    from one definition in <code class="ds-code">design/partials.mjs</code>, so the sidebar and the
+    tab bar can never disagree about what exists or what order it sits in.
+  </p>
+
+  <div class="sh-row">
+    <div>
+      <p class="sh-lab">Desktop · 264px</p>
+      <div class="sh-sb-box">{{fannav:home}}</div>
+    </div>
+
+    <div>
+      <p class="sh-lab">Mobile · bottom tabs</p>
+      <div class="sh-phone">
+        <div class="sh-phone-body">
+          <p class="fan-eyebrow">Wednesday, 19 Aug</p>
+          <p class="fan-h1" style="font-size: 19px; margin-top: 4px">Hi Adaeze</p>
+          <div class="fan-card" data-tight="1" style="margin-top: 14px">
+            <div style="display: flex; align-items: center; gap: 11px">
+              <span class="fan-chip">{{icon:ticket:18}}</span>
+              <div>
+                <p class="fan-eyebrow">Next match</p>
+                <p class="fan-title" style="font-size: 13px">Barcelona v Atlético</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        {{fantabs:home}}
+      </div>
+    </div>
+
+    <div class="sh-notes">
+      <div class="ds-anno"><span class="ds-anno-n">1</span><div><b>The fan's own name and email</b> sit at the top, above the nav. This is their account, not a console — the admin sidebar puts the user last for exactly the opposite reason.</div></div>
+      <div class="ds-anno"><span class="ds-anno-n">2</span><div><b>Active is a solid lime pill</b>, not the admin's subtle wash. On a phone in daylight the wash is invisible. Fill, weight and colour all change together, so the state survives greyscale and forced-colors.</div></div>
+      <div class="ds-anno"><span class="ds-anno-n">3</span><div><b>42px nav rows, 62px tab targets</b> — up from the admin's 32px. Thumbs, not a mouse.</div></div>
+      <div class="ds-anno"><span class="ds-anno-n">4</span><div><b>Tickets carries a dot, never a count.</b> We cannot know how many tickets a fan has until the ticket endpoint exists, and a made-up number is worse than admitting something is unfinished. It disappears the day the endpoint lands.</div></div>
+      <div class="ds-anno"><span class="ds-anno-n">5</span><div><b>Same four, same order, both shells.</b> The tab bar is the sidebar with the labels shrunk — nothing is re-ordered or hidden on collapse, so muscle memory survives the breakpoint.</div></div>
+    </div>
+  </div>
+
+  <p class="ds-note">
+    <strong>Why no rail.</strong> The admin sidebar collapses to a 72px icon rail because staff live
+    in it all day and want the screen back. A fan visits for a minute at a time and reads labels, so
+    the fan shell has two states — full sidebar, or bottom tabs — and no third one to learn.
+    <br /><br />
+    <strong>Scenario 5</strong> is a navigation guarantee, not a visual one: every one of these
+    moves is a client-side route change against a session cookie already in hand, so nothing here
+    can prompt for a second login.
+  </p>
+</div>
+
+<div class="ds-section">
+  <p class="ds-eyebrow">Nav item states</p>
+  <div class="sh-states">
+    <div class="sh-state">
+      <span class="sh-state-lab">Rest</span>
+      <div class="sh-state-box"><div class="fan-nav-item">{{icon:plane:18}}<span>Travel</span></div></div>
+    </div>
+    <div class="sh-state">
+      <span class="sh-state-lab">Hover</span>
+      <div class="sh-state-box"><div class="fan-nav-item" data-state="hover">{{icon:plane:18}}<span>Travel</span></div></div>
+    </div>
+    <div class="sh-state">
+      <span class="sh-state-lab">Active</span>
+      <div class="sh-state-box"><div class="fan-nav-item" data-state="active">{{icon:plane:18}}<span>Travel</span></div></div>
+    </div>
+    <div class="sh-state">
+      <span class="sh-state-lab">Awaiting endpoint</span>
+      <div class="sh-state-box"><div class="fan-nav-item">{{icon:ticket:18}}<span>Tickets</span><i class="fan-nav-dot"></i></div></div>
+    </div>
+  </div>
+</div>
+
+<style data-local>
+  /* Two shells side by side, annotations BELOW rather than in a third column.
+     A dual card splits its width between the light and dark panels, so a
+     three-column row had ~200px per column and wrapped into a 2400px-tall
+     card. Measured, not guessed. */
+  .sh-row {
+    display: grid;
+    grid-template-columns: 264px 390px;
+    gap: 22px;
+    align-items: start;
+  }
+  .sh-notes {
+    grid-column: 1 / -1;
+    margin-top: 4px;
+  }
+  .sh-lab {
+    font-family: var(--font-mono);
+    font-size: 9.5px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted-foreground);
+    margin: 0 0 9px;
+  }
+  /* The partial emits a bare <aside>; the card frames it so the edges read. */
+  .sh-sb-box {
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+  .sh-sb-box .fan-sb {
+    border-right: 0;
+    min-height: 430px;
+  }
+  .sh-phone {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--border);
+    border-radius: 28px;
+    overflow: hidden;
+    background: var(--background);
+    min-height: 430px;
+  }
+  .sh-phone-body {
+    flex: 1;
+    padding: 20px 18px;
+  }
+  .sh-notes {
+    display: flex;
+    flex-direction: column;
+    gap: 11px;
+  }
+  .ds-anno {
+    display: grid;
+    grid-template-columns: 18px 1fr;
+    gap: 9px;
+    font-size: 11.5px;
+    line-height: 1.55;
+    color: var(--muted-foreground);
+  }
+  .ds-anno b {
+    color: var(--foreground);
+  }
+  .ds-anno-n {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 17px;
+    height: 17px;
+    border-radius: 999px;
+    background: var(--brand);
+    color: var(--brand-foreground);
+    font-family: var(--font-mono);
+    font-size: 8.5px;
+    font-weight: 700;
+  }
+  .sh-states {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+    max-width: 900px;
+  }
+  .sh-state {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+  }
+  .sh-state-lab {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: var(--muted-foreground);
+  }
+  .sh-state-box {
+    background: var(--sidebar);
+    border: 1px solid var(--sidebar-border);
+    border-radius: 16px;
+    padding: 7px;
+  }
+</style>

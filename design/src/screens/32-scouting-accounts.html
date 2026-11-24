@@ -1,0 +1,171 @@
+<!-- ADMIN · SCOUTS & CLUBS — GOL-SCOUT-01
+
+     Where a scouting account comes from. The scout side has no sign-up of its
+     own that grants anything: someone can pick "Scout" at /register, but until
+     an admin activates the account here it has no assigned players and no
+     dashboard worth opening.
+
+     The one decision worth defending: credentials are NEVER shown back. The
+     sheet sends an activation link and the scout sets their own password.
+     An admin who can read a scout's password can sign reports as them, and a
+     scouting report carries a named licence into a club's hands. -->
+<div class="ds-screen">
+  <div class="ds-shell">
+{{sidebar:scouting}}
+    <div class="ds-pane">
+      <div class="ds-hdr">
+        <div class="ds-hdr-r1">
+          <span class="ds-crumb">Dashboard / <b>Scouting</b></span>
+          <button class="ds-btn" data-size="sm">{{icon:plus:13}} New scout or club</button>
+        </div>
+        <div class="ds-hdr-r2">
+          <span class="ds-hdr-title">Scouts &amp; clubs</span>
+          <span class="ds-hdr-stats">
+            <span class="ds-hdr-stat"><i style="background: var(--status-good)"></i>9 active</span>
+            <span class="ds-hdr-stat"><i style="background: var(--status-warn)"></i>2 awaiting activation</span>
+            <span class="ds-hdr-stat"><i style="background: var(--status-neutral)"></i>1 deactivated</span>
+          </span>
+        </div>
+        <div class="ds-tabs" style="margin-top: 12px">
+          <span class="ds-tab" data-on="1">Accounts</span>
+          <span class="ds-tab">Assignments</span>
+          <span class="ds-tab">Reports <span class="ds-dd-tag">5</span></span>
+          <span class="ds-tab">Performance</span>
+          <span class="ds-tab">Oversight</span>
+          <span class="ds-tab">Methodology</span>
+        </div>
+      </div>
+
+      <div class="ds-pane-body">
+        <div class="ds-tb">
+          <span class="ds-input" style="width: 210px">{{icon:search:14}} Search scouts…</span>
+          <span class="ds-input" style="gap: 9px">{{icon:list-filter:14}} Type {{icon:chevron-down:12}}</span>
+          <span class="ds-input" style="gap: 9px">{{icon:list-filter:14}} Status {{icon:chevron-down:12}}</span>
+          <span class="ds-chip">Camp <b>Barcelona 2026</b><span class="ds-chip-x">{{icon:x:10}}</span></span>
+        </div>
+
+        <div class="ds-tw">
+          <table class="ds-t">
+            <thead><tr>
+              <th>Account</th><th>Type</th><th>Organisation</th><th>Country</th>
+              <th style="text-align:right">Assigned</th><th style="text-align:right">Published</th>
+              <th>Status</th><th style="text-align:right">Actions</th>
+            </tr></thead>
+            <tbody>
+              <tr>
+                <td><span class="ds-idc"><span class="ds-av-sm">JC</span><span class="ds-idc-txt"><span class="ds-idc-name">James Carter</span><span class="ds-idc-sub">j.carter@golafly.com</span></span></span></td>
+                <td>Scout</td><td>Golafly Scouting Network</td><td>United Kingdom</td>
+                <td class="ds-num" style="text-align:right">24</td><td class="ds-num" style="text-align:right">8</td>
+                <td><span class="ds-pill" data-tone="good">Active</span></td>
+                <td style="text-align:right"><span class="ds-acts"><span class="ds-act">{{icon:eye:14}}</span><span class="ds-act">{{icon:pencil:14}}</span><span class="ds-act">{{icon:ellipsis-vertical:14}}</span></span></td>
+              </tr>
+              <tr>
+                <td><span class="ds-idc"><span class="ds-av-sm">AD</span><span class="ds-idc-txt"><span class="ds-idc-name">Amara Diallo</span><span class="ds-idc-sub">a.diallo@golafly.com</span></span></span></td>
+                <td>Scout</td><td>Golafly Scouting Network</td><td>Senegal</td>
+                <td class="ds-num" style="text-align:right">18</td><td class="ds-num" style="text-align:right">6</td>
+                <td><span class="ds-pill" data-tone="good">Active</span></td>
+                <td style="text-align:right"><span class="ds-acts"><span class="ds-act">{{icon:eye:14}}</span><span class="ds-act">{{icon:pencil:14}}</span><span class="ds-act">{{icon:ellipsis-vertical:14}}</span></span></td>
+              </tr>
+              <tr>
+                <td><span class="ds-idc"><span class="ds-av-sm">RC</span><span class="ds-idc-txt"><span class="ds-idc-name">RCD Espanyol</span><span class="ds-idc-sub">scouting@rcde.example</span></span></span></td>
+                <td>Club</td><td>RCD Espanyol</td><td>Spain</td>
+                <td class="ds-num" style="text-align:right">12</td><td class="ds-num" style="text-align:right">4</td>
+                <td><span class="ds-pill" data-tone="good">Active</span></td>
+                <td style="text-align:right"><span class="ds-acts"><span class="ds-act">{{icon:eye:14}}</span><span class="ds-act">{{icon:pencil:14}}</span><span class="ds-act">{{icon:ellipsis-vertical:14}}</span></span></td>
+              </tr>
+              <tr>
+                <td><span class="ds-idc"><span class="ds-av-sm">MB</span><span class="ds-idc-txt"><span class="ds-idc-name">Marco Bianchi</span><span class="ds-idc-sub">m.bianchi@example.com</span></span></span></td>
+                <td>Scout</td><td>Independent</td><td>Italy</td>
+                <td class="ds-num" style="text-align:right">0</td><td class="ds-num" style="text-align:right">0</td>
+                <td><span class="ds-pill" data-tone="warn">Invite sent</span></td>
+                <td style="text-align:right"><span class="ds-acts"><span class="ds-act">{{icon:eye:14}}</span><span class="ds-act">{{icon:refresh-cw:14}}</span><span class="ds-act">{{icon:ellipsis-vertical:14}}</span></span></td>
+              </tr>
+              <tr>
+                <td><span class="ds-idc"><span class="ds-av-sm">SK</span><span class="ds-idc-txt"><span class="ds-idc-name">Sofia Kowalski</span><span class="ds-idc-sub">s.kowalski@example.com</span></span></span></td>
+                <td>Scout</td><td>Independent</td><td>Poland</td>
+                <td class="ds-num" style="text-align:right">0</td><td class="ds-num" style="text-align:right">0</td>
+                <td><span class="ds-pill" data-tone="warn">Self-registered</span></td>
+                <td style="text-align:right"><span class="ds-acts"><span class="ds-act">{{icon:eye:14}}</span><span class="ds-act">{{icon:check:14}}</span><span class="ds-act">{{icon:ellipsis-vertical:14}}</span></span></td>
+              </tr>
+              <tr>
+                <td><span class="ds-idc"><span class="ds-av-sm">PT</span><span class="ds-idc-txt"><span class="ds-idc-name">Pieter Tromp</span><span class="ds-idc-sub">p.tromp@example.com</span></span></span></td>
+                <td>Scout</td><td>Independent</td><td>Netherlands</td>
+                <td class="ds-num" style="text-align:right">0</td><td class="ds-num" style="text-align:right">11</td>
+                <td><span class="ds-pill">Deactivated</span></td>
+                <td style="text-align:right"><span class="ds-acts"><span class="ds-act">{{icon:eye:14}}</span><span class="ds-act">{{icon:refresh-cw:14}}</span><span class="ds-act">{{icon:ellipsis-vertical:14}}</span></span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p class="ac-note">
+          <b>Self-registered</b> is its own status, not a variant of "invite
+          sent". Somebody picked "Scout" at <span class="ac-code">/register</span>
+          and is waiting on approval — an admin never asked for them, so the
+          row's primary action is <i>review and approve</i> rather than
+          <i>resend</i>. A deactivated scout keeps their published count: the
+          reports they wrote are still real and still cited.
+        </p>
+      </div>
+    </div>
+
+    <!-- CREATE SHEET -->
+    <div class="ds-sh ds-open-sheet">
+      <div class="ds-sh-head">
+        <div>
+          <div class="ds-sh-l1">New scouting account</div>
+          <div class="ds-sh-l2">Creates the account and emails an activation link</div>
+        </div>
+        <button class="ds-icon-btn">{{icon:x:14}}</button>
+      </div>
+      <div class="ds-sh-body">
+        <div class="ds-field">
+          <span class="ds-label">Account type</span>
+          <div class="ac-seg">
+            <span class="ac-seg-b" data-on="1">Scout</span>
+            <span class="ac-seg-b">Club representative</span>
+          </div>
+        </div>
+        <div class="ds-field"><span class="ds-label">Full name</span><span class="ds-input">Marco Bianchi</span></div>
+        <div class="ds-field"><span class="ds-label">Email</span><span class="ds-input">m.bianchi@example.com</span></div>
+        <div class="ds-field"><span class="ds-label">Phone</span><span class="ds-input">+39 340 000 0000</span></div>
+        <div class="ds-field"><span class="ds-label">Organisation / club</span><span class="ds-input">Independent</span></div>
+        <div class="ds-field"><span class="ds-label">Country</span><span class="ds-input" style="justify-content: space-between">Italy {{icon:chevron-down:12}}</span></div>
+        <div class="ds-field"><span class="ds-label">Licence <span style="color: var(--muted-foreground); font-weight: 400">— optional</span></span><span class="ds-input" style="justify-content: space-between">UEFA B {{icon:chevron-down:12}}</span></div>
+        <div class="ds-field"><span class="ds-label">Camps</span><span class="ds-input" style="justify-content: space-between">Barcelona 2026 {{icon:chevron-down:12}}</span></div>
+
+        <div class="ds-switch-row"><span class="ds-switch" data-on="1"></span> Activate on acceptance</div>
+
+        <div class="ds-alert" style="margin-top: 12px">
+          {{icon:shield:15}}
+          <span><b>No password is set here.</b> The scout receives an
+            activation link and chooses their own. An admin who could read a
+            scout's password could sign reports as them — and a report carries
+            that scout's name and licence to a club.</span>
+        </div>
+
+        <div class="ds-alert" data-tone="warn" style="margin-top: 10px">
+          {{icon:circle-alert:15}}
+          <span><b>m.bianchi@example.com already has a fan account.</b>
+            Adding a scouting role to it keeps one login for this person. Create
+            a separate account only if the club requires it.</span>
+        </div>
+      </div>
+      <div class="ds-sh-foot">
+        <button class="ds-btn" data-variant="outline" data-size="sm">Cancel</button>
+        <button class="ds-btn" data-size="sm">{{icon:mail:13}} Create &amp; send invite</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style data-local>
+  .ds-shell { min-height: 640px; position: relative; }
+  .ds-open-sheet { position: absolute; top: 0; right: 0; bottom: 0; width: 380px; border-radius: 0; border-top: none; border-right: none; border-bottom: none; }
+  .ac-note { font-size: 10.5px; line-height: 1.6; color: var(--muted-foreground); margin-top: 14px; max-width: 780px; }
+  .ac-code { font-family: var(--font-mono); font-size: 10px; padding: 1px 5px; border-radius: 4px; background: var(--muted); border: 1px solid var(--edge); }
+  .ac-seg { display: flex; gap: 0; border: 1px solid var(--border); border-radius: var(--radius-md); overflow: hidden; }
+  .ac-seg-b { flex: 1; text-align: center; padding: 7px 10px; font-size: 11.5px; color: var(--muted-foreground); border-right: 1px solid var(--border); }
+  .ac-seg-b:last-child { border-right: none; }
+  .ac-seg-b[data-on="1"] { background: var(--brand); color: var(--brand-foreground); font-weight: 600; }
+</style>

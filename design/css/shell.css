@@ -1,0 +1,492 @@
+/* ─────────────────────────────────────────────────────────────────────────
+   App shell — sidebar + content pane. NO TOP BAR.
+
+   Everything a global top bar would have carried is re-homed: search, theme,
+   notifications and the user menu go into the sidebar; the breadcrumb and
+   page actions go into a sticky header inside the content pane.
+   ───────────────────────────────────────────────────────────────────────── */
+
+.ds-shell {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--background);
+}
+.ds-shell[data-rail="1"] {
+  grid-template-columns: 72px 1fr;
+}
+
+/* ── Sidebar ────────────────────────────────────────────────────────────── */
+.ds-sb {
+  background: var(--sidebar);
+  border-right: 1px solid var(--sidebar-border);
+  display: flex;
+  flex-direction: column;
+  min-height: 520px;
+}
+.ds-sb-sec {
+  padding: 12px;
+}
+.ds-sb-sec + .ds-sb-sec {
+  border-top: 1px solid var(--sidebar-border);
+}
+.ds-sb-nav {
+  flex: 1;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+/* Zone 1 — brand. The mono ADMIN pill also carries environment (STAGING),
+   which is the other thing a top bar usually announces. */
+.ds-sb-brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.ds-sb-mark {
+  font-family: var(--font-heading);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--sidebar-foreground);
+}
+.ds-sb-tag {
+  font-family: var(--font-mono);
+  font-size: 8.5px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+  border: 1px solid var(--sidebar-border);
+  border-radius: 999px;
+  padding: 2px 7px;
+}
+
+/* Zone 2 — a button dressed as an input. Opens the command palette, which
+   does search AND navigation, so the top bar's search field is not missed. */
+.ds-sb-search {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  width: 100%;
+  height: 30px;
+  padding: 0 9px;
+  border: 1px solid var(--sidebar-border);
+  border-radius: var(--radius-md);
+  background: var(--background);
+  color: var(--muted-foreground);
+  font-size: 12px;
+  cursor: pointer;
+}
+.ds-sb-search svg {
+  width: 13px;
+  height: 13px;
+  flex: none;
+}
+.ds-kbd {
+  margin-left: auto;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  border: 1px solid var(--sidebar-border);
+  border-radius: 4px;
+  padding: 1px 4px;
+  color: var(--muted-foreground);
+}
+
+/* Zone 3 — nav. Active = accent wash + a 2px lime bar + brand-text label.
+   The bar may be raw lime (a fill); the label may not (it is type). */
+.ds-sb-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 32px;
+  padding: 0 10px;
+  border-radius: var(--radius-md);
+  font-size: 12.5px;
+  color: var(--muted-foreground);
+  cursor: pointer;
+}
+.ds-sb-item svg {
+  width: 15px;
+  height: 15px;
+  flex: none;
+}
+.ds-sb-item[data-state="hover"] {
+  background: var(--sidebar-accent);
+  color: var(--sidebar-foreground);
+}
+.ds-sb-item[data-state="active"] {
+  background: var(--sidebar-accent);
+  color: var(--brand-text);
+  font-weight: 600;
+}
+.ds-sb-item[data-state="active"]::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 7px;
+  bottom: 7px;
+  width: 2px;
+  border-radius: 999px;
+  background: var(--brand);
+}
+.ds-sb-count {
+  margin-left: auto;
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  font-weight: 700;
+  color: var(--muted-foreground);
+  background: var(--sidebar-accent);
+  border-radius: 999px;
+  padding: 1px 6px;
+  font-variant-numeric: tabular-nums;
+}
+.ds-sb-item[data-state="active"] .ds-sb-count {
+  background: var(--background);
+}
+
+/* Zone 4 — utility. Bell + theme, the two top-bar leftovers. */
+.ds-sb-util {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.ds-icon-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: var(--radius-md);
+  color: var(--muted-foreground);
+  cursor: pointer;
+  border: none;
+  background: transparent;
+}
+.ds-icon-btn svg {
+  width: 15px;
+  height: 15px;
+}
+.ds-icon-btn[data-state="hover"] {
+  background: var(--sidebar-accent);
+  color: var(--sidebar-foreground);
+}
+.ds-icon-btn[data-dot="1"]::after {
+  content: "";
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 5px;
+  height: 5px;
+  border-radius: 999px;
+  background: var(--brand);
+  box-shadow: 0 0 0 2px var(--sidebar);
+}
+.ds-seg {
+  display: inline-flex;
+  border: 1px solid var(--sidebar-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  margin-left: auto;
+}
+.ds-seg-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 26px;
+  color: var(--muted-foreground);
+  cursor: pointer;
+}
+.ds-seg-btn svg {
+  width: 13px;
+  height: 13px;
+}
+.ds-seg-btn[data-on="1"] {
+  background: var(--sidebar-accent);
+  color: var(--brand-text);
+}
+
+/* Zone 5 — user. Popover opens UPWARD; there is no top bar to drop from. */
+.ds-sb-user {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 7px 8px;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  width: 100%;
+}
+.ds-sb-user[data-state="hover"] {
+  background: var(--sidebar-accent);
+}
+.ds-avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 999px;
+  background: var(--brand);
+  color: var(--brand-foreground);
+  border: 1px solid var(--brand-edge);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  flex: none;
+}
+.ds-sb-user-name {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--sidebar-foreground);
+  line-height: 1.2;
+}
+.ds-sb-user-role {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+  margin-top: 2px;
+}
+
+/* ── Content pane header (sticky, in-pane) ──────────────────────────────── */
+.ds-pane {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.ds-hdr {
+  padding: 14px 18px 0;
+  background: var(--background);
+}
+.ds-hdr[data-scrolled="1"] {
+  border-bottom: 1px solid var(--border);
+  box-shadow: 0 1px 0 var(--border);
+}
+.ds-hdr-r1 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.ds-crumb {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+}
+.ds-crumb b {
+  color: var(--foreground);
+  font-weight: 700;
+}
+.ds-hdr-r2 {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-top: 8px;
+}
+.ds-hdr-title {
+  font-family: var(--font-heading);
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--foreground);
+}
+.ds-hdr-stats {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 11px;
+  color: var(--muted-foreground);
+}
+.ds-hdr-stat {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-variant-numeric: tabular-nums;
+}
+.ds-hdr-stat i {
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  display: inline-block;
+}
+.ds-tabs {
+  display: flex;
+  gap: 18px;
+  margin-top: 12px;
+  border-bottom: 1px solid var(--border);
+}
+.ds-tab {
+  position: relative;
+  padding: 0 0 9px;
+  font-size: 12.5px;
+  color: var(--muted-foreground);
+  cursor: pointer;
+}
+.ds-tab[data-on="1"] {
+  color: var(--foreground);
+  font-weight: 600;
+}
+.ds-tab[data-on="1"]::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 2px;
+  border-radius: 999px;
+  background: var(--brand);
+}
+.ds-pane-body {
+  padding: 16px 18px 18px;
+  flex: 1;
+}
+
+/* ── Overlays ───────────────────────────────────────────────────────────── */
+.ds-pop {
+  width: 232px;
+  background: var(--popover);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 10px 30px oklch(0 0 0 / 0.18);
+  padding: 5px;
+}
+.ds-pop-head {
+  padding: 8px 9px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 4px;
+}
+.ds-pop-item {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  height: 30px;
+  padding: 0 9px;
+  border-radius: var(--radius-md);
+  font-size: 12.5px;
+  color: var(--foreground);
+  cursor: pointer;
+}
+.ds-pop-item svg {
+  width: 14px;
+  height: 14px;
+  color: var(--muted-foreground);
+}
+.ds-pop-item[data-state="hover"] {
+  background: var(--accent);
+}
+.ds-pop-item[data-tone="danger"],
+.ds-pop-item[data-tone="danger"] svg {
+  color: var(--destructive);
+}
+.ds-cmdk {
+  width: 100%;
+  max-width: 440px;
+  background: var(--popover);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  box-shadow: 0 20px 50px oklch(0 0 0 / 0.28);
+  overflow: hidden;
+}
+.ds-cmdk-input {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--border);
+  color: var(--muted-foreground);
+  font-size: 13px;
+}
+.ds-cmdk-group {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+  padding: 10px 14px 5px;
+}
+.ds-cmdk-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 14px;
+  font-size: 12.5px;
+  color: var(--foreground);
+}
+.ds-cmdk-item svg {
+  width: 14px;
+  height: 14px;
+  color: var(--muted-foreground);
+}
+.ds-cmdk-item[data-on="1"] {
+  background: var(--accent);
+}
+.ds-cmdk-hint {
+  margin-left: auto;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--muted-foreground);
+}
+.ds-sheet {
+  width: 300px;
+  background: var(--card);
+  border-left: 1px solid var(--border);
+  box-shadow: -12px 0 32px oklch(0 0 0 / 0.16);
+  display: flex;
+  flex-direction: column;
+}
+.ds-sheet-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--border);
+}
+.ds-sheet-title {
+  font-family: var(--font-heading);
+  font-size: 13px;
+  font-weight: 600;
+}
+.ds-notif {
+  display: flex;
+  gap: 9px;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border);
+}
+.ds-notif-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--brand);
+  margin-top: 5px;
+  flex: none;
+}
+.ds-notif-dot[data-read="1"] {
+  background: var(--border);
+}
+.ds-notif-txt {
+  display: block;
+  font-size: 11.5px;
+  line-height: 1.45;
+  color: var(--foreground);
+}
+.ds-notif-time {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--muted-foreground);
+  margin-top: 3px;
+}

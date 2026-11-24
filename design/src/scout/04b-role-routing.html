@@ -1,0 +1,126 @@
+<!-- ROLE ROUTING & ACCESS LOCKS
+
+     The half of auth that is actually scouting-specific. One shared sign-in
+     means the ROLE is what routes, and proxy.ts is where the courtesy lock
+     lives — a third guard alongside the existing /admin and /dashboard ones,
+     on the same optimistic-cookie pattern.
+
+     Split from the sign-in card because the two together ran to 2410px. -->
+<div class="au">
+  <div class="au-col">
+    <p class="ds-eyebrow">Where each role lands</p>
+    <div class="au-card">
+      <div class="au-route">
+        <span class="au-route-r">{{icon:shield:14}} Super admin / Admin</span>
+        <span class="au-route-a">{{icon:arrow-right:13}}</span>
+        <span class="au-route-p">/admin/dashboard</span>
+      </div>
+      <div class="au-route" data-me="1">
+        <span class="au-route-r">{{icon:clipboard-list:14}} Scout</span>
+        <span class="au-route-a">{{icon:arrow-right:13}}</span>
+        <span class="au-route-p">/scout/dashboard</span>
+      </div>
+      <div class="au-route" data-me="1">
+        <span class="au-route-r">{{icon:briefcase:14}} Club representative</span>
+        <span class="au-route-a">{{icon:arrow-right:13}}</span>
+        <span class="au-route-p">/scout/dashboard</span>
+      </div>
+      <div class="au-route">
+        <span class="au-route-r">{{icon:user-round:14}} Player / fan</span>
+        <span class="au-route-a">{{icon:arrow-right:13}}</span>
+        <span class="au-route-p">/dashboard</span>
+      </div>
+      <p class="au-note">Club reps land on the same dashboard as scouts, not a
+        fourth one. They do the same work on the same assigned players; what
+        differs is permission, and permission is a filter on one dashboard
+        rather than a reason to build another.</p>
+    </div>
+
+    <p class="ds-eyebrow" style="margin-top: 18px">Locked out</p>
+    <div class="au-card">
+      <div class="ds-empty" style="padding: 26px 16px">
+        <span class="ds-empty-ic" data-tone="danger">{{icon:shield:22}}</span>
+        <p class="ds-empty-t">You don't have access to that area</p>
+        <p class="ds-empty-s">Your account is a <b>Scout</b> account.
+          <span class="au-code">/admin</span> is for Golafly administrators.</p>
+        <button class="ds-btn" data-variant="outline" data-size="sm" style="margin-top: 12px">{{icon:arrow-left:13}} Back to my dashboard</button>
+      </div>
+      <p class="au-note">A signed-in scout who reaches an admin URL gets this,
+        not the sign-in form. Bouncing them to /login would imply the fix is to
+        sign in again, and they are already signed in — they'd loop.</p>
+    </div>
+
+    <div class="au-card" style="margin-top: 14px">
+      <p class="au-card-h">{{icon:circle-help:14}} What proxy.ts can and cannot do</p>
+      <p class="au-note" style="margin-top: 8px">
+        The guard is an <b>optimistic</b> cookie check, exactly as the two
+        existing ones are: it stops the dashboard shell flashing before a
+        client-side redirect. It cannot validate a token — only the Golafly API
+        can — so a scout token is not <i>prevented</i> from reaching admin data
+        here. It is prevented by the API returning 401, which the axios
+        interceptor turns into a cleared session. Role-based access control
+        (GOL-SCOUT-23) is a server concern; this screen is the courtesy.
+      </p>
+    </div>
+  </div>
+</div>
+
+<style data-local>
+  /* SINGLE COLUMN, for the dual-panel reason: each panel is ~596px wide, and
+     three auth cards across would be 180px each. */
+  .au { display: grid; grid-template-columns: 1fr; gap: 20px; align-items: start; padding: 4px; }
+  .au-col { min-width: 0; }
+  .au-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 18px;
+  }
+  .au-brand { margin-bottom: 14px; }
+  .au-mark {
+    font-family: var(--font-heading);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--brand-text);
+  }
+  .au-h { font-family: var(--font-heading); font-size: 19px; font-weight: 700; }
+  .au-sub { font-size: 11.5px; line-height: 1.5; color: var(--muted-foreground); margin: 4px 0 14px; }
+  .au-row { display: flex; justify-content: space-between; align-items: center; margin: 2px 0 13px; font-size: 11px; }
+  .au-link { color: var(--brand-text); font-size: 11px; }
+  .au-foot { text-align: center; font-size: 11px; color: var(--muted-foreground); margin-top: 13px; }
+  .au-note { font-size: 10.5px; line-height: 1.55; color: var(--muted-foreground); margin-top: 11px; }
+  .au-card-h { display: flex; align-items: center; gap: 7px; font-family: var(--font-heading); font-size: 12.5px; font-weight: 600; }
+  .au-code {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    padding: 1px 5px;
+    border-radius: 4px;
+    background: var(--muted);
+    border: 1px solid var(--edge);
+  }
+  .au-route {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    gap: 9px;
+    align-items: center;
+    padding: 9px 0;
+    border-bottom: 1px solid var(--edge);
+    font-size: 11.5px;
+  }
+  .au-route:last-of-type { border-bottom: none; }
+  .au-route-r { display: flex; align-items: center; gap: 7px; color: var(--muted-foreground); }
+  .au-route[data-me="1"] .au-route-r { color: var(--foreground); font-weight: 600; }
+  .au-route-a { color: var(--muted-foreground); }
+  .au-route-p {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    padding: 2px 6px;
+    border-radius: 4px;
+    background: var(--muted);
+    border: 1px solid var(--edge);
+  }
+  .au-route[data-me="1"] .au-route-p { color: var(--brand-text); border-color: var(--brand-edge); }
+  .ds-empty-ic[data-tone="danger"] { color: var(--status-danger); }
+  .ds-input[data-invalid="1"] { border-color: var(--status-danger); }
+</style>

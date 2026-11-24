@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useCallback } from "react";
+import { hasCookiebotConsent } from "@/components/shared/cookiebot-third-party-scripts";
 import { usePathname } from "next/navigation";
 
 /* ── Window type augmentation ────────────────────────────────── */
@@ -24,22 +25,27 @@ declare global {
 }
 
 /* ── Supported languages ─────────────────────────────────────── */
+/* `code` is the LANGUAGE code Google Translate expects (en, zh-CN); `flag` is
+   the COUNTRY code of the flag image under public/flags. They are two
+   different things and often disagree — en→gb, ar→sa, ja→jp, sv→se — so both
+   fields have to be carried. `flag` used to hold a flag emoji, which Windows
+   renders as the two letters it is built from; see components/ui/flag.tsx. */
 export const LANGS = [
-  { code: "en",    label: "English",    flag: "🇬🇧" },
-  { code: "es",    label: "Español",    flag: "🇪🇸" },
-  { code: "fr",    label: "Français",   flag: "🇫🇷" },
-  { code: "de",    label: "Deutsch",    flag: "🇩🇪" },
-  { code: "it",    label: "Italiano",   flag: "🇮🇹" },
-  { code: "pt",    label: "Português",  flag: "🇵🇹" },
-  { code: "ar",    label: "العربية",   flag: "🇸🇦" },
-  { code: "zh-CN", label: "中文",       flag: "🇨🇳" },
-  { code: "ru",    label: "Русский",   flag: "🇷🇺" },
-  { code: "ja",    label: "日本語",    flag: "🇯🇵" },
-  { code: "ko",    label: "한국어",     flag: "🇰🇷" },
-  { code: "tr",    label: "Türkçe",    flag: "🇹🇷" },
-  { code: "nl",    label: "Nederlands", flag: "🇳🇱" },
-  { code: "sv",    label: "Svenska",    flag: "🇸🇪" },
-  { code: "pl",    label: "Polski",     flag: "🇵🇱" },
+  { code: "en",    label: "English",    flag: "gb" },
+  { code: "es",    label: "Español",    flag: "es" },
+  { code: "fr",    label: "Français",   flag: "fr" },
+  { code: "de",    label: "Deutsch",    flag: "de" },
+  { code: "it",    label: "Italiano",   flag: "it" },
+  { code: "pt",    label: "Português",  flag: "pt" },
+  { code: "ar",    label: "العربية",   flag: "sa" },
+  { code: "zh-CN", label: "中文",       flag: "cn" },
+  { code: "ru",    label: "Русский",   flag: "ru" },
+  { code: "ja",    label: "日本語",    flag: "jp" },
+  { code: "ko",    label: "한국어",     flag: "kr" },
+  { code: "tr",    label: "Türkçe",    flag: "tr" },
+  { code: "nl",    label: "Nederlands", flag: "nl" },
+  { code: "sv",    label: "Svenska",    flag: "se" },
+  { code: "pl",    label: "Polski",     flag: "pl" },
 ] as const;
 
 export type LangCode = (typeof LANGS)[number]["code"];
@@ -56,6 +62,14 @@ function triggerWidgetTranslate(langCode: string) {
 
 /* ── Public switch function (called from navbar) ─────────────── */
 export function setGoogleTranslateLanguage(langCode: LangCode) {
+  /* No consent check here. Picking a language IS the visitor asking for a
+     translation, and the googtrans cookie is what delivers it — a cookie
+     for a service the visitor explicitly requested needs no prior consent.
+     Gating this on Cookiebot "preferences" left translation dead whenever
+     the banner could not show (golafly.com was missing from the Cookiebot
+     domain group, so nobody could ever opt in). Without consent the widget
+     isn't loaded yet, so this falls through to cookie + reload below and
+     the provider loads it on the next page because a language is chosen. */
   if (langCode === "en") {
     /* Restore original language */
     const iframe = document.querySelector<HTMLIFrameElement>(".goog-te-banner-frame");
@@ -155,9 +169,17 @@ export function GoogleTranslateProvider() {
     setTimeout(() => triggerWidgetTranslate(lang), 150);
   }, []);
 
-  /* Initialise the widget script once */
+  /* Initialise the widget script once — after "preferences" consent
+     (immediately when Cookiebot is off; see lib/consent.ts), or as soon as
+     the visitor has picked a language. */
   useEffect(() => {
+    const initialise = () => {
+    // Runs on the main site and on the landing sites (epl / championsleague /
+    // laliga): both have a language picker in the navbar.
+    /* Load on consent, or once the visitor has picked a language
+       themselves (see setGoogleTranslateLanguage). */
     if (initialised.current) return;
+    if (!hasCookiebotConsent("preferences") && getActiveLang() === "en") return;
     initialised.current = true;
 
     window.googleTranslateElementInit = () => {
@@ -179,9 +201,19 @@ export function GoogleTranslateProvider() {
       s.src    = "//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
       s.async  = true;
       /* After the script loads, re-apply any saved language */
+      s.dataset.cookiebotManaged = "true";
       s.onload = () => setTimeout(reapply, 500);
       document.body.appendChild(s);
     }
+    };
+
+    initialise();
+    window.addEventListener("CookiebotOnConsentReady", initialise);
+    window.addEventListener("CookiebotOnAccept", initialise);
+    return () => {
+      window.removeEventListener("CookiebotOnConsentReady", initialise);
+      window.removeEventListener("CookiebotOnAccept", initialise);
+    };
   }, [reapply]);
 
   /* Re-apply on every Next.js route change */

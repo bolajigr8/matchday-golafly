@@ -1,0 +1,130 @@
+<div class="fan-screen">
+{{fannav:home}}
+  <div class="fan-main">
+    <p class="fan-eyebrow">Wednesday, 19 August</p>
+    <h1 class="fan-h1" style="margin-top: 5px">Hi Adaeze</h1>
+    <p class="fan-sub">Nothing booked yet — here’s where to start.</p>
+
+    <!-- SCENARIO 4. A brand-new fan sees this. It is the most-visited screen
+         in the product's first month and the easiest one to get wrong: the
+         temptation is to show the same layout with zeroes in it. Zeroes read
+         as failure. An empty state that names one next step reads as an
+         invitation. -->
+    <section class="fan-section">
+      <div class="fan-card em-hero">
+        <span class="fan-chip em-chip">{{icon:ticket:22}}</span>
+        <p class="fan-title" style="font-size: 19px">No matches booked yet</p>
+        <p class="em-body">
+          When you buy match tickets they’ll show up here with your seats, your kick-off countdown
+          and your QR codes — ready to scan at the turnstile.
+        </p>
+        <div style="display: flex; gap: 9px; justify-content: center; margin-top: 16px">
+          <button class="fan-btn">{{icon:ticket:15}} Browse fixtures</button>
+          <button class="fan-btn" data-variant="outline">{{icon:map-pin:15}} Stadium tours</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- The empty state is not one box. Each thing a fan could hold gets its
+         own row, so the dashboard still teaches what it is FOR while it is
+         empty — and each row carries its own call to action rather than
+         funnelling everything through one button. -->
+    <section class="fan-section">
+      <div class="fan-section-h">
+        <h2 class="fan-section-t">Travel essentials</h2>
+      </div>
+      <div class="fan-grid-3">
+        <div class="fan-card em-slot" data-tight="1">
+          <span class="fan-chip em-slot-chip">{{icon:plane:18}}</span>
+          <p class="em-slot-t">No flights</p>
+          <p class="em-slot-s">Get to the match</p>
+          <span class="fan-link" style="margin-top: 11px">Search flights {{icon:chevron-right:13}}</span>
+        </div>
+        <div class="fan-card em-slot" data-tight="1">
+          <span class="fan-chip em-slot-chip">{{icon:bed-double:18}}</span>
+          <p class="em-slot-t">No stays</p>
+          <p class="em-slot-s">Somewhere near the ground</p>
+          <span class="fan-link" style="margin-top: 11px">Browse stays {{icon:chevron-right:13}}</span>
+        </div>
+        <div class="fan-card em-slot" data-tight="1">
+          <span class="fan-chip em-slot-chip">{{icon:wifi:18}}</span>
+          <p class="em-slot-t">No eSIM</p>
+          <p class="em-slot-s">Data the moment you land</p>
+          <span class="fan-link" style="margin-top: 11px">See plans {{icon:chevron-right:13}}</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="em-rules">
+      <p class="fan-eyebrow">Why it looks like this</p>
+      <ul>
+        <li><b>No zeroes anywhere.</b> Not “0 tickets”, not “€0 spent”. A zero is a measurement; this fan has never bought anything, so there is nothing to measure.</li>
+        <li><b>No disabled shell.</b> The greeting, the nav and the sections are all live — the dashboard is empty, not broken, and it should not feel like a locked door.</li>
+        <li><b>One action per slot.</b> Three specific links beat one “Get started”, because the fan already knows which of the three they came for.</li>
+        <li><b>Distinct from the no-endpoint state.</b> This says <i>you haven’t bought anything</i>. That one says <i>we can’t read it back yet</i>. Never the same screen.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<style data-local>
+  .em-hero {
+    text-align: center;
+    padding: 34px 24px;
+    border-style: dashed;
+    border-color: var(--edge-strong);
+  }
+  .em-chip {
+    width: 54px;
+    height: 54px;
+    border-radius: 18px;
+    margin: 0 auto 14px;
+  }
+  .em-body {
+    margin: 8px auto 0;
+    max-width: 46ch;
+    font-size: 13px;
+    line-height: 1.65;
+    color: var(--muted-foreground);
+  }
+  .em-slot {
+    border-style: dashed;
+    border-color: var(--edge-strong);
+  }
+  .em-slot-chip {
+    color: var(--muted-foreground);
+  }
+  .em-slot-t {
+    margin: 12px 0 0;
+    font-family: var(--font-heading);
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--foreground);
+  }
+  .em-slot-s {
+    margin: 3px 0 0;
+    font-size: 11.5px;
+    color: var(--muted-foreground);
+  }
+  .em-rules {
+    margin-top: 26px;
+    padding-top: 18px;
+    border-top: 1px solid var(--edge);
+  }
+  .em-rules ul {
+    margin: 10px 0 0;
+    padding-left: 17px;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+  }
+  .em-rules li {
+    font-size: 12px;
+    line-height: 1.6;
+    color: var(--muted-foreground);
+    max-width: 78ch;
+  }
+  .em-rules b {
+    color: var(--foreground);
+  }
+</style>

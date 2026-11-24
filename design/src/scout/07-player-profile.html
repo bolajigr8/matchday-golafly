@@ -1,0 +1,187 @@
+<!-- PLAYER PROFILE — GOL-SCOUT-05
+
+     What the scout reads before scoring anything. Everything on the left is
+     registration data the PLAYER supplied and the scout may not edit — that
+     is an acceptance criterion, and it is expressed by showing the fields as
+     a definition list rather than as disabled inputs. Disabled inputs look
+     like a form someone forgot to enable; a definition list looks like a
+     record, which is what it is.
+
+     The right column is the scout's own history with this player, and it is
+     the reason this screen exists rather than jumping straight into the
+     evaluation: a second evaluation at a later camp should be informed by the
+     first. -->
+<div class="ds-screen">
+  <div class="ds-shell">
+{{scoutnav:players}}
+    <div class="ds-pane">
+      <div class="ds-hdr">
+        <div class="ds-hdr-r1">
+          <span class="ds-crumb">Scouting / Assigned players / <b>George Adeola</b></span>
+          <span style="display: flex; gap: 7px">
+            <button class="ds-btn" data-variant="outline" data-size="sm">{{icon:message-square:13}} Message player</button>
+            <button class="ds-btn" data-size="sm">{{icon:pen-line:13}} Continue evaluation</button>
+          </span>
+        </div>
+        <div style="height: 14px"></div>
+      </div>
+
+      <div class="ds-pane-body">
+        <div class="sc-phead">
+          <div class="sc-photo">GA</div>
+          <div style="flex: 1; min-width: 0">
+            <div style="display: flex; align-items: center; gap: 10px">
+              <span class="pp-name">George Adeola</span>
+              <span class="ds-pill" data-tone="warn">Evaluation in progress</span>
+              <span class="ds-pill">Barcelona 2026</span>
+            </div>
+            <div class="pp-pos">
+              <span class="pp-pos-b" data-primary="1">RW</span> Right Wing
+              <span class="pp-pos-b">LW</span> Left Wing
+            </div>
+            <div class="sc-facts">
+              <span class="sc-fact"><i>Age</i><b>20</b></span>
+              <span class="sc-fact"><i>Nationality</i><b>Nigeria</b></span>
+              <span class="sc-fact"><i>Height</i><b>178 cm</b></span>
+              <span class="sc-fact"><i>Weight</i><b>71 kg</b></span>
+              <span class="sc-fact"><i>Preferred foot</i><b>Right</b></span>
+              <span class="sc-fact"><i>Camp</i><b>Barcelona 2026</b></span>
+              <span class="sc-fact"><i>Assigned</i><b>14 May 2026</b></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="pp-grid">
+          <div>
+            <div class="ds-card">
+              <div class="ds-card-h">Registration details</div>
+              <dl class="ds-dl">
+                <dt>Full name</dt><dd>George Chinedu Adeola</dd>
+                <dt>Date of birth</dt><dd>04 March 2006</dd>
+                <dt>Email</dt><dd>g.adeola@example.com</dd>
+                <dt>Phone</dt><dd>+234 802 000 0000</dd>
+                <dt>Current club</dt><dd>Remo Stars FC (Nigeria)</dd>
+                <dt>Level</dt><dd>U21</dd>
+                <dt>Registered</dt><dd>02 May 2026</dd>
+                <dt>Registration</dt><dd><span class="ds-pill" data-tone="good">Confirmed</span></dd>
+              </dl>
+              <div class="sc-src" style="margin-top: 13px">
+                {{icon:lock:13}}
+                <span>Supplied by the player at registration. <b>Read-only</b> —
+                  corrections go through a Golafly admin, so the record the
+                  report cites cannot be edited by the person writing it.</span>
+              </div>
+            </div>
+
+            <div class="ds-card" style="margin-top: 12px">
+              <div class="ds-card-h">Camp attendance</div>
+              <div class="pp-sess">
+                <div class="pp-sess-r"><span class="pp-dot" data-on="1">{{icon:check:10}}</span><span><b>Session 1 — Technical</b><i>10 May · Attended</i></span></div>
+                <div class="pp-sess-r"><span class="pp-dot" data-on="1">{{icon:check:10}}</span><span><b>Session 2 — Small-sided games</b><i>14 May · Attended</i></span></div>
+                <div class="pp-sess-r"><span class="pp-dot" data-on="1">{{icon:check:10}}</span><span><b>Session 3 — 11v11</b><i>18 May · Attended</i></span></div>
+                <div class="pp-sess-r"><span class="pp-dot"></span><span><b>Session 4 — 11v11</b><i>24 May · Upcoming</i></span></div>
+              </div>
+              <p class="pp-note">Here because "I have only seen him once" is
+                the single biggest caveat on any evaluation, and the scout
+                should see it before they score rather than after.</p>
+            </div>
+          </div>
+
+          <div>
+            <div class="ds-card">
+              <div class="ds-card-h">Evaluation history</div>
+              <div class="pp-hist">
+                <div class="pp-hist-r" data-state="current">
+                  <span class="pp-hist-d">22 May 2026</span>
+                  <span class="pp-hist-t">
+                    <b>Barcelona 2026 — in progress</b>
+                    <i>You · step 3 of 8 · 8.3 provisional</i>
+                  </span>
+                  <button class="ds-btn" data-size="sm">Continue</button>
+                </div>
+                <div class="pp-hist-r">
+                  <span class="pp-hist-d">18 Nov 2025</span>
+                  <span class="pp-hist-t">
+                    <b>Lagos 2025 — published</b>
+                    <i>Adeola Bakare · 7.6 · Potential 63%</i>
+                  </span>
+                  <button class="ds-btn" data-variant="outline" data-size="sm">View</button>
+                </div>
+              </div>
+              <div class="ds-alert" data-tone="warn" style="margin-top: 13px">
+                {{icon:history:15}}
+                <span><b>He has been scouted before.</b> Lagos 2025 rated him
+                  7.6 with weak-foot usage as the priority development area.
+                  Worth reading before you score — a second opinion is more
+                  useful than a second first impression.</span>
+              </div>
+            </div>
+
+            <div class="ds-card" style="margin-top: 12px">
+              <div class="ds-card-h">Previous scouting summary — Lagos 2025</div>
+              <p class="pp-quote">"Direct, quick and willing to take defenders
+                on. Final-third decision-making and left foot both need work
+                before a senior environment. Coachable."</p>
+              <p class="pp-by">Adeola Bakare · Golafly Scouting Network · 18 Nov 2025</p>
+              <div class="pp-prev">
+                <span><i>Overall</i><b>7.6</b></span>
+                <span><i>Potential</i><b>63%</b></span>
+                <span><i>Recommendation</i><b>Monitor</b></span>
+              </div>
+            </div>
+
+            <div class="ds-card" style="margin-top: 12px">
+              <div class="ds-card-h">Notes &amp; attachments</div>
+              <div class="ds-file">{{icon:file-text:15}}<span style="flex:1">lagos-2025-report.pdf</span><span style="font-family: var(--font-mono); font-size: 10px; color: var(--muted-foreground)">412 KB</span>{{icon:download:14}}</div>
+              <div class="ds-file" style="margin-top: 7px">{{icon:image:15}}<span style="flex:1">session-3-clips.zip</span><span style="font-family: var(--font-mono); font-size: 10px; color: var(--muted-foreground)">18 MB</span>{{icon:download:14}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style data-local>
+  .ds-shell { min-height: 640px; }
+  .ds-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 14px; }
+  .ds-card-h { font-family: var(--font-heading); font-size: 13px; font-weight: 600; margin-bottom: 12px; }
+  .pp-grid { display: grid; grid-template-columns: 1fr 1.08fr; gap: 12px; margin-top: 12px; align-items: start; }
+  .pp-name { font-family: var(--font-heading); font-size: 21px; font-weight: 700; }
+  .pp-pos { display: flex; align-items: center; gap: 7px; font-size: 11.5px; color: var(--muted-foreground); margin-top: 7px; }
+  .pp-pos-b {
+    display: inline-grid; place-items: center; min-width: 34px; height: 21px; padding: 0 6px;
+    border-radius: var(--radius-sm); background: var(--muted); border: 1px solid var(--border);
+    font-family: var(--font-mono); font-size: 10.5px; font-weight: 700; color: var(--foreground);
+  }
+  .pp-pos-b[data-primary="1"] { background: var(--brand); border-color: var(--brand-edge); color: var(--brand-foreground); }
+  .pp-note { font-size: 10.5px; line-height: 1.55; color: var(--muted-foreground); margin-top: 12px; }
+
+  .pp-sess { display: flex; flex-direction: column; gap: 8px; }
+  .pp-sess-r { display: flex; align-items: center; gap: 10px; font-size: 11.5px; }
+  .pp-sess-r b { font-weight: 600; display: block; }
+  .pp-sess-r i { font-style: normal; font-size: 10px; color: var(--muted-foreground); }
+  .pp-dot {
+    display: grid; place-items: center; width: 18px; height: 18px; flex: none;
+    border-radius: 999px; border: 1px solid var(--border); color: var(--card);
+  }
+  .pp-dot[data-on="1"] { background: var(--status-good); border-color: var(--status-good); }
+
+  .pp-hist { display: flex; flex-direction: column; gap: 8px; }
+  .pp-hist-r {
+    display: grid; grid-template-columns: 84px 1fr auto; gap: 11px; align-items: center;
+    padding: 10px; border: 1px solid var(--border); border-radius: var(--radius-md);
+  }
+  .pp-hist-r[data-state="current"] { border-color: var(--brand-edge); background: var(--muted); }
+  .pp-hist-d { font-family: var(--font-mono); font-size: 10px; color: var(--muted-foreground); }
+  .pp-hist-t b { font-size: 12px; font-weight: 600; display: block; }
+  .pp-hist-t i { font-style: normal; font-size: 10.5px; color: var(--muted-foreground); }
+
+  .pp-quote { font-size: 12px; line-height: 1.6; font-style: italic; }
+  .pp-by { font-size: 10.5px; color: var(--muted-foreground); margin-top: 8px; }
+  .pp-prev { display: flex; gap: 0; margin-top: 12px; border: 1px solid var(--edge); border-radius: var(--radius-md); overflow: hidden; }
+  .pp-prev span { display: grid; gap: 2px; padding: 8px 14px; border-right: 1px solid var(--edge); flex: 1; }
+  .pp-prev span:last-child { border-right: none; }
+  .pp-prev i { font-style: normal; font-family: var(--font-mono); font-size: 9.5px; letter-spacing: 0.07em; text-transform: uppercase; color: var(--muted-foreground); }
+  .pp-prev b { font-family: var(--font-heading); font-size: 15px; font-weight: 700; }
+</style>

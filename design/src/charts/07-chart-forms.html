@@ -1,0 +1,158 @@
+<div class="ds-section">
+  <p class="ds-eyebrow">Four forms</p>
+  <h2 class="ds-h">The only charts this dashboard needs</h2>
+  <p class="ds-sub">
+    The Overview screen is the single place charts appear. Every one of them is a magnitude or a
+    composition — no time-series forecasting, no scatter. Keeping the vocabulary this small is what
+    stops an admin dashboard turning into a BI tool nobody maintains.
+  </p>
+</div>
+
+<div class="ds-section">
+  <p class="ds-eyebrow">Composition · Program distribution</p>
+  <div class="ds-chart-row">
+    <svg viewBox="0 0 160 160" width="160" height="160" role="img" aria-label="Program distribution donut">
+      <circle cx="80" cy="80" r="52" fill="none" stroke="var(--chart-1)" stroke-width="16" stroke-dasharray="134.22 192.50" stroke-dashoffset="0.00" transform="rotate(-90 80 80)"/>
+      <circle cx="80" cy="80" r="52" fill="none" stroke="var(--chart-2)" stroke-width="16" stroke-dasharray="88.48 238.24" stroke-dashoffset="-137.22" transform="rotate(-90 80 80)"/>
+      <circle cx="80" cy="80" r="52" fill="none" stroke="var(--chart-3)" stroke-width="16" stroke-dasharray="55.81 270.92" stroke-dashoffset="-228.71" transform="rotate(-90 80 80)"/>
+      <circle cx="80" cy="80" r="52" fill="none" stroke="var(--chart-4)" stroke-width="16" stroke-dasharray="36.21 290.52" stroke-dashoffset="-287.52" transform="rotate(-90 80 80)"/>
+      <text x="80" y="76" class="ct-big">348</text>
+      <text x="80" y="92" class="ct-sm">applications</text>
+    </svg>
+    <div class="lg">
+    <div class="lg-row"><span class="lg-dot" style="background: var(--chart-1)"></span><span class="lg-lab">Football Tourism</span><span class="lg-val">42%</span></div>
+    <div class="lg-row"><span class="lg-dot" style="background: var(--chart-2)"></span><span class="lg-lab">Player Management</span><span class="lg-val">28%</span></div>
+    <div class="lg-row"><span class="lg-dot" style="background: var(--chart-3)"></span><span class="lg-lab">Sports Marketing</span><span class="lg-val">18%</span></div>
+    <div class="lg-row"><span class="lg-dot" style="background: var(--chart-4)"></span><span class="lg-lab">Academy</span><span class="lg-val">12%</span></div>
+    </div>
+  </div>
+  <p class="ds-note">
+    A <strong>3px surface gap</strong> separates segments so adjacent colours never touch — that gap is
+    the secondary encoding that makes the palette safe for colour-blind readers. Centre carries the
+    total, so the donut answers “how many” and “what mix” at once. Four slices is the ceiling; a fifth
+    category becomes “Other”.
+  </p>
+</div>
+
+<div class="ds-section">
+  <p class="ds-eyebrow">Magnitude · Application journey</p>
+  <div class="fn">
+    <div class="fn-row">
+      <span class="fn-lab">Applied</span>
+      <span class="fn-track"><span class="fn-bar" style="width: 100.0%; background: var(--chart-1)"></span></span>
+      <span class="fn-val">348</span>
+      <span class="fn-drop"></span>
+    </div>
+    <div class="fn-row">
+      <span class="fn-lab">Reviewed</span>
+      <span class="fn-track"><span class="fn-bar" style="width: 82.2%; background: var(--chart-2)"></span></span>
+      <span class="fn-val">286</span>
+      <span class="fn-drop">−18%</span>
+    </div>
+    <div class="fn-row">
+      <span class="fn-lab">Interviewed</span>
+      <span class="fn-track"><span class="fn-bar" style="width: 50.0%; background: var(--chart-3)"></span></span>
+      <span class="fn-val">174</span>
+      <span class="fn-drop">−39%</span>
+    </div>
+    <div class="fn-row">
+      <span class="fn-lab">Approved</span>
+      <span class="fn-track"><span class="fn-bar" style="width: 32.2%; background: var(--chart-4)"></span></span>
+      <span class="fn-val">112</span>
+      <span class="fn-drop">−36%</span>
+    </div>
+  </div>
+  <p class="ds-note">
+    A funnel is just a sorted bar chart — do not draw a tapering trapezoid, which distorts area against
+    value. Every stage is directly labelled with its count, and the drop-off between stages is the
+    number people actually want, so it is stated rather than left to be worked out.
+  </p>
+</div>
+
+<div class="ds-section">
+  <p class="ds-eyebrow">Comparison · Applications vs approvals</p>
+  <svg viewBox="0 0 400 165" width="100%" role="img" aria-label="Applications versus approvals by month">
+      <line x1="44" x2="384" y1="140" y2="140" class="grid"/>
+      <text x="36" y="143.5" class="ax" text-anchor="end">0</text>
+      <line x1="44" x2="384" y1="111" y2="111" class="grid"/>
+      <text x="36" y="114.5" class="ax" text-anchor="end">20</text>
+      <line x1="44" x2="384" y1="82" y2="82" class="grid"/>
+      <text x="36" y="85.5" class="ax" text-anchor="end">40</text>
+      <line x1="44" x2="384" y1="53" y2="53" class="grid"/>
+      <text x="36" y="56.5" class="ax" text-anchor="end">60</text>
+      <line x1="44" x2="384" y1="24" y2="24" class="grid"/>
+      <text x="36" y="27.5" class="ax" text-anchor="end">80</text>
+      <path d="M63.5 140 L63.5 83.1 Q63.5 79.1 67.5 79.1 L72.5 79.1 Q76.5 79.1 76.5 83.1 L76.5 140 Z" fill="var(--chart-1)"/>
+      <path d="M79.5 140 L79.5 103.4 Q79.5 99.4 83.5 99.4 L88.5 99.4 Q92.5 99.4 92.5 103.4 L92.5 140 Z" fill="var(--chart-2)"/>
+      <path d="M131.5 140 L131.5 59.900000000000006 Q131.5 55.900000000000006 135.5 55.900000000000006 L140.5 55.900000000000006 Q144.5 55.900000000000006 144.5 59.900000000000006 L144.5 140 Z" fill="var(--chart-1)"/>
+      <path d="M147.5 140 L147.5 94.7 Q147.5 90.7 151.5 90.7 L156.5 90.7 Q160.5 90.7 160.5 94.7 L160.5 140 Z" fill="var(--chart-2)"/>
+      <path d="M199.5 140 L199.5 70.05000000000001 Q199.5 66.05000000000001 203.5 66.05000000000001 L208.5 66.05000000000001 Q212.5 66.05000000000001 212.5 70.05000000000001 L212.5 140 Z" fill="var(--chart-1)"/>
+      <path d="M215.5 140 L215.5 87.45 Q215.5 83.45 219.5 83.45 L224.5 83.45 Q228.5 83.45 228.5 87.45 L228.5 140 Z" fill="var(--chart-2)"/>
+      <path d="M267.5 140 L267.5 38.150000000000006 Q267.5 34.150000000000006 271.5 34.150000000000006 L276.5 34.150000000000006 Q280.5 34.150000000000006 280.5 38.150000000000006 L280.5 140 Z" fill="var(--chart-1)"/>
+      <path d="M283.5 140 L283.5 78.75 Q283.5 74.75 287.5 74.75 L292.5 74.75 Q296.5 74.75 296.5 78.75 L296.5 140 Z" fill="var(--chart-2)"/>
+      <path d="M335.5 140 L335.5 48.30000000000001 Q335.5 44.30000000000001 339.5 44.30000000000001 L344.5 44.30000000000001 Q348.5 44.30000000000001 348.5 48.30000000000001 L348.5 140 Z" fill="var(--chart-1)"/>
+      <path d="M351.5 140 L351.5 68.6 Q351.5 64.6 355.5 64.6 L360.5 64.6 Q364.5 64.6 364.5 68.6 L364.5 140 Z" fill="var(--chart-2)"/>
+      <text x="78" y="154" class="ax">Mar</text>
+      <text x="146" y="154" class="ax">Apr</text>
+      <text x="214" y="154" class="ax">May</text>
+      <text x="282" y="154" class="ax">Jun</text>
+      <text x="350" y="154" class="ax">Jul</text>
+  </svg>
+  <div class="lg lg-inline">
+    <div class="lg-row"><span class="lg-dot" style="background: var(--chart-1)"></span><span class="lg-lab">Applications</span></div>
+    <div class="lg-row"><span class="lg-dot" style="background: var(--chart-2)"></span><span class="lg-lab">Approved</span></div>
+  </div>
+  <p class="ds-note">
+    Bars are thin with a 4px rounded top and a square baseline — the rounding marks the data end, the
+    flat end sits on zero. Gridlines are recessive and horizontal only. The y-axis starts at zero, always:
+    a truncated axis on a count is a lie.
+    <br /><br />
+    <strong>Never a second y-axis.</strong> Applications and approvals share a scale here because they
+    are the same unit. Revenue against application count would be two charts, not two axes.
+  </p>
+</div>
+
+<div class="ds-section">
+  <p class="ds-eyebrow">Trend · Stat card sparkline</p>
+  <div class="ds-spark-card">
+    <div>
+      <div class="sc-lab">Signed players</div>
+      <div class="sc-val">156</div>
+      <div class="sc-delta">{{icon:arrow-up:11}} 12.4% vs last month</div>
+    </div>
+    <svg viewBox="0 0 128 34" width="128" height="34" role="img" aria-label="Signed players trend, rising">
+      <polyline points="0.0,32.0 11.6,27.5 23.3,29.8 34.9,23.0 46.5,25.3 58.2,19.3 69.8,20.8 81.5,15.5 93.1,10.3 104.7,12.5 116.4,6.5 128.0,2.0" fill="none" stroke="var(--chart-1)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="128.0" cy="2.0" r="3" fill="var(--chart-1)"/>
+    </svg>
+  </div>
+  <p class="ds-note">
+    One series, so no legend — the label names it. No axes, no grid, no tooltip: a sparkline is a shape,
+    not a chart you read values off. The end dot marks “now”. The delta beneath states the number, and
+    carries an arrow so the direction is not colour-only.
+  </p>
+</div>
+
+<style data-local>
+  .grid { stroke: var(--border); stroke-width: 1; }
+  .ax { fill: var(--muted-foreground); font-family: var(--font-mono); font-size: 8px; text-anchor: middle; }
+  .ct-big { fill: var(--foreground); font-family: var(--font-heading); font-size: 22px; font-weight: 700; text-anchor: middle; }
+  .ct-sm { fill: var(--muted-foreground); font-family: var(--font-mono); font-size: 7.5px; text-anchor: middle; letter-spacing: 0.1em; text-transform: uppercase; }
+  .ds-chart-row { display: flex; gap: 28px; align-items: center; }
+  .lg { display: flex; flex-direction: column; gap: 7px; flex: 1; }
+  .lg-inline { flex-direction: row; gap: 16px; margin-top: 6px; }
+  .lg-row { display: flex; align-items: center; gap: 8px; font-size: 11.5px; }
+  .lg-dot { width: 9px; height: 9px; border-radius: 2px; flex: none; }
+  .lg-lab { color: var(--foreground); }
+  .lg-val { margin-left: auto; font-family: var(--font-mono); font-size: 11px; color: var(--muted-foreground); font-variant-numeric: tabular-nums; }
+  .fn { display: flex; flex-direction: column; gap: 7px; }
+  .fn-row { display: grid; grid-template-columns: 92px 1fr 44px 44px; gap: 10px; align-items: center; }
+  .fn-lab { font-size: 11.5px; color: var(--foreground); }
+  .fn-track { height: 16px; background: var(--muted); border-radius: 3px; overflow: hidden; }
+  .fn-bar { display: block; height: 100%; border-radius: 3px; }
+  .fn-val { font-family: var(--font-mono); font-size: 11.5px; text-align: right; font-variant-numeric: tabular-nums; }
+  .fn-drop { font-family: var(--font-mono); font-size: 10px; color: var(--muted-foreground); text-align: right; font-variant-numeric: tabular-nums; }
+  .ds-spark-card { display: flex; align-items: center; justify-content: space-between; gap: 20px; background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 14px 16px; }
+  .sc-lab { font-family: var(--font-mono); font-size: 9.5px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted-foreground); }
+  .sc-val { font-family: var(--font-heading); font-size: 26px; font-weight: 700; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; margin-top: 3px; }
+  .sc-delta { display: flex; align-items: center; gap: 4px; font-size: 11px; color: var(--status-good); margin-top: 3px; }
+</style>

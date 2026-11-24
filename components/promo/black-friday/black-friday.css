@@ -1,0 +1,286 @@
+/* Golafly Black Friday 2026 banners on golafly.com (matchday): top bar, hero band and card.
+   Copied from the designer's package golafly-com-football-black-friday-2026.zip
+   (golafly-com-football-bar.html / -hero.html / -card.html, "F1 · Match ticket") WITHOUT changes, except:
+   - fonts point at the app's own next/font variables first (no Google Fonts <link>);
+   - image paths live in the component (public/black-friday/);
+   - the block at the very end ("Added for golafly.com") = the offer lines the boss asked for
+     (up to 40% discount + free eSIM to selected destinations), built from the pack's own tokens.
+   Every rule is scoped to .gfbf, so nothing here reaches the rest of the site.
+   Layout reacts to the width of the banner itself (container queries), not to the viewport. */
+
+
+/* ── tokens (values from the Golafly design system, assets/css/tokens.css) ── */
+.gfbf {
+  --gfbf-neon: #B7FF00;
+  --gfbf-neon-glow: rgba(183, 255, 0, 0.35);
+  --gfbf-neon-line: rgba(183, 255, 0, 0.4);
+  --gfbf-neon-soft: rgba(183, 255, 0, 0.12);
+  --gfbf-black: #000000;
+  --gfbf-ink: #050606;
+  --gfbf-coal: #121513;
+  --gfbf-slate: #1A1E1B;
+  --gfbf-steel: #282D29;
+  --gfbf-ash: #3B4239;
+  --gfbf-mist: #A6B0A3;
+  --gfbf-chalk: #D9DED6;
+  --gfbf-white: #F5F7F3;
+  --gfbf-line: rgba(245, 247, 243, 0.14);
+  --gfbf-line-strong: rgba(245, 247, 243, 0.24);
+  --gfbf-grid: rgba(245, 247, 243, 0.05);
+  --gfbf-glass: rgba(18, 21, 19, 0.75);
+  --gfbf-shade-top: rgba(0, 0, 0, 0.35);
+  --gfbf-shade-bottom: rgba(0, 0, 0, 0.82);
+  --gfbf-shade-side: rgba(0, 0, 0, 0.12);
+  --gfbf-ink-line: rgba(5, 6, 6, 0.16);
+  --gfbf-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+  --gfbf-glow: 0 0 0 1px var(--gfbf-neon-line), 0 0 12px var(--gfbf-neon-glow);
+  --gfbf-media: grayscale(0.3) contrast(1.05) brightness(0.85);
+  --gfbf-media-strong: grayscale(0.4) contrast(1.05) brightness(0.6);
+
+  --gfbf-font-display: var(--font-heading), 'Space Grotesk', 'Inter', system-ui, -apple-system, sans-serif;
+  --gfbf-font-body: var(--font-sans), 'Inter', system-ui, -apple-system, sans-serif;
+  --gfbf-font-mono: var(--font-mono), 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+
+  --gfbf-fs-legal: 12px;
+  --gfbf-fs-xs: 13px;
+  --gfbf-fs-s: 15px;
+  --gfbf-fs-m: 18px;
+  --gfbf-fs-l: 24px;
+  --gfbf-fs-xl: 32px;
+  --gfbf-fs-2xl: 44px;
+  --gfbf-fs-3xl: 56px;
+  --gfbf-fs-4xl: 96px;
+  --gfbf-fs-5xl: 112px;
+  --gfbf-fs-6xl: 152px;
+
+  --gfbf-s-1: 4px;
+  --gfbf-s-2: 8px;
+  --gfbf-s-3: 12px;
+  --gfbf-s-4: 16px;
+  --gfbf-s-5: 20px;
+  --gfbf-s-6: 24px;
+  --gfbf-s-8: 32px;
+  --gfbf-s-10: 40px;
+  --gfbf-s-12: 48px;
+  --gfbf-s-16: 64px;
+  --gfbf-s-24: 96px;
+
+  --gfbf-r-sm: 8px;
+  --gfbf-r-md: 12px;
+  --gfbf-r-lg: 18px;
+  --gfbf-r-xl: 28px;
+  --gfbf-r-pill: 999px;
+
+  --gfbf-max: 1264px;
+  --gfbf-card-max: 600px;
+  --gfbf-gutter: 24px;
+  --gfbf-media-h: 200px;
+  --gfbf-track-tight: -0.02em;
+  --gfbf-track-wide: 0.06em;
+  --gfbf-track-widest: 0.22em;
+}
+
+/* ── scoped reset: the host page's element styles never reach inside ── */
+.gfbf, .gfbf *, .gfbf *::before, .gfbf *::after { box-sizing: border-box; }
+.gfbf :where(h2, p, dl, dt, dd, figure, span, a, img) { margin: 0; padding: 0; border: 0; }
+.gfbf {
+  display: block; width: 100%;
+  font-family: var(--gfbf-font-body); font-size: var(--gfbf-fs-s); font-weight: 400; line-height: 1.3;
+  letter-spacing: normal; text-align: left; text-transform: none; color: var(--gfbf-white);
+  -webkit-font-smoothing: antialiased; text-rendering: geometricPrecision;
+}
+.gfbf__in { max-width: var(--gfbf-max); margin-inline: auto; padding-inline: var(--gfbf-gutter); }
+/* hero: a full-width band between two sections · card: sits inside a content column, 600 px at most */
+.gfbf--band { padding-block: var(--gfbf-s-8); }
+.gfbf--card .gfbf__in { max-width: var(--gfbf-card-max); margin-inline: 0; padding-inline: 0; }
+/* image exports: square corners and no shadow, so the site can frame the picture its own way */
+.gfbf--flat .gfbf__card { border-radius: 0; box-shadow: none; }
+.gfbf__card {
+  container: gfbf / inline-size;
+  position: relative; isolation: isolate; overflow: hidden;
+  background: var(--gfbf-ink); border-radius: var(--gfbf-r-xl); box-shadow: var(--gfbf-shadow);
+}
+.gfbf img { display: block; max-width: none; }
+.gfbf__photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: var(--gfbf-media); }
+.gfbf__logo { display: block; height: var(--gfbf-s-6); width: auto; }
+
+/* ── shared copy atoms ── */
+.gfbf__kicker {
+  font-family: var(--gfbf-font-mono); font-weight: 500; font-size: var(--gfbf-fs-xs);
+  letter-spacing: var(--gfbf-track-widest); text-transform: uppercase; color: var(--gfbf-neon); white-space: nowrap;
+}
+.gfbf__hero {
+  display: flex; flex-direction: column; align-items: flex-start;
+  font-family: var(--gfbf-font-display); font-weight: 700; line-height: 0.92;
+  letter-spacing: var(--gfbf-track-tight); text-transform: uppercase; color: var(--gfbf-white);
+}
+.gfbf__pre, .gfbf__line { font-size: var(--gfbf-fs-l); }
+.gfbf__big { font-size: var(--gfbf-fs-5xl); line-height: 0.8; color: var(--gfbf-neon); }
+.gfbf__gift {
+  display: inline-flex; align-items: center; gap: var(--gfbf-s-2); align-self: flex-start; white-space: nowrap;
+  padding: var(--gfbf-s-2) var(--gfbf-s-4); border-radius: var(--gfbf-r-pill);
+  font-family: var(--gfbf-font-display); font-weight: 700; font-size: var(--gfbf-fs-s); line-height: 1;
+  letter-spacing: var(--gfbf-track-tight); text-transform: uppercase;
+  color: var(--gfbf-black); background: var(--gfbf-neon); box-shadow: var(--gfbf-glow);
+}
+.gfbf__case { text-transform: none; }
+.gfbf__sub { font-size: var(--gfbf-fs-s); line-height: 1.35; color: var(--gfbf-chalk); }
+.gfbf__date {
+  font-family: var(--gfbf-font-mono); font-weight: 500; font-size: var(--gfbf-fs-xs);
+  letter-spacing: var(--gfbf-track-wide); text-transform: uppercase; color: var(--gfbf-white); white-space: nowrap;
+}
+.gfbf__cta {
+  display: inline-flex; align-items: center; justify-content: center; white-space: nowrap;
+  padding: var(--gfbf-s-3) var(--gfbf-s-6); border-radius: var(--gfbf-r-pill);
+  font-family: var(--gfbf-font-display); font-weight: 700; font-size: var(--gfbf-fs-s); line-height: 1;
+  letter-spacing: var(--gfbf-track-wide); text-transform: uppercase; text-decoration: none;
+  color: var(--gfbf-black); background: var(--gfbf-neon); box-shadow: var(--gfbf-glow);
+  transition: transform 120ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.gfbf__cta:hover { transform: translateY(-1px); }
+.gfbf__cta:focus-visible { outline: 2px solid var(--gfbf-neon); outline-offset: 3px; }
+.gfbf__legal { font-size: var(--gfbf-fs-legal); line-height: 1.4; color: var(--gfbf-mist); }
+
+/* ── photo framing per picture (focal point inside each crop) ── */
+.gfbf-ph--bf-paris-dark .gfbf__photo { object-position: 50% 20%; }
+.gfbf-ph--matchday-stadium .gfbf__photo { object-position: 50% 62%; }
+
+/* ================================================================
+   F1 · Match ticket (golafly.com) — the Matchday die-cut ticket over the stadium.
+   Steps by the banner's own width: stacked (< 480), ticket under the headline (480–759),
+   headline and ticket side by side (≥ 760).
+   ================================================================ */
+.gfbff1 .gfbf__photo { filter: var(--gfbf-media); }
+.gfbff1__shade { position: absolute; inset: 0; background: linear-gradient(180deg, var(--gfbf-shade-top) 0%, var(--gfbf-shade-bottom) 100%); }
+.gfbff1__layout { position: relative; display: grid; gap: var(--gfbf-s-5); padding: var(--gfbf-s-6); }
+.gfbff1__lead { display: grid; gap: var(--gfbf-s-4); justify-items: start; }
+.gfbff1__title { font-family: var(--gfbf-font-display); font-weight: 700; font-size: var(--gfbf-fs-3xl); line-height: 0.88; letter-spacing: var(--gfbf-track-tight); text-transform: uppercase; color: var(--gfbf-neon); }
+.gfbff1__title span { display: block; }
+.gfbff1__trust { display: flex; flex-wrap: wrap; gap: var(--gfbf-s-2); margin: 0; padding: 0; list-style: none; }
+.gfbff1__trust li { padding: var(--gfbf-s-1) var(--gfbf-s-3); border: 1px solid var(--gfbf-line-strong); border-radius: var(--gfbf-r-pill); font-family: var(--gfbf-font-mono); font-weight: 500; font-size: var(--gfbf-fs-legal); letter-spacing: var(--gfbf-track-wide); text-transform: uppercase; color: var(--gfbf-white); background: var(--gfbf-glass); }
+
+/* the ticket: paper with a perforated stub and two die-cut notches */
+.gfbff1__ticket {
+  --gfbf-stub: 96px;
+  --gfbf-notch: 12px;
+  display: grid; grid-template-columns: minmax(0, 1fr) var(--gfbf-stub);
+  color: var(--gfbf-ink); background: var(--gfbf-white); border-radius: var(--gfbf-r-lg); box-shadow: var(--gfbf-shadow);
+  -webkit-mask-image: radial-gradient(circle at calc(100% - var(--gfbf-stub)) 0, transparent var(--gfbf-notch), var(--gfbf-black) calc(var(--gfbf-notch) + 1px)), radial-gradient(circle at calc(100% - var(--gfbf-stub)) 100%, transparent var(--gfbf-notch), var(--gfbf-black) calc(var(--gfbf-notch) + 1px));
+  -webkit-mask-composite: source-in;
+  mask-image: radial-gradient(circle at calc(100% - var(--gfbf-stub)) 0, transparent var(--gfbf-notch), var(--gfbf-black) calc(var(--gfbf-notch) + 1px)), radial-gradient(circle at calc(100% - var(--gfbf-stub)) 100%, transparent var(--gfbf-notch), var(--gfbf-black) calc(var(--gfbf-notch) + 1px));
+  mask-composite: intersect;
+}
+.gfbff1__main { display: grid; gap: var(--gfbf-s-3); justify-items: start; padding: var(--gfbf-s-5); border-right: 2px dashed var(--gfbf-ink-line); }
+.gfbff1__logo { height: var(--gfbf-s-5); }
+.gfbff1__item { font-family: var(--gfbf-font-display); font-weight: 700; font-size: var(--gfbf-fs-xl); line-height: 0.92; letter-spacing: var(--gfbf-track-tight); text-transform: uppercase; color: var(--gfbf-black); background: var(--gfbf-neon); padding: var(--gfbf-s-2) var(--gfbf-s-3) var(--gfbf-s-1); border-radius: var(--gfbf-r-md); }
+.gfbff1__fields { display: flex; flex-wrap: wrap; gap: var(--gfbf-s-2) var(--gfbf-s-6); margin: 0; }
+.gfbff1__fields dt { font-family: var(--gfbf-font-mono); font-weight: 500; font-size: var(--gfbf-fs-legal); letter-spacing: var(--gfbf-track-widest); text-transform: uppercase; color: var(--gfbf-ash); }
+.gfbff1__fields dd { margin: 0; font-family: var(--gfbf-font-display); font-weight: 700; font-size: var(--gfbf-fs-s); letter-spacing: var(--gfbf-track-tight); text-transform: uppercase; white-space: nowrap; }
+.gfbff1__stub { display: flex; flex-direction: column; justify-content: center; align-items: center; gap: var(--gfbf-s-4); padding: var(--gfbf-s-3); }
+.gfbff1__icon { width: var(--gfbf-s-12); height: auto; }
+.gfbff1__code { display: block; width: 100%; height: var(--gfbf-s-8); background: repeating-linear-gradient(90deg, var(--gfbf-ink) 0 3px, transparent 3px 6px, var(--gfbf-ink) 6px 7px, transparent 7px 10px, var(--gfbf-ink) 10px 14px, transparent 14px 16px); }
+
+@container gfbf (min-width: 480px) {
+  .gfbff1__layout { padding: var(--gfbf-s-8); gap: var(--gfbf-s-6); }
+  .gfbff1__title { font-size: var(--gfbf-fs-4xl); }
+  .gfbff1__title span { display: inline; }
+  .gfbff1__ticket { --gfbf-stub: 128px; transform: rotate(-2deg); margin-inline: var(--gfbf-s-2); }
+  .gfbff1__item { font-size: var(--gfbf-fs-2xl); }
+  .gfbff1__icon { width: var(--gfbf-s-16); }
+}
+@container gfbf (min-width: 760px) {
+  .gfbff1__layout { grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); grid-template-rows: 1fr auto; align-items: center; column-gap: var(--gfbf-s-10); padding: var(--gfbf-s-10) var(--gfbf-s-12); min-height: 380px; }
+  .gfbff1__lead { grid-column: 1; grid-row: 1; gap: var(--gfbf-s-5); }
+  .gfbff1__title { font-size: var(--gfbf-fs-5xl); }
+  .gfbff1__title span { display: block; }
+  .gfbff1__ticket { grid-column: 2; grid-row: 1; --gfbf-stub: 150px; margin: 0; }
+  .gfbff1__main { padding: var(--gfbf-s-6); gap: var(--gfbf-s-4); }
+  .gfbff1__logo { height: var(--gfbf-s-6); }
+  .gfbff1__item { font-size: var(--gfbf-fs-3xl); }
+  .gfbff1__fields dd { font-size: var(--gfbf-fs-m); }
+  .gfbff1__layout > .gfbf__legal { grid-column: 1 / -1; grid-row: 2; }
+}
+
+/* ================================================================
+   Announcement bar — a full-width ink strip above the site header, in the Split panels language:
+   a slanted neon tag, the offer, the dates and Book now. The whole strip is the link (a big tap target).
+   One line from 960 px, wrapped and centred from 760 px, two rows below (Book now shows as the arrow).
+   ================================================================ */
+.gfbf--bar { background: var(--gfbf-ink); border-bottom: 1px solid var(--gfbf-line); }
+.gfbfbar__link { display: block; color: inherit; text-decoration: none; }
+.gfbfbar__link:focus-visible { outline: 2px solid var(--gfbf-neon); outline-offset: -2px; }
+.gfbfbar__in { display: block; container: gfbf / inline-size; }
+.gfbfbar__row {
+  display: grid; grid-template-columns: auto minmax(0, 1fr) auto; grid-template-areas: "tag date cta" "msg msg msg";
+  align-items: center; gap: var(--gfbf-s-1) var(--gfbf-s-3); padding-block: var(--gfbf-s-2);
+}
+.gfbfbar__tag {
+  grid-area: tag; justify-self: start; padding: var(--gfbf-s-1) var(--gfbf-s-3);
+  font-family: var(--gfbf-font-mono); font-weight: 500; font-size: var(--gfbf-fs-legal); line-height: 1.3;
+  letter-spacing: var(--gfbf-track-wide); text-transform: uppercase; white-space: nowrap;
+  color: var(--gfbf-black); background: var(--gfbf-neon);
+  clip-path: polygon(var(--gfbf-s-2) 0, 100% 0, calc(100% - var(--gfbf-s-2)) 100%, 0 100%);
+}
+.gfbfbar__msg { grid-area: msg; font-size: var(--gfbf-fs-xs); font-weight: 500; line-height: 1.35; color: var(--gfbf-white); }
+.gfbfbar__msg strong { font-family: var(--gfbf-font-display); font-weight: 700; color: var(--gfbf-neon); }
+.gfbfbar__date { grid-area: date; justify-self: start; font-size: var(--gfbf-fs-legal); color: var(--gfbf-chalk); }
+.gfbfbar__cta {
+  grid-area: cta; display: inline-flex; align-items: center; gap: var(--gfbf-s-2); white-space: nowrap;
+  font-family: var(--gfbf-font-display); font-weight: 700; font-size: var(--gfbf-fs-m); line-height: 1;
+  letter-spacing: var(--gfbf-track-wide); text-transform: uppercase; color: var(--gfbf-neon);
+}
+/* phones: the arrow alone, the words stay for screen readers */
+.gfbfbar__cta-text { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+
+/* the narrowest phones (320 px screens): the dates drop to their own line */
+@container gfbf (max-width: 319.98px) {
+  .gfbfbar__row { grid-template-columns: auto minmax(0, 1fr); grid-template-areas: "tag cta" "msg msg" "date date"; }
+  .gfbfbar__cta { justify-self: end; }
+}
+
+@container gfbf (min-width: 760px) {
+  .gfbfbar__tag { padding: var(--gfbf-s-1) var(--gfbf-s-4); }
+  .gfbfbar__row {
+    display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: var(--gfbf-s-1) var(--gfbf-s-4);
+    min-height: var(--gfbf-s-12); padding-block: var(--gfbf-s-2);
+  }
+  .gfbfbar__msg { font-size: var(--gfbf-fs-s); }
+  .gfbfbar__date { padding-left: var(--gfbf-s-4); border-left: 1px solid var(--gfbf-line-strong); font-size: var(--gfbf-fs-xs); }
+  .gfbfbar__cta {
+    margin-left: var(--gfbf-s-2); padding: var(--gfbf-s-2) var(--gfbf-s-4); font-size: var(--gfbf-fs-xs);
+    color: var(--gfbf-black); background: var(--gfbf-neon); border-radius: var(--gfbf-r-pill);
+    transition: box-shadow 120ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .gfbfbar__cta-text { position: static; width: auto; height: auto; overflow: visible; clip-path: none; }
+  .gfbfbar__link:hover .gfbfbar__cta { box-shadow: var(--gfbf-glow); }
+}
+
+/* the tag takes the look of each direction: a die-cut ticket (F1 · golafly.com), a two-tone flap tile (T1 · golaflytravel.com;
+   no hinge line at this size, it would strike the text) */
+.gfbf--bar-f1 .gfbfbar__tag {
+  clip-path: none; border-radius: var(--gfbf-r-sm);
+  -webkit-mask-image: radial-gradient(circle at 0 50%, transparent var(--gfbf-s-1), var(--gfbf-black) calc(var(--gfbf-s-1) + 1px)), radial-gradient(circle at 100% 50%, transparent var(--gfbf-s-1), var(--gfbf-black) calc(var(--gfbf-s-1) + 1px));
+  -webkit-mask-composite: source-in;
+  mask-image: radial-gradient(circle at 0 50%, transparent var(--gfbf-s-1), var(--gfbf-black) calc(var(--gfbf-s-1) + 1px)), radial-gradient(circle at 100% 50%, transparent var(--gfbf-s-1), var(--gfbf-black) calc(var(--gfbf-s-1) + 1px));
+  mask-composite: intersect;
+}
+.gfbf--bar-t1 .gfbfbar__tag {
+  clip-path: none; border-radius: var(--gfbf-r-sm); font-weight: 700; color: var(--gfbf-neon);
+  background: linear-gradient(180deg, var(--gfbf-slate) 0 50%, var(--gfbf-steel) 50% 100%);
+}
+
+/* ================================================================
+   Added for golafly.com (not in the designer's football pack): the offer the boss asked for —
+   "Up to 40% discount" and "+ Free eSIM to selected destinations" — under the BLACK FRIDAY title,
+   in the pack's own type and tokens (display font like the title, the neon pill of the Travel pack).
+   ================================================================ */
+.gfbff1__offer {
+  font-family: var(--gfbf-font-display); font-weight: 700; font-size: var(--gfbf-fs-l); line-height: 1;
+  letter-spacing: var(--gfbf-track-tight); text-transform: uppercase; color: var(--gfbf-white);
+}
+.gfbff1__offer strong { font-weight: 700; color: var(--gfbf-neon); }
+.gfbff1 .gfbf__gift { white-space: normal; text-wrap: balance; }
+@container gfbf (min-width: 760px) {
+  .gfbff1__offer { font-size: var(--gfbf-fs-xl); }
+  .gfbff1 .gfbf__gift { font-size: var(--gfbf-fs-m); padding: var(--gfbf-s-3) var(--gfbf-s-5); }
+}

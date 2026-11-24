@@ -1,0 +1,224 @@
+/* ─────────────────────────────────────────────────────────────────────────
+   Golafly Admin component kit — the rendered spec.
+
+   Plain CSS on purpose. The Next app is Tailwind v4 + shadcn "radix-nova";
+   these classes exist only so the previews can be self-contained under a
+   strict CSP. Every specimen prints its intended Tailwind class string
+   beside it — THAT is the handoff artifact, not this CSS.
+
+   Everything below reads from the token layer, so a token change in
+   app/globals.css propagates to every card on the next build.
+   ───────────────────────────────────────────────────────────────────────── */
+
+/* ── Swatches (Foundations) ─────────────────────────────────────────────── */
+.ds-swatch-grid {
+  display: grid;
+  /* 120px min packs 4 columns into a 576px panel, so an 8-token group is two
+     rows rather than three — cards stay short enough to read as thumbnails. */
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 10px;
+}
+.ds-swatch {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--card);
+}
+.ds-swatch-chip {
+  height: 44px;
+  display: block;
+  border-bottom: 1px solid var(--border);
+}
+/* Chequerboard shows through tokens that carry alpha. */
+.ds-swatch-chip[data-alpha="1"] {
+  background-image: linear-gradient(45deg, oklch(0.75 0 0) 25%, transparent 25%),
+    linear-gradient(-45deg, oklch(0.75 0 0) 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, oklch(0.75 0 0) 75%),
+    linear-gradient(-45deg, transparent 75%, oklch(0.75 0 0) 75%);
+  background-size: 10px 10px;
+  background-position: 0 0, 0 5px, 5px -5px, -5px 0;
+}
+.ds-swatch-chip > span {
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+.ds-swatch-meta {
+  padding: 8px 10px 10px;
+}
+.ds-swatch-name {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  font-weight: 700;
+  color: var(--foreground);
+  /* anywhere, not break-all: long token names still wrap, but at the hyphen
+     rather than mid-word ("--brand-foreground", not "--brand-foregroun d") */
+  overflow-wrap: anywhere;
+}
+.ds-swatch-val {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  color: var(--muted-foreground);
+  margin-top: 3px;
+  word-break: break-all;
+}
+.ds-swatch-role {
+  font-size: 10.5px;
+  color: var(--muted-foreground);
+  margin-top: 5px;
+  line-height: 1.4;
+}
+
+/* ── Buttons ────────────────────────────────────────────────────────────── */
+.ds-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  height: 32px;
+  padding: 0 14px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  white-space: nowrap;
+  background: var(--brand);
+  color: var(--brand-foreground);
+  /* Light mode only (dark resolves --brand-edge to transparent): a bright
+     lime is ~1.16:1 against a light page, so the pill needs its own edge. */
+  border-color: var(--brand-edge);
+  /* The signature motif, carried over from the marketing navbar. */
+  box-shadow: 0 0 12px var(--brand-glow);
+}
+.ds-btn[data-state="hover"] {
+  box-shadow: 0 0 20px var(--brand-glow);
+}
+.ds-btn[data-variant="outline"] {
+  background: transparent;
+  color: var(--foreground);
+  border-color: var(--border);
+  box-shadow: none;
+}
+.ds-btn[data-variant="ghost"] {
+  background: transparent;
+  color: var(--muted-foreground);
+  box-shadow: none;
+}
+.ds-btn[data-variant="destructive"] {
+  background: var(--destructive);
+  color: oklch(1 0 0);
+  box-shadow: none;
+}
+.ds-btn[data-size="sm"] {
+  height: 28px;
+  padding: 0 11px;
+  font-size: 9.5px;
+}
+.ds-btn[data-size="lg"] {
+  height: 36px;
+  padding: 0 18px;
+}
+.ds-btn[data-disabled="1"] {
+  opacity: 0.45;
+  box-shadow: none;
+  cursor: not-allowed;
+}
+.ds-btn svg {
+  width: 13px;
+  height: 13px;
+}
+
+/* ── Status pills ───────────────────────────────────────────────────────── */
+.ds-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  height: 21px;
+  padding: 0 9px;
+  border-radius: 999px;
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  background: var(--status-neutral-bg);
+  color: var(--status-neutral);
+}
+.ds-pill::before {
+  content: "";
+  width: 5px;
+  height: 5px;
+  border-radius: 999px;
+  background: currentColor;
+}
+.ds-pill[data-tone="good"] {
+  background: var(--status-good-bg);
+  color: var(--status-good);
+}
+.ds-pill[data-tone="warn"] {
+  background: var(--status-warn-bg);
+  color: var(--status-warn);
+}
+.ds-pill[data-tone="danger"] {
+  background: var(--status-danger-bg);
+  color: var(--status-danger);
+}
+.ds-pill[data-tone="info"] {
+  background: var(--status-info-bg);
+  color: var(--status-info);
+}
+
+/* ── Cards ──────────────────────────────────────────────────────────────── */
+.ds-card {
+  background: var(--card);
+  color: var(--card-foreground);
+  border: 1px solid var(--border);
+  border-radius: calc(var(--radius) * 1.4);
+  padding: 16px;
+}
+
+/* ── Do / don't board ───────────────────────────────────────────────────── */
+.ds-dd {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.ds-dd-item {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 14px;
+  background: var(--card);
+}
+.ds-dd-item[data-verdict="do"] {
+  border-color: color-mix(in oklch, var(--status-good) 45%, transparent);
+}
+.ds-dd-item[data-verdict="dont"] {
+  border-color: color-mix(in oklch, var(--status-danger) 45%, transparent);
+}
+.ds-dd-tag {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.ds-dd-item[data-verdict="do"] .ds-dd-tag {
+  color: var(--status-good);
+}
+.ds-dd-item[data-verdict="dont"] .ds-dd-tag {
+  color: var(--status-danger);
+}
+.ds-dd-why {
+  font-size: 11px;
+  line-height: 1.5;
+  color: var(--muted-foreground);
+  margin-top: 10px;
+}

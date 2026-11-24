@@ -1,0 +1,103 @@
+<div class="ds-section">
+  <p class="ds-eyebrow">Actions</p>
+  <h2 class="ds-h">Buttons</h2>
+  <p class="ds-sub">
+    One primary per view. Everything else is outline or ghost — a screen with three lime pills has no
+    primary action at all.
+  </p>
+  <div class="ds-btn-grid">
+    <div><span class="ds-state-lab">Primary</span><div class="ds-btn-row"><button class="ds-btn">{{icon:plus:14}} New offer</button><button class="ds-btn" data-state="hover">Hover</button><button class="ds-btn" data-disabled="1">Disabled</button><button class="ds-btn">{{icon:loader-circle:13}} Saving…</button></div></div>
+    <div><span class="ds-state-lab">Outline</span><div class="ds-btn-row"><button class="ds-btn" data-variant="outline">{{icon:download:13}} Export</button><button class="ds-btn" data-variant="outline" data-size="sm">Small</button></div></div>
+    <div><span class="ds-state-lab">Ghost</span><div class="ds-btn-row"><button class="ds-btn" data-variant="ghost">Cancel</button><button class="ds-btn" data-variant="ghost" data-size="sm">Clear all</button></div></div>
+    <div><span class="ds-state-lab">Destructive</span><div class="ds-btn-row"><button class="ds-btn" data-variant="destructive">{{icon:trash-2:13}} Delete</button><button class="ds-btn" data-variant="destructive" data-size="sm">Reject</button></div></div>
+    <div><span class="ds-state-lab">Sizes</span><div class="ds-btn-row"><button class="ds-btn" data-size="sm">sm · h-7</button><button class="ds-btn">default · h-8</button><button class="ds-btn" data-size="lg">lg · h-9</button></div></div>
+    <div><span class="ds-state-lab">Icon only</span><div class="ds-btn-row"><span class="ds-act">{{icon:eye:14}}</span><span class="ds-act" data-state="hover">{{icon:pencil:14}}</span><span class="ds-act" data-tone="danger" data-state="hover">{{icon:trash-2:14}}</span></div></div>
+  </div>
+  <p class="ds-note">
+    The lime pill is the only thing in the product that glows. Everything with
+    <code class="ds-code">shadow-[0_0_12px_var(--brand-glow)]</code> is clickable, and nothing clickable
+    glows unless it is the primary action — so the glow stays a signal rather than decoration.
+    <br /><br />
+    In light mode the pill carries its 1px <code class="ds-code">--brand-edge</code>; in dark that token
+    resolves to transparent and the fill separates on its own.
+  </p>
+</div>
+
+<div class="ds-section">
+  <p class="ds-eyebrow">Input</p>
+  <h2 class="ds-h">Form controls</h2>
+  <div class="ds-form-grid">
+    <div class="ds-field">
+      <span class="ds-label">Offer title <i>*</i></span>
+      <span class="ds-input" style="color: var(--foreground)">Summer Trials 2026</span>
+    </div>
+    <div class="ds-field">
+      <span class="ds-label">Category <i>*</i></span>
+      <span class="ds-input" style="justify-content: space-between; color: var(--foreground)">Football Tourism {{icon:chevron-down:12}}</span>
+    </div>
+    <div class="ds-field">
+      <span class="ds-label">Focused</span>
+      <span class="ds-input" data-state="focus" style="color: var(--foreground)">Typing…</span>
+      <span class="ds-help">Focus ring is <code class="ds-code">--ring</code> at 3px, never the raw lime.</span>
+    </div>
+    <div class="ds-field">
+      <span class="ds-label">With an error</span>
+      <span class="ds-input" data-state="error" style="color: var(--foreground)">2026-13-45</span>
+      <span class="ds-err">{{icon:circle-alert:11}} Enter a valid date.</span>
+    </div>
+    <div class="ds-field">
+      <span class="ds-label">Deadline</span>
+      <span class="ds-input" style="justify-content: space-between; color: var(--foreground)">2026-08-30 {{icon:calendar:13}}</span>
+    </div>
+    <div class="ds-field">
+      <span class="ds-label">Disabled</span>
+      <span class="ds-input" style="opacity: 0.5">Locked after publish</span>
+    </div>
+    <div class="ds-field" style="grid-column: 1 / -1">
+      <span class="ds-label">Description</span>
+      <div class="ds-ta">Two weeks of supervised trials across three partner clubs, with accommodation and transfers included.</div>
+      <span class="ds-help">Shown on the public offer page.</span>
+    </div>
+  </div>
+
+  <div class="ds-ctl-row">
+    <div>
+      <span class="ds-state-lab">Checkbox</span>
+      <div class="ds-ctl-stack">
+        <span class="ds-radio"><span class="ds-cb" data-on="1">{{icon:check:10}}</span> Publish immediately</span>
+        <span class="ds-radio"><span class="ds-cb"></span> Notify subscribers</span>
+      </div>
+    </div>
+    <div>
+      <span class="ds-state-lab">Radio</span>
+      <div class="ds-ctl-stack">
+        <span class="ds-radio"><span class="ds-rad" data-on="1"></span> Open to all</span>
+        <span class="ds-radio"><span class="ds-rad"></span> Invite only</span>
+      </div>
+    </div>
+    <div>
+      <span class="ds-state-lab">Switch</span>
+      <div class="ds-ctl-stack">
+        <span class="ds-switch-row"><span class="ds-switch" data-on="1"></span> Active</span>
+        <span class="ds-switch-row"><span class="ds-switch"></span> Featured</span>
+      </div>
+    </div>
+  </div>
+  <p class="ds-note">
+    Required is marked on the label with a red asterisk, not by the absence of “(optional)”. Errors sit
+    <em>below</em> the field with an icon, so the message is never colour-only and never pushes the
+    layout when it appears — the help-text slot is the same line.
+    <br /><br />
+    Checkbox and switch are not interchangeable: a checkbox is a value you are <em>submitting</em>, a
+    switch is a state that takes effect <em>immediately</em>.
+  </p>
+</div>
+
+<style data-local>
+  .ds-btn-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px 20px; }
+  .ds-btn-row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-top: 6px; }
+  .ds-state-lab { font-family: var(--font-mono); font-size: 9px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted-foreground); }
+  .ds-form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px 16px; }
+  .ds-ctl-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--border); }
+  .ds-ctl-stack { display: flex; flex-direction: column; gap: 8px; margin-top: 7px; }
+</style>

@@ -1,0 +1,182 @@
+<!-- PLAYER · SCOUT MESSAGES & NOTIFICATIONS — GOL-SCOUT-16 / 18 / 24
+
+     The player's side of the conversation, plus the four states this screen
+     has to survive:
+
+       · no camp yet          — the majority of fans, forever
+       · camp attended, report not published
+       · published, thread live
+       · a scout they are no longer assigned to
+
+     One decision worth defending: the player CANNOT open a new thread with an
+     arbitrary scout. They can only reply to a scout assigned to them, and the
+     composer says so. This protects the player as much as the scouts — an
+     open directory of adults who evaluate teenagers is not something to ship
+     by accident.
+
+     The safeguarding line is stated to the player too, not just to the scout.
+     Someone messaging an adult about their career deserves to know an admin
+     can read it. -->
+<div class="fan-screen">
+{{fannav:scouting}}
+  <div class="fan-main">
+    <p class="fan-eyebrow">Barcelona 2026</p>
+    <h1 class="fan-h1" style="margin-top: 5px">Scouting</h1>
+    <p class="fan-sub">Your report, and the scout who wrote it.</p>
+
+    <!-- NOTIFICATIONS -->
+    <section class="fan-section">
+      <div class="fan-section-h">
+        <h2 class="fan-section-t">Updates</h2>
+        <span class="fan-link">Mark all read</span>
+      </div>
+      <div class="sm-notifs">
+        <div class="fan-card sm-notif" data-unread="1">
+          <span class="sm-ic" data-tone="good">{{icon:file-check:18}}</span>
+          <span class="sm-t">
+            <b>Your scouting report is ready</b>
+            <i>James Carter · 23 May</i>
+            <em>Barcelona 2026 · overall 7.8, recommended for an academy trial.</em>
+          </span>
+          <button class="fan-btn" data-variant="outline">Read it</button>
+        </div>
+        <div class="fan-card sm-notif" data-unread="1">
+          <span class="sm-ic" data-tone="warn">{{icon:trophy:18}}</span>
+          <span class="sm-t">
+            <b>Academy trial recommendation</b>
+            <i>James Carter · 23 May</i>
+            <em>“Spend six weeks on your left foot before the trial comes through.”</em>
+          </span>
+          <button class="fan-btn" data-variant="outline">Open</button>
+        </div>
+        <div class="fan-card sm-notif">
+          <span class="sm-ic">{{icon:calendar:18}}</span>
+          <span class="sm-t">
+            <b>Session 4 moved</b>
+            <i>Golafly · 20 May</i>
+            <em>Barcelona 2026 · now Saturday 24 May, 09:00.</em>
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <!-- THREAD -->
+    <section class="fan-section">
+      <div class="fan-section-h">
+        <h2 class="fan-section-t">Messages</h2>
+      </div>
+      <div class="fan-card" data-tight="1">
+        <div class="sm-head">
+          <span class="fan-avatar" style="width: 40px; height: 40px; font-size: 16px">J</span>
+          <span style="flex: 1">
+            <b class="sm-name">James Carter</b>
+            <i class="sm-role">Your scout · UEFA A Licence · Golafly Scouting Network</i>
+          </span>
+          <span class="fan-pill" data-tone="good">Assigned to you</span>
+        </div>
+
+        <div class="sm-msgs">
+          <span class="sm-day">22 May</span>
+          <div class="sm-msg">
+            Good session today. I want to see more of your left foot before the
+            next one.
+            <span class="sm-time">18:02</span>
+          </div>
+          <div class="sm-msg" data-me="1">
+            Thank you coach! I will work on it.
+            <span class="sm-time">18:40 · Read</span>
+          </div>
+          <span class="sm-day">23 May</span>
+          <div class="sm-msg">
+            Your report is published — have a read. The trial recommendation is
+            in there. Any questions, ask me here.
+            <span class="sm-time">10:04</span>
+          </div>
+        </div>
+
+        <div class="sm-composer">
+          <span class="fan-input" style="flex: 1">Reply to James…</span>
+          <button class="fan-btn">{{icon:send:15}} Send</button>
+        </div>
+
+        <p class="sm-safe">
+          {{icon:shield:13}} Golafly admins can read scout conversations for
+          safeguarding. If anything here makes you uncomfortable, or a scout
+          asks to move the conversation off Golafly,
+          <span class="fan-link">report it</span>.
+        </p>
+      </div>
+    </section>
+
+    <!-- THE OTHER THREE STATES -->
+    <section class="fan-section">
+      <div class="fan-section-h">
+        <h2 class="fan-section-t">The other states</h2>
+        <span class="fan-link">Spec, not shown together</span>
+      </div>
+      <div class="sm-states">
+        <div class="fan-card sm-state">
+          <span class="fan-state-ic">{{icon:clipboard-list:20}}</span>
+          <p class="fan-state-t">You haven’t been to a camp yet</p>
+          <p class="sm-state-b">Scouting reports come from Golafly camps. When
+            you attend one and a scout evaluates you, the report appears here.</p>
+          <button class="fan-btn" data-variant="outline">Find a camp</button>
+          <span class="sm-cap">Most fans, always. Explains what the tab is for
+            rather than showing an empty inbox.</span>
+        </div>
+
+        <div class="fan-card sm-state">
+          <span class="fan-state-ic" data-tone="warn">{{icon:clock:20}}</span>
+          <p class="fan-state-t">Your evaluation is with Golafly</p>
+          <p class="sm-state-b">James has submitted his report. A Golafly admin
+            reviews every report before it reaches you — you’ll be notified the
+            moment it’s published.</p>
+          <span class="sm-cap">The honest version of a wait. Never shows a
+            draft score: an unpublished number that later moves is worse than
+            no number.</span>
+        </div>
+
+        <div class="fan-card sm-state">
+          <span class="fan-state-ic">{{icon:lock:20}}</span>
+          <p class="fan-state-t">This scout is no longer assigned to you</p>
+          <p class="sm-state-b">You can still read your Lagos 2025 report and
+            this conversation. To reach someone about it, message Golafly.</p>
+          <button class="fan-btn" data-variant="outline">{{icon:message-square:15}} Message Golafly</button>
+          <span class="sm-cap">History stays readable, the composer does not.
+            A player must not be left messaging into a thread nobody is
+            watching.</span>
+        </div>
+      </div>
+    </section>
+  </div>
+{{fantabs:scouting}}
+</div>
+
+<style data-local>
+  .fan-h1 { font-family: var(--font-heading); font-size: 25px; font-weight: 700; }
+  .sm-notifs { display: flex; flex-direction: column; gap: 10px; }
+  .sm-notif { display: flex; align-items: center; gap: 14px; }
+  .sm-notif[data-unread="1"] { box-shadow: 0 0 0 1px var(--brand-edge); }
+  .sm-ic { display: grid; place-items: center; width: 42px; height: 42px; flex: none; border-radius: 14px; background: var(--muted); color: var(--muted-foreground); }
+  .sm-ic[data-tone="good"] { background: var(--status-good-bg); color: var(--status-good); }
+  .sm-ic[data-tone="warn"] { background: var(--status-warn-bg); color: var(--status-warn); }
+  .sm-t { flex: 1; min-width: 0; display: grid; gap: 2px; }
+  .sm-t b { font-size: 13.5px; font-weight: 700; }
+  .sm-t i { font-style: normal; font-size: 11px; color: var(--muted-foreground); }
+  .sm-t em { font-style: normal; font-size: 12.5px; line-height: 1.5; color: var(--muted-foreground); margin-top: 3px; }
+  .sm-head { display: flex; align-items: center; gap: 12px; padding-bottom: 13px; border-bottom: 1px solid var(--edge); }
+  .sm-name { display: block; font-size: 14px; font-weight: 700; }
+  .sm-role { font-style: normal; font-size: 11.5px; color: var(--muted-foreground); }
+  .sm-msgs { display: flex; flex-direction: column; gap: 11px; padding: 15px 0; }
+  .sm-day { align-self: center; font-family: var(--font-mono); font-size: 9.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted-foreground); }
+  .sm-msg { max-width: 68%; padding: 11px 13px; border-radius: 18px; background: var(--muted); font-size: 13px; line-height: 1.55; }
+  .sm-msg[data-me="1"] { margin-left: auto; background: var(--brand); color: var(--brand-foreground); }
+  .sm-time { display: block; margin-top: 5px; font-family: var(--font-mono); font-size: 9.5px; opacity: 0.7; }
+  .sm-composer { display: flex; align-items: center; gap: 10px; padding-top: 13px; border-top: 1px solid var(--edge); }
+  .sm-safe { display: flex; align-items: flex-start; gap: 7px; margin-top: 13px; font-size: 11.5px; line-height: 1.55; color: var(--muted-foreground); }
+  .sm-states { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; align-items: start; }
+  .sm-state { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 7px; }
+  .sm-state-b { font-size: 12.5px; line-height: 1.55; color: var(--muted-foreground); }
+  .sm-cap { display: block; margin-top: 10px; padding-top: 10px; border-top: 1px dashed var(--border); font-size: 10.5px; line-height: 1.5; color: var(--muted-foreground); text-align: left; }
+  .fan-state-ic[data-tone="warn"] { background: var(--status-warn-bg); color: var(--status-warn); }
+</style>

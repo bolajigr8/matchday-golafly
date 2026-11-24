@@ -26,7 +26,7 @@ export function StepProgress({ currentStep }: { currentStep: 1 | 2 | 3 | 4 }) {
                   "flex size-[22px] shrink-0 items-center justify-center rounded-full border font-mono text-[10px] font-bold tracking-wider",
                   done && "border-border bg-muted text-muted-foreground",
                   active &&
-                    "border-primary bg-primary text-primary-foreground shadow-[0_0_8px_rgba(183,255,0,0.4)]",
+                    "border-brand-text bg-primary text-primary-foreground shadow-[0_0_8px_rgba(183,255,0,0.4)]",
                   !done && !active && "border-muted-foreground/40 text-muted-foreground/60",
                 )}
                 initial={{ scale: 0.7, opacity: 0 }}
@@ -38,7 +38,7 @@ export function StepProgress({ currentStep }: { currentStep: 1 | 2 | 3 | 4 }) {
               <motion.span
                 className={cn(
                   "hidden font-mono text-[10px] tracking-wider sm:block",
-                  active ? "text-primary" : "text-muted-foreground",
+                  active ? "font-bold text-brand-text" : done ? "text-foreground/70" : "text-muted-foreground",
                 )}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -49,7 +49,7 @@ export function StepProgress({ currentStep }: { currentStep: 1 | 2 | 3 | 4 }) {
             </div>
             {i < STEPS.length - 1 && (
               <motion.div
-                className="mx-2 h-px w-8 bg-border/50 sm:mx-4 sm:w-14"
+                className="mx-2 h-px w-8 bg-border sm:mx-4 sm:w-14"
                 initial={{ scaleX: 0, opacity: 0 }}
                 animate={{ scaleX: 1, opacity: 1 }}
                 transition={{ delay: i * 0.07 + 0.15, duration: 0.3 }}

@@ -1,0 +1,153 @@
+<div class="ds-section">
+  <p class="ds-eyebrow">Fan · States</p>
+  <h2 class="ds-h">The five states every fan list has</h2>
+  <p class="ds-sub">
+    Ported from the admin's <code class="ds-code">QueryTable</code>, adapted from table rows to
+    cards. One wrapper — <code class="ds-code">components/fan/query-state.tsx</code> — so no screen
+    reimplements them and none of them can be forgotten. The rules matter <em>more</em> here than in
+    the admin: a fan checking a booking on a train with two bars of signal is exactly who gets
+    punished by a layout that collapses on every refetch.
+  </p>
+
+  <div class="st-grid">
+    <!-- 1 · LOADING -->
+    <div class="st-cell">
+      <p class="st-lab">1 · Loading</p>
+      <div class="fan-skel">
+        <div style="display: flex; gap: 13px">
+          <span class="fan-skel-chip"></span>
+          <div style="flex: 1; padding-top: 3px">
+            <span class="fan-skel-line" style="width: 42%"></span>
+            <span class="fan-skel-line" style="width: 66%; margin-top: 10px; height: 8px"></span>
+            <span class="fan-skel-line" style="width: 30%; margin-top: 10px; height: 8px"></span>
+          </div>
+        </div>
+      </div>
+      <p class="st-note">
+        Skeleton at the <b>real card height</b>, with varying line widths so it reads as content
+        arriving rather than a stalled bar. Nothing shifts when the data lands.
+      </p>
+    </div>
+
+    <!-- 2 · ERROR -->
+    <div class="st-cell">
+      <p class="st-lab">2 · Error</p>
+      <div class="fan-state">
+        <span class="fan-state-ic" style="background: var(--status-danger-bg); color: var(--status-danger)">{{icon:triangle-alert:22}}</span>
+        <p class="fan-state-t">Couldn’t load your bookings</p>
+        <p class="fan-state-b">Check your connection and try again. If it keeps happening, quote the reference below to support.</p>
+        <span class="fan-code">GET /v1/auth/ledgers → 503</span>
+        <button class="fan-btn" data-variant="outline" data-size="sm" style="margin-top: 10px">{{icon:refresh-cw:13}} Try again</button>
+      </div>
+      <p class="st-note">
+        <b>Names the failing call and its status.</b> "Something went wrong" gives the fan nothing to
+        say to support and nothing to screenshot.
+      </p>
+    </div>
+
+    <!-- 3 · EMPTY -->
+    <div class="st-cell">
+      <p class="st-lab">3 · Empty</p>
+      <div class="fan-state">
+        <span class="fan-state-ic">{{icon:inbox:22}}</span>
+        <p class="fan-state-t">No trips booked yet</p>
+        <p class="fan-state-b">Flights, stays and eSIMs you buy will show up here with your tickets and vouchers.</p>
+        <span style="display: flex; gap: 8px; margin-top: 10px">
+          <button class="fan-btn" data-size="sm">{{icon:plane:13}} Find flights</button>
+          <button class="fan-btn" data-variant="outline" data-size="sm">{{icon:bed-double:13}} Browse stays</button>
+        </span>
+      </div>
+      <p class="st-note">
+        Empty means <b>nothing bought yet</b>, so it invites — two real calls to action, not a shrug.
+        This is scenario 4.
+      </p>
+    </div>
+
+    <!-- 4 · UPDATING -->
+    <div class="st-cell">
+      <p class="st-lab">4 · Refetching</p>
+      <div style="position: relative">
+        <div class="fan-card" data-tight="1">
+          <div style="display: flex; align-items: center; gap: 13px">
+            <span class="fan-chip">{{icon:plane:18}}</span>
+            <div style="min-width: 0">
+              <p class="fan-eyebrow">Flight</p>
+              <p class="fan-title" style="font-size: 14px">LOS → MAD</p>
+            </div>
+            <span class="fan-pill" data-tone="good" style="margin-left: auto">Confirmed</span>
+          </div>
+          <div class="fan-meta">
+            <span>{{icon:calendar:13}} 22 Aug 2026</span>
+            <span>{{icon:ticket:13}} PNR 4K2D9X</span>
+          </div>
+        </div>
+        <span class="fan-updating" style="position: absolute; top: 10px; right: 10px">{{icon:refresh-cw:12}} Updating</span>
+      </div>
+      <p class="st-note">
+        <b>The content stays put.</b> It never drops back to a skeleton — yanking away a booking
+        reference someone is mid-read of, to show them a shimmer, is the worst thing this dashboard
+        could do. The pill is the only thing that changes.
+      </p>
+    </div>
+
+    <!-- 5 · NO ENDPOINT -->
+    <div class="st-cell st-wide">
+      <p class="st-lab">5 · No endpoint</p>
+      <div class="fan-state" data-kind="no-endpoint">
+        <span class="fan-state-ic">{{icon:ticket:22}}</span>
+        <p class="fan-state-t">Match tickets aren’t connected yet</p>
+        <p class="fan-state-b">
+          Your tickets will appear here as soon as the ticketing service is live. Nothing you bought
+          is lost — we just can’t read it back yet.
+        </p>
+        <span class="fan-code">Needs ledger_type: "ticket" on GET /v1/auth/ledgers</span>
+      </div>
+      <p class="st-note">
+        <b>Deliberately not the empty state.</b> "You have no tickets" and "we cannot see your
+        tickets yet" are different claims, and only one of them is the fan's problem. Dashed warn
+        border, so it never gets mistaken for a normal empty list at a glance. The endpoint is named
+        for whoever has to fix it — see <code class="ds-code">design/tickets-endpoint.md</code>.
+      </p>
+    </div>
+  </div>
+
+  <p class="ds-note">
+    <strong>Never a zero where a number is unknown.</strong> Counts, prices and totals render an
+    em-dash until they are actually measured. <code class="ds-code">€0</code> is a claim that
+    something cost nothing; <code class="ds-code">0 tickets</code> is a claim that a fan owns none.
+    Both are worse than admitting the app hasn't been told.
+    <br /><br />
+    The <b>filtered-empty</b> state is intentionally absent from the shared wrapper — it has to echo
+    back the active filters, so it belongs to whichever screen owns them. Same call as the admin.
+  </p>
+</div>
+
+<style data-local>
+  .st-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 22px;
+  }
+  .st-wide {
+    grid-column: 1 / -1;
+    max-width: 620px;
+  }
+  .st-lab {
+    font-family: var(--font-mono);
+    font-size: 9.5px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted-foreground);
+    margin: 0 0 9px;
+  }
+  .st-note {
+    margin: 10px 0 0;
+    font-size: 11.5px;
+    line-height: 1.55;
+    color: var(--muted-foreground);
+  }
+  .st-note b {
+    color: var(--foreground);
+  }
+</style>

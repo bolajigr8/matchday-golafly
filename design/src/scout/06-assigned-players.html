@@ -1,0 +1,170 @@
+<!-- ASSIGNED PLAYERS — GOL-SCOUT-03 / 04 (scout's half)
+
+     The dashboard shows the six rows that need attention. This is the whole
+     list, and the difference is filtering: camp, position, status, and the
+     one filter the mockup does not have — "assigned to me in the last N days",
+     because a scout's real question at a camp is which of the new arrivals
+     they have not touched yet.
+
+     Assignment is admin-side (GOL-SCOUT-04). What the scout sees here is the
+     result: who, when they arrived, and by whom — read-only. -->
+<div class="ds-screen">
+  <div class="ds-shell">
+{{scoutnav:players}}
+    <div class="ds-pane">
+      <div class="ds-hdr">
+        <div class="ds-hdr-r1">
+          <span class="ds-crumb">Scouting / <b>Assigned players</b></span>
+          <span style="display: flex; gap: 7px; align-items: center">
+            <span class="ds-input" style="gap: 9px; height: 28px">{{icon:calendar:14}} Camp: Barcelona 2026 {{icon:chevron-down:12}}</span>
+            <button class="ds-btn" data-variant="outline" data-size="sm">{{icon:download:13}} Export</button>
+          </span>
+        </div>
+        <div class="ds-hdr-r2">
+          <span class="ds-hdr-title">Assigned players</span>
+          <span class="ds-hdr-stats">
+            <span class="ds-hdr-stat"><i style="background: var(--status-neutral)"></i>6 not started</span>
+            <span class="ds-hdr-stat"><i style="background: var(--status-warn)"></i>7 in progress</span>
+            <span class="ds-hdr-stat"><i style="background: var(--status-info)"></i>5 submitted</span>
+            <span class="ds-hdr-stat"><i style="background: var(--status-good)"></i>6 published</span>
+          </span>
+        </div>
+        <div class="ds-tabs" style="margin-top: 12px">
+          <span class="ds-tab" data-on="1">All <span class="ds-dd-tag">24</span></span>
+          <span class="ds-tab">Needs action <span class="ds-dd-tag">7</span></span>
+          <span class="ds-tab">With admin <span class="ds-dd-tag">5</span></span>
+          <span class="ds-tab">Published <span class="ds-dd-tag">6</span></span>
+        </div>
+      </div>
+
+      <div class="ds-pane-body">
+        <div class="ds-tb">
+          <span class="ds-input" style="width: 210px">{{icon:search:14}} Search players…</span>
+          <span class="ds-input" style="gap: 9px">{{icon:list-filter:14}} Position {{icon:chevron-down:12}}</span>
+          <span class="ds-input" style="gap: 9px">{{icon:list-filter:14}} Status {{icon:chevron-down:12}}</span>
+          <span class="ds-input" style="gap: 9px">{{icon:calendar:14}} Assigned: any {{icon:chevron-down:12}}</span>
+          <span class="ds-chip">Position <b>Forwards</b><span class="ds-chip-x">{{icon:x:10}}</span></span>
+          <span style="margin-left: auto; display: flex; gap: 7px">
+            <button class="ds-btn" data-variant="outline" data-size="sm">{{icon:funnel-x:13}} Clear</button>
+          </span>
+        </div>
+
+        <div class="ds-tw">
+          <table class="ds-t">
+            <thead><tr>
+              <th>Player</th><th>Pos</th><th>Age</th><th>Nationality</th>
+              <th>Assigned</th><th>Evaluation</th>
+              <th style="text-align:right">Score</th><th style="text-align:right">Potential</th>
+              <th>Report</th><th style="text-align:right">Action</th>
+            </tr></thead>
+            <tbody>
+              <tr>
+                <td><span class="ds-idc"><span class="ds-av-sm">IK</span><span class="ds-idc-txt"><span class="ds-idc-name">Ibrahim Koné</span><span class="ds-idc-sub">i.kone@example.com</span></span></span></td>
+                <td>ST</td><td class="ds-num">21</td><td>Ivory Coast</td>
+                <td class="ds-num">20 May</td>
+                <td><span class="ds-pill">Not started</span></td>
+                <td class="ds-num" style="text-align:right">—</td><td class="ds-num" style="text-align:right">—</td>
+                <td><span class="ds-pill">Not started</span></td>
+                <td style="text-align:right"><span class="ds-acts"><span class="ds-act">{{icon:eye:14}}</span><span class="ds-act">{{icon:clipboard-list:14}}</span><span class="ds-act">{{icon:ellipsis-vertical:14}}</span></span></td>
+              </tr>
+              <tr>
+                <td><span class="ds-idc"><span class="ds-av-sm">MS</span><span class="ds-idc-txt"><span class="ds-idc-name">Miguel Santos</span><span class="ds-idc-sub">m.santos@example.com</span></span></span></td>
+                <td>RW</td><td class="ds-num">18</td><td>Portugal</td>
+                <td class="ds-num">23 May</td>
+                <td><span class="ds-pill">Not started</span></td>
+                <td class="ds-num" style="text-align:right">—</td><td class="ds-num" style="text-align:right">—</td>
+                <td><span class="ds-pill">Not started</span></td>
+                <td style="text-align:right"><span class="ds-acts"><span class="ds-act">{{icon:eye:14}}</span><span class="ds-act">{{icon:clipboard-list:14}}</span><span class="ds-act">{{icon:ellipsis-vertical:14}}</span></span></td>
+              </tr>
+              <tr>
+                <td><span class="ds-idc"><span class="ds-av-sm">GA</span><span class="ds-idc-txt"><span class="ds-idc-name">George Adeola</span><span class="ds-idc-sub">g.adeola@example.com</span></span></span></td>
+                <td>RW</td><td class="ds-num">20</td><td>Nigeria</td>
+                <td class="ds-num">14 May</td>
+                <td><span class="ds-pill" data-tone="warn">In progress</span></td>
+                <td class="ds-num" style="text-align:right">8.3</td><td class="ds-num" style="text-align:right">72%</td>
+                <td><span class="ds-pill" data-tone="warn">Draft</span></td>
+                <td style="text-align:right"><span class="ds-acts"><span class="ds-act">{{icon:eye:14}}</span><span class="ds-act">{{icon:pen-line:14}}</span><span class="ds-act">{{icon:ellipsis-vertical:14}}</span></span></td>
+              </tr>
+              <tr>
+                <td><span class="ds-idc"><span class="ds-av-sm">LM</span><span class="ds-idc-txt"><span class="ds-idc-name">Lucas Moretti</span><span class="ds-idc-sub">l.moretti@example.com</span></span></span></td>
+                <td>CAM</td><td class="ds-num">20</td><td>Argentina</td>
+                <td class="ds-num">14 May</td>
+                <td><span class="ds-pill" data-tone="warn">In progress</span></td>
+                <td class="ds-num" style="text-align:right">7.1</td><td class="ds-num" style="text-align:right">60%</td>
+                <td><span class="ds-pill" data-tone="warn">Draft</span></td>
+                <td style="text-align:right"><span class="ds-acts"><span class="ds-act">{{icon:eye:14}}</span><span class="ds-act">{{icon:pen-line:14}}</span><span class="ds-act">{{icon:ellipsis-vertical:14}}</span></span></td>
+              </tr>
+              <tr>
+                <td><span class="ds-idc"><span class="ds-av-sm">SO</span><span class="ds-idc-txt"><span class="ds-idc-name">Samuel Osei</span><span class="ds-idc-sub">s.osei@example.com</span></span></span></td>
+                <td>CB</td><td class="ds-num">19</td><td>Ghana</td>
+                <td class="ds-num">12 May</td>
+                <td><span class="ds-pill" data-tone="danger">Returned</span></td>
+                <td class="ds-num" style="text-align:right">7.4</td><td class="ds-num" style="text-align:right">64%</td>
+                <td><span class="ds-pill" data-tone="danger">Needs revision</span></td>
+                <td style="text-align:right"><span class="ds-acts"><span class="ds-act">{{icon:eye:14}}</span><span class="ds-act">{{icon:pen-line:14}}</span><span class="ds-act">{{icon:ellipsis-vertical:14}}</span></span></td>
+              </tr>
+              <tr>
+                <td><span class="ds-idc"><span class="ds-av-sm">DM</span><span class="ds-idc-txt"><span class="ds-idc-name">Daniel Mendes</span><span class="ds-idc-sub">d.mendes@example.com</span></span></span></td>
+                <td>LW</td><td class="ds-num">19</td><td>Brazil</td>
+                <td class="ds-num">11 May</td>
+                <td><span class="ds-pill" data-tone="info">Submitted</span></td>
+                <td class="ds-num" style="text-align:right">7.8</td><td class="ds-num" style="text-align:right">65%</td>
+                <td><span class="ds-pill" data-tone="info">Awaiting review</span></td>
+                <td style="text-align:right"><span class="ds-acts"><span class="ds-act">{{icon:eye:14}}</span><span class="ds-act" data-disabled="1">{{icon:pen-line:14}}</span><span class="ds-act">{{icon:ellipsis-vertical:14}}</span></span></td>
+              </tr>
+              <tr>
+                <td><span class="ds-idc"><span class="ds-av-sm">AK</span><span class="ds-idc-txt"><span class="ds-idc-name">Amadou Keita</span><span class="ds-idc-sub">a.keita@example.com</span></span></span></td>
+                <td>CDM</td><td class="ds-num">20</td><td>Senegal</td>
+                <td class="ds-num">11 May</td>
+                <td><span class="ds-pill" data-tone="info">Submitted</span></td>
+                <td class="ds-num" style="text-align:right">7.2</td><td class="ds-num" style="text-align:right">61%</td>
+                <td><span class="ds-pill" data-tone="good">Approved</span></td>
+                <td style="text-align:right"><span class="ds-acts"><span class="ds-act">{{icon:eye:14}}</span><span class="ds-act" data-disabled="1">{{icon:pen-line:14}}</span><span class="ds-act">{{icon:ellipsis-vertical:14}}</span></span></td>
+              </tr>
+              <tr>
+                <td><span class="ds-idc"><span class="ds-av-sm">YD</span><span class="ds-idc-txt"><span class="ds-idc-name">Youssoufa Diarra</span><span class="ds-idc-sub">y.diarra@example.com</span></span></span></td>
+                <td>CM</td><td class="ds-num">19</td><td>Mali</td>
+                <td class="ds-num">08 May</td>
+                <td><span class="ds-pill" data-tone="good">Published</span></td>
+                <td class="ds-num" style="text-align:right">8.0</td><td class="ds-num" style="text-align:right">68%</td>
+                <td><span class="ds-pill" data-tone="good">Published</span></td>
+                <td style="text-align:right"><span class="ds-acts"><span class="ds-act">{{icon:eye:14}}</span><span class="ds-act">{{icon:download:14}}</span><span class="ds-act">{{icon:ellipsis-vertical:14}}</span></span></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="ds-pag">
+            <span>Showing <span class="ds-pag-n">1–8</span> of <span class="ds-pag-n">24</span></span>
+            <span class="ds-pages">
+              <span class="ds-page" data-disabled="1">{{icon:chevron-left:13}}</span>
+              <span class="ds-page" data-on="1">1</span><span class="ds-page">2</span><span class="ds-page">3</span>
+              <span class="ds-page">{{icon:chevron-right:13}}</span>
+            </span>
+            <span>Rows <span class="ds-pag-n">8</span> {{icon:chevrons-up-down:11}}</span>
+          </div>
+        </div>
+
+        <p class="ap-note">
+          Two columns are missing on purpose. There is no <b>select</b>
+          checkbox: every bulk action a scout could want here — assign,
+          reassign, unassign — belongs to the admin, and a checkbox column
+          implies otherwise. And there is no <b>delete</b>: a scout cannot
+          remove a player from their own list, so the row menu carries view,
+          evaluate, message and download only. The edit pencil dims once a
+          report is submitted, matching the read-only lock in the States card.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style data-local>
+  .ds-shell { min-height: 640px; }
+  .ap-note {
+    font-size: 10.5px;
+    line-height: 1.6;
+    color: var(--muted-foreground);
+    margin-top: 14px;
+    max-width: 840px;
+  }
+  .ds-act[data-disabled="1"] { opacity: 0.35; }
+</style>

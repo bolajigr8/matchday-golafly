@@ -1,0 +1,162 @@
+<div class="fan-screen">
+{{fannav:settings}}
+  <div class="fan-main">
+    <h1 class="fan-h1">Settings</h1>
+    <p class="fan-sub">Your account and how we reach you.</p>
+
+    <div class="se-grid">
+      <div>
+        <!-- PROFILE — real. The user object comes back with the login
+             response, so name and email are on hand from the first render. -->
+        <section class="fan-section" style="margin-top: 20px">
+          <div class="fan-card">
+            <h2 class="fan-section-t" style="margin: 0 0 14px">Profile</h2>
+            <div class="se-rows">
+              <div class="fan-field">
+                <span class="fan-label">Full name</span>
+                <span class="fan-input">{{icon:user-round:15}} Adaeze Okonkwo</span>
+              </div>
+              <div class="fan-field">
+                <span class="fan-label">Email</span>
+                <span class="fan-input">{{icon:mail:15}} adaeze@example.com</span>
+              </div>
+            </div>
+            <div class="se-actions">
+              <button class="fan-btn" data-size="sm">Save changes</button>
+              <button class="fan-btn" data-variant="ghost" data-size="sm">Cancel</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- PASSWORD — real. PATCH /v1/auth/password. -->
+        <section class="fan-section">
+          <div class="fan-card">
+            <h2 class="fan-section-t" style="margin: 0 0 14px">Password</h2>
+            <div class="se-rows">
+              <div class="fan-field">
+                <span class="fan-label">Current password</span>
+                <span class="fan-input">{{icon:lock:15}} ••••••••••</span>
+              </div>
+              <div class="se-two">
+                <div class="fan-field">
+                  <span class="fan-label">New password</span>
+                  <span class="fan-input" data-state="focus">{{icon:lock:15}} ••••••••••••</span>
+                </div>
+                <div class="fan-field">
+                  <span class="fan-label">Confirm new password</span>
+                  <span class="fan-input" data-state="error">{{icon:lock:15}} ••••••••</span>
+                </div>
+              </div>
+              <span class="fan-err">Passwords don’t match.</span>
+            </div>
+            <div class="se-actions">
+              <button class="fan-btn" data-size="sm">Update password</button>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <div>
+        <!-- SESSION — this is scenario 5's visible half. Everything else in
+             the dashboard is a client-side route change against a cookie
+             already in hand; this is the only control that ends it. -->
+        <section class="fan-section" style="margin-top: 20px">
+          <div class="fan-card" data-tight="1">
+            <h2 class="fan-section-t" style="margin: 0 0 10px; font-size: 14px">Session</h2>
+            <p class="se-note">
+              You stay signed in for 7 days on this device. Moving between Home, Tickets, Travel and
+              Settings never asks again.
+            </p>
+            <button class="fan-btn" data-variant="outline" data-size="sm" style="margin-top: 13px; width: 100%">
+              {{icon:log-out:13}} Log out
+            </button>
+          </div>
+        </section>
+
+        <!-- Everything with no endpoint, in one honest block rather than four
+             dead toggles scattered through the page. -->
+        <section class="fan-section">
+          <div class="fan-state" data-kind="no-endpoint" style="padding: 22px 18px">
+            <span class="fan-state-ic" style="width: 42px; height: 42px">{{icon:mail:18}}</span>
+            <p class="fan-state-t" style="font-size: 14px">Notification settings</p>
+            <p class="fan-state-b" style="font-size: 12px">
+              Match reminders, price alerts and travel updates. Not switched on yet — there’s no
+              preferences endpoint to save them to.
+            </p>
+            <span class="fan-code" style="font-size: 10px">Needs GET/PATCH /v1/auth/preferences</span>
+          </div>
+        </section>
+
+        <div class="se-gated">
+          <p class="fan-eyebrow">Not built, on purpose</p>
+          <ul>
+            <li>Saved cards</li>
+            <li>Rewards &amp; points</li>
+            <li>Inbox</li>
+          </ul>
+          <p class="se-gated-note">
+            No endpoint exists for any of these. The travels dashboard carries the same three behind
+            <code class="fan-code" style="font-size: 10px">TODO(launch)</code> comments rather than
+            shipping dead controls — a toggle that silently does nothing is worse than its absence.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style data-local>
+  .se-grid {
+    display: grid;
+    grid-template-columns: 1.35fr 1fr;
+    gap: 18px;
+    align-items: start;
+  }
+  .se-rows {
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+  }
+  .se-two {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 13px;
+  }
+  .se-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 16px;
+    padding-top: 14px;
+    border-top: 1px solid var(--edge);
+  }
+  .se-note {
+    margin: 0;
+    font-size: 12px;
+    line-height: 1.6;
+    color: var(--muted-foreground);
+  }
+  .se-gated {
+    margin-top: 18px;
+    padding: 15px;
+    border-radius: var(--fan-radius);
+    background: var(--muted);
+  }
+  .se-gated ul {
+    margin: 9px 0 0;
+    padding-left: 17px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .se-gated li {
+    font-size: 12px;
+    color: var(--foreground);
+  }
+  .se-gated-note {
+    margin: 11px 0 0;
+    font-size: 11px;
+    line-height: 1.6;
+    color: var(--muted-foreground);
+  }
+</style>

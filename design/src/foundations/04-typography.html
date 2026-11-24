@@ -1,0 +1,199 @@
+<div class="ds-section">
+  <p class="ds-eyebrow">Three families, three jobs</p>
+  <h2 class="ds-h">Type</h2>
+  <p class="ds-sub">
+    Already loaded in <code class="ds-code">app/layout.tsx</code> via <code class="ds-code">next/font</code>
+    — the admin adds no new fonts. Roles are strict: Space Grotesk never sets body copy, Inter never
+    sets a metric, JetBrains Mono never sets a paragraph.
+  </p>
+
+  <div class="ds-type-row">
+    <div class="ds-type-meta">
+      <div class="ds-type-name">Space Grotesk</div>
+      <div class="ds-type-var">--font-heading</div>
+      <div class="ds-type-role">Page titles, card headings, KPI numerals</div>
+    </div>
+    <div class="ds-type-spec">
+      <div style="font-family: var(--font-heading); font-size: 22px; font-weight: 600; letter-spacing: -0.02em">
+        Partner applications
+      </div>
+      <div style="font-family: var(--font-heading); font-size: 15px; font-weight: 600; margin-top: 6px">
+        Assessment
+      </div>
+      <span class="ds-code">text-xl font-semibold tracking-tight font-heading</span>
+    </div>
+  </div>
+
+  <div class="ds-type-row">
+    <div class="ds-type-meta">
+      <div class="ds-type-name">Inter</div>
+      <div class="ds-type-var">--font-sans</div>
+      <div class="ds-type-role">Body copy, table cells, form fields</div>
+    </div>
+    <div class="ds-type-spec">
+      <div style="font-size: 13px; line-height: 1.55">
+        Applications from scouting partners land here for review. Accepting one creates the partner
+        account and sends the onboarding email.
+      </div>
+      <span class="ds-code">text-[13px] leading-relaxed</span>
+    </div>
+  </div>
+
+  <div class="ds-type-row">
+    <div class="ds-type-meta">
+      <div class="ds-type-name">JetBrains Mono</div>
+      <div class="ds-type-var">--font-mono</div>
+      <div class="ds-type-role">Eyebrows, IDs, metrics, button labels</div>
+    </div>
+    <div class="ds-type-spec">
+      <div style="font-family: var(--font-mono); font-size: 10px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted-foreground)">
+        Dashboard / Partner applications
+      </div>
+      <div style="font-family: var(--font-mono); font-size: 12px; margin-top: 6px">ord_7Kd92Lm4</div>
+      <span class="ds-code">font-mono text-[10px] uppercase tracking-wider</span>
+    </div>
+  </div>
+
+  <p class="ds-note">
+    <strong>The eyebrow is the house idiom.</strong>
+    <code class="ds-code">font-mono text-[10px] uppercase tracking-wider</code> already labels every
+    section of the navbar and footer. The admin reuses it for breadcrumbs, stat-card labels, table
+    headers and button text, which is what ties the dashboard visually to the marketing site without
+    borrowing any of its layout.
+  </p>
+</div>
+
+<div class="ds-section">
+  <p class="ds-eyebrow">Scale</p>
+  <div class="ds-scale">
+    <div class="ds-scale-row">
+      <span class="ds-scale-label">Page title</span>
+      <span style="font-family: var(--font-heading); font-size: 20px; font-weight: 600; letter-spacing: -0.02em">Transactions</span>
+      <span class="ds-code">20 / 600</span>
+    </div>
+    <div class="ds-scale-row">
+      <span class="ds-scale-label">Section</span>
+      <span style="font-family: var(--font-heading); font-size: 15px; font-weight: 600">Recent activity</span>
+      <span class="ds-code">15 / 600</span>
+    </div>
+    <div class="ds-scale-row">
+      <span class="ds-scale-label">Body</span>
+      <span style="font-size: 13px">Standard table and form text</span>
+      <span class="ds-code">13 / 400</span>
+    </div>
+    <div class="ds-scale-row">
+      <span class="ds-scale-label">Secondary</span>
+      <span style="font-size: 12px; color: var(--muted-foreground)">Helper text and captions</span>
+      <span class="ds-code">12 / 400</span>
+    </div>
+    <div class="ds-scale-row">
+      <span class="ds-scale-label">Label</span>
+      <span style="font-family: var(--font-mono); font-size: 10px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted-foreground)">Column header</span>
+      <span class="ds-code">10 / 700</span>
+    </div>
+  </div>
+</div>
+
+<div class="ds-section">
+  <p class="ds-eyebrow">Numerals</p>
+  <h2 class="ds-h">Every number in a column is tabular</h2>
+  <p class="ds-sub">
+    Non-tabular figures make currency columns ragged and KPI counters jitter as they update. This is the
+    single highest-value typographic rule in an admin UI and the easiest to forget.
+  </p>
+  <div class="ds-num-compare">
+    <div class="ds-dd-item" data-verdict="dont">
+      <div class="ds-dd-tag">{{icon:x:13}} Proportional</div>
+      <div style="text-align: right; font-size: 13px">
+        <div>€ 1,240.00</div>
+        <div>€ 118.50</div>
+        <div>€ 97,310.25</div>
+        <div>€ 11.11</div>
+      </div>
+    </div>
+    <div class="ds-dd-item" data-verdict="do">
+      <div class="ds-dd-tag">{{icon:check:13}} Tabular</div>
+      <div style="text-align: right; font-size: 13px; font-variant-numeric: tabular-nums">
+        <div>€ 1,240.00</div>
+        <div>€ 118.50</div>
+        <div>€ 97,310.25</div>
+        <div>€ 11.11</div>
+      </div>
+    </div>
+  </div>
+  <p style="margin-top: 12px">
+    <span class="ds-code">tabular-nums</span> on every numeric table cell, stat-card figure and metric.
+  </p>
+
+  <p class="ds-eyebrow" style="margin-top: 22px">KPI figure</p>
+  <div style="display: flex; gap: 28px; align-items: baseline">
+    <div>
+      <div style="font-family: var(--font-mono); font-size: 10px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted-foreground)">
+        Total applications
+      </div>
+      <div style="font-family: var(--font-heading); font-size: 30px; font-weight: 700; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; margin-top: 4px">
+        348
+      </div>
+    </div>
+    <div>
+      <div style="font-family: var(--font-mono); font-size: 10px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted-foreground)">
+        Revenue
+      </div>
+      <div style="font-family: var(--font-heading); font-size: 30px; font-weight: 700; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; margin-top: 4px">
+        €124,500
+      </div>
+    </div>
+  </div>
+</div>
+
+<style data-local>
+  .ds-type-row {
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    gap: 16px;
+    padding: 14px 0;
+    border-top: 1px solid var(--border);
+    align-items: start;
+  }
+  .ds-type-name {
+    font-family: var(--font-heading);
+    font-size: 13px;
+    font-weight: 600;
+  }
+  .ds-type-var {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--brand-text);
+    margin-top: 2px;
+  }
+  .ds-type-role {
+    font-size: 11px;
+    color: var(--muted-foreground);
+    margin-top: 5px;
+    line-height: 1.45;
+  }
+  .ds-type-spec .ds-code {
+    margin-top: 8px;
+  }
+  .ds-scale-row {
+    display: grid;
+    grid-template-columns: 90px 1fr 70px;
+    gap: 12px;
+    align-items: baseline;
+    padding: 8px 0;
+    border-top: 1px solid var(--border);
+  }
+  .ds-scale-label {
+    font-family: var(--font-mono);
+    font-size: 9.5px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted-foreground);
+  }
+  .ds-num-compare {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+</style>

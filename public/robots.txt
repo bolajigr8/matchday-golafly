@@ -1,0 +1,54 @@
+# golafly.com — robots.txt
+#
+# Search engines and the major AI / LLM crawlers are all allowed (needed for
+# Google, AI Overviews, ChatGPT, Claude, Perplexity, Gemini and other AI-search
+# visibility). They share ONE rule group below: a crawler only obeys the most
+# specific group that names it, so separate "Allow: /" groups per bot would
+# silently ignore the Disallow lines.
+#
+# Disallowed: private areas with nothing to index (they also send a noindex
+# header). /login, /register etc. are NOT disallowed on purpose — Google has
+# to be able to fetch them to see their noindex tag.
+
+User-agent: *
+# OpenAI (ChatGPT / search)
+User-agent: GPTBot
+User-agent: ChatGPT-User
+User-agent: OAI-SearchBot
+# Anthropic (Claude)
+User-agent: ClaudeBot
+User-agent: Claude-User
+User-agent: Claude-SearchBot
+User-agent: anthropic-ai
+# Perplexity
+User-agent: PerplexityBot
+User-agent: Perplexity-User
+# Google AI (Gemini / AI Overviews)
+User-agent: Google-Extended
+# Apple Intelligence
+User-agent: Applebot-Extended
+# Meta AI
+User-agent: meta-externalagent
+User-agent: FacebookBot
+# Amazon
+User-agent: Amazonbot
+# ByteDance
+User-agent: Bytespider
+# Common Crawl (training data for many LLMs)
+User-agent: CCBot
+# Cohere
+User-agent: cohere-ai
+# You.com
+User-agent: YouBot
+# Diffbot
+User-agent: Diffbot
+Allow: /
+Disallow: /admin
+Disallow: /studio
+Disallow: /scout/
+Disallow: /fan/
+Disallow: /player/
+Disallow: /builder/
+Disallow: /cart
+
+Sitemap: https://golafly.com/sitemap.xml

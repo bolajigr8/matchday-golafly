@@ -1,0 +1,404 @@
+/* ─────────────────────────────────────────────────────────────────────────
+   Form controls, feedback, sheets, dialogs, stat cards, activity feed.
+   ───────────────────────────────────────────────────────────────────────── */
+
+/* ── Form controls ──────────────────────────────────────────────────────── */
+.ds-field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.ds-label {
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--foreground);
+}
+.ds-label i {
+  color: var(--destructive);
+  font-style: normal;
+}
+.ds-help {
+  font-size: 10.5px;
+  color: var(--muted-foreground);
+  line-height: 1.45;
+}
+.ds-err {
+  font-size: 10.5px;
+  color: var(--destructive);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.ds-err svg {
+  width: 11px;
+  height: 11px;
+}
+.ds-ta {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--background);
+  padding: 8px 10px;
+  font-size: 12.5px;
+  color: var(--muted-foreground);
+  min-height: 62px;
+  line-height: 1.5;
+}
+.ds-radio,
+.ds-switch-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12.5px;
+}
+.ds-rad {
+  width: 14px;
+  height: 14px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--background);
+  flex: none;
+}
+.ds-rad[data-on="1"] {
+  border-color: var(--brand-edge);
+}
+.ds-rad[data-on="1"]::after {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  background: var(--brand);
+}
+.ds-switch {
+  width: 30px;
+  height: 17px;
+  border-radius: 999px;
+  background: var(--muted);
+  border: 1px solid var(--border);
+  position: relative;
+  flex: none;
+}
+.ds-switch::after {
+  content: "";
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  width: 13px;
+  height: 13px;
+  border-radius: 999px;
+  background: var(--card);
+  box-shadow: 0 1px 2px oklch(0 0 0 / 0.25);
+}
+.ds-switch[data-on="1"] {
+  background: var(--brand);
+  border-color: var(--brand-edge);
+}
+.ds-switch[data-on="1"]::after {
+  left: auto;
+  right: 1px;
+}
+
+/* ── Feedback ───────────────────────────────────────────────────────────── */
+.ds-toast {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  width: 300px;
+  padding: 11px 12px;
+  border-radius: var(--radius-lg);
+  background: var(--popover);
+  border: 1px solid var(--border);
+  box-shadow: 0 8px 24px oklch(0 0 0 / 0.16);
+  font-size: 12px;
+}
+.ds-toast svg {
+  width: 15px;
+  height: 15px;
+  flex: none;
+  margin-top: 1px;
+}
+.ds-toast-t {
+  display: block;
+  font-weight: 600;
+  color: var(--foreground);
+}
+.ds-toast-b {
+  display: block;
+  color: var(--muted-foreground);
+  margin-top: 2px;
+  line-height: 1.45;
+  font-size: 11.5px;
+}
+.ds-toast[data-tone="good"] svg {
+  color: var(--status-good);
+}
+.ds-toast[data-tone="danger"] svg {
+  color: var(--destructive);
+}
+.ds-toast[data-tone="loading"] svg {
+  color: var(--muted-foreground);
+}
+.ds-alert {
+  display: flex;
+  gap: 9px;
+  padding: 10px 12px;
+  border-radius: var(--radius-md);
+  font-size: 11.5px;
+  line-height: 1.5;
+  border: 1px solid var(--border);
+  background: var(--muted);
+  color: var(--muted-foreground);
+}
+.ds-alert svg {
+  width: 15px;
+  height: 15px;
+  flex: none;
+  margin-top: 1px;
+}
+.ds-alert b {
+  color: var(--foreground);
+}
+.ds-alert[data-tone="warn"] {
+  background: var(--status-warn-bg);
+  border-color: color-mix(in oklch, var(--status-warn) 35%, transparent);
+}
+.ds-alert[data-tone="warn"] svg,
+.ds-alert[data-tone="warn"] b {
+  color: var(--status-warn);
+}
+.ds-alert[data-tone="danger"] {
+  background: var(--status-danger-bg);
+  border-color: color-mix(in oklch, var(--destructive) 35%, transparent);
+}
+.ds-alert[data-tone="danger"] svg,
+.ds-alert[data-tone="danger"] b {
+  color: var(--destructive);
+}
+.ds-tip {
+  display: inline-block;
+  padding: 5px 8px;
+  border-radius: var(--radius-sm);
+  background: var(--foreground);
+  color: var(--background);
+  font-size: 11px;
+}
+
+/* ── Sheets & dialogs ───────────────────────────────────────────────────── */
+.ds-sh {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 14px 40px oklch(0 0 0 / 0.18);
+}
+.ds-sh-head {
+  padding: 13px 15px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+}
+.ds-sh-l1 {
+  font-family: var(--font-heading);
+  font-size: 14px;
+  font-weight: 600;
+}
+.ds-sh-l2 {
+  font-size: 11px;
+  color: var(--muted-foreground);
+  margin-top: 2px;
+}
+.ds-sh-body {
+  padding: 13px 15px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.ds-sh-foot {
+  padding: 11px 15px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+  background: var(--card);
+}
+.ds-dl {
+  display: grid;
+  grid-template-columns: 108px 1fr;
+  gap: 7px 12px;
+  font-size: 12px;
+}
+.ds-dl dt {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+  padding-top: 2px;
+}
+.ds-dl dd {
+  margin: 0;
+  color: var(--foreground);
+}
+.ds-sh-sec {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+  padding-bottom: 7px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 3px;
+}
+
+/* ── Stat card ──────────────────────────────────────────────────────────── */
+.ds-stat {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 13px 14px;
+}
+.ds-stat-lab {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.ds-stat-lab svg {
+  width: 13px;
+  height: 13px;
+}
+.ds-stat-val {
+  font-family: var(--font-heading);
+  font-size: 25px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+  margin-top: 5px;
+  line-height: 1.1;
+}
+.ds-stat-d {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 10.5px;
+  margin-top: 4px;
+  color: var(--muted-foreground);
+}
+.ds-stat-d svg {
+  width: 11px;
+  height: 11px;
+}
+.ds-stat-d[data-dir="up"] {
+  color: var(--status-good);
+}
+.ds-stat-d[data-dir="down"] {
+  color: var(--destructive);
+}
+
+/* ── Activity feed ──────────────────────────────────────────────────────── */
+.ds-act-row {
+  display: flex;
+  gap: 9px;
+  padding: 9px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 11.5px;
+}
+.ds-act-row:last-child {
+  border-bottom: none;
+}
+.ds-act-ic {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 999px;
+  background: var(--muted);
+  color: var(--muted-foreground);
+  flex: none;
+}
+.ds-act-ic svg {
+  width: 12px;
+  height: 12px;
+}
+.ds-act-t {
+  display: block;
+  color: var(--foreground);
+  line-height: 1.45;
+}
+.ds-act-t b {
+  font-weight: 600;
+}
+.ds-act-time {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--muted-foreground);
+  margin-top: 2px;
+}
+
+/* ── Upload ─────────────────────────────────────────────────────────────── */
+.ds-drop {
+  border: 1px dashed var(--border);
+  border-radius: var(--radius-lg);
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  text-align: center;
+  color: var(--muted-foreground);
+  font-size: 11.5px;
+}
+.ds-drop[data-state="hover"] {
+  border-color: var(--brand-edge);
+  background: color-mix(in oklch, var(--brand) 7%, transparent);
+}
+.ds-drop svg {
+  width: 19px;
+  height: 19px;
+  margin-bottom: 3px;
+}
+.ds-file {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 8px 10px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--background);
+  font-size: 11.5px;
+}
+.ds-file svg {
+  width: 15px;
+  height: 15px;
+  color: var(--muted-foreground);
+  flex: none;
+}
+.ds-prog {
+  height: 4px;
+  border-radius: 999px;
+  background: var(--muted);
+  overflow: hidden;
+  margin-top: 6px;
+}
+.ds-prog span {
+  display: block;
+  height: 100%;
+  background: var(--brand);
+  border-radius: 999px;
+}

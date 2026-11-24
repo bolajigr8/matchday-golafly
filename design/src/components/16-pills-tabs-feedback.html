@@ -1,0 +1,112 @@
+<div class="ds-section">
+  <p class="ds-eyebrow">State</p>
+  <h2 class="ds-h">Status pills</h2>
+  <p class="ds-sub">
+    Every domain status across all eight screens maps onto the five reserved tones. New statuses pick a
+    tone; they never introduce a colour.
+  </p>
+  <table class="ds-map">
+    <thead><tr><th>Tone</th><th>Means</th><th>Used for</th></tr></thead>
+    <tbody>
+      <tr><td><span class="ds-pill" data-tone="good">Approved</span></td><td>Terminal, successful</td><td>Approved · Active · Paid · Signed · Accepted · Published</td></tr>
+      <tr><td><span class="ds-pill" data-tone="warn">Pending</span></td><td>Waiting on a human</td><td>Pending · Closing · Refunded · Awaiting review</td></tr>
+      <tr><td><span class="ds-pill" data-tone="info">Under review</span></td><td>In progress, no action needed</td><td>Under review · In progress · Scheduled</td></tr>
+      <tr><td><span class="ds-pill" data-tone="danger">Rejected</span></td><td>Terminal, failed</td><td>Rejected · Failed · Cancelled · Expired</td></tr>
+      <tr><td><span class="ds-pill">Draft</span></td><td>Inert</td><td>Draft · Inactive · Archived · Closed</td></tr>
+    </tbody>
+  </table>
+  <p class="ds-note">
+    Each pill is a tinted ground, a dot, <em>and</em> a text label. Colour is never the only carrier —
+    the table stays readable in greyscale, in forced-colors, and to a colour-blind reviewer.
+    <br /><br />
+    These five are also <strong>not</strong> the chart series colours. A green bar meaning “series 1”
+    beside a green pill meaning “approved” is how a dashboard starts lying.
+  </p>
+  <div style="margin-top: 14px">
+    <span class="ds-state-lab">Inline status toggle — Categories tabs</span>
+    <div style="display: flex; gap: 16px; align-items: center; margin-top: 8px">
+      <span class="ds-switch-row"><span class="ds-switch" data-on="1"></span> Active</span>
+      <span class="ds-switch-row"><span class="ds-switch"></span> Inactive</span>
+      <span style="font-size: 11px; color: var(--muted-foreground)">Writes immediately via <code class="ds-code">toggle-status</code>; the row shows a spinner, not a modal.</span>
+    </div>
+  </div>
+</div>
+
+<div class="ds-section">
+  <p class="ds-eyebrow">Navigation within a screen</p>
+  <h2 class="ds-h">Tabs</h2>
+  <div class="ds-tabs" style="margin-top: 0">
+    <span class="ds-tab" data-on="1">Overview</span>
+    <span class="ds-tab">Categories</span>
+    <span class="ds-tab">Applications</span>
+  </div>
+  <p class="ds-note">
+    Underline with a sliding indicator, living in row 3 of the content header. Tab state is a URL param
+    (<code class="ds-code">?tab=</code>), so a tab is linkable, bookmarkable, and survives a refresh —
+    which is also what makes the breadcrumb's last crumb derivable from it.
+  </p>
+</div>
+
+<div class="ds-section">
+  <p class="ds-eyebrow">Paging</p>
+  <div class="ds-pag" style="border-top: none; border: 1px solid var(--border); border-radius: var(--radius-md)">
+    <span>Showing <span class="ds-pag-n">11–20</span> of <span class="ds-pag-n">156</span></span>
+    <span class="ds-pages">
+      <span class="ds-page">{{icon:chevron-left:13}}</span>
+      <span class="ds-page">1</span>
+      <span class="ds-page" data-on="1">2</span>
+      <span class="ds-page">3</span>
+      <span class="ds-page">4</span>
+      <span class="ds-page">…</span>
+      <span class="ds-page">16</span>
+      <span class="ds-page">{{icon:chevron-right:13}}</span>
+    </span>
+    <span>Rows <span class="ds-pag-n">10</span> {{icon:chevrons-up-down:11}}</span>
+  </div>
+  <p class="ds-note">
+    Always states the range and the total — “page 2 of 16” alone does not tell you how much data there
+    is. Ellipsis collapses the middle, first and last are always reachable, and the page-size select sits
+    on the right where it does not compete with the pager.
+  </p>
+</div>
+
+<div class="ds-section">
+  <p class="ds-eyebrow">Feedback</p>
+  <h2 class="ds-h">Toasts, alerts, tooltips</h2>
+  <div class="ds-fb-row">
+    <div class="ds-fb-col">
+      <span class="ds-state-lab">Toasts (sonner, top-right)</span>
+      <div class="ds-toast" data-tone="good">{{icon:circle-check:15}}<span><span class="ds-toast-t">Offer published</span><span class="ds-toast-b">Summer Trials 2026 is now live.</span></span></div>
+      <div class="ds-toast" data-tone="danger">{{icon:circle-alert:15}}<span><span class="ds-toast-t">Couldn’t save</span><span class="ds-toast-b">POST /v1/offers → 422. Deadline is in the past.</span></span></div>
+      <div class="ds-toast" data-tone="loading">{{icon:loader-circle:15}}<span><span class="ds-toast-t">Uploading brochure…</span><span class="ds-toast-b">2.4 MB of 6.1 MB</span></span></div>
+    </div>
+    <div class="ds-fb-col">
+      <span class="ds-state-lab">Inline alerts</span>
+      <div class="ds-alert">{{icon:info:15}}<span><b>Heads up.</b> Publishing locks the category and deadline.</span></div>
+      <div class="ds-alert" data-tone="warn">{{icon:triangle-alert:15}}<span><b>Duplicate.</b> An application from this email was rejected in March 2026.</span></div>
+      <div class="ds-alert" data-tone="danger">{{icon:circle-alert:15}}<span><b>Payment failed.</b> The card was declined and the entry was not created.</span></div>
+      <span class="ds-state-lab" style="margin-top: 6px">Tooltip</span>
+      <div style="display: flex; align-items: center; gap: 10px">
+        <span class="ds-act">{{icon:download:14}}</span>
+        <span class="ds-tip">Download CV (PDF)</span>
+      </div>
+    </div>
+  </div>
+  <p class="ds-note">
+    <strong>Toast for what just happened, alert for what is true.</strong> A toast is transient and
+    reports the outcome of an action the user took; an alert is persistent and describes a condition of
+    the thing on screen. Errors from the API include the failing call, same as the table error state —
+    the people using this dashboard also run the backend.
+  </p>
+</div>
+
+<style data-local>
+  .ds-map { width: 100%; border-collapse: collapse; font-size: 11.5px; }
+  .ds-map th { text-align: left; padding: 7px 10px; border-bottom: 1px solid var(--border); font-family: var(--font-mono); font-size: 9.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted-foreground); font-weight: 700; }
+  .ds-map td { padding: 8px 10px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+  .ds-map td:nth-child(2) { color: var(--foreground); }
+  .ds-map td:last-child { color: var(--muted-foreground); }
+  .ds-state-lab { font-family: var(--font-mono); font-size: 9px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted-foreground); }
+  .ds-fb-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .ds-fb-col { display: flex; flex-direction: column; gap: 9px; }
+</style>

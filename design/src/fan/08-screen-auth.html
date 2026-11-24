@@ -1,0 +1,192 @@
+<div class="ds-section">
+  <p class="ds-eyebrow">Fan · Auth</p>
+  <h2 class="ds-h">Sign in &amp; create account</h2>
+  <p class="ds-sub">
+    Scenario 1: <em>given a user has a Fan account, when the user logs in, then the user should be
+    redirected to the Fan Dashboard.</em> matchday has none of this today —
+    <code class="ds-code">components/navbar.tsx</code> currently toasts “Sign in coming soon”. The
+    endpoints are real and already in production use by the travels app:
+    <code class="ds-code">POST /v1/auth/login</code> and <code class="ds-code">/register</code>.
+  </p>
+
+  <div class="au-row">
+    <!-- SIGN IN -->
+    <div class="au-card">
+      <p class="au-lab">Sign in</p>
+      <div class="fan-card au-form">
+        <p class="fan-eyebrow">Golafly</p>
+        <h3 class="au-h">Welcome back</h3>
+        <p class="au-sub">Your tickets and trips are waiting.</p>
+
+        <div class="au-fields">
+          <div class="fan-field">
+            <span class="fan-label">Email</span>
+            <span class="fan-input">{{icon:mail:15}} adaeze@example.com</span>
+          </div>
+          <div class="fan-field">
+            <span class="fan-label">Password</span>
+            <span class="fan-input" data-state="focus">{{icon:lock:15}} ••••••••••••</span>
+          </div>
+          <span class="fan-link" style="align-self: flex-end">Forgot password?</span>
+        </div>
+
+        <button class="fan-btn au-submit">Sign in {{icon:arrow-right:15}}</button>
+        <p class="au-foot">New here? <span class="fan-link" style="display: inline-flex">Create an account</span></p>
+      </div>
+    </div>
+
+    <!-- CREATE ACCOUNT -->
+    <div class="au-card">
+      <p class="au-lab">Create account</p>
+      <div class="fan-card au-form">
+        <p class="fan-eyebrow">Golafly</p>
+        <h3 class="au-h">Create your account</h3>
+        <p class="au-sub">One account for tickets, flights, stays and eSIM.</p>
+
+        <div class="au-fields">
+          <div class="fan-field">
+            <span class="fan-label">Full name</span>
+            <span class="fan-input">{{icon:user-round:15}} Adaeze Okonkwo</span>
+          </div>
+          <div class="fan-field">
+            <span class="fan-label">Email</span>
+            <span class="fan-input">{{icon:mail:15}} adaeze@example.com</span>
+          </div>
+          <div class="fan-field">
+            <span class="fan-label">Password</span>
+            <span class="fan-input">{{icon:lock:15}} ••••••••••••</span>
+            <span class="au-hint">At least 8 characters.</span>
+          </div>
+        </div>
+
+        <button class="fan-btn au-submit">Create account {{icon:arrow-right:15}}</button>
+        <p class="au-foot">Already have one? <span class="fan-link" style="display: inline-flex">Sign in</span></p>
+      </div>
+    </div>
+
+    <!-- ERROR + PENDING, the two states a login form is actually judged on -->
+    <div class="au-card">
+      <p class="au-lab">Rejected &amp; submitting</p>
+
+      <div class="fan-card au-form" style="padding-bottom: 18px">
+        <div class="au-alert">
+          <span>{{icon:triangle-alert:15}}</span>
+          <p>These credentials don’t match our records.</p>
+        </div>
+        <div class="au-fields" style="margin-top: 14px">
+          <div class="fan-field">
+            <span class="fan-label">Email</span>
+            <span class="fan-input">{{icon:mail:15}} adaeze@example.com</span>
+          </div>
+          <div class="fan-field">
+            <span class="fan-label">Password</span>
+            <span class="fan-input" data-state="error">{{icon:lock:15}} ••••••</span>
+          </div>
+        </div>
+        <button class="fan-btn au-submit" style="opacity: 0.55">{{icon:loader-circle:15}} Signing in…</button>
+      </div>
+
+      <p class="au-note">
+        <b>The API's own message is shown, not a generic one.</b> “These credentials don’t match our
+        records” tells a fan to check their password; “Something went wrong” sends them to support.
+        <br /><br />
+        <b>The button reports its own state</b> and stays disabled while in flight, so a slow
+        connection cannot produce two registrations.
+      </p>
+    </div>
+  </div>
+
+  <p class="ds-note">
+    <strong>After a successful sign-in the fan lands on the dashboard, not the marketing home.</strong>
+    That is the whole of scenario 1, and it is a one-line redirect — but only once a session exists
+    to redirect with.
+    <br /><br />
+    <strong>Cookie name: <code class="ds-code">golafly_fan_token</code>, underscores only.</strong>
+    The travels app uses <code class="ds-code">golafly:token</code>, and that colon would break this
+    app silently: js-cookie percent-encodes the cookie <em>name</em> on write, Next's cookie API does
+    not on read, so the route guard would never find a session it had just set. The admin side
+    already documents this trap in <code class="ds-code">proxy.ts</code>.
+  </p>
+</div>
+
+<style data-local>
+  .au-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    align-items: start;
+  }
+  .au-lab {
+    font-family: var(--font-mono);
+    font-size: 9.5px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted-foreground);
+    margin: 0 0 9px;
+  }
+  .au-form {
+    padding: 24px;
+  }
+  .au-h {
+    margin: 7px 0 0;
+    font-family: var(--font-heading);
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: var(--foreground);
+  }
+  .au-sub {
+    margin: 5px 0 0;
+    font-size: 12.5px;
+    color: var(--muted-foreground);
+  }
+  .au-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+    margin-top: 20px;
+  }
+  .au-hint {
+    font-size: 11px;
+    color: var(--muted-foreground);
+  }
+  .au-submit {
+    width: 100%;
+    margin-top: 20px;
+  }
+  .au-foot {
+    margin: 14px 0 0;
+    text-align: center;
+    font-size: 12px;
+    color: var(--muted-foreground);
+  }
+  .au-alert {
+    display: flex;
+    align-items: flex-start;
+    gap: 9px;
+    padding: 11px 13px;
+    border-radius: 13px;
+    background: var(--status-danger-bg);
+    color: var(--status-danger);
+  }
+  .au-alert p {
+    margin: 0;
+    font-size: 12px;
+    line-height: 1.45;
+  }
+  .au-alert svg {
+    width: 15px;
+    height: 15px;
+    flex: none;
+  }
+  .au-note {
+    margin: 14px 0 0;
+    font-size: 11.5px;
+    line-height: 1.6;
+    color: var(--muted-foreground);
+  }
+  .au-note b {
+    color: var(--foreground);
+  }
+</style>

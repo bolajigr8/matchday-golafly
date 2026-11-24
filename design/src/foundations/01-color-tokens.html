@@ -1,0 +1,142 @@
+<div class="ds-section">
+  <p class="ds-eyebrow">Brand</p>
+  <h2 class="ds-h">The lime is the whole identity</h2>
+  <p class="ds-sub">
+    One accent, used for actions and active states only. It stays bright in both themes and always
+    carries near-black text — the app never inverts to white-on-lime. <code class="ds-code">--primary</code>
+    and <code class="ds-code">--sidebar-primary</code> are both aliases of <code class="ds-code">--brand</code>,
+    so retinting the product is a one-line change.
+  </p>
+  <div class="ds-swatch-grid">
+    <div class="ds-swatch">
+      <span class="ds-swatch-chip" style="background: var(--brand)"></span>
+      <div class="ds-swatch-meta">
+        <div class="ds-swatch-name">--brand</div>
+        <div class="ds-swatch-val">{{val:--brand}}<br />{{hex:--brand}}</div>
+        <div class="ds-swatch-role">Primary actions, active nav, focus accents.</div>
+      </div>
+    </div>
+    <div class="ds-swatch">
+      <span class="ds-swatch-chip" style="background: var(--brand-foreground)"></span>
+      <div class="ds-swatch-meta">
+        <div class="ds-swatch-name">--brand-foreground</div>
+        <div class="ds-swatch-val">{{val:--brand-foreground}}<br />{{hex:--brand-foreground}}</div>
+        <div class="ds-swatch-role">The only text colour allowed on lime.</div>
+      </div>
+    </div>
+    <div class="ds-swatch">
+      <span class="ds-swatch-chip" data-alpha="1"><span style="background: var(--brand-glow)"></span></span>
+      <div class="ds-swatch-meta">
+        <div class="ds-swatch-name">--brand-glow</div>
+        <div class="ds-swatch-val">{{val:--brand-glow}}</div>
+        <div class="ds-swatch-role">The signature halo. Semi-transparent, so it layers.</div>
+      </div>
+    </div>
+    <div class="ds-swatch">
+      <span class="ds-swatch-chip" style="background: var(--brand-text)"></span>
+      <div class="ds-swatch-meta">
+        <div class="ds-swatch-name">--brand-text</div>
+        <div class="ds-swatch-val">{{val:--brand-text}}<br />{{hex:--brand-text}}</div>
+        <div class="ds-swatch-role">Lime as <em>type</em> and icons. Flips per theme.</div>
+      </div>
+    </div>
+    <div class="ds-swatch">
+      <span class="ds-swatch-chip" style="background: var(--ring)"></span>
+      <div class="ds-swatch-meta">
+        <div class="ds-swatch-name">--ring</div>
+        <div class="ds-swatch-val">{{val:--ring}}<br />{{hex:--ring}}</div>
+        <div class="ds-swatch-role">Focus rings only.</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-top: 18px">
+    <button class="ds-btn">{{icon:plus:14}} New offer</button>
+    <button class="ds-btn" data-state="hover">Hover</button>
+    <button class="ds-btn" data-variant="outline">Outline</button>
+    <button class="ds-btn" data-variant="ghost">Ghost</button>
+    <span class="ds-code">rounded-full bg-primary text-primary-foreground font-mono text-[10px] font-bold uppercase tracking-wider shadow-[0_0_12px_var(--brand-glow)]</span>
+  </div>
+
+  <p class="ds-note">
+    <strong>Fill and type are different jobs.</strong> The lime fill is identical in both themes; lime
+    as <em>type</em> is not, and cannot be — it measures 1.16:1 on a light page. That is what
+    <code class="ds-code">--brand-text</code> is for, and it is the token that was missing. See the
+    <em>Brand — one lime, both themes</em> card for the full audit.
+  </p>
+</div>
+
+<div class="ds-section">
+  <p class="ds-eyebrow">Surfaces</p>
+  <h2 class="ds-h">Three depths, and nothing else</h2>
+  <p class="ds-sub">
+    Page, card, and muted. The admin never invents a fourth surface — depth comes from borders, not
+    from stacking tints.
+  </p>
+  <div class="ds-swatch-grid">
+    <div class="ds-swatch">
+      <span class="ds-swatch-chip" style="background: var(--background)"></span>
+      <div class="ds-swatch-meta">
+        <div class="ds-swatch-name">--background</div>
+        <div class="ds-swatch-val">{{val:--background}}<br />{{hex:--background}}</div>
+        <div class="ds-swatch-role">The content pane.</div>
+      </div>
+    </div>
+    <div class="ds-swatch">
+      <span class="ds-swatch-chip" style="background: var(--card)"></span>
+      <div class="ds-swatch-meta">
+        <div class="ds-swatch-name">--card</div>
+        <div class="ds-swatch-val">{{val:--card}}<br />{{hex:--card}}</div>
+        <div class="ds-swatch-role">Tables, stat cards, sheets.</div>
+      </div>
+    </div>
+    <div class="ds-swatch">
+      <span class="ds-swatch-chip" style="background: var(--muted)"></span>
+      <div class="ds-swatch-meta">
+        <div class="ds-swatch-name">--muted</div>
+        <div class="ds-swatch-val">{{val:--muted}}<br />{{hex:--muted}}</div>
+        <div class="ds-swatch-role">Table headers, inert chips.</div>
+      </div>
+    </div>
+    <div class="ds-swatch">
+      <span class="ds-swatch-chip" style="background: var(--foreground)"></span>
+      <div class="ds-swatch-meta">
+        <div class="ds-swatch-name">--foreground</div>
+        <div class="ds-swatch-val">{{val:--foreground}}<br />{{hex:--foreground}}</div>
+        <div class="ds-swatch-role">Body and heading text.</div>
+      </div>
+    </div>
+    <div class="ds-swatch">
+      <span class="ds-swatch-chip" style="background: var(--muted-foreground)"></span>
+      <div class="ds-swatch-meta">
+        <div class="ds-swatch-name">--muted-foreground</div>
+        <div class="ds-swatch-val">{{val:--muted-foreground}}<br />{{hex:--muted-foreground}}</div>
+        <div class="ds-swatch-role">Labels, secondary copy, icons.</div>
+      </div>
+    </div>
+    <div class="ds-swatch">
+      <span class="ds-swatch-chip" style="background: var(--border)"></span>
+      <div class="ds-swatch-meta">
+        <div class="ds-swatch-name">--border</div>
+        <div class="ds-swatch-val">{{val:--border}}<br />{{hex:--border}}</div>
+        <div class="ds-swatch-role">Every divider and outline.</div>
+      </div>
+    </div>
+    <div class="ds-swatch">
+      <span class="ds-swatch-chip" style="background: var(--destructive)"></span>
+      <div class="ds-swatch-meta">
+        <div class="ds-swatch-name">--destructive</div>
+        <div class="ds-swatch-val">{{val:--destructive}}<br />{{hex:--destructive}}</div>
+        <div class="ds-swatch-role">Delete, reject, failed.</div>
+      </div>
+    </div>
+    <div class="ds-swatch">
+      <span class="ds-swatch-chip" style="background: var(--accent)"></span>
+      <div class="ds-swatch-meta">
+        <div class="ds-swatch-name">--accent</div>
+        <div class="ds-swatch-val">{{val:--accent}}<br />{{hex:--accent}}</div>
+        <div class="ds-swatch-role">Hover wash on rows and menu items.</div>
+      </div>
+    </div>
+  </div>
+</div>

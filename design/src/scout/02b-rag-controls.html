@@ -1,0 +1,98 @@
+<!-- RAG COLUMN, SCORE READOUT & STEP RAIL — the rest of scout.css.
+
+     Second half of the control spec, split from the scoring controls because
+     one card carrying both ran to 2185px and its thumbnail became unreadable.
+     Same single-column constraint, same both-themes job. -->
+<div class="ec">
+  <div class="ec-col">
+    <!-- ONE column shown in full, not three. The three-across relationship is
+         specified at real width on the Step 3 card; what this card has to
+         prove is that the component itself survives both themes. Three 185px
+         columns here would prove neither. -->
+    <p class="ds-eyebrow">Red / amber / green — one column, in full</p>
+    <div class="ec-rag-heads">
+      <span class="ec-rag-head" data-tone="red"><i></i> Needs improvement</span>
+      <span class="ec-rag-head" data-tone="amber"><i></i> Developing</span>
+      <span class="ec-rag-head" data-tone="green"><i></i> Strengths</span>
+    </div>
+    <div class="sc-rag-grid">
+      <div class="sc-rag" data-tone="red">
+        <div class="sc-rag-h"><i></i> Needs improvement</div>
+        <p class="sc-rag-sub">Focus areas requiring immediate attention</p>
+        <div class="sc-rag-row">
+          <div class="sc-rag-row-h">Weak foot usage <span>4/10</span></div>
+          <div class="sc-rag-cells">
+            <span class="sc-rag-cell">1</span><span class="sc-rag-cell">2</span><span class="sc-rag-cell">3</span>
+            <span class="sc-rag-cell" data-on="1">4</span><span class="sc-rag-cell">5</span><span class="sc-rag-cell">6</span>
+            <span class="sc-rag-cell">7</span><span class="sc-rag-cell">8</span><span class="sc-rag-cell">9</span><span class="sc-rag-cell">10</span>
+          </div>
+        </div>
+        <div class="sc-obs"><span>Write your observation…</span><span class="sc-obs-count">0/200</span></div>
+      </div>
+
+    </div>
+    <p class="ec-note">Tone lives on the column wrapper; the header, the cell
+      fill and the observation border all inherit it. Adding an attribute to a
+      category never means picking a colour by hand, which is what keeps the
+      methodology configurable without a design pass.</p>
+
+    <div class="ec-two" style="margin-top: 20px">
+      <div>
+        <p class="ds-eyebrow">Overall readout</p>
+        <div class="ds-card">
+          <span class="ds-stat-lab">Overall score</span>
+          <div class="sc-score">
+            <span class="sc-score-big">8.3 <span>/10</span></span>
+          </div>
+          <span class="ds-stat-lab">Potential</span>
+          <div class="sc-score">
+            <span class="sc-score-big">72<span>%</span></span>
+            <span class="sc-stars">{{icon:star:13}}{{icon:star:13}}{{icon:star:13}}{{icon:star:13}}<span class="off">{{icon:star:13}}</span></span>
+            <span style="font-size: 11px; color: var(--muted-foreground)">Good · recommended for academy trial</span>
+          </div>
+          <p class="ec-note">Two numbers a scout and a club quote verbatim, so
+            they are set as numbers rather than plotted. The weighting behind
+            them is admin-configurable — see the Templates card.</p>
+        </div>
+      </div>
+
+      <div>
+        <p class="ds-eyebrow">Step rail</p>
+        {{evalsteps:tactical}}
+      </div>
+    </div>
+  </div>
+</div>
+
+<style data-local>
+  /* SINGLE COLUMN, deliberately. A dual card renders the fragment twice side
+     by side, so each panel is only ~596px at a 1500px card — a two-column
+     layout here collapses the second column to nothing. Everything stacks,
+     and the card grows down instead. */
+  .ec { padding: 4px; }
+  .ec-col { min-width: 0; }
+  .ec-col + .ec-col { margin-top: 20px; }
+  .ec-two { display: grid; gap: 16px; align-items: start; }
+  .ec-rag-heads { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 10px; }
+  .ec-rag-head {
+    display: inline-flex; align-items: center; gap: 7px; padding: 6px 11px;
+    border-radius: var(--radius-md); font-size: 11px; font-weight: 600;
+  }
+  .ec-rag-head i { width: 8px; height: 8px; border-radius: 999px; flex: none; }
+  .ec-rag-head[data-tone="red"] { background: var(--status-danger-bg); color: var(--status-danger); }
+  .ec-rag-head[data-tone="red"] i { background: var(--status-danger); }
+  .ec-rag-head[data-tone="amber"] { background: var(--status-warn-bg); color: var(--status-warn); }
+  .ec-rag-head[data-tone="amber"] i { background: var(--status-warn); }
+  .ec-rag-head[data-tone="green"] { background: var(--status-good-bg); color: var(--status-good); }
+  .ec-rag-head[data-tone="green"] i { background: var(--status-good); }
+  /* One column at full width in this card; the grid is restored on the Step 3
+     screen where there is room for three. */
+  .sc-rag-grid { grid-template-columns: 1fr; }
+  .ec-pills { display: flex; flex-wrap: wrap; gap: 7px; }
+  .ec-note {
+    font-size: 10.5px;
+    line-height: 1.55;
+    color: var(--muted-foreground);
+    margin-top: 12px;
+  }
+</style>

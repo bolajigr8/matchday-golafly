@@ -1,0 +1,204 @@
+<!-- TEMPLATES & SETTINGS — GOL-SCOUT-25 / 02
+
+     Templates are the feature that turns this from a form for the 2026 camp
+     into a platform. A winger and a goalkeeper should not be scored on the
+     same seven attributes, and changing that should not require a release.
+
+     The scout's view is READ-ONLY, and that is the design decision worth
+     stating: the person filling a template in must not be able to edit it
+     mid-camp, or two wingers evaluated a week apart stop being comparable and
+     every percentile on the comparison card becomes fiction. Editing belongs
+     to the admin — a follow-up card in the Golafly Admin project. -->
+<div class="ds-screen">
+  <div class="ds-shell">
+{{scoutnav:templates}}
+    <div class="ds-pane">
+      <div class="ds-hdr">
+        <div class="ds-hdr-r1">
+          <span class="ds-crumb">Scouting / <b>Templates</b></span>
+          <span class="ds-input" style="gap: 9px; height: 28px">{{icon:layout-template:14}} Winger {{icon:chevron-down:12}}</span>
+        </div>
+        <div class="ds-hdr-r2">
+          <span class="ds-hdr-title">Templates &amp; settings</span>
+        </div>
+        <div class="ds-tabs" style="margin-top: 12px">
+          <span class="ds-tab" data-on="1">Position templates</span>
+          <span class="ds-tab">Profile</span>
+          <span class="ds-tab">Security</span>
+          <span class="ds-tab">Notifications</span>
+        </div>
+      </div>
+
+      <div class="ds-pane-body">
+        <div class="tp-layout">
+          <div>
+            <div class="ds-card">
+              <div class="tp-h">
+                <div>
+                  <p class="tp-t">Winger</p>
+                  <p class="tp-s">Applies to RW, LW and inverted wingers · v2 · in use at Barcelona 2026</p>
+                </div>
+                <span class="ds-pill" data-tone="good">Active</span>
+              </div>
+
+              <p class="tp-sec">Core attributes · scored 1–10</p>
+              <div class="tp-chips">
+                <span class="tp-chip">{{icon:zap:13}} Pace</span>
+                <span class="tp-chip">{{icon:target:13}} Dribbling</span>
+                <span class="tp-chip">{{icon:send:13}} Passing</span>
+                <span class="tp-chip">{{icon:trophy:13}} Finishing</span>
+                <span class="tp-chip">{{icon:brain:13}} Tactical</span>
+                <span class="tp-chip">{{icon:activity:13}} Physical</span>
+                <span class="tp-chip">{{icon:flag:13}} Mentality</span>
+              </div>
+
+              <p class="tp-sec">Detailed attributes · sorted into red / amber / green</p>
+              <div class="tp-chips">
+                <span class="tp-chip">Acceleration</span>
+                <span class="tp-chip">1v1 ability</span>
+                <span class="tp-chip">Ball control</span>
+                <span class="tp-chip">Crossing</span>
+                <span class="tp-chip">Weak foot usage</span>
+                <span class="tp-chip">Final third decision</span>
+                <span class="tp-chip">Defensive work rate</span>
+                <span class="tp-chip">Positioning</span>
+                <span class="tp-chip">Tactical awareness</span>
+                <span class="tp-chip">Passing</span>
+              </div>
+
+              <p class="tp-sec">Scoring weights</p>
+              <div class="tp-w">
+                <div class="tp-w-r"><span>Core attributes</span><span class="tp-w-track"><i style="width: 50%"></i></span><b>50%</b></div>
+                <div class="tp-w-r"><span>Detailed bands</span><span class="tp-w-track"><i style="width: 30%"></i></span><b>30%</b></div>
+                <div class="tp-w-r"><span>Physical &amp; mentality</span><span class="tp-w-track"><i style="width: 20%"></i></span><b>20%</b></div>
+              </div>
+
+              <div class="sc-src" style="margin-top: 14px">
+                {{icon:lock:13}}
+                <span><b>Read-only to scouts.</b> A scout who could edit the
+                  template mid-camp would break comparability — two wingers
+                  scored a week apart would no longer be measuring the same
+                  thing, and every percentile on the comparison screen would be
+                  fiction. Changes go through a Golafly admin.</span>
+              </div>
+            </div>
+
+            <div class="ds-card" style="margin-top: 12px">
+              <div class="ds-card-h">All position templates</div>
+              <table class="ds-t">
+                <thead><tr><th>Template</th><th>Positions</th><th>Core</th><th>Detailed</th><th>Version</th><th>Status</th></tr></thead>
+                <tbody>
+                  <tr><td><b>Winger</b></td><td>RW, LW</td><td class="ds-num">7</td><td class="ds-num">10</td><td class="ds-num">v2</td><td><span class="ds-pill" data-tone="good">Active</span></td></tr>
+                  <tr><td>Striker</td><td>ST, CF</td><td class="ds-num">7</td><td class="ds-num">10</td><td class="ds-num">v2</td><td><span class="ds-pill" data-tone="good">Active</span></td></tr>
+                  <tr><td>Attacking midfielder</td><td>CAM</td><td class="ds-num">7</td><td class="ds-num">11</td><td class="ds-num">v2</td><td><span class="ds-pill" data-tone="good">Active</span></td></tr>
+                  <tr><td>Central midfielder</td><td>CM</td><td class="ds-num">7</td><td class="ds-num">11</td><td class="ds-num">v2</td><td><span class="ds-pill" data-tone="good">Active</span></td></tr>
+                  <tr><td>Defensive midfielder</td><td>CDM</td><td class="ds-num">7</td><td class="ds-num">10</td><td class="ds-num">v1</td><td><span class="ds-pill" data-tone="good">Active</span></td></tr>
+                  <tr><td>Centre back</td><td>CB</td><td class="ds-num">7</td><td class="ds-num">10</td><td class="ds-num">v2</td><td><span class="ds-pill" data-tone="good">Active</span></td></tr>
+                  <tr><td>Full back</td><td>LB, RB, LWB, RWB</td><td class="ds-num">7</td><td class="ds-num">10</td><td class="ds-num">v1</td><td><span class="ds-pill" data-tone="good">Active</span></td></tr>
+                  <tr><td>Goalkeeper</td><td>GK</td><td class="ds-num">6</td><td class="ds-num">9</td><td class="ds-num">v1</td><td><span class="ds-pill" data-tone="warn">Draft</span></td></tr>
+                </tbody>
+              </table>
+              <p class="tp-note">A goalkeeper template with six core attributes
+                rather than seven is the whole argument for this feature: the
+                set is not fixed at seven, and "Finishing" has no business on a
+                keeper's report.</p>
+            </div>
+          </div>
+
+          <div>
+            <div class="ds-card">
+              <div class="ds-card-h">Centre back — for contrast</div>
+              <div class="tp-chips">
+                <span class="tp-chip">{{icon:shield:13}} Positioning</span>
+                <span class="tp-chip">{{icon:target:13}} Tackling</span>
+                <span class="tp-chip">{{icon:arrow-up:13}} Aerial ability</span>
+                <span class="tp-chip">{{icon:activity:13}} Defensive work rate</span>
+                <span class="tp-chip">{{icon:send:13}} Passing</span>
+                <span class="tp-chip">{{icon:brain:13}} Tactical awareness</span>
+                <span class="tp-chip">{{icon:flag:13}} Mentality</span>
+              </div>
+              <p class="tp-note">Same three RAG columns, same 1–10 scale, same
+                report layout — different rows. Nothing in the evaluation
+                screens changes to support this, which is the point.</p>
+            </div>
+
+            <div class="ds-card" style="margin-top: 12px">
+              <div class="ds-card-h">Profile</div>
+              <dl class="ds-dl">
+                <dt>Name</dt><dd>James Carter</dd>
+                <dt>Role</dt><dd>Scout</dd>
+                <dt>Licence</dt><dd>UEFA A</dd>
+                <dt>Organisation</dt><dd>Golafly Scouting Network</dd>
+                <dt>Country</dt><dd>United Kingdom</dd>
+                <dt>Email</dt><dd>j.carter@golafly.com</dd>
+                <dt>Phone</dt><dd>+44 7700 900000</dd>
+                <dt>Account</dt><dd><span class="ds-pill" data-tone="good">Active</span></dd>
+              </dl>
+              <div class="sc-src" style="margin-top: 12px">
+                {{icon:lock:13}}
+                <span><b>Role, organisation and licence</b> are set by the
+                  admin who created the account. They appear on every report
+                  this scout signs, so they are not self-editable.</span>
+              </div>
+              <button class="ds-btn" data-variant="outline" data-size="sm" style="width: 100%; justify-content: center; margin-top: 11px">{{icon:pen-line:13}} Edit name, email &amp; phone</button>
+            </div>
+
+            <div class="ds-card" style="margin-top: 12px">
+              <div class="ds-card-h">Security</div>
+              <div class="tp-set"><span><b>Password</b><i>Last changed 14 April 2026</i></span><button class="ds-btn" data-variant="outline" data-size="sm">Change</button></div>
+              <div class="tp-set"><span><b>Two-factor</b><i>Not enabled</i></span><button class="ds-btn" data-variant="outline" data-size="sm">Enable</button></div>
+              <div class="tp-set"><span><b>Active session</b><i>Chrome · Barcelona · this device</i></span><button class="ds-btn" data-variant="ghost" data-size="sm">Sign out</button></div>
+            </div>
+
+            <div class="ds-card" style="margin-top: 12px">
+              <div class="ds-card-h">Notify me about</div>
+              <div class="ds-switch-row"><span class="ds-switch" data-on="1"></span> New player assigned</div>
+              <div class="ds-switch-row"><span class="ds-switch" data-on="1"></span> Report returned for revision</div>
+              <div class="ds-switch-row"><span class="ds-switch" data-on="1"></span> Report approved or published</div>
+              <div class="ds-switch-row"><span class="ds-switch" data-on="1"></span> New message from a player</div>
+              <div class="ds-switch-row"><span class="ds-switch" data-on="1"></span> Message from Golafly admin</div>
+              <div class="ds-switch-row"><span class="ds-switch"></span> Camp schedule changes</div>
+              <p class="tp-note">Returned-for-revision cannot be switched off —
+                it is the one notification that blocks the workflow if it is
+                missed.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style data-local>
+  .ds-shell { min-height: 640px; }
+  .tp-layout { display: grid; grid-template-columns: 1fr 340px; gap: 13px; align-items: start; }
+  .ds-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 14px; }
+  .ds-card-h { font-family: var(--font-heading); font-size: 13px; font-weight: 600; margin-bottom: 12px; }
+  .tp-h { display: flex; justify-content: space-between; align-items: flex-start; gap: 14px; margin-bottom: 4px; }
+  .tp-t { font-family: var(--font-heading); font-size: 16px; font-weight: 700; }
+  .tp-s { font-size: 11px; color: var(--muted-foreground); margin-top: 3px; }
+  .tp-sec {
+    font-family: var(--font-mono); font-size: 9.5px; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--muted-foreground);
+    padding-bottom: 7px; border-bottom: 1px solid var(--edge); margin: 16px 0 10px;
+  }
+  .tp-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tp-chip {
+    display: inline-flex; align-items: center; gap: 6px; padding: 5px 10px;
+    border-radius: 999px; border: 1px solid var(--border); background: var(--muted);
+    font-size: 10.5px;
+  }
+  .tp-w { display: flex; flex-direction: column; gap: 8px; }
+  .tp-w-r { display: grid; grid-template-columns: 140px 1fr 34px; gap: 10px; align-items: center; font-size: 11px; }
+  .tp-w-track { height: 8px; background: var(--muted); border-radius: 999px; overflow: hidden; }
+  .tp-w-track i { display: block; height: 100%; border-radius: 999px; background: var(--brand); }
+  .tp-w-r b { font-family: var(--font-mono); font-size: 11px; text-align: right; }
+  .tp-note { font-size: 10px; line-height: 1.6; color: var(--muted-foreground); margin-top: 11px; }
+  .tp-set {
+    display: flex; justify-content: space-between; align-items: center; gap: 12px;
+    padding: 9px 0; border-bottom: 1px solid var(--edge); font-size: 11.5px;
+  }
+  .tp-set:last-of-type { border-bottom: none; }
+  .tp-set b { font-weight: 600; display: block; }
+  .tp-set i { font-style: normal; font-size: 10px; color: var(--muted-foreground); }
+</style>

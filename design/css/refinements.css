@@ -1,0 +1,236 @@
+/* ─────────────────────────────────────────────────────────────────────────
+   Refinement pass — benchmarked against Vercel's Geist system.
+
+   What we took (and why it applies to an admin tool):
+
+   1. SHADOW-AS-BORDER. Geist replaces `border: 1px solid` with a zero-offset,
+      zero-blur, 1px-spread ring: `0 0 0 1px rgba(0,0,0,0.08)`. It reads
+      lighter than a real border, and because it is not in the box model, a
+      surface can gain or lose its edge without shifting layout by a pixel.
+   2. WHISPER SHADOWS. Geist keeps every shadow under 0.1 opacity and layers
+      them instead of deepening one. Ours were up to 0.28 — heavy enough to
+      look like Material.
+   3. TIGHTER RADII. 6px for controls, 8px for cards, 12px for overlays.
+      Ours were 10/14 via --radius, which reads soft and slightly dated at
+      dashboard scale.
+   4. THREE WEIGHTS: 400 body, 500 UI, 600 headings. Geist reserves 700 for
+      micro-badges only. Hierarchy comes from size and tracking, not weight.
+   5. TRACKING SCALES WITH SIZE. Geist runs −0.04em at 24px and normal at
+      14px. Large numerals and titles were sitting too loose.
+
+   What we deliberately did NOT take:
+
+   · Geist's achromatic restraint in full. Golafly's identity is a loud lime,
+     and stripping it out to imitate Vercel would be copying the surface
+     instead of the reasoning. The lime stays exactly where it was — actions
+     and active state only — while the CHROME around it gets quieter, which
+     is what actually makes an accent read as expensive.
+   · The 80–120px section rhythm. That is landing-page spacing; this is a
+     tool where someone reviews 348 rows.
+   ───────────────────────────────────────────────────────────────────────── */
+
+:root,
+[data-theme="light"] {
+  /* Vercel's rgba(0,0,0,0.08), expressed so it inverts correctly in dark. */
+  --edge: color-mix(in oklch, var(--foreground) 9%, transparent);
+  --edge-strong: color-mix(in oklch, var(--foreground) 14%, transparent);
+  --lift-1: 0 1px 2px oklch(0 0 0 / 0.04);
+  --lift-2: 0 2px 4px oklch(0 0 0 / 0.04), 0 8px 16px -8px oklch(0 0 0 / 0.06);
+  --lift-3: 0 4px 8px oklch(0 0 0 / 0.05), 0 16px 32px -12px oklch(0 0 0 / 0.08);
+}
+[data-theme="dark"],
+.dark {
+  --edge: color-mix(in oklch, var(--foreground) 13%, transparent);
+  --edge-strong: color-mix(in oklch, var(--foreground) 20%, transparent);
+  --lift-1: 0 1px 2px oklch(0 0 0 / 0.3);
+  --lift-2: 0 2px 4px oklch(0 0 0 / 0.3), 0 8px 16px -8px oklch(0 0 0 / 0.4);
+  --lift-3: 0 4px 8px oklch(0 0 0 / 0.35), 0 16px 32px -12px oklch(0 0 0 / 0.5);
+}
+
+/* ── 1 + 3. Surfaces: ring instead of border, tighter radii ─────────────── */
+.ds-card,
+.ds-tw,
+.ds-stat {
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 0 0 1px var(--edge), var(--lift-1);
+}
+.ds-sh,
+.ds-pop,
+.ds-toast {
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 0 0 1px var(--edge-strong), var(--lift-3);
+}
+.ds-cmdk {
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 0 0 1px var(--edge-strong), var(--lift-3);
+}
+.ds-shell {
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 0 0 1px var(--edge), var(--lift-2);
+}
+.ds-hdr-demo,
+.ds-mob {
+  border: none;
+  box-shadow: 0 0 0 1px var(--edge);
+  border-radius: 10px;
+}
+
+/* Controls: 6px, Geist's functional radius. */
+.ds-input,
+.ds-ta,
+.ds-act,
+.ds-icon-btn,
+.ds-page,
+.ds-sb-item,
+.ds-sb-search,
+.ds-seg,
+.ds-sb-user,
+.ds-swatch,
+.ds-file,
+.ds-alert {
+  border-radius: 6px;
+}
+.ds-drop {
+  border-radius: 8px;
+}
+
+/* Dividers inside a surface stay real borders — a ring cannot draw a line
+   between two rows. But they get the lighter edge colour. */
+.ds-t thead th,
+.ds-t tbody td,
+.ds-pag,
+.ds-sh-head,
+.ds-sh-foot,
+.ds-notif,
+.ds-act-row,
+.ds-sb-sec + .ds-sb-sec,
+.ds-sb,
+.ds-pop-head {
+  border-color: var(--edge);
+}
+
+/* ── 2. Whisper shadows ─────────────────────────────────────────────────── */
+.ds-sheet {
+  box-shadow: -1px 0 0 0 var(--edge), var(--lift-3);
+  border-left: none;
+}
+.ds-refetch {
+  box-shadow: 0 0 0 1px var(--edge), var(--lift-1);
+}
+.ds-panel {
+  box-shadow: 0 0 0 1px oklch(0 0 0 / 0.06), 0 8px 24px -8px oklch(0 0 0 / 0.18);
+}
+
+/* ── 4. Three weights ───────────────────────────────────────────────────── */
+.ds-h,
+.ds-hdr-title,
+.ds-sh-l1,
+.ds-card-h,
+.ds-empty-t,
+.ds-sb-mark,
+.ds-sheet-title {
+  font-weight: 600;
+}
+.ds-stat-val,
+.ct-big {
+  font-weight: 600;
+}
+
+/* ── 5. Tracking scales with size ───────────────────────────────────────── */
+.ds-stat-val {
+  letter-spacing: -0.04em;
+}
+.ct-big {
+  letter-spacing: -0.03em;
+}
+.ds-hdr-title {
+  letter-spacing: -0.03em;
+}
+.ds-h {
+  letter-spacing: -0.02em;
+}
+
+/* ── Benchmarked against Linear, second pass ────────────────────────────────
+   Linear and Geist converge on the same three rules, so they are worth
+   following rather than arguing with:
+
+   · WEIGHT CEILING. Linear caps at 590 and explicitly says "no weights ≥600";
+     Geist runs 400/500/600 and reserves 700 for micro-badges. We had 700 on
+     eyebrows, buttons, table headers and stat labels — four places. Dropped
+     to 600. Hierarchy now comes from size, tracking and colour, not weight.
+   · NO RECTANGLE OVER 8px. Linear's hard rule. Cards and the shell were 10px.
+     Overlays stay at 12px, which is where Geist puts menus and modals.
+   · DEPTH FROM SURFACE, NOT SHADOW. Both build a ladder of near-identical
+     background steps (Linear: 8,9,10 → 15,16,17 → 18,19,20) and let shadows
+     be almost invisible. Our --background / --card / --muted tokens already
+     form that ladder in both themes, so this mostly meant getting out of its
+     way — hence the ring borders above.
+
+   The one place we diverge: our mono eyebrow tracking. Both systems run
+   near-normal tracking at small sizes; ours is wide on purpose because it is
+   matchday's existing navbar idiom and it is what ties the admin to the
+   brand. Pulled back from 0.18em to 0.14em — still clearly the house voice,
+   less shouty at dashboard density.                                         */
+
+.ds-eyebrow,
+.ds-crumb,
+.ds-panel-label,
+.ds-sb-tag,
+.ds-sb-user-role,
+.ds-stat-lab,
+.ds-t thead th,
+.ds-sh-sec,
+.ds-cmdk-group,
+.ds-state-lab,
+.ds-btn,
+.ds-pill {
+  font-weight: 600;
+  letter-spacing: 0.14em;
+}
+.ds-btn {
+  letter-spacing: 0.09em;
+}
+.ds-pill {
+  letter-spacing: 0.07em;
+}
+.ds-sb-count,
+.ds-bulk-n,
+.ds-page[data-on="1"],
+.ds-swatch-name,
+.ds-anno-n,
+.ds-rowmap-n,
+.ds-rule-n,
+.ds-cs-n,
+.ds-avatar,
+.ds-av-sm {
+  font-weight: 600;
+}
+.ds-shell,
+.ds-hdr-demo,
+.ds-mob {
+  border-radius: 8px;
+}
+
+/* ── Chrome gets quieter so the lime reads louder ───────────────────────── */
+.ds-t thead th {
+  /* The header keeps a filled band. Geist drops it — but Geist's tables are
+     usually 3–4 columns; ours run to 8 with a checkbox column and a right-
+     aligned actions column, and at that width a transparent header stops
+     reading as chrome and starts reading as a first row. One surface step
+     down from --card is enough to separate it without adding a rule. */
+  background: var(--muted);
+  color: var(--muted-foreground);
+}
+.ds-tw {
+  background: var(--card);
+}
+.ds-sb {
+  /* In light mode --sidebar and --background are within 0.005 L of each other,
+     so the rail was invisible; the ring gives it its edge instead. */
+  border-right: none;
+  box-shadow: 1px 0 0 0 var(--edge);
+}

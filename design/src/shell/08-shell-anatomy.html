@@ -1,0 +1,294 @@
+<div class="ds-section">
+  <p class="ds-eyebrow">The one structural decision</p>
+  <h2 class="ds-h">Sidebar and content pane. No top bar.</h2>
+  <p class="ds-sub">
+    The dashboard being replaced has a 64px sticky top bar carrying a hamburger, a logo, a breadcrumb,
+    a theme toggle, a bell and a settings gear. Removing it means five things need somewhere to live —
+    this is where each one went, and why. Nothing is homeless.
+  </p>
+</div>
+
+<div class="ds-section">
+  <div class="ds-anat">
+    <div class="ds-anat-sb">
+      <span class="ds-anat-tag">Sidebar · 280px</span>
+      <div class="ds-anat-zone"><b>1</b> Brand + <code>ADMIN</code> pill<span>also carries env: STAGING</span></div>
+      <div class="ds-anat-zone" data-from="1"><b>2</b> Search trigger ⌘K<span>← from the top bar</span></div>
+      <div class="ds-anat-zone" data-grow="1"><b>3</b> Nav · 8 items<span>with count badges</span></div>
+      <div class="ds-anat-zone" data-from="1"><b>4</b> Bell + theme<span>← from the top bar</span></div>
+      <div class="ds-anat-zone" data-from="1"><b>5</b> User + popover ↑<span>← from the top bar</span></div>
+    </div>
+    <div class="ds-anat-pane">
+      <span class="ds-anat-tag">Content pane</span>
+      <div class="ds-anat-hdr">
+        <div class="ds-anat-zone" data-from="1" style="margin: 0">
+          <b>A</b> Sticky in-pane header<span>← breadcrumb from the top bar, + the primary action</span>
+        </div>
+        <div class="ds-anat-mini">
+          <span class="ds-anat-mini-crumb">DASHBOARD / OFFERS</span>
+          <span class="ds-anat-mini-btn">+ NEW OFFER</span>
+        </div>
+        <div class="ds-anat-mini-title">Offers</div>
+        <div class="ds-anat-mini-tabs"><span data-on="1">Overview</span><span>Categories</span><span>Applications</span></div>
+      </div>
+      <div class="ds-anat-scroll">
+        <b>B</b> Scrolling content
+        <span>the only thing that moves</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="ds-section">
+  <p class="ds-eyebrow">Where each top-bar concern went</p>
+  <table class="ds-move">
+    <thead>
+      <tr><th>Was in the top bar</th><th>Now lives</th><th>Why there</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Search</td>
+        <td>Sidebar zone 2 → ⌘K palette over the pane</td>
+        <td>An upgrade, not a relocation: the palette does search <em>and</em> navigation, so it absorbs the nav's job too.</td>
+      </tr>
+      <tr>
+        <td>Breadcrumb</td>
+        <td>Content header, row 1</td>
+        <td>It describes the pane, so it belongs to the pane. It also inherits the house mono eyebrow, and the tab state (<code>?tab=</code>) is already its last crumb.</td>
+      </tr>
+      <tr>
+        <td>Notifications</td>
+        <td>Sidebar zone 4 → right-side sheet</td>
+        <td>A sheet, not a popover — that reuses <code>BaseListSheet</code>, so notifications need no new overlay primitive.</td>
+      </tr>
+      <tr>
+        <td>Theme toggle</td>
+        <td>Sidebar zone 4</td>
+        <td>Set once, rarely touched. It belongs with the other chrome, not beside page actions.</td>
+      </tr>
+      <tr>
+        <td>User menu</td>
+        <td>Sidebar zone 5 → popover opening <em>upward</em></td>
+        <td>Bottom-pinned, which is where the existing sidebar already puts it. Nothing above to drop from.</td>
+      </tr>
+      <tr>
+        <td>Settings gear</td>
+        <td>Deleted</td>
+        <td>It was non-functional, and Settings is already nav item 8.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="ds-section">
+  <p class="ds-eyebrow">The risk, named</p>
+  <div class="ds-dd">
+    <div class="ds-dd-item" data-verdict="dont">
+      <div class="ds-dd-tag">{{icon:triangle-alert:13}} What could go wrong</div>
+      <div class="ds-dd-why">
+        With no persistent bar, a page's primary action can scroll away and leave the user with no
+        obvious next move — the classic failure of this layout.
+      </div>
+    </div>
+    <div class="ds-dd-item" data-verdict="do">
+      <div class="ds-dd-tag">{{icon:check:13}} What prevents it</div>
+      <div class="ds-dd-why">
+        The content header is <code>sticky top-0</code> and keeps the primary action in row 1. It gains
+        its bottom border only once scrolled, so it is flat and quiet at rest.
+      </div>
+    </div>
+  </div>
+  <p class="ds-note">
+    <strong>Mobile.</strong> Under 1024px the sidebar becomes an overlay drawer and the content header
+    grows a hamburger at the left of row 1, with the breadcrumb collapsing to its last crumb. The sticky
+    content header <em>is</em> the mobile top bar — a separate global bar never enters the DOM at any
+    breakpoint.
+  </p>
+</div>
+
+<style data-local>
+  .ds-anat {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 14px;
+    border: 1px dashed var(--border);
+    border-radius: var(--radius-lg);
+    padding: 14px;
+  }
+  .ds-anat-tag {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted-foreground);
+    margin-bottom: 8px;
+  }
+  .ds-anat-sb {
+    display: flex;
+    flex-direction: column;
+    background: var(--sidebar);
+    border: 1px solid var(--sidebar-border);
+    border-radius: var(--radius-md);
+    padding: 10px;
+    min-height: 300px;
+  }
+  .ds-anat-zone {
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 8px 10px;
+    margin-bottom: 6px;
+    font-size: 11.5px;
+    color: var(--foreground);
+    background: var(--background);
+  }
+  .ds-anat-zone[data-grow="1"] {
+    flex: 1;
+  }
+  .ds-anat-zone[data-from="1"] {
+    border-color: var(--brand-edge);
+    border-style: solid;
+  }
+  .ds-anat-zone b {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 15px;
+    height: 15px;
+    border-radius: 999px;
+    background: var(--brand);
+    color: var(--brand-foreground);
+    font-family: var(--font-mono);
+    font-size: 8.5px;
+    margin-right: 6px;
+  }
+  .ds-anat-zone span {
+    display: block;
+    font-size: 10px;
+    color: var(--muted-foreground);
+    margin-top: 3px;
+    margin-left: 21px;
+  }
+  .ds-anat-pane {
+    display: flex;
+    flex-direction: column;
+  }
+  .ds-anat-hdr {
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 10px;
+    background: var(--card);
+  }
+  .ds-anat-mini {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 8px;
+  }
+  .ds-anat-mini-crumb {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.16em;
+    color: var(--muted-foreground);
+  }
+  .ds-anat-mini-btn {
+    font-family: var(--font-mono);
+    font-size: 8.5px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    background: var(--brand);
+    color: var(--brand-foreground);
+    border: 1px solid var(--brand-edge);
+    border-radius: 999px;
+    padding: 3px 9px;
+  }
+  .ds-anat-mini-title {
+    font-family: var(--font-heading);
+    font-size: 16px;
+    font-weight: 600;
+    margin-top: 7px;
+  }
+  .ds-anat-mini-tabs {
+    display: flex;
+    gap: 14px;
+    margin-top: 8px;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 6px;
+  }
+  .ds-anat-mini-tabs span {
+    font-size: 11px;
+    color: var(--muted-foreground);
+  }
+  .ds-anat-mini-tabs span[data-on="1"] {
+    color: var(--foreground);
+    font-weight: 600;
+    border-bottom: 2px solid var(--brand);
+    padding-bottom: 5px;
+    margin-bottom: -7px;
+  }
+  .ds-anat-scroll {
+    flex: 1;
+    border: 1px dashed var(--border);
+    border-radius: var(--radius-md);
+    margin-top: 10px;
+    padding: 14px;
+    font-size: 11.5px;
+    color: var(--foreground);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 120px;
+  }
+  .ds-anat-scroll b {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 15px;
+    height: 15px;
+    border-radius: 999px;
+    background: var(--muted);
+    color: var(--muted-foreground);
+    font-family: var(--font-mono);
+    font-size: 8.5px;
+  }
+  .ds-anat-scroll span {
+    font-size: 10px;
+    color: var(--muted-foreground);
+    margin-top: 4px;
+  }
+  .ds-move {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 11.5px;
+  }
+  .ds-move th {
+    text-align: left;
+    padding: 7px 10px;
+    border-bottom: 1px solid var(--border);
+    font-family: var(--font-mono);
+    font-size: 9.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted-foreground);
+    font-weight: 700;
+  }
+  .ds-move td {
+    padding: 8px 10px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+    line-height: 1.5;
+  }
+  .ds-move td:first-child {
+    color: var(--muted-foreground);
+    white-space: nowrap;
+  }
+  .ds-move td:nth-child(2) {
+    color: var(--foreground);
+    font-weight: 600;
+  }
+  .ds-move td:last-child {
+    color: var(--muted-foreground);
+  }
+</style>

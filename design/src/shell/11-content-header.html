@@ -1,0 +1,202 @@
+<div class="ds-section">
+  <p class="ds-eyebrow">Chrome</p>
+  <h2 class="ds-h">Content header</h2>
+  <p class="ds-sub">
+    Three rows inside the pane, sticky to its top. This is where the breadcrumb landed, and it is the
+    thing that makes removing the top bar safe — the primary action never scrolls away.
+  </p>
+
+  <div class="ds-hdr-demo">
+    <div class="ds-hdr">
+      <div class="ds-hdr-r1">
+        <span class="ds-crumb">Dashboard / Offers / <b>Applications</b></span>
+        <button class="ds-btn">{{icon:plus:14}} New offer</button>
+      </div>
+      <div class="ds-hdr-r2">
+        <span class="ds-hdr-title">Offers</span>
+        <span class="ds-hdr-stats">
+          <span class="ds-hdr-stat"><i style="background: var(--status-good)"></i>286 approved</span>
+          <span class="ds-hdr-stat"><i style="background: var(--status-warn)"></i>42 pending</span>
+          <span class="ds-hdr-stat"><i style="background: var(--muted-foreground)"></i>348 total</span>
+        </span>
+      </div>
+      <div class="ds-tabs">
+        <span class="ds-tab">Overview</span>
+        <span class="ds-tab">Categories</span>
+        <span class="ds-tab" data-on="1">Applications</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="ds-rowmap">
+    <div class="ds-rowmap-i"><span class="ds-rowmap-n">1</span><div><b>Breadcrumb + primary action.</b> Mono eyebrow left, lime pill right. The last crumb is the active tab, which the existing header already derives from <code class="ds-code">?tab=</code>.</div></div>
+    <div class="ds-rowmap-i"><span class="ds-rowmap-n">2</span><div><b>Title + stat dots + subtitle.</b> This is <code class="ds-code">DashboardPageHeader</code> promoted into the shell instead of being repeated per page.</div></div>
+    <div class="ds-rowmap-i"><span class="ds-rowmap-n">3</span><div><b>Tabs.</b> Underline with a sliding indicator. Present only on the four tabbed screens; the row is absent, not empty, elsewhere.</div></div>
+  </div>
+</div>
+
+<div class="ds-section">
+  <p class="ds-eyebrow">At rest vs scrolled</p>
+  <div class="ds-scroll-compare">
+    <div>
+      <span class="ds-state-lab">At rest — flat</span>
+      <div class="ds-hdr-demo" style="margin-top: 6px">
+        <div class="ds-hdr">
+          <div class="ds-hdr-r1">
+            <span class="ds-crumb">Dashboard / <b>Players</b></span>
+            <button class="ds-btn" data-size="sm">Export CSV</button>
+          </div>
+          <div class="ds-hdr-r2"><span class="ds-hdr-title">Players</span></div>
+          <div style="height: 12px"></div>
+        </div>
+        <div class="ds-fakebody">Table starts here</div>
+      </div>
+    </div>
+    <div>
+      <span class="ds-state-lab">Scrolled — border appears</span>
+      <div class="ds-hdr-demo" style="margin-top: 6px">
+        <div class="ds-hdr" data-scrolled="1">
+          <div class="ds-hdr-r1">
+            <span class="ds-crumb">Dashboard / <b>Players</b></span>
+            <button class="ds-btn" data-size="sm">Export CSV</button>
+          </div>
+          <div class="ds-hdr-r2"><span class="ds-hdr-title">Players</span></div>
+          <div style="height: 12px"></div>
+        </div>
+        <div class="ds-fakebody" data-cut="1">…row 24 of 156</div>
+      </div>
+    </div>
+  </div>
+  <p class="ds-note">
+    The header carries no border at rest, so the page reads as one surface. It gains a hairline only
+    once content passes under it — the border is the scroll cue, not decoration.
+  </p>
+</div>
+
+<div class="ds-section">
+  <p class="ds-eyebrow">Mobile · under 1024px</p>
+  <div class="ds-mob-row">
+    <div class="ds-mob">
+      <div class="ds-hdr" data-scrolled="1" style="padding: 10px 12px 0">
+        <div class="ds-hdr-r1">
+          <span style="display: flex; align-items: center; gap: 8px">
+            <button class="ds-icon-btn" data-state="hover">{{icon:panel-left-open:15}}</button>
+            <span class="ds-crumb"><b>Applications</b></span>
+          </span>
+          <button class="ds-btn" data-size="sm">{{icon:plus:13}}</button>
+        </div>
+        <div class="ds-hdr-r2"><span class="ds-hdr-title" style="font-size: 17px">Offers</span></div>
+        <div class="ds-tabs" style="margin-top: 10px; gap: 14px">
+          <span class="ds-tab" style="font-size: 11.5px">Overview</span>
+          <span class="ds-tab" style="font-size: 11.5px">Categories</span>
+          <span class="ds-tab" data-on="1" style="font-size: 11.5px">Applications</span>
+        </div>
+      </div>
+      <div class="ds-fakebody" style="min-height: 70px">List</div>
+    </div>
+    <div class="ds-ov-note">
+      <p>
+        The sidebar becomes an overlay drawer and the hamburger joins row 1. The breadcrumb collapses to
+        its last crumb; the primary action drops its label and keeps its icon.
+      </p>
+      <p>
+        <strong>The sticky content header is the mobile top bar.</strong> A separate global bar never
+        enters the DOM at any breakpoint — there is one header component, and it lives in the pane.
+      </p>
+      <p class="ds-ov-small">
+        Touch targets step up to h-9 here; the desktop h-8 density does not follow onto phones.
+      </p>
+    </div>
+  </div>
+</div>
+
+<style data-local>
+  .ds-hdr-demo {
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    background: var(--background);
+  }
+  .ds-rowmap {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    margin-top: 14px;
+  }
+  .ds-rowmap-i {
+    display: grid;
+    grid-template-columns: 18px 1fr;
+    gap: 9px;
+    font-size: 11.5px;
+    line-height: 1.5;
+    color: var(--muted-foreground);
+  }
+  .ds-rowmap-i b {
+    color: var(--foreground);
+  }
+  .ds-rowmap-n {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 16px;
+    border-radius: 999px;
+    background: var(--brand);
+    color: var(--brand-foreground);
+    font-family: var(--font-mono);
+    font-size: 8.5px;
+    font-weight: 700;
+  }
+  .ds-scroll-compare {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+  .ds-state-lab {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted-foreground);
+  }
+  .ds-fakebody {
+    padding: 14px 18px;
+    font-size: 11.5px;
+    color: var(--muted-foreground);
+    background: var(--background);
+    min-height: 48px;
+  }
+  .ds-fakebody[data-cut="1"] {
+    color: var(--foreground);
+  }
+  .ds-mob {
+    width: 300px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+  .ds-mob-row {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 20px;
+    align-items: start;
+  }
+  .ds-ov-note {
+    font-size: 11.5px;
+    line-height: 1.55;
+    color: var(--muted-foreground);
+  }
+  .ds-ov-note p {
+    margin: 0 0 10px;
+  }
+  .ds-ov-note strong {
+    color: var(--foreground);
+  }
+  .ds-ov-small {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    border-left: 2px solid var(--border);
+    padding-left: 9px;
+  }
+</style>

@@ -9,6 +9,20 @@
   --color-foreground: var(--foreground);
   --color-brand: var(--brand);
   --color-brand-foreground: var(--brand-foreground);
+  /* Admin: lime as type (flips per theme) and the light-mode pill edge */
+  --color-brand-text: var(--brand-text);
+  --color-brand-edge: var(--brand-edge);
+  /* Admin: reserved status tones */
+  --color-status-good: var(--status-good);
+  --color-status-good-bg: var(--status-good-bg);
+  --color-status-warn: var(--status-warn);
+  --color-status-warn-bg: var(--status-warn-bg);
+  --color-status-danger: var(--status-danger);
+  --color-status-danger-bg: var(--status-danger-bg);
+  --color-status-info: var(--status-info);
+  --color-status-info-bg: var(--status-info-bg);
+  --color-status-neutral: var(--status-neutral);
+  --color-status-neutral-bg: var(--status-neutral-bg);
   --color-navbar: var(--navbar);
   --color-navbar-border: var(--navbar-border);
   --color-navbar-muted: var(--navbar-muted);
@@ -16,6 +30,22 @@
   --font-sans: var(--font-sans);
   --font-mono: var(--font-mono);
   --font-heading: var(--font-heading);
+  /* Condensed display face for ticket date numerals and directory titles */
+  --font-display: var(--font-display);
+  /* Ticket marketplace surfaces (fixture cards, quantity dialog, ticket
+     header, directories). One set of tokens, flipped per theme — swap the
+     values here to restyle every ticket surface at once. */
+  --color-ticket: var(--ticket);
+  --color-ticket-foreground: var(--ticket-foreground);
+  --color-ticket-ink: var(--ticket-ink);
+  --color-ticket-soft: var(--ticket-soft);
+  --color-ticket-soft-foreground: var(--ticket-soft-foreground);
+  --color-ticket-accent: var(--ticket-accent);
+  --color-ticket-accent-foreground: var(--ticket-accent-foreground);
+  --color-ticket-panel: var(--ticket-panel);
+  --color-ticket-panel-foreground: var(--ticket-panel-foreground);
+  --color-ticket-surface: var(--ticket-surface);
+  --color-ticket-line: var(--ticket-line);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -48,6 +78,12 @@
   /* Matchday home: panels on page (search, cards, promo) — light = solid card, dark = glass */
   --color-home-panel: var(--home-panel);
   --color-home-panel-border: var(--home-panel-border);
+  /* Ink bands: dark strips inside light pages (stats, CTAs, ecosystem bar) */
+  --color-band-ink: var(--band-ink);
+  --color-band-ink-raise: var(--band-ink-raise);
+  --color-band-ink-fg: var(--band-ink-fg);
+  --color-band-ink-muted: var(--band-ink-muted);
+  --color-band-ink-border: var(--band-ink-border);
   /* Footer */
   --color-footer-bg: var(--footer-bg);
   --color-footer-text: var(--footer-text);
@@ -65,13 +101,167 @@
   --radius-4xl: calc(var(--radius) * 2.6);
 }
 
+/* VIP Hospitality (/vip) colours. Each one is a CSS variable with a light
+   value (:root, from the light-mode Figma screens) and a dark value (.dark,
+   the original dark Figma frames). Change a value in the two blocks below
+   and every VIP page follows. Use them as Tailwind classes, e.g.
+   `text-vip-chalk`, `border-vip-line/10`, `bg-vip-card`.
+   Sections that stay dark in light mode too (heroes, match photo cards,
+   stadium map, toasts) carry the `dark` class, which gives them the dark
+   values below. */
+@theme inline {
+  --color-vip-ink: var(--vip-ink);
+  --color-vip-panel: var(--vip-panel);
+  --color-vip-popover: var(--vip-popover);
+  --color-vip-sunken: var(--vip-sunken);
+  --color-vip-gold: var(--vip-gold);
+  --color-vip-gold-light: var(--vip-gold-light);
+  --color-vip-gold-deep: var(--vip-gold-deep);
+  --color-vip-gold-text: var(--vip-gold-text);
+  --color-vip-gold-strong: var(--vip-gold-strong);
+  --color-vip-on-gold: var(--vip-on-gold);
+  --color-vip-gold-ink: var(--vip-gold-ink);
+  --color-vip-gold-shade: var(--vip-gold-shade);
+  --color-vip-fg: var(--vip-fg);
+  --color-vip-chalk: var(--vip-chalk);
+  --color-vip-body: var(--vip-body);
+  --color-vip-perk: var(--vip-perk);
+  --color-vip-muted: var(--vip-muted);
+  --color-vip-mist: var(--vip-mist);
+  --color-vip-line: var(--vip-line);
+  --color-vip-tint: var(--vip-tint);
+  --color-vip-card: var(--vip-card);
+  --color-vip-warm: var(--vip-warm);
+  --color-vip-error: var(--vip-error);
+}
+
+/* Light (default). */
+:root {
+  --vip-ink: #ffffff; /* page ground */
+  --vip-panel: #faf8f4; /* panels, cart / summary gradient end */
+  --vip-popover: #ffffff; /* dropdown menus, dialogs */
+  --vip-sunken: #ffffff; /* crest circles */
+  /* Gold FILLS (buttons, highlight bands, badges): the same in both modes. */
+  --vip-gold: #d4b26a;
+  --vip-gold-light: #f0d79b; /* gradient start, focus outline */
+  --vip-gold-deep: #c39a4a; /* gradient end */
+  /* Gold TEXT and icons: deeper in light mode so it reads on white. */
+  --vip-gold-text: #8b6a2b; /* eyebrows, labels, "VIP Hospitality" */
+  --vip-gold-strong: #7a5a1c; /* prices */
+  --vip-on-gold: #14100a; /* text on gold fills */
+  --vip-gold-ink: #1a1408; /* label on gold buttons */
+  --vip-gold-shade: #3a2e14; /* small text on the gold ticket */
+  --vip-fg: #111111; /* strongest text (was pure white) */
+  --vip-chalk: #111111; /* headings, main text */
+  --vip-body: #3f3f46; /* paragraphs */
+  --vip-perk: #27272a; /* package perk lines */
+  --vip-muted: #71717a; /* secondary text */
+  --vip-mist: #6b6f69; /* meta, footnotes */
+  /* Borders and faint fills: used with opacity, e.g. border-vip-line/10. */
+  --vip-line: #2a2214;
+  /* Faint fill of bordered cards, panels and inputs, used with opacity
+     (bg-vip-tint/3). White, so they read as white cards on the white page
+     in light mode and as a faint lift in dark mode. */
+  --vip-tint: #ffffff;
+  --vip-card: #ffffff; /* cards */
+  --vip-warm: #fbf5e6; /* selected card / cream */
+  --vip-error: #c62828;
+}
+
+/* Dark: the original VIP colours. */
+.dark {
+  --vip-ink: #050505;
+  --vip-panel: #0d0d0d;
+  --vip-popover: #0e0e0d;
+  --vip-sunken: #0f0f0e;
+  --vip-gold-text: #f0d79b;
+  --vip-gold-strong: #d4b26a;
+  --vip-fg: #ffffff;
+  --vip-chalk: #f5f7f3;
+  --vip-body: #d4d4d8;
+  --vip-perk: #e4e4e7;
+  --vip-muted: #a1a1aa;
+  --vip-mist: #a6b0a3;
+  --vip-line: #ffffff;
+  --vip-card: #111311;
+  --vip-warm: #1d1708;
+  --vip-error: #ff8a8a;
+}
+
+/* On VIP pages (/vip…) the site's own lime brand colour becomes VIP gold, so
+   the shared pieces around the VIP content — header Sign in button, cart
+   count, "Back to top", the "Get in touch" bar, footer accents — match it.
+   The `vip-theme` class is put on <html> by app/layout.tsx (before first
+   paint) and kept in sync by components/vip/vip-theme-class.tsx — only when
+   NEXT_PUBLIC_VIP_GOLD_SITE_CHROME=true (.env). Otherwise the header and
+   footer keep the Golafly lime, as in Figma. */
+html.vip-theme {
+  --brand: #d4b26a;
+  --brand-foreground: #14100a;
+  --brand-glow: color-mix(in oklch, #d4b26a 35%, transparent);
+  --brand-text: #8b6a2b; /* gold as text on white */
+  --brand-edge: #b8893a; /* 1px edge so the gold fill holds its shape on white */
+}
+html.vip-theme.dark {
+  --brand-glow: color-mix(in oklch, #d4b26a 45%, transparent);
+  --brand-text: #f0d79b;
+  --brand-edge: transparent;
+}
+
+/* VIP phone field (components/vip/flow/phone-input.tsx): react-phone-input-2
+   ships light-grey hover colours; on the black VIP list they hid the text. */
+.vip-phone .selected-flag:hover,
+.vip-phone .selected-flag:focus,
+.vip-phone .flag-dropdown.open .selected-flag {
+  background: color-mix(in srgb, var(--vip-line) 8%, transparent) !important;
+}
+.vip-phone .country-list .country:hover,
+.vip-phone .country-list .country.highlight {
+  background: rgba(212, 178, 106, 0.12) !important;
+}
+.vip-phone .country-list .country .dial-code {
+  color: var(--vip-mist);
+}
+.vip-phone .country-list .search {
+  background: var(--vip-popover);
+}
+
 :root {
   color-scheme: light;
 
-  /* Brand (Figma light: ~#dfff00) */
-  --brand: oklch(0.94 0.19 124);
-  --brand-foreground: oklch(0.16 0 0);
+  /* Brand — ONE lime, identical in both themes: Golafly neon #B7FF00
+     (DESIGN.md --gf-neon).
+     Previously light and dark declared two different limes while the
+     transferred marketing pages hardcoded two more. The root cause was that
+     no token existed for lime-as-TEXT, so the fill value kept being bent to
+     do two jobs. Fill and type are now separate tokens.
+     Audited by `node design/verify-contrast.mjs` — 10/10 pairs pass. */
+  --brand: oklch(0.918 0.238 127.5); /* #B7FF00 */
+  --brand-foreground: oklch(0.16 0 0); /* ink on lime — 16.01:1 */
   --brand-glow: color-mix(in oklch, var(--brand) 35%, transparent);
+
+  /* Lime as TYPE and icons. The lime itself is 1.16:1 on a light page, and
+     the marketing pages' #76B900 is 2.31:1 — both fail. This is 4.62:1. */
+  --brand-text: oklch(0.54 0.15 129);
+
+  /* A bright lime fill is ~1.16:1 against a light page whichever lime you
+     pick, so on light surfaces the primary pill carries a 1px edge to define
+     its shape (WCAG 1.4.11). Dark needs none — the fill is already 16.31:1. */
+  --brand-edge: oklch(0.64 0.19 129);
+
+  /* Golafly core palette (DESIGN.md). Mode-stable brand constants. */
+  --gf-ink: #050606;
+  --gf-coal: #121513;
+  --gf-white: #f5f7f3;
+  --gf-chalk: #d9ded6;
+  --gf-mist: #a6b0a3;
+
+  /* Ink bands — the one place neon may be used as type in light mode. */
+  --band-ink: var(--gf-ink);
+  --band-ink-raise: var(--gf-coal);
+  --band-ink-fg: var(--gf-white);
+  --band-ink-muted: var(--gf-mist);
+  --band-ink-border: oklch(1 0 0 / 0.1);
 
   /* Surfaces tuned for light navbar / page */
   --navbar: oklch(1 0 0);
@@ -96,11 +286,41 @@
   --border: oklch(0.91 0 0);
   --input: oklch(0.91 0 0);
   --ring: oklch(0.55 0.12 124);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
+
+  /* Categorical chart ramp. Replaces a greyscale placeholder that was also
+     identical in both themes. Anchored on the brand hue so slot 1 reads as
+     family, then stepped around the wheel for separation. Validated for CVD
+     separation and >=3:1 against --card in both themes.
+     Rules: fixed slot order, never cycled (a 6th series folds into "Other");
+     cap 5 for adjacent forms, 3 for scatter; raw --brand is NEVER a series
+     colour — it means "clickable". */
+  --chart-1: oklch(0.62 0.16 128);
+  --chart-2: oklch(0.6 0.12 205);
+  --chart-3: oklch(0.52 0.19 285);
+  --chart-4: oklch(0.6 0.2 352);
+  --chart-5: oklch(0.64 0.145 72);
+
+  /* Status tones — reserved. Never interchangeable with chart series, and
+     never encoded by colour alone (always a tinted pill with a text label). */
+  --status-good: oklch(0.52 0.13 155);
+  --status-good-bg: oklch(0.95 0.04 155);
+  --status-warn: oklch(0.58 0.13 70);
+  --status-warn-bg: oklch(0.96 0.05 70);
+  --status-danger: oklch(0.577 0.245 27.325);
+  --status-danger-bg: oklch(0.96 0.03 27);
+  --status-info: oklch(0.6 0.12 205);
+  --status-info-bg: oklch(0.95 0.035 205);
+  --status-neutral: oklch(0.45 0 0);
+  --status-neutral-bg: oklch(0.955 0 0);
+
+  /* Zero-offset ring used instead of a 1px border on admin surfaces —
+     lighter than a real border and outside the box model. */
+  --edge: color-mix(in oklch, var(--foreground) 9%, transparent);
+  --edge-strong: color-mix(in oklch, var(--foreground) 14%, transparent);
+  --lift-1: 0 1px 2px oklch(0 0 0 / 0.04);
+  --lift-2: 0 2px 4px oklch(0 0 0 / 0.04), 0 8px 16px -8px oklch(0 0 0 / 0.06);
+  --lift-3: 0 4px 8px oklch(0 0 0 / 0.05), 0 16px 32px -12px oklch(0 0 0 / 0.08);
+
   --radius: 0.625rem;
   --sidebar: oklch(0.985 0 0);
   --sidebar-foreground: oklch(0.18 0 0);
@@ -120,6 +340,20 @@
     transparent 72%
   );
 
+  /* Ticket surfaces — Golafly palette (lime + ink), light theme.
+     The partner layouts are copied, the colours stay Golafly's. */
+  --ticket: var(--brand);                       /* lime fills: price pills, CTAs */
+  --ticket-foreground: var(--brand-foreground);
+  --ticket-ink: var(--foreground);              /* titles / date numerals */
+  --ticket-soft: color-mix(in oklch, var(--brand) 28%, transparent);
+  --ticket-soft-foreground: var(--foreground);
+  --ticket-accent: var(--brand);
+  --ticket-accent-foreground: var(--brand-foreground);
+  --ticket-panel: oklch(0.18 0 0);              /* Golafly ink panels */
+  --ticket-panel-foreground: oklch(0.98 0 0);
+  --ticket-surface: var(--card);
+  --ticket-line: var(--border);
+
   /* Footer — light theme */
   --footer-bg: oklch(0.965 0.008 124);
   --footer-text: oklch(0.45 0.02 140);
@@ -133,10 +367,18 @@
 .dark {
   color-scheme: dark;
 
-  /* Brand (Figma dark: ~#ccff00) */
-  --brand: oklch(0.9 0.21 123);
-  --brand-foreground: oklch(0.12 0 0);
+  /* Brand — identical to light. That is the point: one fill for both themes,
+     with near-black ink on it either way. */
+  --brand: oklch(0.918 0.238 127.5); /* #B7FF00 */
+  --brand-foreground: oklch(0.16 0 0);
   --brand-glow: color-mix(in oklch, var(--brand) 45%, transparent);
+
+  --brand-text: var(--brand); /* 16.31:1 on the dark page */
+  --brand-edge: transparent; /* fill already separates from the surface */
+
+  --band-ink: var(--gf-coal);
+  --band-ink-raise: oklch(0.22 0.005 140);
+  --band-ink-border: oklch(1 0 0 / 0.08);
 
   --navbar: oklch(0.08 0 0);
   --navbar-border: oklch(0.28 0 0);
@@ -160,11 +402,30 @@
   --border: oklch(0.28 0 0);
   --input: oklch(0.28 0 0);
   --ring: oklch(0.72 0.16 123);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
+
+  /* Stepped separately for the dark surface — not a flip of the light ramp. */
+  --chart-1: oklch(0.665 0.17 126);
+  --chart-2: oklch(0.645 0.115 205);
+  --chart-3: oklch(0.575 0.17 285);
+  --chart-4: oklch(0.625 0.18 352);
+  --chart-5: oklch(0.66 0.14 78);
+
+  --status-good: oklch(0.72 0.15 155);
+  --status-good-bg: oklch(0.28 0.05 155);
+  --status-warn: oklch(0.78 0.14 70);
+  --status-warn-bg: oklch(0.3 0.05 70);
+  --status-danger: oklch(0.704 0.191 22.216);
+  --status-danger-bg: oklch(0.3 0.06 22);
+  --status-info: oklch(0.72 0.12 205);
+  --status-info-bg: oklch(0.28 0.045 205);
+  --status-neutral: oklch(0.65 0 0);
+  --status-neutral-bg: oklch(0.24 0 0);
+
+  --edge: color-mix(in oklch, var(--foreground) 13%, transparent);
+  --edge-strong: color-mix(in oklch, var(--foreground) 20%, transparent);
+  --lift-1: 0 1px 2px oklch(0 0 0 / 0.3);
+  --lift-2: 0 2px 4px oklch(0 0 0 / 0.3), 0 8px 16px -8px oklch(0 0 0 / 0.4);
+  --lift-3: 0 4px 8px oklch(0 0 0 / 0.35), 0 16px 32px -12px oklch(0 0 0 / 0.5);
   --sidebar: oklch(0.14 0 0);
   --sidebar-foreground: oklch(0.96 0 0);
   --sidebar-primary: var(--brand);
@@ -182,6 +443,19 @@
     oklch(0.05 0 0 / 0.4) 45%,
     transparent 75%
   );
+
+  /* Ticket surfaces — Golafly palette, dark theme */
+  --ticket: var(--brand);
+  --ticket-foreground: var(--brand-foreground);
+  --ticket-ink: var(--foreground);
+  --ticket-soft: color-mix(in oklch, var(--brand) 18%, transparent);
+  --ticket-soft-foreground: var(--brand);
+  --ticket-accent: var(--brand);
+  --ticket-accent-foreground: var(--brand-foreground);
+  --ticket-panel: oklch(0.16 0 0);
+  --ticket-panel-foreground: oklch(0.96 0 0);
+  --ticket-surface: var(--card);
+  --ticket-line: var(--border);
 
   /* Footer — dark theme */
   --footer-bg: oklch(0.08 0.01 124);
@@ -284,4 +558,417 @@ html.translated-rtl body {
   .bg-home-hero-scrim {
     background-image: var(--home-hero-scrim);
   }
+
+  /* Neon marker behind a word: neon stays a FILL, the type stays ink, so
+     it reads in both themes (neon is never type on a light surface). */
+  .hl-neon {
+    background: var(--brand);
+    color: var(--brand-foreground);
+    padding: 0 0.1em;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+  }
+
+  /* Fine 32px stadium grid (DESIGN.md uses a 64px neon grid on dark; this
+     is its quiet light-page cousin). Pair with .grid-fade to vignette it. */
+  .bg-grid-fine {
+    --grid-line: color-mix(in oklch, var(--foreground) 6%, transparent);
+    background-image:
+      linear-gradient(var(--grid-line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+  .grid-fade {
+    -webkit-mask-image: radial-gradient(ellipse 80% 70% at 30% 35%, #000 35%, transparent 80%);
+    mask-image: radial-gradient(ellipse 80% 70% at 30% 35%, #000 35%, transparent 80%);
+  }
+}
+
+/* ── Golafly Matchday lockup (components/brand/matchday-logo.tsx) ─────────
+   Ticket + GOLAFLY wordmark + ruled live-text subline, proportioned like the
+   Academy lockup. Light: all ink. Dark / onDark: neon ticket, white type. */
+@layer components {
+  .md-logo {
+    --md-h: 42px;
+    --md-stroke: 3.4;
+    --md-line: var(--foreground);
+    --md-mark: var(--foreground);
+    --md-word: var(--foreground);
+    --md-sub: var(--foreground);
+    --md-rule: var(--foreground);
+    display: inline-flex;
+    align-items: center;
+    gap: calc(var(--md-h) * 0.2);
+    line-height: 1;
+    flex: none;
+  }
+  .dark .md-logo,
+  .md-logo[data-tone='onDark'] {
+    --md-line: var(--brand);
+    --md-mark: var(--brand);
+    --md-word: var(--gf-white);
+    --md-sub: var(--gf-mist);
+    --md-rule: var(--brand);
+  }
+  .md-logo--xs { --md-h: 28px; --md-stroke: 4.4; }
+  .md-logo--sm { --md-h: 34px; --md-stroke: 4; }
+  .md-logo--md { --md-h: 42px; --md-stroke: 3.4; }
+  .md-logo--lg { --md-h: 64px; --md-stroke: 2.6; }
+  .md-logo--xl { --md-h: 96px; --md-stroke: 2; }
+
+  .md-logo__icon {
+    height: var(--md-h);
+    width: auto;
+    flex: none;
+  }
+  .md-logo__type {
+    display: grid;
+    gap: calc(var(--md-h) * 0.1);
+    width: calc(var(--md-h) * 2.7);
+  }
+  .md-logo__word {
+    display: block;
+    width: 100%;
+    height: auto;
+    fill: var(--md-word);
+  }
+  .md-logo__sub {
+    display: flex;
+    align-items: center;
+    gap: calc(var(--md-h) * 0.14);
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: max(8px, calc(var(--md-h) * 0.2));
+    letter-spacing: 0.42em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    color: var(--md-sub);
+  }
+  /* cancel the tracking after the last letter so the rules stay even */
+  .md-logo__sub > span { margin-right: -0.42em; }
+  .md-logo__sub::before,
+  .md-logo__sub::after {
+    content: '';
+    flex: 1;
+    height: max(1px, calc(var(--md-h) * 0.034));
+    border-radius: 1px;
+    background: var(--md-rule);
+  }
+}
+/* ─────────────────────────────────────────────────────────────────────────
+   Admin rich text.
+
+   Hand-rolled rather than adding @tailwindcss/typography: the plugin ships
+   its own colour scale that would then need re-theming onto our tokens,
+   which is more work than the rules below. Scoped to .admin-rich so it can
+   never leak into the marketing pages.
+   ───────────────────────────────────────────────────────────────────────── */
+.admin-rich {
+  font-size: 12px;
+  line-height: 1.65;
+  color: var(--muted-foreground);
+  /* min-width:0 is what actually stops the sheet scrolling sideways.
+     break-word (not `anywhere`) only breaks genuinely unbreakable strings like
+     long URLs — `anywhere` will happily split "club" into "clu b". */
+  min-width: 0;
+  overflow-wrap: break-word;
+}
+.admin-rich img,
+.admin-rich table {
+  max-width: 100%;
+}
+.admin-rich > * + * {
+  margin-top: 0.6em;
+}
+.admin-rich h2,
+.admin-rich h3 {
+  color: var(--foreground);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin-top: 1.1em;
+}
+.admin-rich h2 { font-size: 14px; }
+.admin-rich h3 { font-size: 13px; }
+.admin-rich strong { color: var(--foreground); font-weight: 600; }
+.admin-rich em { font-style: italic; }
+.admin-rich ul,
+.admin-rich ol {
+  padding-left: 1.15rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3em;
+}
+.admin-rich ul { list-style: disc; }
+.admin-rich ol { list-style: decimal; }
+.admin-rich li::marker { color: var(--brand-text); }
+.admin-rich a {
+  color: var(--brand-text);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.admin-rich blockquote {
+  border-left: 2px solid var(--brand-edge, var(--border));
+  padding-left: 0.75rem;
+  color: var(--muted-foreground);
+  font-style: italic;
+}
+
+/* Quill's own chrome, re-skinned onto the tokens. Without this the editor
+   arrives with Snow's white toolbar and hard borders, which looks pasted in
+   next to everything else — and is unreadable in dark mode. */
+.admin-quill .ql-toolbar.ql-snow,
+.admin-quill .ql-container.ql-snow {
+  border-color: var(--edge);
+}
+.admin-quill .ql-toolbar.ql-snow {
+  border-radius: 6px 6px 0 0;
+  background: var(--muted);
+}
+.admin-quill .ql-container.ql-snow {
+  border-radius: 0 0 6px 6px;
+  background: var(--background);
+  font-family: var(--font-sans);
+  font-size: 12.5px;
+  color: var(--foreground);
+}
+.admin-quill .ql-editor {
+  min-height: var(--quill-min, 220px);
+}
+.admin-quill .ql-editor.ql-blank::before {
+  color: var(--muted-foreground);
+  font-style: normal;
+}
+.admin-quill .ql-snow .ql-stroke { stroke: var(--muted-foreground); }
+.admin-quill .ql-snow .ql-fill { fill: var(--muted-foreground); }
+.admin-quill .ql-snow .ql-picker { color: var(--muted-foreground); }
+.admin-quill .ql-snow .ql-picker-options {
+  background: var(--popover);
+  border-color: var(--edge);
+}
+.admin-quill .ql-snow button:hover .ql-stroke,
+.admin-quill .ql-snow button.ql-active .ql-stroke,
+.admin-quill .ql-snow .ql-picker-label:hover { stroke: var(--brand-text); }
+.admin-quill .ql-snow button:hover .ql-fill,
+.admin-quill .ql-snow button.ql-active .ql-fill { fill: var(--brand-text); }
+.admin-quill .ql-snow button.ql-active { color: var(--brand-text); }
+
+/* ══════════════════════════════════════════════════════════════════════════
+   PRINT — "Download PDF" for an evaluation.
+
+   There is no PDF endpoint on the API. GET /v1/players/{id}/profile/download
+   returns a ZIP of profile.json, which is a data export and carries no
+   evaluation at all. So the report a scout or an admin actually wants to hand
+   to a club is produced by the browser: window.print(), and every desktop
+   browser offers "Save as PDF" in that dialog.
+
+   That is not a workaround to be replaced later. It renders the same markup
+   the reader just approved, so the PDF cannot drift from the screen the way a
+   separately-templated server PDF does — and it costs the backend nothing.
+
+   The rules below strip the app chrome and let the content take the page.
+   Anything that is navigation, an action, or a shell gets [data-print-hide].
+   ══════════════════════════════════════════════════════════════════════════ */
+@media print {
+  [data-print-hide] { display: none !important; }
+
+  /* The app pins itself to the viewport and scrolls an inner pane, which in
+     print means exactly one page of a ten-page report. Unpin everything. */
+  html, body { height: auto !important; overflow: visible !important; background: #fff !important; }
+  .fixed { position: static !important; }
+  main, [class*="overflow-y-auto"], [class*="overflow-hidden"] {
+    overflow: visible !important;
+    height: auto !important;
+  }
+
+  /* Print in the light palette regardless of the screen theme: a dark report
+     is a cartridge of toner and an unreadable page. */
+  :root { color-scheme: light; }
+  * {
+    color: #000 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+  }
+
+  /* Tables are the whole document here — keep rows and sections intact across
+     page breaks, and repeat the header on each page. */
+  table { break-inside: auto; border-collapse: collapse; width: 100%; }
+  thead { display: table-header-group; }
+  tr, img { break-inside: avoid; }
+  section, [data-print-block] { break-inside: avoid; }
+  th, td { border-bottom: 1px solid #ddd !important; padding: 6px 8px !important; }
+
+  a[href]::after { content: ""; }
+  @page { margin: 14mm; }
+}
+
+
+/* ── Pillar intro (components/brand/pillar-intro.tsx) ─────────────────────
+   PLAY IT / LIVE IT / TRAVEL FOR IT opener. Ink screen over the page; the
+   motion itself is Web Animations in the component. The fade at 2.6s is a
+   fallback so the intro clears even if its script never runs. */
+@layer components {
+  .pillar-intro {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    overflow: hidden;
+    cursor: pointer;
+    background: var(--band-ink);
+    color: var(--band-ink-fg);
+    container-type: inline-size;
+    animation: pillar-intro-out 420ms ease-in 2.6s forwards;
+  }
+  html[data-intro-skip] .pillar-intro {
+    display: none;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .pillar-intro {
+      display: none;
+    }
+  }
+  .pillar-intro__fx {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+  .pillar-intro__touchline {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 80%;
+    height: 2px;
+    background: color-mix(in oklch, var(--primary) 35%, transparent);
+    transform: scaleX(0);
+    transform-origin: left center;
+  }
+  .pillar-intro__beam {
+    position: absolute;
+    top: -10%;
+    width: 40%;
+    height: 120%;
+    opacity: 0;
+    transform-origin: 50% 0;
+    mix-blend-mode: screen;
+    background: linear-gradient(180deg, color-mix(in oklch, var(--band-ink-fg) 22%, transparent), transparent);
+    clip-path: polygon(45% 0, 55% 0, 100% 100%, 0 100%);
+  }
+  .pillar-intro__beam--l { left: 2%; }
+  .pillar-intro__beam--r { right: 2%; }
+  .pillar-intro__word {
+    position: absolute;
+    inset-inline: 0;
+    top: 50%;
+    translate: 0 -62%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: max(10px, 1.6cqw);
+  }
+  .pillar-intro__text {
+    display: flex;
+    align-items: baseline;
+    white-space: nowrap;
+    font-family: var(--font-display), var(--font-heading), sans-serif;
+    font-size: clamp(56px, 15cqw, 200px);
+    line-height: 0.8;
+    letter-spacing: 0.01em;
+  }
+  .pillar-intro[data-pillar='travel'] .pillar-intro__text {
+    font-size: clamp(44px, 12cqw, 170px);
+  }
+  .pillar-intro__letter {
+    display: inline-block;
+    opacity: 0;
+  }
+  .pillar-intro__gap { width: 0.22em; }
+  .pillar-intro__dot {
+    display: inline-block;
+    width: 0.24em;
+    height: 0.24em;
+    margin-left: 0.07em;
+  }
+  /* On TRAVEL FOR IT the plane doesn't become the full stop, it sets it down. */
+  .pillar-intro[data-pillar='travel'] .pillar-intro__dot {
+    border-radius: 50%;
+    background: var(--primary);
+    transform: scale(0);
+  }
+  .pillar-intro__rule {
+    width: 1.6em;
+    font-size: clamp(56px, 15cqw, 200px);
+    height: 0.035em;
+    border-radius: 99px;
+    background: var(--primary);
+    transform: scaleX(0);
+  }
+  .pillar-intro__label {
+    opacity: 0;
+    font-family: var(--font-mono), monospace;
+    font-size: clamp(11px, 1.3cqw, 16px);
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--band-ink-muted);
+  }
+  .pillar-intro__ball {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: clamp(40px, 7cqw, 90px);
+    height: clamp(40px, 7cqw, 90px);
+    transform: translate(-200px, -200px);
+    will-change: transform;
+  }
+  .pillar-intro__skip {
+    position: absolute;
+    right: max(16px, 2cqw);
+    bottom: max(16px, 2cqw);
+    font-family: var(--font-mono), monospace;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--band-ink-muted);
+  }
+}
+
+@keyframes pillar-intro-out {
+  to {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+}
+
+/* VIP scope: shared Golafly components used inside the VIP flow (the
+   builder's FlightCard, bags and seats picker) keep their exact layout and
+   information but take the VIP colours. Wrap them in .vip-scope. Light and
+   dark follow the VIP tokens above. */
+.vip-scope {
+  --brand: var(--vip-gold);
+  --brand-foreground: var(--vip-on-gold);
+  --brand-text: var(--vip-gold-text);
+  --brand-edge: transparent;
+  --brand-glow: color-mix(in oklch, #d4b26a 35%, transparent);
+  --primary: var(--vip-gold);
+  --primary-foreground: var(--vip-on-gold);
+  --background: var(--vip-ink);
+  --foreground: var(--vip-chalk);
+  --card: var(--vip-card);
+  --card-foreground: var(--vip-chalk);
+  --popover: var(--vip-popover);
+  --popover-foreground: var(--vip-chalk);
+  --muted: color-mix(in oklch, var(--vip-line) 5%, transparent);
+  --muted-foreground: var(--vip-mist);
+  --accent: color-mix(in oklch, var(--vip-gold) 12%, transparent);
+  --accent-foreground: var(--vip-chalk);
+  --border: color-mix(in oklch, var(--vip-line) 12%, transparent);
+  --input: color-mix(in oklch, var(--vip-line) 14%, transparent);
+  --ring: var(--vip-gold);
+}
+
+/* VIP: draws the eye to a notice the customer must act on (a gold pulse). */
+@keyframes vip-attention {
+  0% { box-shadow: 0 0 0 0 rgba(212, 178, 106, 0.75); transform: scale(1); }
+  25% { box-shadow: 0 0 0 10px rgba(212, 178, 106, 0.25); transform: scale(1.015); }
+  100% { box-shadow: 0 0 0 0 rgba(212, 178, 106, 0); transform: scale(1); }
 }

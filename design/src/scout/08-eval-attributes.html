@@ -1,0 +1,155 @@
+<!-- EVALUATION · STEP 2 — TECHNICAL ATTRIBUTES — GOL-SCOUT-06 / 07
+
+     The layout every evaluation step shares: identity strip on top, work on
+     the left, context rail on the right, wizard footer at the bottom. Same
+     places every step, so the scout is never hunting for the save button or
+     the running score.
+
+     The running score updates as cells are chosen. That is deliberate and
+     slightly risky — a visible number invites tuning inputs to reach it — so
+     it is placed in the rail rather than beside the rows, and labelled
+     provisional until the last step. -->
+<div class="ds-screen">
+  <div class="ds-shell">
+{{scoutnav:evaluations}}
+    <div class="ds-pane">
+      <div class="ds-hdr">
+        <div class="ds-hdr-r1">
+          <span class="ds-crumb">Evaluations / <b>George Adeola</b></span>
+          <span style="display: flex; gap: 7px; align-items: center">
+            <span class="sc-autosave">{{icon:circle-check:14}} All changes saved · 11:30</span>
+            <button class="ds-btn" data-variant="outline" data-size="sm">{{icon:save:13}} Save draft</button>
+            <button class="ds-btn" data-size="sm">Submit evaluation {{icon:arrow-right:13}}</button>
+          </span>
+        </div>
+        <div style="height: 14px"></div>
+      </div>
+
+      <div class="ds-pane-body">
+        <div class="sc-phead" style="margin-bottom: 13px">
+          <div class="sc-photo">GA</div>
+          <div style="flex: 1; min-width: 0">
+            <div style="display: flex; align-items: center; gap: 10px">
+              <span class="ea-name">George Adeola</span>
+              <span class="ds-pill" data-tone="warn">In progress</span>
+            </div>
+            <div class="sc-facts">
+              <span class="sc-fact"><i>Position</i><b>RW / LW</b></span>
+              <span class="sc-fact"><i>Age</i><b>20</b></span>
+              <span class="sc-fact"><i>Foot</i><b>Right</b></span>
+              <span class="sc-fact"><i>Camp</i><b>Barcelona 2026</b></span>
+              <span class="sc-fact"><i>Scout</i><b>James Carter</b></span>
+              <span class="sc-fact"><i>Started</i><b>22 May 2026</b></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="sc-work">
+          <div>
+            <div class="ds-card">
+              <div class="sc-sec-h">{{icon:clipboard-list:15}} 2 · Technical &amp; performance <span>Score every attribute 1–10</span></div>
+              <p class="sc-sec-sub">Score what you saw, not what you expect. A
+                blank is better than a guess — the report shows which
+                attributes were left unscored.</p>
+
+              <div class="sc-src" style="margin-bottom: 6px">
+                {{icon:layout-template:13}}
+                <span>Seven attributes from the <b>Winger</b> template. An
+                  admin changes this set for every winger at once, without a
+                  release — see the Templates card.</span>
+              </div>
+
+              <div class="sc-scale">
+                <span class="sc-scale-lab"><span class="sc-scale-ic">{{icon:zap:14}}</span><span class="sc-scale-txt"><b>Pace</b><i>Speed and running ability</i></span></span>
+                <span class="sc-cells"><span class="sc-cell">1</span><span class="sc-cell">2</span><span class="sc-cell">3</span><span class="sc-cell">4</span><span class="sc-cell">5</span><span class="sc-cell">6</span><span class="sc-cell">7</span><span class="sc-cell">8</span><span class="sc-cell" data-on="1">9</span><span class="sc-cell">10</span></span>
+                <span class="sc-val">9.0</span>
+              </div>
+              <div class="sc-scale">
+                <span class="sc-scale-lab"><span class="sc-scale-ic">{{icon:target:14}}</span><span class="sc-scale-txt"><b>Dribbling</b><i>Ball control and dribbling</i></span></span>
+                <span class="sc-cells"><span class="sc-cell">1</span><span class="sc-cell">2</span><span class="sc-cell">3</span><span class="sc-cell">4</span><span class="sc-cell">5</span><span class="sc-cell">6</span><span class="sc-cell">7</span><span class="sc-cell">8</span><span class="sc-cell" data-on="1">9</span><span class="sc-cell">10</span></span>
+                <span class="sc-val">8.8</span>
+              </div>
+              <div class="sc-scale">
+                <span class="sc-scale-lab"><span class="sc-scale-ic">{{icon:send:14}}</span><span class="sc-scale-txt"><b>Passing</b><i>Passing accuracy and vision</i></span></span>
+                <span class="sc-cells"><span class="sc-cell">1</span><span class="sc-cell">2</span><span class="sc-cell">3</span><span class="sc-cell">4</span><span class="sc-cell">5</span><span class="sc-cell">6</span><span class="sc-cell">7</span><span class="sc-cell" data-on="1">8</span><span class="sc-cell">9</span><span class="sc-cell">10</span></span>
+                <span class="sc-val">7.6</span>
+              </div>
+              <div class="sc-scale">
+                <span class="sc-scale-lab"><span class="sc-scale-ic">{{icon:trophy:14}}</span><span class="sc-scale-txt"><b>Finishing</b><i>Shooting and chance conversion</i></span></span>
+                <span class="sc-cells"><span class="sc-cell">1</span><span class="sc-cell">2</span><span class="sc-cell">3</span><span class="sc-cell">4</span><span class="sc-cell">5</span><span class="sc-cell">6</span><span class="sc-cell">7</span><span class="sc-cell" data-on="1">8</span><span class="sc-cell">9</span><span class="sc-cell">10</span></span>
+                <span class="sc-val">8.1</span>
+              </div>
+              <div class="sc-scale">
+                <span class="sc-scale-lab"><span class="sc-scale-ic">{{icon:brain:14}}</span><span class="sc-scale-txt"><b>Tactical</b><i>Game understanding</i></span></span>
+                <span class="sc-cells"><span class="sc-cell">1</span><span class="sc-cell">2</span><span class="sc-cell">3</span><span class="sc-cell">4</span><span class="sc-cell">5</span><span class="sc-cell">6</span><span class="sc-cell" data-on="1">7</span><span class="sc-cell">8</span><span class="sc-cell">9</span><span class="sc-cell">10</span></span>
+                <span class="sc-val">7.2</span>
+              </div>
+              <div class="sc-scale">
+                <span class="sc-scale-lab"><span class="sc-scale-ic">{{icon:activity:14}}</span><span class="sc-scale-txt"><b>Physical</b><i>Strength and endurance</i></span></span>
+                <span class="sc-cells"><span class="sc-cell">1</span><span class="sc-cell">2</span><span class="sc-cell">3</span><span class="sc-cell">4</span><span class="sc-cell">5</span><span class="sc-cell">6</span><span class="sc-cell">7</span><span class="sc-cell" data-on="1">8</span><span class="sc-cell">9</span><span class="sc-cell">10</span></span>
+                <span class="sc-val">8.0</span>
+              </div>
+              <div class="sc-scale">
+                <span class="sc-scale-lab"><span class="sc-scale-ic">{{icon:flag:14}}</span><span class="sc-scale-txt"><b>Mentality</b><i>Attitude and determination</i></span></span>
+                <span class="sc-cells"><span class="sc-cell">1</span><span class="sc-cell">2</span><span class="sc-cell">3</span><span class="sc-cell">4</span><span class="sc-cell">5</span><span class="sc-cell">6</span><span class="sc-cell">7</span><span class="sc-cell" data-on="1">8</span><span class="sc-cell">9</span><span class="sc-cell">10</span></span>
+                <span class="sc-val">8.4</span>
+              </div>
+
+              <div class="ds-field" style="margin-top: 15px">
+                <span class="ds-label">Comment on these scores <span style="color: var(--muted-foreground); font-weight: 400">— optional</span></span>
+                <div class="ds-ta">Pace and dribbling are genuinely elite for this level. The 7 for tactical is about positioning off the ball rather than on it.</div>
+              </div>
+            </div>
+
+            <div class="sc-foot" style="margin-top: 12px">
+              <button class="ds-btn" data-variant="outline" data-size="sm">{{icon:arrow-left:13}} Previous</button>
+              <span class="sc-foot-pos">Step <b>2</b> of 8 · Technical</span>
+              <button class="ds-btn" data-size="sm">Next: Tactical {{icon:arrow-right:13}}</button>
+            </div>
+          </div>
+
+          <div class="sc-rail">
+            <div class="ds-card">
+              <div class="ds-card-h" style="margin-bottom: 9px">Overall assessment</div>
+              <span class="ds-stat-lab">Provisional score</span>
+              <div class="sc-score">
+                <span class="sc-score-big">8.2 <span>/10</span></span>
+              </div>
+              <span class="ds-stat-lab">Potential</span>
+              <div class="sc-score">
+                <span class="sc-score-big">71<span>%</span></span>
+                <span class="sc-stars">{{icon:star:13}}{{icon:star:13}}{{icon:star:13}}{{icon:star:13}}<span class="off">{{icon:star:13}}</span></span>
+              </div>
+              <p class="ea-note">Provisional until step 8. It moves as you
+                score, so it is here rather than beside the rows — a number in
+                your eyeline while you choose is a number you score toward.</p>
+            </div>
+
+            {{evalsteps:technical}}
+
+            <div class="ds-card">
+              <div class="ds-card-h" style="margin-bottom: 8px">{{icon:circle-help:14}} Scoring guide</div>
+              <div class="ea-guide">
+                <span><b>9–10</b> Elite for the level — would start above this age group</span>
+                <span><b>7–8</b> Strong — a clear asset at this level</span>
+                <span><b>5–6</b> Adequate — neither a strength nor a problem</span>
+                <span><b>3–4</b> Below level — needs work before it stops costing him</span>
+                <span><b>1–2</b> Serious concern</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style data-local>
+  .ds-shell { min-height: 640px; }
+  .ds-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 14px; }
+  .ds-card-h { font-family: var(--font-heading); font-size: 13px; font-weight: 600; margin-bottom: 12px; }
+  .ea-name { font-family: var(--font-heading); font-size: 19px; font-weight: 700; }
+  .ea-note { font-size: 10px; line-height: 1.55; color: var(--muted-foreground); margin-top: 11px; }
+  .ea-guide { display: flex; flex-direction: column; gap: 6px; font-size: 10.5px; line-height: 1.45; color: var(--muted-foreground); }
+  .ea-guide b { font-family: var(--font-mono); font-size: 10px; color: var(--foreground); margin-right: 4px; }
+</style>

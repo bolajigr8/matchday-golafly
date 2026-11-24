@@ -1,0 +1,210 @@
+<!-- ADMIN · OVERSIGHT & AUDIT — GOL-SCOUT-19 / 20
+
+     Adults messaging teenage footballers about their futures. That is what
+     this screen is really for, and it is the reason the scouting product can
+     be run at all.
+
+     Two deliberate constraints, both visible on the card:
+
+     1. READ-ONLY. An admin can read any thread and cannot post into one.
+        Safeguarding oversight is watching; an admin who could write as
+        themselves inside a scout–player thread turns a two-party
+        conversation into an ambiguous three-party one, and neither the scout
+        nor the player would know who they were talking to.
+
+     2. ACCESS IS ITSELF AUDITED. Opening a thread writes a row. The people
+        with oversight need oversight too, and a safeguarding tool nobody can
+        review is one nobody should trust. -->
+<div class="ds-screen">
+  <div class="ds-shell">
+{{sidebar:scouting}}
+    <div class="ds-pane">
+      <div class="ds-hdr">
+        <div class="ds-hdr-r1">
+          <span class="ds-crumb">Dashboard / Scouting / <b>Oversight</b></span>
+          <button class="ds-btn" data-variant="outline" data-size="sm">{{icon:download:13}} Export trail</button>
+        </div>
+        <div class="ds-hdr-r2">
+          <span class="ds-hdr-title">Oversight &amp; audit</span>
+          <span class="ds-hdr-stats">
+            <span class="ds-hdr-stat"><i style="background: var(--status-warn)"></i>3 unanswered over 48h</span>
+            <span class="ds-hdr-stat"><i style="background: var(--status-neutral)"></i>84 threads</span>
+          </span>
+        </div>
+        <div class="ds-tabs" style="margin-top: 12px">
+          <span class="ds-tab">Accounts</span>
+          <span class="ds-tab">Assignments</span>
+          <span class="ds-tab">Reports <span class="ds-dd-tag">5</span></span>
+          <span class="ds-tab">Performance</span>
+          <span class="ds-tab" data-on="1">Oversight</span>
+          <span class="ds-tab">Methodology</span>
+        </div>
+      </div>
+
+      <div class="ds-pane-body">
+        <div class="ds-alert" style="margin-bottom: 13px">
+          {{icon:shield:15}}
+          <span><b>Read-only.</b> Scout–player conversations can be reviewed
+            here for safeguarding, quality and dispute resolution. Admins
+            cannot post into a thread — to raise something with a scout, use
+            the admin thread, which they know is with Golafly. Every thread
+            opened on this screen is recorded in the trail below.</span>
+        </div>
+
+        <div class="ov-grid">
+          <div class="ds-card" data-flush="1">
+            <div class="ov-card-h">
+              <span><b>Conversations</b><i>Scout ↔ player · flagged first</i></span>
+              <span style="display: flex; gap: 7px">
+                <span class="ds-input" style="width: 150px; height: 28px">{{icon:search:13}} Search…</span>
+                <span class="ds-input" style="gap: 8px; height: 28px">{{icon:list-filter:13}} All {{icon:chevron-down:12}}</span>
+              </span>
+            </div>
+            <div class="ds-tw">
+              <table class="ds-t">
+                <thead><tr><th>Participants</th><th>Last message</th><th>Messages</th><th>Activity</th><th style="text-align:right"></th></tr></thead>
+                <tbody>
+                  <tr>
+                    <td><span class="ov-pair"><b>Ana Ruiz</b> <span>↔</span> <b>Kwame Owusu</b><i>Scout · Player, 18</i></span></td>
+                    <td class="ov-last">“Send me your clips directly, easier than the portal”</td>
+                    <td class="ds-num">14</td>
+                    <td><span class="ds-pill" data-tone="warn">Flagged</span></td>
+                    <td style="text-align:right"><span class="ds-act">{{icon:eye:14}}</span></td>
+                  </tr>
+                  <tr>
+                    <td><span class="ov-pair"><b>James Carter</b> <span>↔</span> <b>Ibrahim Koné</b><i>Scout · Player, 21</i></span></td>
+                    <td class="ov-last">“When will we have the next training?”</td>
+                    <td class="ds-num">6</td>
+                    <td><span class="ds-pill" data-tone="warn">Unanswered 3d</span></td>
+                    <td style="text-align:right"><span class="ds-act">{{icon:eye:14}}</span></td>
+                  </tr>
+                  <tr>
+                    <td><span class="ov-pair"><b>James Carter</b> <span>↔</span> <b>George Adeola</b><i>Scout · Player, 20</i></span></td>
+                    <td class="ov-last">“Thank you coach!”</td>
+                    <td class="ds-num">9</td>
+                    <td><span class="ds-pill" data-tone="good">Healthy</span></td>
+                    <td style="text-align:right"><span class="ds-act">{{icon:eye:14}}</span></td>
+                  </tr>
+                  <tr>
+                    <td><span class="ov-pair"><b>Amara Diallo</b> <span>↔</span> <b>Fatou Traoré</b><i>Scout · Player, 19</i></span></td>
+                    <td class="ov-last">“Your report has been published — well done.”</td>
+                    <td class="ds-num">11</td>
+                    <td><span class="ds-pill" data-tone="good">Healthy</span></td>
+                    <td style="text-align:right"><span class="ds-act">{{icon:eye:14}}</span></td>
+                  </tr>
+                  <tr>
+                    <td><span class="ov-pair"><b>RCD Espanyol</b> <span>↔</span> <b>Luca Ferrari</b><i>Club · Player, 19</i></span></td>
+                    <td class="ov-last">“Can you travel to Barcelona in June?”</td>
+                    <td class="ds-num">4</td>
+                    <td><span class="ds-pill" data-tone="warn">Flagged</span></td>
+                    <td style="text-align:right"><span class="ds-act">{{icon:eye:14}}</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="ov-note" style="padding: 0 14px 14px">
+              <b>Flagged</b> is automatic, not a moderator's opinion: contact
+              details, off-platform channels, travel or money. Two of the five
+              rows here are flagged for the same reason — moving a young player
+              off a logged channel — and that is precisely the pattern
+              safeguarding exists to catch. Unanswered-over-48h sits in the
+              same column because a scout who stops replying is also a
+              safeguarding fact.
+            </p>
+          </div>
+
+          <div class="ov-side">
+            <div class="ds-card">
+              <div class="ds-card-h">Thread — read-only</div>
+              <div class="ov-thread-h">
+                <span class="ds-av-sm">AR</span>
+                <span style="flex:1"><b>Ana Ruiz ↔ Kwame Owusu</b><i>Opened by you · 24 May, 09:14</i></span>
+              </div>
+              <div class="ov-msgs">
+                <div class="ov-msg"><span class="ov-who">Ana Ruiz · Scout</span>Good session yesterday. I want to see more of your left foot.<span class="ov-t">22 May, 18:02</span></div>
+                <div class="ov-msg" data-them="1"><span class="ov-who">Kwame Owusu · Player</span>Thank you! I will work on it.<span class="ov-t">22 May, 18:40</span></div>
+                <div class="ov-msg" data-flag="1"><span class="ov-who">Ana Ruiz · Scout</span>Send me your clips directly, easier than the portal — my number is…<span class="ov-t">23 May, 21:11</span>
+                  <span class="ov-flag">{{icon:triangle-alert:12}} Off-platform contact</span>
+                </div>
+              </div>
+              <div class="ov-locked">
+                {{icon:lock:14}} Admins cannot reply here. Raise it in the
+                scout's admin thread instead.
+              </div>
+              <div style="display: flex; gap: 7px; margin-top: 10px">
+                <button class="ds-btn" data-variant="outline" data-size="sm">{{icon:message-square:13}} Message Ana</button>
+                <button class="ds-btn" data-variant="outline" data-size="sm">{{icon:flag:13}} Escalate</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- AUDIT TRAIL -->
+        <div class="ds-card" data-flush="1" style="margin-top: 13px">
+          <div class="ov-card-h">
+            <span><b>Activity trail</b><i>Every scouting action, including this screen's own reads</i></span>
+            <span style="display: flex; gap: 7px">
+              <span class="ds-input" style="gap: 8px; height: 28px">{{icon:list-filter:13}} All actions {{icon:chevron-down:12}}</span>
+              <span class="ds-input" style="gap: 8px; height: 28px">{{icon:calendar:13}} Last 7 days {{icon:chevron-down:12}}</span>
+            </span>
+          </div>
+          <div class="ds-tw">
+            <table class="ds-t">
+              <thead><tr><th>When</th><th>Actor</th><th>Action</th><th>Subject</th><th>Detail</th></tr></thead>
+              <tbody>
+                <tr><td class="ds-num">24 May 09:14</td><td>Nathan A.</td><td><span class="ov-ev" data-tone="warn">Conversation opened</span></td><td>Ana Ruiz ↔ Kwame Owusu</td><td class="ov-detail">Safeguarding review</td></tr>
+                <tr><td class="ds-num">24 May 08:40</td><td>Nathan A.</td><td><span class="ov-ev" data-tone="good">Report published</span></td><td>Youssoufa Diarra</td><td class="ov-detail">Player notified</td></tr>
+                <tr><td class="ds-num">23 May 09:12</td><td>Nathan A.</td><td><span class="ov-ev" data-tone="danger">Report returned</span></td><td>Samuel Osei</td><td class="ov-detail">“Reconcile the summary with the work rate”</td></tr>
+                <tr><td class="ds-num">22 May 12:20</td><td>James Carter</td><td><span class="ov-ev" data-tone="info">Report submitted</span></td><td>Daniel Mendes</td><td class="ov-detail">7.8 · 65%</td></tr>
+                <tr><td class="ds-num">22 May 11:30</td><td>James Carter</td><td><span class="ov-ev">Evaluation updated</span></td><td>George Adeola</td><td class="ov-detail">Step 3 · tactical</td></tr>
+                <tr><td class="ds-num">21 May 16:22</td><td>Ibrahim Koné</td><td><span class="ov-ev">Message sent</span></td><td>→ James Carter</td><td class="ov-detail">Player-initiated</td></tr>
+                <tr><td class="ds-num">20 May 07:55</td><td>Nathan A.</td><td><span class="ov-ev">Player assigned</span></td><td>Miguel Santos → James Carter</td><td class="ov-detail">Barcelona 2026</td></tr>
+                <tr><td class="ds-num">18 May 08:02</td><td>Marco Bianchi</td><td><span class="ov-ev" data-tone="warn">Account invited</span></td><td>m.bianchi@example.com</td><td class="ov-detail">Never accepted</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="ov-note" style="padding: 0 14px 14px">
+            The first row is this admin reading a thread. Logging your own
+            oversight is the point — a safeguarding tool that watches everyone
+            except its operators is one nobody should trust. The trail is
+            append-only and exportable, because its whole value is being usable
+            in a dispute months later.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style data-local>
+  .ds-shell { min-height: 640px; }
+  .ds-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 14px; }
+  .ds-card[data-flush="1"] { padding: 0; overflow: hidden; }
+  .ds-card-h { font-family: var(--font-heading); font-size: 13px; font-weight: 600; margin-bottom: 12px; }
+  .ov-grid { display: grid; grid-template-columns: 1fr 330px; gap: 13px; align-items: start; }
+  .ov-card-h { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 12px 14px; border-bottom: 1px solid var(--border); }
+  .ov-card-h b { font-family: var(--font-heading); font-size: 13px; font-weight: 600; display: block; }
+  .ov-card-h i { font-style: normal; font-size: 10.5px; color: var(--muted-foreground); }
+  .ov-pair b { font-weight: 600; }
+  .ov-pair span { color: var(--muted-foreground); margin: 0 3px; }
+  .ov-pair i { display: block; font-style: normal; font-size: 10px; color: var(--muted-foreground); margin-top: 2px; }
+  .ov-last { font-size: 11px; color: var(--muted-foreground); max-width: 300px; }
+  .ov-note { font-size: 10px; line-height: 1.6; color: var(--muted-foreground); margin-top: 11px; }
+  .ov-thread-h { display: flex; align-items: center; gap: 9px; padding-bottom: 10px; border-bottom: 1px solid var(--edge); margin-bottom: 11px; }
+  .ov-thread-h b { font-size: 11.5px; font-weight: 600; display: block; }
+  .ov-thread-h i { font-style: normal; font-size: 10px; color: var(--muted-foreground); }
+  .ov-msgs { display: flex; flex-direction: column; gap: 9px; }
+  .ov-msg { padding: 9px 10px; border-radius: var(--radius-md); background: var(--muted); border: 1px solid var(--edge); font-size: 11px; line-height: 1.5; }
+  .ov-msg[data-them="1"] { background: var(--card); }
+  .ov-msg[data-flag="1"] { border-color: var(--status-warn); background: var(--status-warn-bg); }
+  .ov-who { display: block; font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted-foreground); margin-bottom: 4px; }
+  .ov-t { display: block; font-family: var(--font-mono); font-size: 9px; color: var(--muted-foreground); margin-top: 5px; }
+  .ov-flag { display: inline-flex; align-items: center; gap: 5px; margin-top: 7px; padding: 3px 8px; border-radius: 999px; background: var(--card); color: var(--status-warn); font-size: 9.5px; font-weight: 600; }
+  .ov-locked { display: flex; align-items: center; gap: 8px; margin-top: 12px; padding: 9px 10px; border: 1px dashed var(--border); border-radius: var(--radius-md); font-size: 10.5px; line-height: 1.45; color: var(--muted-foreground); }
+  .ov-ev { display: inline-flex; align-items: center; padding: 2px 8px; border-radius: 999px; background: var(--status-neutral-bg); color: var(--status-neutral); font-size: 10.5px; font-weight: 600; }
+  .ov-ev[data-tone="good"] { background: var(--status-good-bg); color: var(--status-good); }
+  .ov-ev[data-tone="warn"] { background: var(--status-warn-bg); color: var(--status-warn); }
+  .ov-ev[data-tone="danger"] { background: var(--status-danger-bg); color: var(--status-danger); }
+  .ov-ev[data-tone="info"] { background: var(--status-info-bg); color: var(--status-info); }
+  .ov-detail { font-size: 10.5px; color: var(--muted-foreground); }
+</style>

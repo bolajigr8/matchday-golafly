@@ -1,0 +1,67 @@
+<div class="ds-section">
+  <p class="ds-eyebrow">Sidebar</p>
+  <h2 class="ds-h">A token family that already exists — and nothing uses it yet</h2>
+  <p class="ds-sub">
+    shadcn seeded the full <code class="ds-code">--sidebar-*</code> set in both themes when the app was
+    scaffolded, and no component in matchday has ever referenced it. It is exactly the chrome palette
+    this dashboard needs, so the admin adopts it as-is rather than inventing one.
+  </p>
+  <div class="ds-swatch-grid">
+    <div class="ds-swatch">
+      <span class="ds-swatch-chip" style="background: var(--sidebar)"></span>
+      <div class="ds-swatch-meta">
+        <div class="ds-swatch-name">--sidebar</div>
+        <div class="ds-swatch-val">{{val:--sidebar}}<br />{{hex:--sidebar}}</div>
+        <div class="ds-swatch-role">The rail surface. Sits <em>behind</em> the content pane in light, in front in dark.</div>
+      </div>
+    </div>
+    <div class="ds-swatch">
+      <span class="ds-swatch-chip" style="background: var(--sidebar-accent)"></span>
+      <div class="ds-swatch-meta">
+        <div class="ds-swatch-name">--sidebar-accent</div>
+        <div class="ds-swatch-val">{{val:--sidebar-accent}}<br />{{hex:--sidebar-accent}}</div>
+        <div class="ds-swatch-role">Active + hover nav row.</div>
+      </div>
+    </div>
+    <div class="ds-swatch">
+      <span class="ds-swatch-chip" style="background: var(--sidebar-primary)"></span>
+      <div class="ds-swatch-meta">
+        <div class="ds-swatch-name">--sidebar-primary</div>
+        <div class="ds-swatch-val">{{val:--sidebar-primary}}<br />{{hex:--sidebar-primary}}</div>
+        <div class="ds-swatch-role">Aliases <code class="ds-code">--brand</code>. The 2px active bar.</div>
+      </div>
+    </div>
+    <div class="ds-swatch">
+      <span class="ds-swatch-chip" style="background: var(--sidebar-border)"></span>
+      <div class="ds-swatch-meta">
+        <div class="ds-swatch-name">--sidebar-border</div>
+        <div class="ds-swatch-val">{{val:--sidebar-border}}<br />{{hex:--sidebar-border}}</div>
+        <div class="ds-swatch-role">Right edge, section rules.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="ds-section">
+  <p class="ds-eyebrow">Status</p>
+  <h2 class="ds-h">Five tones, reserved</h2>
+  <p class="ds-sub">
+    Every domain status across all eight screens maps onto exactly these five. They are never
+    interchangeable with chart series colours, and status is never encoded by colour alone — always a
+    tinted pill with a text label. The full mapping lives on the <em>Status pills</em> card; this is the
+    token set behind it.
+  </p>
+  <div style="display: flex; gap: 8px; flex-wrap: wrap">
+    <span class="ds-pill">Neutral</span>
+    <span class="ds-pill" data-tone="info">Info</span>
+    <span class="ds-pill" data-tone="warn">Warn</span>
+    <span class="ds-pill" data-tone="good">Good</span>
+    <span class="ds-pill" data-tone="danger">Danger</span>
+  </div>
+  <p class="ds-note">
+    <strong>These tokens are new.</strong> They do not exist in
+    <code class="ds-code">app/globals.css</code> yet — they ship in
+    <code class="ds-code">design/css/tokens.overrides.css</code> alongside the replacement chart ramp,
+    ready to paste in once this card is approved.
+  </p>
+</div>

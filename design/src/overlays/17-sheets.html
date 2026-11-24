@@ -1,0 +1,161 @@
+<div class="ds-section">
+  <p class="ds-eyebrow">Detail</p>
+  <h2 class="ds-h">Sheets</h2>
+  <p class="ds-sub">
+    Every “show me this row” and every “create / edit this” is a right-side sheet, never a full page and
+    never a centred modal. The table stays behind it, so context is never lost — and it means the eight
+    screens need no detail routes.
+  </p>
+  <div class="ds-sh-row">
+    <div class="ds-sh" style="width: 340px">
+      <div class="ds-sh-head">
+        <div>
+          <div class="ds-sh-l1">Adaeze Okonkwo</div>
+          <div class="ds-sh-l2">Scouting partner · Nigeria</div>
+        </div>
+        <button class="ds-icon-btn">{{icon:x:14}}</button>
+      </div>
+      <div class="ds-sh-body">
+        <div>
+          <div class="ds-sh-sec">Applicant</div>
+          <dl class="ds-dl">
+            <dt>Email</dt><dd>adaeze.okonkwo@example.com</dd>
+            <dt>Country</dt><dd>Nigeria</dd>
+            <dt>Role</dt><dd>Regional scout</dd>
+            <dt>Applied on</dt><dd>2026-07-14</dd>
+            <dt>Status</dt><dd><span class="ds-pill" data-tone="warn">Pending</span></dd>
+          </dl>
+        </div>
+        <div>
+          <div class="ds-sh-sec">Motivation</div>
+          <p style="font-size: 12px; line-height: 1.55; color: var(--muted-foreground); margin: 0">
+            Has run a grassroots scouting network in Lagos since 2020 and placed four players into
+            European academies.
+          </p>
+        </div>
+      </div>
+      <div class="ds-sh-foot">
+        <button class="ds-btn" data-variant="destructive" data-size="sm">Reject</button>
+        <button class="ds-btn" data-size="sm">{{icon:check:13}} Accept</button>
+      </div>
+    </div>
+    <div class="ds-sh-note">
+      <p><b>Detail sheet · 380px.</b> Two header lines — the entity, then its identifying context. That is the existing <code class="ds-code">BaseListSheet</code> <code class="ds-code">headerLines</code> API, unchanged.</p>
+      <p>Body is a definition list: mono labels, value on the right. Sections are separated by a hairline with a mono caption, never by a card-in-a-card.</p>
+      <p>The footer is sticky and holds the decision. Destructive left, primary right — the safe target is under the thumb.</p>
+      <p class="ds-sh-small">Opening a sheet does not change the URL. Closing it never loses the table's scroll or filters.</p>
+    </div>
+  </div>
+</div>
+
+<div class="ds-section">
+  <p class="ds-eyebrow">Create / edit</p>
+  <div class="ds-sh-row">
+    <div class="ds-sh" style="width: 440px">
+      <div class="ds-sh-head">
+        <div>
+          <div class="ds-sh-l1">New program</div>
+          <div class="ds-sh-l2">Football Tourism · Tours</div>
+        </div>
+        <button class="ds-icon-btn">{{icon:x:14}}</button>
+      </div>
+      <div class="ds-sh-body">
+        <div>
+          <div class="ds-sh-sec">Basics</div>
+          <div style="display: grid; gap: 11px">
+            <div class="ds-field"><span class="ds-label">Title <i>*</i></span><span class="ds-input" style="color: var(--foreground)">Football Tourism — Spain</span></div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px">
+              <div class="ds-field"><span class="ds-label">Starts <i>*</i></span><span class="ds-input" style="justify-content: space-between; color: var(--foreground)">2026-08-04 {{icon:calendar:13}}</span></div>
+              <div class="ds-field"><span class="ds-label">Ends <i>*</i></span><span class="ds-input" data-state="error" style="justify-content: space-between; color: var(--foreground)">2026-08-01 {{icon:calendar:13}}</span></div>
+            </div>
+            <span class="ds-err" style="margin-top: -4px">{{icon:circle-alert:11}} End date must be after the start date.</span>
+          </div>
+        </div>
+        <div>
+          <div class="ds-sh-sec">Brochure</div>
+          <div class="ds-file">
+            {{icon:file-text:15}}
+            <span style="flex: 1">
+              <span style="display: block; color: var(--foreground)">spain-tour-2026.pdf</span>
+              <span style="font-family: var(--font-mono); font-size: 9.5px; color: var(--muted-foreground)">2.4 MB of 6.1 MB</span>
+              <span class="ds-prog"><span style="width: 39%"></span></span>
+            </span>
+            <span class="ds-act">{{icon:x:14}}</span>
+          </div>
+        </div>
+        <div>
+          <div class="ds-sh-sec">Banner</div>
+          <div class="ds-drop" data-state="hover">
+            {{icon:image:19}}
+            <span style="color: var(--foreground)">Drop an image, or click to browse</span>
+            <span>PNG or JPG, at least 1600×900</span>
+          </div>
+        </div>
+      </div>
+      <div class="ds-sh-foot">
+        <button class="ds-btn" data-variant="ghost" data-size="sm">Cancel</button>
+        <button class="ds-btn" data-size="sm">Create program</button>
+      </div>
+    </div>
+    <div class="ds-sh-note">
+      <p><b>Form sheet · 440px.</b> Wider than a detail sheet because it holds two-column date pairs, but never full width — the table behind it is the context you are creating <em>into</em>.</p>
+      <p>Sections use the same hairline captions as the detail sheet, so the two read as one family. The footer is sticky: on a long form the primary action never scrolls out of reach.</p>
+      <p>Validation is inline and adjacent — the failing field, then the message. No error summary at the top.</p>
+      <p class="ds-sh-small">This replaces four sheets of 733–999 lines each. Same fields, one layout.</p>
+    </div>
+  </div>
+</div>
+
+<div class="ds-section">
+  <p class="ds-eyebrow">Confirm</p>
+  <div class="ds-dlg-row">
+    <div class="ds-sh" style="width: 330px">
+      <div class="ds-sh-body" style="gap: 9px">
+        <div style="display: flex; align-items: flex-start; gap: 10px">
+          <span class="ds-empty-ic" style="width: 32px; height: 32px; margin: 0; color: var(--destructive); border-color: color-mix(in oklch, var(--destructive) 40%, transparent)">{{icon:trash-2:15}}</span>
+          <span>
+            <span style="display: block; font-family: var(--font-heading); font-size: 13.5px; font-weight: 600">Delete this player?</span>
+            <span style="display: block; font-size: 11.5px; color: var(--muted-foreground); margin-top: 4px; line-height: 1.5">
+              <b>Adaeze Okonkwo</b> and their assessment history will be permanently removed. This cannot be undone.
+            </span>
+          </span>
+        </div>
+      </div>
+      <div class="ds-sh-foot">
+        <button class="ds-btn" data-variant="ghost" data-size="sm">Cancel</button>
+        <button class="ds-btn" data-variant="destructive" data-size="sm">Delete player</button>
+      </div>
+    </div>
+    <div class="ds-sh" style="width: 330px">
+      <div class="ds-sh-body" style="gap: 9px">
+        <div style="display: flex; align-items: flex-start; gap: 10px">
+          <span class="ds-empty-ic" style="width: 32px; height: 32px; margin: 0">{{icon:circle-alert:15}}</span>
+          <span>
+            <span style="display: block; font-family: var(--font-heading); font-size: 13.5px; font-weight: 600">Discard changes?</span>
+            <span style="display: block; font-size: 11.5px; color: var(--muted-foreground); margin-top: 4px; line-height: 1.5">
+              You have unsaved edits to this program.
+            </span>
+          </span>
+        </div>
+      </div>
+      <div class="ds-sh-foot">
+        <button class="ds-btn" data-variant="ghost" data-size="sm">Keep editing</button>
+        <button class="ds-btn" data-size="sm">Discard</button>
+      </div>
+    </div>
+  </div>
+  <p class="ds-note">
+    Dialogs are for decisions only — never for forms, which are sheets. The confirm button
+    <strong>names the action</strong> (“Delete player”), never “OK”, so the button alone is unambiguous
+    if the title was skimmed. Destructive confirms name the entity being destroyed.
+  </p>
+</div>
+
+<style data-local>
+  .ds-sh-row { display: grid; grid-template-columns: auto 1fr; gap: 20px; align-items: start; }
+  .ds-sh-note { font-size: 11.5px; line-height: 1.55; color: var(--muted-foreground); }
+  .ds-sh-note p { margin: 0 0 10px; }
+  .ds-sh-note b { color: var(--foreground); }
+  .ds-sh-small { font-family: var(--font-mono); font-size: 10px; border-left: 2px solid var(--border); padding-left: 9px; }
+  .ds-dlg-row { display: flex; gap: 16px; flex-wrap: wrap; }
+</style>
