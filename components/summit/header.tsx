@@ -6,6 +6,7 @@ import { useParams } from 'next/navigation'
 import { ArrowLeft, ArrowUpRight, Lock } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { Navbar } from '@/components/navbar'
+import { ThemeToggle } from '@/components/ui/theme-toggle'
 import { SummitGolaflyLogo } from './logo'
 import { IconWhatsApp } from '@/components/social-icons'
 import { CONTACT } from '@/store/data'
@@ -32,7 +33,7 @@ function SummitTopBar() {
           </span>
           <span aria-hidden className='h-4 w-px bg-white/15' />
           <ul className='flex h-full items-center gap-1 pl-3.5'>
-            {GOLAFLY_PRODUCTS.map((p) => (
+            {GOLAFLY_PRODUCTS.filter((p) => p.key !== 'summit').map((p) => (
               <li key={p.key} className='flex h-full items-center'>
                 {!p.href ? (
                   <span className={cn(ITEM, 'text-band-ink-muted')}>
@@ -127,7 +128,9 @@ export function SummitHeader() {
 }
 
 /* Figma "Summit · Builder header" (booking steps): logo + partner lockup on
-   the left; "Secure booking" and the way back on the right. 76px tall. */
+   the left; "Secure booking" and the way back on the right. 76px tall.
+   Not in Figma (user request, 26 Nov): the light / dark switch, so every
+   summit page has it, as the landing header does. */
 export function SummitBuilderHeader() {
   const params = useParams<{ event?: string }>()
   const event = getSummitEvent(params?.event)
@@ -155,6 +158,7 @@ export function SummitBuilderHeader() {
             <Lock aria-hidden className='size-[15px]' strokeWidth={1.8} />
             Secure booking · Official WFS tickets
           </span>
+          <ThemeToggle className='text-wfs-text/80 hover:bg-wfs-soft hover:text-wfs-text focus-visible:outline-wfs-lime' />
           <Link
             href={summitLandingHref(event?.key)}
             className='inline-flex items-center gap-1.5 rounded-sm font-mono text-[12.5px] font-medium leading-[normal] text-wfs-text hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-wfs-lime'

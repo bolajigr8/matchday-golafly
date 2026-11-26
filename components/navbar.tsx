@@ -1491,6 +1491,11 @@ function FamilyRow({ product }: { product: GolaflyProduct }) {
   return (
     <Link href={product.href} className={cn(rowClass, 'hover:bg-white/5')}>
       {text}
+      {product.badge === 'new' && (
+        <span className='shrink-0 rounded-full bg-primary px-2 py-0.5 font-mono text-[9.5px] font-semibold uppercase tracking-[0.14em] text-primary-foreground'>
+          New
+        </span>
+      )}
       <ArrowRight aria-hidden className='size-4 shrink-0 text-band-ink-muted' />
     </Link>
   )

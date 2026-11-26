@@ -651,7 +651,7 @@ import {
   removeCartItemApi,
   removeCartItemForTokenApi,
 } from '@/features/cart/api'
-import { trackPurchase } from '@/lib/analytics'
+import { trackPurchase, type TrackItem } from '@/lib/analytics'
 import {
   clearLandingReturn,
   clearLandingSiteNote,
@@ -662,6 +662,7 @@ import { useCart } from '@/features/cart/context'
 import { vipConfirmedHref } from '@/features/vip/routes'
 import { getVipSession } from '@/features/vip/session'
 import { useTravelersStore } from '@/store/travelers'
+import { sendCheckoutEventOnce, splitBuyerName } from '@/features/brevo/checkout-events'
 import {
   mapMatchdayOrderToSyncPayload,
   mapTransactionToSyncPayloads,
@@ -862,6 +863,73 @@ type CartStatusData = Omit<TransactionApiResponse['data'], 'items'> & {
   matchday_orders?: CartMatchdayStatus[]
 }
 
+/* ── Status checking after Stripe ─────────────────────────────────────── */
+
+/** Ticket order statuses after which nothing more happens on this page. */
+const FINAL_TICKET_STATUSES = new Set(['confirmed', 'manual_review', 'cancelled', 'failed'])
+
+/** How far along a ticket order is (higher = later). Unknown words rank 0. */
+const TICKET_STATUS_STEP: Record<string, number> = {
+  initiated: 1,
+  awaiting_payment: 1,
+  pending_payment: 1,
+  paid: 2,
+  confirming: 3,
+  needs_reconciliation: 3,
+  awaiting_attendees: 4,
+  manual_review: 5,
+  confirmed: 6,
+  failed: 6,
+  cancelled: 6,
+}
+
+/** Fast checks for the first minutes, then slower ones while a PAID ticket
+ *  order is still moving (the supplier can take a while to ask for the
+ *  ticket holder details), up to 30 minutes per window. */
+const FAST_WINDOW_MS = 3 * 60_000
+const SLOW_WINDOW_MS = 30 * 60_000
+const SLOW_POLL_MS = 10_000
+
+function pollDelay(
+  startedAt: number,
+  fastMs: number,
+  paidStillMoving: boolean,
+  isFinal: boolean,
+): number | false {
+  if (isFinal) return false
+  const elapsed = Date.now() - startedAt
+  if (elapsed < FAST_WINDOW_MS) return fastMs
+  if (paidStillMoving && elapsed < SLOW_WINDOW_MS) return SLOW_POLL_MS
+  return false
+}
+
+function isPaidTicketStillMoving(order: MatchdayOrder | null | undefined): boolean {
+  return (
+    !!order &&
+    order.payment_status === 'paid' &&
+    !FINAL_TICKET_STATUSES.has(order.status ?? '')
+  )
+}
+
+function basketTicketOrder(tx: CartStatusData | null | undefined): MatchdayOrder | undefined {
+  return (
+    tx?.matchday_orders?.[0] ??
+    tx?.items?.find((item) => item.matchday)?.matchday
+  )
+}
+
+/** The two readings of one ticket order: the one further along wins. A
+ *  different order (or only one reading) keeps the basket's, as before. */
+function furthestTicketOrder(
+  fromBasket: MatchdayOrder | undefined,
+  onItsOwn: MatchdayOrder | undefined,
+): MatchdayOrder | undefined {
+  if (!fromBasket || !onItsOwn) return fromBasket
+  if (String(fromBasket.order_id) !== String(onItsOwn.order_id)) return fromBasket
+  const step = (o: MatchdayOrder) => TICKET_STATUS_STEP[o.status ?? ''] ?? 0
+  return step(onItsOwn) > step(fromBasket) ? onItsOwn : fromBasket
+}
+
 function readMarker<T>(key: string): T | null {
   if (typeof window === 'undefined') return null
   try {
@@ -900,6 +968,103 @@ function useBrevoPaymentSync({
       ? mapTransactionToSyncPayloads(cartTx, sessionId)
       : null,
   )
+
+  /* Brevo "checkout abandoned": the buyer is back from Stripe and this page
+     shows "Payment not completed" for a basket with match tickets. Never for
+     money that was taken (a paid order that was later cancelled/refunded is
+     not an abandoned checkout). */
+  const reason: 'cancelled' | 'failed' | 'expired' | null =
+    cartTx?.status === 'cancelled' || matchdayOrder?.status === 'cancelled'
+      ? 'cancelled'
+      : cartTx?.status === 'expired'
+        ? 'expired'
+        : cartTx?.status === 'failed' || matchdayOrder?.status === 'failed'
+          ? 'failed'
+          : null
+  const moneyTaken =
+    matchdayOrder?.payment_status === 'paid' || cartTx?.payment_status === 'paid'
+  const email = buyer?.email || cartTx?.customer?.email || ''
+  const abandonedKey =
+    reason && !moneyTaken && matchdayOrder && sessionId && email ? `${sessionId}:${reason}` : null
+  useEffect(() => {
+    if (!abandonedKey || !matchdayOrder || !sessionId || !reason) return
+    const ev = matchdayOrder.event
+    sendCheckoutEventOnce({
+      event: 'abandoned',
+      checkout_id: sessionId,
+      email,
+      ...splitBuyerName(buyer?.fullName || cartTx?.customer?.full_name),
+      event_id: ev?.event_id,
+      match: ev?.event_name,
+      home_team: ev?.home_team,
+      away_team: ev?.away_team,
+      match_date: ev?.event_date,
+      amount: Number(matchdayOrder.amount_paid) || null,
+      currency: matchdayOrder.currency?.toUpperCase() || null,
+      quantity: matchdayOrder.quantity || null,
+      ticket_category: matchdayOrder.ticket?.category_name,
+      reason,
+      has_flight: !!cartTx?.flight,
+      has_esim: !!cartTx?.esim,
+    })
+    // Sent once per checkout + reason; the key holds what matters.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [abandonedKey])
+}
+
+/* ── Purchase reporting (ad platforms) ────────────────────────────────── */
+
+const PRODUCT_LABEL = { flight: 'Flight', stays: 'Hotel', esim: 'eSIM' } as const
+
+/** One line per flight / hotel / eSIM in a paid basket (top level, or each
+ *  basket item). Match tickets are added separately from the ticket order. */
+function basketPurchaseItems(tx: CartStatusData | null | undefined): TrackItem[] {
+  if (!tx) return []
+  const legs = tx.items?.length ? tx.items : [tx]
+  const out: TrackItem[] = []
+  for (const leg of legs) {
+    for (const product of ['flight', 'stays', 'esim'] as const) {
+      if (!leg?.[product]) continue
+      const minor = Number(leg.pricing?.amount_paid_minor)
+      out.push({
+        id: `${product}-${out.length + 1}`,
+        name: PRODUCT_LABEL[product],
+        category: product,
+        price: tx.items?.length && Number.isFinite(minor) && minor > 0 ? minor / 100 : undefined,
+        quantity: 1,
+      })
+    }
+  }
+  return out
+}
+
+/** What the whole basket charged. */
+function basketAmountPaid(tx: CartStatusData): number {
+  const minor = Number(tx.pricing?.amount_paid_minor)
+  if (Number.isFinite(minor) && minor > 0) return minor / 100
+  const total = Number(tx.price_summary?.total?.amount)
+  return Number.isFinite(total) && total > 0 ? total : 0
+}
+
+/** trackPurchase once per payment session (refreshes don't count again). */
+function reportPurchaseOnce(sessionId: string, build: () => Parameters<typeof trackPurchase>[0]) {
+  const seenKey = `gf-purchase-reported:${sessionId}`
+  try {
+    if (localStorage.getItem(seenKey)) return
+  } catch {
+    // storage unavailable: the transaction id still de-duplicates at Google/Meta
+  }
+  try {
+    trackPurchase(build())
+    try {
+      localStorage.setItem(seenKey, '1')
+    } catch {
+      // ignore
+    }
+    clearLandingSiteNote()
+  } catch {
+    // reporting must never affect the payment page
+  }
 }
 
 export default function PaymentSuccessClient() {
@@ -956,18 +1121,13 @@ export default function PaymentSuccessClient() {
     queryFn: () => getOrderByCheckoutSession(sessionId!),
     enabled: Boolean(sessionId) && !vipMarker,
     retry: false,
-    refetchInterval: (query) => {
-      const status = query.state.data?.status
-      if (
-        ['confirmed', 'manual_review', 'cancelled', 'failed'].includes(
-          status ?? '',
-        )
-      ) {
-        return false
-      }
-      if (Date.now() - startedAt >= 3 * 60_000) return false
-      return 2_000
-    },
+    refetchInterval: (query) =>
+      pollDelay(
+        startedAt,
+        2_000,
+        isPaidTicketStillMoving(query.state.data),
+        FINAL_TICKET_STATUSES.has(query.state.data?.status ?? ''),
+      ),
   })
 
   const cartQuery = useQuery<TransactionApiResponse, Error>({
@@ -976,10 +1136,17 @@ export default function PaymentSuccessClient() {
     enabled: Boolean(sessionId) && !vipMarker,
     retry: false,
     refetchInterval: (query) => {
-      const status = query.state.data?.data?.status
-      if (isTerminalTransactionStatus(status)) return false
-      if (Date.now() - startedAt >= 3 * 60_000) return false
-      return 5_000
+      const tx = query.state.data?.data as CartStatusData | undefined
+      // The basket can read final ("confirmed") before the ticket order in
+      // it has moved on to "awaiting attendees": keep checking while the
+      // paid ticket order in it is still moving, or its form would never show.
+      const ticketMoving = isPaidTicketStillMoving(basketTicketOrder(tx))
+      return pollDelay(
+        startedAt,
+        5_000,
+        ticketMoving,
+        isTerminalTransactionStatus(tx?.status) && !ticketMoving,
+      )
     },
   })
 
@@ -991,12 +1158,14 @@ export default function PaymentSuccessClient() {
     if (isVipPackage && sessionId) router.replace(vipConfirmedHref(sessionId))
   }, [isVipPackage, sessionId, router])
 
-  const cartMatchday =
-    cartTx?.matchday_orders?.[0] ??
-    cartTx?.items?.find((item) => item.matchday)?.matchday
+  const basketTicket = basketTicketOrder(cartTx)
+  // The same ticket order is read two ways (inside the basket, and on its
+  // own by checkout session): use whichever is further along, so an answer
+  // that stopped updating can never hide the ticket holder form.
+  const cartMatchday = furthestTicketOrder(basketTicket, matchdayOrder)
 
   const isCartCheckout =
-    cartTx?.checkout_type === 'cart' || Boolean(cartMatchday)
+    cartTx?.checkout_type === 'cart' || Boolean(basketTicket)
   const isDirectMatchday = Boolean(matchdayOrder) && !isCartCheckout
   const isKnownCart = markerSaysCart || isCartCheckout
 
@@ -1034,6 +1203,27 @@ export default function PaymentSuccessClient() {
     const timer = window.setTimeout(() => setTimedOut(true), FINISHING_MESSAGE_AFTER_MS)
     return () => window.clearTimeout(timer)
   }, [])
+
+  // Back on this tab (phone unlocked, app switched back): check at once and
+  // open a new checking window, so a customer who waited elsewhere still gets
+  // the ticket holder form without refreshing.
+  const refetchMatchday = matchdayQuery.refetch
+  const refetchCart = cartQuery.refetch
+  useEffect(() => {
+    if (!sessionId) return
+    const onBack = () => {
+      if (document.visibilityState !== 'visible') return
+      setStartedAt(Date.now())
+      void refetchMatchday()
+      void refetchCart()
+    }
+    document.addEventListener('visibilitychange', onBack)
+    window.addEventListener('focus', onBack)
+    return () => {
+      document.removeEventListener('visibilitychange', onBack)
+      window.removeEventListener('focus', onBack)
+    }
+  }, [sessionId, refetchMatchday, refetchCart])
 
   const attendeeOrder = isCartCheckout ? cartMatchday : matchdayOrder
   const attendeeFields = attendeeOrder?.attendees_required ?? []
@@ -1199,20 +1389,40 @@ export default function PaymentSuccessClient() {
     }
   }, [sessionId, isKnownCart, cartConfirmed, matchdayOrder, clearLocalCart, cartTx?.hospitality_package_id])
 
-  // Landing-page buyers only: the booking began on a landing address, so
-  // golafly.com is where Stripe brought them back and the sale is reported
-  // here (lib/analytics.ts adds the landing name). Nothing happens for buyers
-  // who started on golafly.com. Once per payment session.
+  // Every paid purchase is reported here, once per payment session: match
+  // tickets, flights, hotels, eSIMs or any mix of them, for buyers who
+  // started on golafly.com (where the Google Ads campaign sends people) and
+  // for buyers who started on a landing address (Stripe brings them back to
+  // golafly.com; lib/analytics.ts then adds the landing name). VIP packages
+  // are reported on their own confirmation page (/vip/confirmed).
   const purchaseReported = useRef(false)
+  const basketChecked = cartQuery.isFetched
   useEffect(() => {
-    if (!sessionId || purchaseReported.current) return
-    if (!landing.site) return
+    if (!sessionId || purchaseReported.current || isVipPackage) return
+    // Wait for the basket's answer: until then a mixed basket (or a VIP
+    // package) would be reported as match tickets only, with the wrong total.
+    if (!basketChecked) return
 
     const order = isCartCheckout ? cartMatchday : matchdayOrder
+    if (!order) {
+      // No match tickets: a basket of flights / hotels / eSIMs.
+      if (cartTx?.payment_status !== 'paid') return
+      const items = basketPurchaseItems(cartTx)
+      if (!items.length) return
+      purchaseReported.current = true
+      reportPurchaseOnce(sessionId, () => ({
+        transactionId: sessionId,
+        value: basketAmountPaid(cartTx),
+        currency: String(cartTx.pricing?.currency || 'EUR').toUpperCase(),
+        items,
+      }))
+      return
+    }
+
     const paid = isCartCheckout
       ? cartPaymentPaid || cartMatchdayPaymentPaid
       : matchdayPaymentPaid
-    if (!paid || !order) return
+    if (!paid) return
 
     const seenKey = `gf-purchase-reported:${sessionId}`
     purchaseReported.current = true
@@ -1251,6 +1461,8 @@ export default function PaymentSuccessClient() {
             price: Number(order.amount_paid) / quantity || undefined,
             quantity,
           },
+          // A basket can carry a flight / hotel / eSIM next to the tickets.
+          ...(isCartCheckout ? basketPurchaseItems(cartTx) : []),
         ],
       })
       try {
@@ -1265,6 +1477,8 @@ export default function PaymentSuccessClient() {
   }, [
     sessionId,
     landing,
+    isVipPackage,
+    basketChecked,
     isCartCheckout,
     cartMatchday,
     matchdayOrder,

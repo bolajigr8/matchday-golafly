@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { setCartToken } from '@/lib/cart-token'
+import { trackPurchase } from '@/lib/analytics'
 import { VipButton, VipButtonLink } from '@/components/vip/flow/button'
 import { VipError, VipLoading, VipNote, VipNotice } from '@/components/vip/flow/state'
 import { VipStepper } from '@/components/vip/flow/stepper'
@@ -122,6 +123,45 @@ export function VipConfirmedClient({ sessionId }: { sessionId: string | null }) 
 
   const pkg = view.data ?? null
   const final = isFinalPackageStatus(pkg?.status)
+
+  /* Ad platforms: a paid VIP package, once per payment session (same
+     refresh guard and transaction id as /payment-success, which hands VIP
+     buyers over to this page without reporting them). */
+  const txPaid = tx.data?.payment_status === 'paid'
+  const minorPaid = Number(tx.data?.pricing?.amount_paid_minor)
+  const paidCurrency = tx.data?.pricing?.currency
+  const eventName = pkg?.event_name
+  useEffect(() => {
+    if (!sessionId || !txPaid || !packageId) return
+    // Wait briefly for the match name; report anyway if it doesn't come.
+    if (!eventName && !view.isError && view.isFetching) return
+    const seenKey = `gf-purchase-reported:${sessionId}`
+    try {
+      if (window.localStorage.getItem(seenKey)) return
+      window.localStorage.setItem(seenKey, '1')
+    } catch {
+      /* storage unavailable: the transaction id still dedupes at Google/Meta */
+    }
+    try {
+      const value = Number.isFinite(minorPaid) && minorPaid > 0 ? minorPaid / 100 : 0
+      trackPurchase({
+        transactionId: sessionId,
+        value,
+        currency: String(paidCurrency || 'EUR').toUpperCase(),
+        items: [
+          {
+            id: `vip-${packageId}`,
+            name: eventName ? `VIP package · ${eventName}` : 'VIP package',
+            category: 'vip',
+            price: value || undefined,
+            quantity: 1,
+          },
+        ],
+      })
+    } catch {
+      /* reporting must never affect the confirmation page */
+    }
+  }, [sessionId, txPaid, packageId, eventName, minorPaid, paidCurrency, view.isError, view.isFetching])
 
   /* Paid: this browser is done building it. A guest's cart now holds a
      paid package, so the next purchase starts a fresh cart. */

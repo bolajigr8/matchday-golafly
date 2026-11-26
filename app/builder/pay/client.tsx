@@ -36,6 +36,7 @@ import {
   type StayRoomDraft,
 } from '@/features/checkout/stay-guests'
 import { useTravelersStore } from '@/store/travelers'
+import { sendCheckoutEventOnce, splitBuyerName } from '@/features/brevo/checkout-events'
 import { validateCheckoutForm } from '@/features/checkout/validate-form'
 import { formatMatchdayMoney } from '@/features/matchday/format'
 import { useCurrencyStore } from '@/store/currency'
@@ -479,6 +480,29 @@ export function PayClient() {
       // is higher than the figure on screen (a seat went, a price moved up).
       // A null or unreadable summary changes nothing: go to Stripe as before.
       const charged = normalizePriceSummary(result.data?.price_summary)
+      // Brevo "checkout started" (abandoned-checkout reminder): only for a
+      // basket with match tickets, sent before leaving for Stripe.
+      if (realTicketItem && result.data.session_id) {
+        const tp = realTicketItem.checkoutPayload
+        sendCheckoutEventOnce({
+          event: 'started',
+          checkout_id: result.data.session_id,
+          email: travelers.primaryContact.email,
+          ...splitBuyerName(travelers.primaryContact.fullName),
+          event_id: (tp?.eventId as string | number | undefined) ?? ticketMatch.id,
+          home_team: ticketMatch.home || null,
+          away_team: ticketMatch.away || null,
+          match_date: ticketMatch.dateISO ?? null,
+          amount: (charged ?? summary)?.total.amount ?? payableTotal,
+          currency,
+          quantity: Number(tp?.quantity) || realTicketItem.qty || null,
+          match: realTicketItem.name || null,
+          // The seat line starts with the category ("Category 1 · Block 21 · …").
+          ticket_category: realTicketItem.detail?.split(' · ')[0] || null,
+          has_flight: hasFlight,
+          has_esim: hasEsim,
+        })
+      }
       if (
         charged &&
         summary &&
@@ -857,6 +881,24 @@ export function PayClient() {
                     Review my order
                   </button>
                 </div>
+              )}
+              {/* After Stripe, many matches ask for each ticket holder's name
+                  before tickets can be issued; the form appears on the
+                  payment page, so ask the buyer to stay on it. */}
+              {realTicketItem && (
+                <p
+                  data-testid='stay-after-payment-note'
+                  className='mb-3 flex items-start gap-2 rounded-xl border border-sky-500/25 bg-sky-500/5 p-3 text-left text-[11px] leading-relaxed text-foreground/80'
+                >
+                  <Info className='mt-0.5 size-3.5 shrink-0 text-sky-500' />
+                  <span>
+                    <span className='font-semibold text-foreground'>
+                      Please stay on the page after payment.
+                    </span>{' '}
+                    You may be asked for the ticket holder details needed to
+                    issue your tickets.
+                  </span>
+                </p>
               )}
               <button
                 type='button'

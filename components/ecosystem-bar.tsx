@@ -76,11 +76,21 @@ function ProductItem({ product }: { product: GolaflyProduct }) {
   return (
     <Link
       href={product.href}
-      className={cn(ITEM, FOCUS, 'text-band-ink-muted hover:text-band-ink-fg')}
+      className={cn(
+        ITEM,
+        FOCUS,
+        product.badge === 'new' && 'gap-2',
+        'text-band-ink-muted hover:text-band-ink-fg',
+      )}
     >
       <span translate='no' className='notranslate'>
         {product.name}
       </span>
+        {product.badge === 'new' && (
+          <span className='rounded-full bg-primary px-1.5 py-px font-mono text-[9.5px] font-semibold uppercase leading-[1.5] tracking-[0.14em] text-primary-foreground'>
+            New
+          </span>
+        )}
     </Link>
   )
 }

@@ -8,6 +8,7 @@ import type { SyncOrderPayload } from '@/lib/brevo/types'
 import { getServerEvent } from '@/lib/matchday-server'
 import { kickoffUtc } from '@/lib/email/timezones'
 import { cityGuide } from '@/lib/brevo/city-guides'
+import { matchPath } from '@/lib/slug'
 
 /** The contact date attribute the "days before the match" automations read
  *  (created in Brevo as a Date attribute). */
@@ -111,6 +112,9 @@ export async function matchdayDetails(body: SyncOrderPayload): Promise<{
         city = ev.venue?.venue_city_name
         homeId = ev.team1?.id
         awayId = ev.team2?.id
+        /* Link back to the match page (abandoned-checkout reminder, and any
+           email that wants a "see the match" button). */
+        meta.match_url = `${SITE_URL}${matchPath(ev)}`
       }
     } catch {
       /* the match API is down: send what we have */

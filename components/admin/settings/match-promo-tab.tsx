@@ -96,7 +96,8 @@ function statusLine(promo: MatchPromo): string {
     return `Scheduled — starts ${formatDay(promo.starts_on)}.`;
   if (promo.ends_on && promo.today > promo.ends_on) return `Ended ${formatDay(promo.ends_on)}.`;
   if (promo.max_percent <= 0) return "On, but no band has a percent yet.";
-  if (promo.remaining < 1) return "Today’s slots are used up — back tomorrow.";
+  if (promo.remaining < 1)
+    return "Today’s discount slots are used up — back tomorrow. The Black Friday banner stays up until the end date.";
   return "Running now.";
 }
 

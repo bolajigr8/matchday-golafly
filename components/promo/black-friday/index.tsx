@@ -1,9 +1,10 @@
 'use client'
 
-// Black Friday 2026 on golafly.com (matchday). Banners show only while the
-// Match Promo is applying (useBlackFriday: promo + NEXT_PUBLIC_BLACK_FRIDAY switch), with the
-// designer's football copy + the boss's offer lines. "Find tickets" opens the
-// matches page (where fans pick a match and build their trip), never Travel.
+// Black Friday 2026 on golafly.com (matchday). The bar, hero and card stay up
+// for the whole Match Promo date window. Today's slot count does not hide them.
+// The free eSIM line on checkout still shows only while a discount applies.
+// "Find tickets" opens the matches page (where fans pick a match and build
+// their trip), never Travel.
 //
 // Placement: bar pinned at the very top of public pages (above the sticky
 // header, components/conditional-header.tsx), hero band under the homepage
@@ -69,11 +70,11 @@ export function BlackFridayHero() {
   return <BlackFridayTicketView variant='band' href={TICKETS_URL} dates={dates} />
 }
 
-/** Free eSIM line on checkout. Hidden unless the Match Promo is applying.
+/** Free eSIM line on checkout. Hidden unless a discount still applies today.
  *  It is a gift, so it never changes the total. */
 export function BlackFridayCheckoutGift({ className }: { className?: string }) {
-  const { open } = useBlackFriday()
-  if (!open) return null
+  const { offer } = useBlackFriday()
+  if (!offer) return null
   return (
     <div className={cn('flex items-center justify-between gap-3 text-sm', className)}>
       <span className='flex items-center gap-1.5 text-muted-foreground'>

@@ -4,7 +4,7 @@
    and the footer. A product without `href` isn't live yet and renders as
    a "Soon" chip, never as a dead link. */
 
-export type GolaflyProductKey = 'matchday' | 'travel' | 'academy' | 'camp'
+export type GolaflyProductKey = 'matchday' | 'travel' | 'academy' | 'camp' | 'summit'
 
 export interface GolaflyProduct {
   key: GolaflyProductKey
@@ -19,6 +19,8 @@ export interface GolaflyProduct {
   href?: string
   external?: boolean
   status?: 'soon'
+  /** A lime "NEW" chip next to the name (strip + phone menu). */
+  badge?: 'new'
 }
 
 export const TRAVEL_URL = 'https://golaflytravel.com'
@@ -58,6 +60,17 @@ export const GOLAFLY_PRODUCTS: GolaflyProduct[] = [
     // standalone /scouting-camp page is the Google Ads landing page only and
     // is deliberately not linked from the site.
     href: '/program/football-tourism',
+  },
+  {
+    // World Football Summit: booked on Matchday (/world-football-summit).
+    // Shown as "Summit · NEW", the same item the summit's own Figma header
+    // has in this strip.
+    key: 'summit',
+    name: 'Summit',
+    fullName: 'World Football Summit',
+    tagline: 'Summit ticket, flights and hotel in one booking',
+    href: '/world-football-summit',
+    badge: 'new',
   },
 ]
 

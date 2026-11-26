@@ -17,10 +17,11 @@
 // This file never decides consent. It only calls what is there: if the pixel
 // is not loaded, the Meta call is silently skipped.
 //
-// Scope: by default events are sent ONLY from landing hostnames
-// (championsleague.golafly.com …). The booking pages are shared with the main
-// site, so to also send them from golafly.com set
-// NEXT_PUBLIC_TRACK_MAIN_EVENTS=true.
+// Scope: events are sent from golafly.com AND from the landing hostnames
+// (championsleague.golafly.com …). Golafly.com was switched on in Nov 2026 so
+// the Google Ads campaign (which sends people to golafly.com) sees purchases
+// with their real value. NEXT_PUBLIC_TRACK_MAIN_EVENTS=false turns golafly.com
+// off again (landing sites always send).
 //
 // Google Ads purchase conversion: the send-to value below (the same for all
 // three landing sites) comes from the Google Ads "Purchase" conversion.
@@ -53,7 +54,8 @@ interface Money {
 type Gtag = (...args: unknown[]) => void
 type Fbq = (...args: unknown[]) => void
 
-const TRACK_MAIN = process.env.NEXT_PUBLIC_TRACK_MAIN_EVENTS === 'true'
+/** On by default; only an explicit 'false' turns golafly.com events off. */
+const TRACK_MAIN = process.env.NEXT_PUBLIC_TRACK_MAIN_EVENTS !== 'false'
 const ADS_PURCHASE_LABEL =
   process.env.NEXT_PUBLIC_GOOGLE_ADS_PURCHASE_LABEL ||
   'AW-18513535119/bnDOCPjLkrIdEI_B-PtE'

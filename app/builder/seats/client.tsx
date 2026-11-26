@@ -323,8 +323,9 @@ export function SeatsClient() {
         },
         { silent: true },
       )
-      // Ad platforms: tickets are in the cart (only runs on landing sites
-      // unless NEXT_PUBLIC_TRACK_MAIN_EVENTS=true; see lib/analytics.ts).
+      // Ad platforms: tickets are in the cart (golafly.com and landing sites;
+      // NEXT_PUBLIC_TRACK_MAIN_EVENTS=false turns golafly.com off, see
+      // lib/analytics.ts).
       trackAddToCart({
         value: l.priceEach * qty,
         currency: l.currency ?? currency ?? 'EUR',
